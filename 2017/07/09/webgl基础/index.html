@@ -6,23 +6,26 @@
     
 
     
-    <title>Hello World | 李世奇的技术专栏</title>
+    <title>webgl基础 | 李世奇的技术专栏</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="" />
+        <meta name="keywords" content="webgl 三维" />
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="1. canvas和webglWebGL是利用canvas来实现的 canvas和img等标签一样，是一个可以自由制定大小的矩形区域。 通过javascript可以对矩形区域进行操作，可以自由的绘制图形，文字等。而且，可以添加影子，进行涂色，另外还可以对绘制的图形进行旋转等操作。 一般使用canvas都是使用它的2d的context功能，但是也仅限于此，像它的名字一样，只能用于2d空间的绘图。 和">
+<meta name="keywords" content="webgl 三维">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/10/16/hello-world/index.html">
+<meta property="og:title" content="webgl基础">
+<meta property="og:url" content="http://yoursite.com/2017/07/09/webgl基础/index.html">
 <meta property="og:site_name" content="李世奇的技术专栏">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="1. canvas和webglWebGL是利用canvas来实现的 canvas和img等标签一样，是一个可以自由制定大小的矩形区域。 通过javascript可以对矩形区域进行操作，可以自由的绘制图形，文字等。而且，可以添加影子，进行涂色，另外还可以对绘制的图形进行旋转等操作。 一般使用canvas都是使用它的2d的context功能，但是也仅限于此，像它的名字一样，只能用于2d空间的绘图。 和">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-16T13:24:32.037Z">
+<meta property="og:image" content="http://wgld.org/i/site/w005_01.jpg">
+<meta property="og:updated_time" content="2018-10-17T02:50:19.695Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="webgl基础">
+<meta name="twitter:description" content="1. canvas和webglWebGL是利用canvas来实现的 canvas和img等标签一样，是一个可以自由制定大小的矩形区域。 通过javascript可以对矩形区域进行操作，可以自由的绘制图形，文字等。而且，可以添加影子，进行涂色，另外还可以对绘制的图形进行旋转等操作。 一般使用canvas都是使用它的2d的context功能，但是也仅限于此，像它的名字一样，只能用于2d空间的绘图。 和">
+<meta name="twitter:image" content="http://wgld.org/i/site/w005_01.jpg">
     
 
     
@@ -140,14 +143,14 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-hello-world" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-webgl基础" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Hello World
+        webgl基础
         </h1>
     
 
@@ -157,27 +160,75 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2018/10/16/hello-world/" class="article-date">
-            <time datetime="2018-10-16T13:24:32.037Z" itemprop="datePublished">2018-10-16</time>
+        <a href="/2017/07/09/webgl基础/" class="article-date">
+            <time datetime="2017-07-09T02:47:34.000Z" itemprop="datePublished">2017-07-09</time>
         </a>
     </div>
 
 		
 
                 
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/webgl-三维/">webgl 三维</a>
+    </div>
+
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <h1 id="1-canvas和webgl"><a href="#1-canvas和webgl" class="headerlink" title="1. canvas和webgl"></a>1. canvas和webgl</h1><p>WebGL是利用canvas来实现的</p>
+<p>canvas和img等标签一样，是一个可以自由制定大小的矩形区域。</p>
+<p>通过javascript可以对矩形区域进行操作，可以自由的绘制图形，文字等。而且，可以添加影子，进行涂色，另外还可以对绘制的图形进行旋转等操作。</p>
+<p>一般使用canvas都是使用它的2d的context功能，但是也仅限于此，像它的名字一样，只能用于2d空间的绘图。</p>
+<p>和这个相对的，WebGL是三维，可以描画3D图形，区别于之前的2dcontext，它叫做webglcontext。</p>
+<h1 id="2-3D绘图基础"><a href="#2-3D绘图基础" class="headerlink" title="2. 3D绘图基础"></a>2. 3D绘图基础</h1><p>利用WebGL可以模拟三维空间，但是最终必须输出显示在一个二维的显示器上。由深度决定的前后关系，根据远近进行放大和缩小，这些都必须提前进行运算得出结果。</p>
+<p>这时候，坐标变换就是必须的了。坐标变换大致可以分为三种，将这些正确的组合在一起，最终决定显示器上的位置。</p>
+<blockquote>
+<p>模型变换：第一种变换 定义参照物在三维空间的什么位置。假设，虚拟的三维空间里有一个苹果，那么为了表示这个苹果在什么位置，就需要进行相应的模型变换了。</p>
+</blockquote>
+<blockquote>
+<p>视图变换：第二种变换 为了决定镜头的位置和角度所进行的坐标变换就叫做视图变换。即使三维空间中有一个苹果，如果镜头的方向不对着苹果的话，同样也是看不到这个苹果的。而且，如果将镜头大幅度远离苹果，那么也有可能看不到苹果了。</p>
+</blockquote>
+<blockquote>
+<p>投影变换：这个变换，定义了三维空间的摄影区域。比如，是横向摄影，还是纵向摄影，最远拍摄多远距离等。</p>
+</blockquote>
+<h1 id="3-矩阵"><a href="#3-矩阵" class="headerlink" title="3. 矩阵"></a>3. 矩阵</h1><p>矩阵虽然有很多种，其中的一种叫做方阵。就是行数和列数相同的矩阵。</p>
+<p><img src="http://wgld.org/i/site/w005_01.jpg" alt="image"></p>
+<p>一般的3D渲染的世界中使用的是4x4的矩阵。</p>
+<p>实际3D渲染的时候，准备好模型坐标变换，视图坐标变换，投影坐标变换的各个矩阵。再具体一点，就是准备好各种坐标变换的矩阵，然后相乘。将最终得到的矩阵传给WebGL的顶点着色器。</p>
+<p>矩阵可以将上面提到的变换保存起来，比如，如果是模型变换的矩阵，想要绘制的3D模型的位置，扩大缩小，以及旋转等信息，都可以定义在一个矩阵中。视图变换矩阵，镜头的位置，镜头的方向，以及镜头对准了哪个点（注视点）等可以定义在一个矩阵中。投影变换矩阵的话，显示的横竖比例和视角等信息可以定义在一个矩阵中。</p>
+<p>需要注意一点，如果是普通的数学计算，相乘的时候，不需要注意相乘的顺序，比如2x3等于6，3x2也等于6。但是矩阵的话，根据相乘的顺序得出的结果是不同的。因为矩阵的这种性质，所以进行模型，视图，投影的矩阵相乘的时候，要特别注意相乘的顺序。</p>
+<p>顶点着色器从传过来的矩阵中，获取到模型的坐标，加工到画面上显示出来。也就是说，操作坐标变换的矩阵，就可以决定模型在画面上如何绘制。</p>
+<h1 id="4-webgl可描述的东西"><a href="#4-webgl可描述的东西" class="headerlink" title="4. webgl可描述的东西"></a>4. webgl可描述的东西</h1><p>要说在WebGL的世界里能够描画什么，其实任何东西都可以描画。而描画的最基本的东西就是下面几种。</p>
+<ul>
+<li>点</li>
+<li>线段</li>
+<li>三角形</li>
+</ul>
+<p>WebGL就是使用三角形在画面上绘制一些东西。这个三角形就是一个多边形，一个多边形至少是将三个顶点连接画出来的三角形，所以一个绘制一个多边形，最少需要三个顶点。</p>
+<p>顶点，就是三维空间上存在的一个点。当然，这个点需要有坐标位置。顶点的横坐标是x，纵坐标是y，深度是z。将包含这些信息的点连接起来就形成了一个多边形。</p>
+<p>非常逼真的3D游戏用了你想像不到的大量的三角形，制作出了无比精美的人物和场景。</p>
+<p>想要绘制复杂构造的模型的话，需要准备大量的非常小的多边形。用的多边形越少，绘制的模型的棱角就越明显。</p>
+<p>想要绘制精美的模型，就需要更多的多边形，当然，这些多边形的数量增加的话，定点数量也会成倍成倍的增加，坐标计算的负荷就越大。</p>
+<h2 id="顶点链接顺序和遮挡剔除"><a href="#顶点链接顺序和遮挡剔除" class="headerlink" title="顶点链接顺序和遮挡剔除"></a>顶点链接顺序和遮挡剔除</h2><p>3D渲染的世界里，看不到的东西不绘制的是减轻负担的最普通的方法。这就叫做遮挡剔除，如果设定了遮挡剔除，就只会绘制外侧看得见的多边形，内侧的所有多边形就都不再进行绘制了。</p>
+<p>顺时针连接顶点的多边形是在外侧，而逆时针连接的多边形在内侧。所以，在定义顶点情报的时候，要特别注意。如果设定了遮挡剔除，本来应该在某个位置有个多边形，但是根本就不会进行绘制。</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/005PubN1ly1fjeamob0xrj30gm08a759.jpg" alt="image"></p>
+<h1 id="5-context初始化"><a href="#5-context初始化" class="headerlink" title="5.context初始化"></a>5.context初始化</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> c = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>);</span><br><span class="line">    c.width = <span class="number">500</span>;</span><br><span class="line">    c.height = <span class="number">300</span>;</span><br><span class="line">    <span class="keyword">var</span> gl = c.getContext(<span class="string">'webgl'</span>) || c.getContext(<span class="string">'experimental-webgl'</span>);</span><br><span class="line">    gl.clearColor(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>);</span><br><span class="line">    gl.clear(gl.COLOR_BUFFER_BIT);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gl.clear(gl.COLOR_BUFFER_BIT);</span><br></pre></td></tr></table></figure>
+<p>这个函数将画面清空，回到一个全新的状态。参数是要清空的对象，或者是WebGL中定义的常量。这一次，只是清空一下画面上的颜色，所以使用COLOR_BUFFER_BIT这个常量，这个常量是为了使用canvas里面指定的颜色来清空画面而定义的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gl.clearColor(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>);</span><br></pre></td></tr></table></figure>
+<p>如果要清空画面所使用的颜色的话，就必须得另外定义了。这个函数是clearColor。clearColor函数的参数有四个，就是单纯的RGBA，很直观吧，使用方法如下。</p>
+<h1 id="6-着色器"><a href="#6-着色器" class="headerlink" title="6.着色器"></a>6.着色器</h1><p>WebGL中，所谓的固定渲染管线是不存在的。</p>
+<p>固定渲染管线，简单来说，就是3d渲染所进行的一连串的计算流程，就像流水线一样。如果有了固定渲染管线，编写程序就比较容易了，因为所有的变换都是由固定渲染管线来完成的，但是缺点就是自由度低。固定渲染管线只能完成一些最基本的操作，如果想要做一些特殊的处理，就比较麻烦了。</p>
+<p>WebGL中不存在固定渲染管线。也就是说，坐标变换必须全部由自己来做。而且，这个记述了坐标变换的机制就叫做着色器(Shader)。</p>
+<p>这样可以由程序员控制的机制叫做可编辑渲染管线。而着色器又有 处理几何图形顶点的顶点着色器和处理像素的片段着色器两种类型。<br>由于WebGL中没有固定管线，所以必须准备好顶点着色器和片段着色器。</p>
+<p>着色器的添加可以有多种做法。着色器是由程序员自己编写的，而且着色器的代码就是简单的字符串而已。所以，不管用什么方法，只要把这个着色器字符串传给程序就可以了。</p>
+<p>最简单的方法，就是把着色器记录在HTML中。使用这种方法的话，是利用HTML的script标签来做的。下面是一个简单的例子。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">"vshader"</span> <span class="attr">type</span>=<span class="string">"x-shader/x-vertex"</span>&gt;</span><span class="undefined">  </span></span><br><span class="line"><span class="undefined">    ※顶点着色器  </span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>  </span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">"fshader"</span> <span class="attr">type</span>=<span class="string">"x-shader/x-fragment"</span>&gt;</span><span class="undefined">  </span></span><br><span class="line"><span class="undefined">    ※片段着色器  </span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>指定type属性的理由:<br>type属性指定了［x-shader/x-vertex］和［x-shader/x-fragment］，这并不是HTML中定义的正式的写法。但是一般的浏览器如果遇到不识别的标签的话会无视掉的，浏览器不会认为这是javascript代码的。浏览器只会把它当成无意义的字符串，而程序中则可以使用标签里面的内容。</p>
+</blockquote>
 
         </div>
         <footer class="article-footer">
@@ -185,7 +236,7 @@
 
 
 
-    <a data-url="http://yoursite.com/2018/10/16/hello-world/" data-id="cjnckspt80000uu0d551xfjmz" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+    <a data-url="http://yoursite.com/2017/07/09/webgl基础/" data-id="cjncksptc0001uu0dcb82arzx" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -323,12 +374,16 @@
         
 <nav id="article-nav">
     
+        <a href="/2018/10/16/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">més nou</strong>
+        <p class="article-nav-title">
+        
+            Hello World
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
     
-        <a href="/2017/07/09/webgl基础/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">antic</strong>
-        <p class="article-nav-title">webgl基础</p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
     
 </nav>
 
@@ -473,7 +528,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://yoursite.com/2018/10/16/hello-world/';
+    var disqus_url = 'http://yoursite.com/2017/07/09/webgl基础/';
     
     (function() {
     var dsq = document.createElement('script');

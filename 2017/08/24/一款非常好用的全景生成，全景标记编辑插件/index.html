@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>一款非常好用的全景生成，全景标记编辑插件 | 李世奇的技术专栏</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="三维,全景,three.js" />
+    
+    <meta name="description" content="最近一直在研究全景功能，于是封装成一个方便小巧的插件以便大家使用！ 插件包括两部分：全景展示部分，全景标记编辑部分，二者结合使用非常方便！ 使用插件首先需要引用 three.js 1.全景展示1.1 参数说明   参数名称 类型 说明      container string 存放全景的容器id    url string 存放全景图片的路径    lables array {position:">
+<meta name="keywords" content="三维,全景,three.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一款非常好用的全景生成，全景标记编辑插件">
+<meta property="og:url" content="http://yoursite.com/2017/08/24/一款非常好用的全景生成，全景标记编辑插件/index.html">
+<meta property="og:site_name" content="李世奇的技术专栏">
+<meta property="og:description" content="最近一直在研究全景功能，于是封装成一个方便小巧的插件以便大家使用！ 插件包括两部分：全景展示部分，全景标记编辑部分，二者结合使用非常方便！ 使用插件首先需要引用 three.js 1.全景展示1.1 参数说明   参数名称 类型 说明      container string 存放全景的容器id    url string 存放全景图片的路径    lables array {position:">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://pci54wuwr.bkt.clouddn.com/%E5%85%A8%E6%99%AF1.png">
+<meta property="og:updated_time" content="2018-10-17T15:00:21.845Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一款非常好用的全景生成，全景标记编辑插件">
+<meta name="twitter:description" content="最近一直在研究全景功能，于是封装成一个方便小巧的插件以便大家使用！ 插件包括两部分：全景展示部分，全景标记编辑部分，二者结合使用非常方便！ 使用插件首先需要引用 three.js 1.全景展示1.1 参数说明   参数名称 类型 说明      container string 存放全景的容器id    url string 存放全景图片的路径    lables array {position:">
+<meta name="twitter:image" content="http://pci54wuwr.bkt.clouddn.com/%E5%85%A8%E6%99%AF1.png">
+    
+
+    
+        <link rel="alternate" href="/" title="李世奇的技术专栏" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Inici</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/board">更新日志</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'categories',
+            TAGS: 'etiquetes',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    Sense categoria
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-一款非常好用的全景生成，全景标记编辑插件" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        一款非常好用的全景生成，全景标记编辑插件
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/08/24/一款非常好用的全景生成，全景标记编辑插件/" class="article-date">
+            <time datetime="2017-08-24T14:56:47.000Z" itemprop="datePublished">2017-08-24</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/three-js/">three.js</a>, <a class="tag-link" href="/tags/三维/">三维</a>, <a class="tag-link" href="/tags/全景/">全景</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>最近一直在研究全景功能，于是封装成一个方便小巧的插件以便大家使用！</p>
+<p>插件包括两部分：全景展示部分，全景标记编辑部分，二者结合使用非常方便！</p>
+<p>使用插件首先需要引用 three.js</p>
+<h1 id="1-全景展示"><a href="#1-全景展示" class="headerlink" title="1.全景展示"></a>1.全景展示</h1><h2 id="1-1-参数说明"><a href="#1-1-参数说明" class="headerlink" title="1.1 参数说明"></a>1.1 参数说明</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">参数名称</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">说明 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">container</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">存放全景的容器id </td>
+</tr>
+<tr>
+<td style="text-align:center">url</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">存放全景图片的路径 </td>
+</tr>
+<tr>
+<td style="text-align:center">lables</td>
+<td style="text-align:center">array</td>
+<td style="text-align:center">{position:{lon:经度,lat:纬度},logoUrl:’logo路径’,text:’内容’}</td>
+</tr>
+<tr>
+<td style="text-align:center">widthSegments</td>
+<td style="text-align:center">num</td>
+<td style="text-align:center">水平切段数 </td>
+</tr>
+<tr>
+<td style="text-align:center">heightSegments</td>
+<td style="text-align:center">num</td>
+<td style="text-align:center">垂直切段数（值小粗糙速度快，值大精细速度慢） </td>
+</tr>
+<tr>
+<td style="text-align:center">pRadius</td>
+<td style="text-align:center">num</td>
+<td style="text-align:center">全景球的半径，影响视觉效果，推荐使用默认值 </td>
+</tr>
+<tr>
+<td style="text-align:center">minFocalLength</td>
+<td style="text-align:center">num</td>
+<td style="text-align:center">镜头最小拉近距离 </td>
+</tr>
+<tr>
+<td style="text-align:center">maxFocalLength</td>
+<td style="text-align:center">num</td>
+<td style="text-align:center">镜头最大拉近距离 </td>
+</tr>
+<tr>
+<td style="text-align:center">showlable</td>
+<td style="text-align:center">‘show’/‘click’</td>
+<td style="text-align:center">显示标记的方式，分为直接显示和点击显示</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-2-公用方法"><a href="#1-2-公用方法" class="headerlink" title="1.2 公用方法"></a>1.2 公用方法</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">方法名称</th>
+<th style="text-align:center">说明 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">config</td>
+<td style="text-align:center">给全景对象设置配置信息</td>
+</tr>
+<tr>
+<td style="text-align:center">init</td>
+<td style="text-align:center">初始化全景对象 </td>
+</tr>
+<tr>
+<td style="text-align:center">clean</td>
+<td style="text-align:center">清除全景对象 </td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-3-使用"><a href="#1-3-使用" class="headerlink" title="1.3 使用"></a>1.3 使用</h2><p>初始化：（参数不设置则采用默认参数）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> opt,tp;</span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    opt = &#123;</span><br><span class="line">        container:<span class="string">'panoramaConianer'</span>,<span class="comment">//容器</span></span><br><span class="line">        url:<span class="string">'img/p1.png'</span>,</span><br><span class="line">        lables:[</span><br><span class="line">            &#123;<span class="attr">position</span>:&#123;<span class="attr">lon</span>:<span class="number">180</span>,<span class="attr">lat</span>:<span class="number">0</span>&#125;,<span class="attr">logoUrl</span>:<span class="string">''</span>,<span class="attr">text</span>:<span class="string">'我是一个标记'</span>&#125;</span><br><span class="line">        ],</span><br><span class="line">        widthSegments: <span class="number">60</span>,<span class="comment">//水平切段数</span></span><br><span class="line">        heightSegments: <span class="number">40</span>,<span class="comment">//垂直切段数（值小粗糙速度快，值大精细速度慢）</span></span><br><span class="line">        pRadius: <span class="number">1000</span>,<span class="comment">//全景球的半径，推荐使用默认值</span></span><br><span class="line">        minFocalLength: <span class="number">6</span>,<span class="comment">//镜头最a小拉近距离</span></span><br><span class="line">        maxFocalLength: <span class="number">100</span>,<span class="comment">//镜头最大拉近距离</span></span><br><span class="line">        showlable: <span class="string">'show'</span> <span class="comment">// show,click</span></span><br><span class="line">    &#125;</span><br><span class="line">    tp = <span class="keyword">new</span> tpanorama(opt);</span><br><span class="line">    tp.init();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改某些参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">opt.showlable = <span class="string">'click'</span>;</span><br><span class="line">opt.lables = [&#123;<span class="attr">position</span>:&#123;<span class="attr">lon</span>:<span class="number">180</span>,<span class="attr">lat</span>:<span class="number">0</span>&#125;,<span class="attr">logoUrl</span>:<span class="string">'img/logo.png'</span>,<span class="attr">text</span>:<span class="string">'点击了这个标记'</span>&#125;];</span><br><span class="line">opt.url = <span class="string">'img/p1.png'</span>;</span><br><span class="line">tp.clean();</span><br><span class="line">tp.config(opt);</span><br><span class="line">tp.init();</span><br></pre></td></tr></table></figure>
+<p><img src="http://pci54wuwr.bkt.clouddn.com/%E5%85%A8%E6%99%AF1.png" alt="这里写图片描述"></p>
+<h1 id="2-添加全景标记工具"><a href="#2-添加全景标记工具" class="headerlink" title="2.添加全景标记工具"></a>2.添加全景标记工具</h1><p>在展示全景的时候，你或许会对标记的位置产生了疑问，如何确定标记的位置？</p>
+<p>我们可以使用类似经纬度的参数来表达它，注意这里使用的经纬度并不是真正的经纬度，是我们根据地球的经纬度模拟出来的一个参数。</p>
+<p>下面这个工具就是用于获取我们想标记位置的 ‘经纬度’的一种方法，有了这个工具就可以完美结合上面的全景展示工具来使用了。</p>
+<h2 id="2-1-参数说明"><a href="#2-1-参数说明" class="headerlink" title="2.1 参数说明"></a>2.1 参数说明</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">参数名称</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">说明 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">container</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">存放全景设置的容器id </td>
+</tr>
+<tr>
+<td style="text-align:center">imgUrl</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">全景图路径 </td>
+</tr>
+<tr>
+<td style="text-align:center">width</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">指定宽度（这里图片必须严格按比例放置），高度自适应 </td>
+</tr>
+<tr>
+<td style="text-align:center">showGrid</td>
+<td style="text-align:center">bool</td>
+<td style="text-align:center">是否显示全景图的网格</td>
+</tr>
+<tr>
+<td style="text-align:center">showPosition</td>
+<td style="text-align:center">bool</td>
+<td style="text-align:center">是否显示经纬度信息框 </td>
+</tr>
+<tr>
+<td style="text-align:center">lableColor</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">标记在图上的颜色 </td>
+</tr>
+<tr>
+<td style="text-align:center">gridColor</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">绘制格网的颜色 </td>
+</tr>
+<tr>
+<td style="text-align:center">lables</td>
+<td style="text-align:center">array</td>
+<td style="text-align:center">以前标记过的标记 {lon:114,lat:38,text:’标记一’}</td>
+</tr>
+<tr>
+<td style="text-align:center">addLable</td>
+<td style="text-align:center">bool</td>
+<td style="text-align:center">是否开启双击添加标记(必须开启经纬度提示)</td>
+</tr>
+<tr>
+<td style="text-align:center">getLable</td>
+<td style="text-align:center">bool</td>
+<td style="text-align:center">是否开启右键查询标记 (必须开启经纬度提示)</td>
+</tr>
+<tr>
+<td style="text-align:center">deleteLbale</td>
+<td style="text-align:center">bool</td>
+<td style="text-align:center">开启默认中键删除 （必须开启经纬度提示）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-2-公共方法"><a href="#2-2-公共方法" class="headerlink" title="2.2 公共方法"></a>2.2 公共方法</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">方法名称</th>
+<th style="text-align:center">说明 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">config</td>
+<td style="text-align:center">给全景对象重新设置配置信息</td>
+</tr>
+<tr>
+<td style="text-align:center">init</td>
+<td style="text-align:center">初始化全景设置对象 </td>
+</tr>
+<tr>
+<td style="text-align:center">getAllLables</td>
+<td style="text-align:center">获取所有已经添加的标记 </td>
+</tr>
+<tr>
+<td style="text-align:center">addLable</td>
+<td style="text-align:center">用于手动设置添加标记</td>
+</tr>
+<tr>
+<td style="text-align:center">getLable</td>
+<td style="text-align:center">用于手动设置获取标记</td>
+</tr>
+<tr>
+<td style="text-align:center">delete</td>
+<td style="text-align:center">用于手动删除标记</td>
+</tr>
+<tr>
+<td style="text-align:center">listen</td>
+<td style="text-align:center">对全景对象监听事件</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-3-使用"><a href="#2-3-使用" class="headerlink" title="2.3 使用"></a>2.3 使用</h2><h3 id="2-3-1-默认参数使用"><a href="#2-3-1-默认参数使用" class="headerlink" title="2.3.1 默认参数使用"></a>2.3.1 默认参数使用</h3><p>使用默认参数，对标记的增删查改已封装好，所有标记设置完成时可使用getAll方法与数据库进行交互</p>
+<p>初始化（参数不设置则采用默认参数）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> opt,s;</span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">     opt = &#123;</span><br><span class="line">        container: <span class="string">'set'</span>,<span class="comment">//setting容器</span></span><br><span class="line">        imgUrl: <span class="string">'img/p3.png'</span>,</span><br><span class="line">        width: <span class="string">'1000px'</span>,<span class="comment">//指定宽度，高度自适应</span></span><br><span class="line">        showGrid: <span class="literal">true</span>,<span class="comment">//是否显示格网</span></span><br><span class="line">        showPosition: <span class="literal">true</span>,<span class="comment">//是否显示经纬度提示</span></span><br><span class="line">        lableColor: <span class="string">'#9400D3'</span>,<span class="comment">//标记颜色</span></span><br><span class="line">        gridColor: <span class="string">'#48D1CC'</span>,<span class="comment">//格网颜色</span></span><br><span class="line">        lables: [</span><br><span class="line">            &#123;<span class="attr">lon</span>:<span class="number">-72.00</span>,<span class="attr">lat</span>:<span class="number">9.00</span>,<span class="attr">text</span>:<span class="string">'蓝窗户'</span>&#125;,&#123;<span class="attr">lon</span>:<span class="number">114.12</span>,<span class="attr">lat</span>:<span class="number">69.48</span>,<span class="attr">text</span>:<span class="string">'一片云彩'</span>&#125;,&#123;<span class="attr">lon</span>:<span class="number">132.48</span>,<span class="attr">lat</span>:<span class="number">-12.24</span>,<span class="attr">text</span>:<span class="string">'大海'</span>&#125;</span><br><span class="line">            ],<span class="comment">//标记   &#123;lon:114,lat:38,text:'标记一'&#125;</span></span><br><span class="line">        addLable: <span class="literal">true</span>,<span class="comment">//开启后双击添加标记  (必须开启经纬度提示)</span></span><br><span class="line">        getLable: <span class="literal">true</span>,<span class="comment">//开启后右键查询标记  (必须开启经纬度提示)</span></span><br><span class="line">        deleteLbale:<span class="literal">true</span><span class="comment">//开启后中键删除(必须开启经纬度提示)</span></span><br><span class="line">    &#125;;</span><br><span class="line">    s = <span class="keyword">new</span> tpanoramaSetting(opt);</span><br><span class="line">    s.init();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参数切换</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeImg</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (name == <span class="string">"p1"</span>)&#123;</span><br><span class="line">        opt.lables = [&#123;<span class="attr">lon</span>:<span class="number">178.56</span>,<span class="attr">lat</span>:<span class="number">-15.84</span>,<span class="attr">text</span>:<span class="string">'神像'</span>&#125;]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (name == <span class="string">"p2"</span>)&#123;</span><br><span class="line">        opt.lables = [&#123;<span class="attr">lon</span>:<span class="number">-80.64</span>,<span class="attr">lat</span>:<span class="number">-16.92</span>,<span class="attr">text</span>:<span class="string">'蓝色'</span>&#125;,&#123;<span class="attr">lon</span>:<span class="number">46.80</span>,<span class="attr">lat</span>:<span class="number">10.44</span>,<span class="attr">text</span>:<span class="string">'绿色'</span>&#125;]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (name == <span class="string">"p4"</span>)&#123;</span><br><span class="line">        opt.lables = [&#123;<span class="attr">lon</span>:<span class="number">48.96</span>,<span class="attr">lat</span>:<span class="number">-20.16</span>,<span class="attr">text</span>:<span class="string">'樱花'</span>&#125;]</span><br><span class="line">    &#125;</span><br><span class="line">    opt.imgUrl = <span class="string">'img/'</span>+name+<span class="string">'.png'</span>;</span><br><span class="line">    s.clean();</span><br><span class="line">    s.config(opt);</span><br><span class="line">    s.init();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://pci54wuwr.bkt.clouddn.com/%E5%85%A8%E6%99%AF2.png" alt="这里写图片描述"></p>
+<h3 id="2-3-2-自定义事件"><a href="#2-3-2-自定义事件" class="headerlink" title="2.3.2 自定义事件"></a>2.3.2 自定义事件</h3><p>很多情况下默认参数不能满足我们的业务需求，这时可以自定义事件。</p>
+<p>插件提供了listen函数用于监听各种事件。</p>
+<p>添加标记：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s.listen(<span class="string">'dblclick'</span>,<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> text = prompt(<span class="string">"标记名称"</span>);</span><br><span class="line">    <span class="keyword">if</span> (text!=<span class="literal">null</span> &amp;&amp; text!= <span class="literal">undefined</span> &amp;&amp; text!=<span class="string">""</span>) &#123;</span><br><span class="line">        s.addLable(e,text);</span><br><span class="line">        alert(<span class="string">"添加标记："</span>+text+<span class="string">" 后台交互"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>查询标记:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">s.listen(<span class="string">'mousedown'</span>,<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.button == <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> p = s.getLable(e);</span><br><span class="line">        <span class="keyword">if</span> (p.lon!=<span class="literal">null</span> &amp;&amp;p.lon!=<span class="literal">undefined</span>&amp;&amp;p.lon!=<span class="string">""</span> ) &#123;</span><br><span class="line">            alert(<span class="string">"经度："</span> + p.lon + <span class="string">",纬度："</span> + p.lat + <span class="string">",名称："</span> + p.text +<span class="string">"   其他操作"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>删除标记:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">s.listen(<span class="string">'mousedown'</span>,<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.button == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> p = s.getLable(e);</span><br><span class="line">        <span class="keyword">if</span> (p.lon!=<span class="literal">null</span> &amp;&amp;p.lon!=<span class="literal">undefined</span>&amp;&amp;p.lon!=<span class="string">""</span> ) &#123;</span><br><span class="line">            <span class="keyword">var</span> c = confirm(<span class="string">"您确认要删除该标记吗？"</span>);</span><br><span class="line">            <span class="keyword">if</span> (c) &#123;</span><br><span class="line">                s.delete(p);</span><br><span class="line">                s.clean();</span><br><span class="line">                s.init();</span><br><span class="line">                alert(<span class="string">"删除成功！   后台交互"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>完整源码及DEMO地址：<br><a href="https://github.com/ConardLi/tpanorama" target="_blank" rel="noopener">https://github.com/ConardLi/tpanorama</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2017/08/24/一款非常好用的全景生成，全景标记编辑插件/" data-id="cjndac57u0001y60duzrk6p8e" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>seguir:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/07/09/webgl基础/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">antic</strong>
+        <p class="article-nav-title">webgl基础</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/08/24/一款非常好用的全景生成，全景标记编辑插件/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://pci54wuwr.bkt.clouddn.com/%E5%85%A8%E6%99%AF1.png)" alt="一款非常好用的全景生成，全景标记编辑插件" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/08/24/一款非常好用的全景生成，全景标记编辑插件/" class="title">一款非常好用的全景生成，全景标记编辑插件</a></p>
+                            <p class="item-date"><time datetime="2017-08-24T14:56:47.000Z" itemprop="datePublished">2017-08-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/07/09/webgl基础/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://wgld.org/i/site/w005_01.jpg)" alt="webgl基础" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/07/09/webgl基础/" class="title">webgl基础</a></p>
+                            <p class="item-date"><time datetime="2017-07-09T02:47:34.000Z" itemprop="datePublished">2017-07-09</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">arxius</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">etiquetes</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/three-js/">three.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webgl/">webgl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/三维/">三维</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全景/">全景</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">etiqueta cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/webgl/" style="font-size: 10px;">webgl</a> <a href="/tags/三维/" style="font-size: 20px;">三维</a> <a href="/tags/全景/" style="font-size: 10px;">全景</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 ConardLi</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2017/08/24/一款非常好用的全景生成，全景标记编辑插件/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

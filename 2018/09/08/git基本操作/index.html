@@ -217,9 +217,9 @@
 <p>上一个版本就是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
 <p>git reset –hard HEAD~1<br>HEAD is now at 95c55bf second<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这样我们就回退到了第二个版本,此时HEAD也指向了second版本</span><br></pre></td></tr></table></figure></p>
 <p>Git is a distributed version control system.<br>Git is free software.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在使用git log命令查看版本情况</span><br></pre></td></tr></table></figure></p>
-<p>G:\myproject&gt;git log<br>commit 95c55bfa753a2827e499b5ab2f58b442fedc8a4f<br>Author: admin <a href="mailto:&#x61;&#100;&#x6d;&#x69;&#110;&#x40;&#x71;&#113;&#46;&#99;&#x6f;&#x6d;" target="_blank" rel="noopener">&#x61;&#100;&#x6d;&#x69;&#110;&#x40;&#x71;&#113;&#46;&#99;&#x6f;&#x6d;</a><br>Date:   Fri Sep 8 22:10:53 2017 +0800</p>
+<p>G:\myproject&gt;git log<br>commit 95c55bfa753a2827e499b5ab2f58b442fedc8a4f<br>Author: admin <a href="mailto:&#97;&#x64;&#109;&#x69;&#110;&#64;&#x71;&#113;&#46;&#x63;&#x6f;&#109;" target="_blank" rel="noopener">&#97;&#x64;&#109;&#x69;&#110;&#64;&#x71;&#113;&#46;&#x63;&#x6f;&#109;</a><br>Date:   Fri Sep 8 22:10:53 2017 +0800</p>
 <pre><code>second
-</code></pre><p>commit 6d5bb1a4018c70bd01e4927c4c5af8449ef8aad5<br>Author: admin <a href="mailto:&#x61;&#100;&#109;&#105;&#110;&#x40;&#x71;&#x71;&#x2e;&#x63;&#x6f;&#109;" target="_blank" rel="noopener">&#x61;&#100;&#109;&#105;&#110;&#x40;&#x71;&#x71;&#x2e;&#x63;&#x6f;&#109;</a><br>Date:   Fri Sep 8 21:05:49 2017 +0800</p>
+</code></pre><p>commit 6d5bb1a4018c70bd01e4927c4c5af8449ef8aad5<br>Author: admin <a href="mailto:&#97;&#100;&#x6d;&#105;&#110;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;" target="_blank" rel="noopener">&#97;&#100;&#x6d;&#105;&#110;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;</a><br>Date:   Fri Sep 8 21:05:49 2017 +0800</p>
 <pre><code>first time
 </code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如果你现在又想回到third版本怎么办？只需要找到third版本的版本号，版本号没必要写全，前几位就可以了，Git会自动去找。</span><br><span class="line"></span><br><span class="line">可以使用==git reflog==命令查看以前每次版本的版本号（这个命令用于查看你的每一次操作）</span><br></pre></td></tr></table></figure>
 <p>G:\myproject&gt;git reflog<br>95c55bf HEAD@{0}: reset: moving to HEAD~1<br>52a89b8 HEAD@{1}: commit: third<br>95c55bf HEAD@{2}: commit: second<br>6d5bb1a HEAD@{3}: commit (initial): first time<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">我们看到thid版本的版本号前几位是52a89b8，输入如下命令：</span><br></pre></td></tr></table></figure></p>
@@ -241,7 +241,7 @@
 
 
 
-    <a data-url="http://yoursite.com/2018/09/08/git基本操作/" data-id="cjndzn32l00008o0drj1presm" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://yoursite.com/2018/09/08/git基本操作/" data-id="cjneaeixj0003um0dyyb59t7j" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -550,11 +550,19 @@
                 <h1 class="logo-wrap">
                     <a href="/" class="logo"></a>
                 </h1>
-                <p>&copy; 2018 ConardLi</p>
-                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+                <p>&copy;
+                    2018
+                    ConardLi
+                </p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice"
+                        target="_blank">ConardLi</a></p>
+                <script type="text/javascript">
+                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1275088352'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1275088352%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+                </script>
             </div>
             <div class="footer-plugins">
-              
+                
     
 
 
@@ -562,7 +570,6 @@
         </div>
     </div>
 </footer>
-
         
     
     <script>

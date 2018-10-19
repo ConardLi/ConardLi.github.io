@@ -15,6 +15,8 @@
 
 - [git基本操作](https://lisq.xyz/2018/09/08/git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/)
 - [git命令大全](https://lisq.xyz/2018/09/08/git%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/)
+- [git工作区和暂存区](https://lisq.xyz/2018/09/08/git%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA/)
+
 
 
 # 版权声明

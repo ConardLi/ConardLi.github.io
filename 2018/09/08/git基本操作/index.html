@@ -12,19 +12,19 @@
     
         <meta name="keywords" content="git,版本控制" />
     
-    <meta name="description" content="创建版本库版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。 第一步很简单，就是找到你想让git管理的项目目录或者新建一个目录。 第二步，通过==git init==命令把这个目录变成Git可以管理的仓库： 12G:\myprojec">
+    <meta name="description" content="创建版本库版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。 第一步很简单，就是找到你想让git管理的项目目录或者新建一个目录。 第二步，通过git init命令把这个目录变成Git可以管理的仓库： 12G:\myproject&amp;gt">
 <meta name="keywords" content="git,版本控制">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git基本操作">
-<meta property="og:url" content="http://yoursite.com/2018/09/08/git基本操作/index.html">
+<meta property="og:url" content="http://lisq.xyz/2018/09/08/git基本操作/index.html">
 <meta property="og:site_name" content="李世奇的技术专栏">
-<meta property="og:description" content="创建版本库版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。 第一步很简单，就是找到你想让git管理的项目目录或者新建一个目录。 第二步，通过==git init==命令把这个目录变成Git可以管理的仓库： 12G:\myprojec">
+<meta property="og:description" content="创建版本库版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。 第一步很简单，就是找到你想让git管理的项目目录或者新建一个目录。 第二步，通过git init命令把这个目录变成Git可以管理的仓库： 12G:\myproject&amp;gt">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://pci54wuwr.bkt.clouddn.com/gitaa.jpeg">
-<meta property="og:updated_time" content="2018-10-18T02:50:22.689Z">
+<meta property="og:updated_time" content="2018-10-19T12:47:11.949Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git基本操作">
-<meta name="twitter:description" content="创建版本库版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。 第一步很简单，就是找到你想让git管理的项目目录或者新建一个目录。 第二步，通过==git init==命令把这个目录变成Git可以管理的仓库： 12G:\myprojec">
+<meta name="twitter:description" content="创建版本库版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。 第一步很简单，就是找到你想让git管理的项目目录或者新建一个目录。 第二步，通过git init命令把这个目录变成Git可以管理的仓库： 12G:\myproject&amp;gt">
 <meta name="twitter:image" content="http://pci54wuwr.bkt.clouddn.com/gitaa.jpeg">
     
 
@@ -180,60 +180,67 @@
             <p><img src="http://pci54wuwr.bkt.clouddn.com/gitaa.jpeg" alt="image"></p>
 <h2 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h2><p>版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。</p>
 <p>第一步很简单，就是找到你想让git管理的项目目录或者新建一个目录。</p>
-<p>第二步，通过==git init==命令把这个目录变成Git可以管理的仓库：</p>
+<p>第二步，通过git init命令把这个目录变成Git可以管理的仓库：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">G:\myproject&gt;git init</span><br><span class="line">Initialized empty Git repository in G:/myproject/.git/</span><br></pre></td></tr></table></figure>
 <p>瞬间Git就把仓库建好了，而且告诉你是一个空的仓库（empty Git repository），细心的读者可以发现当前目录下多了一个.git的目录，这个目录是Git来跟踪管理版本库的，没事千万不要手动修改这个目录里面的文件，不然改乱了，就把Git仓库给破坏了。</p>
-<p>如果你没有看到.git目录，那是因为这个目录默认是隐藏的，用==ls -ah==命令就可以看见。</p>
-<h2 id="上传文件到版本库"><a href="#上传文件到版本库" class="headerlink" title="上传文件到版本库"></a>上传文件到版本库</h2><p>我们编写一个==readme.txt==文件，内容如下：</p>
+<p>如果你没有看到.git目录，那是因为这个目录默认是隐藏的，用ls -ah命令就可以看见。</p>
+<h2 id="上传文件到版本库"><a href="#上传文件到版本库" class="headerlink" title="上传文件到版本库"></a>上传文件到版本库</h2><p>我们编写一个readme.txt文件，内容如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Git is a version control system.</span><br><span class="line">Git is free software.</span><br></pre></td></tr></table></figure>
 <p>一定要放到版本库目录下（子目录也行），因为这是一个Git仓库，放到其他地方Git再厉害也找不到这个文件。</p>
-<p>第一步，用命令==git add==告诉Git，把文件添加到仓库：</p>
+<p>第一步，用命令git add告诉Git，把文件添加到仓库：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G:\myproject&gt;git add readme.txt</span><br></pre></td></tr></table></figure>
 <p>执行上面的命令，没有任何显示，这就对了</p>
-<p>第二步，用命令==git commit==告诉Git，把文件提交到仓库：</p>
+<p>第二步，用命令git commit告诉Git，把文件提交到仓库：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">G:\myproject&gt;git commit -m &quot;first time&quot;</span><br><span class="line">[master (root-commit) 6d5bb1a] first time</span><br><span class="line"> 1 file changed, 2 insertions(+)</span><br><span class="line"> create mode 100644 readme.txt</span><br></pre></td></tr></table></figure>
-<p>简单解释一下==git commit==命令，==-m==后面输入的是本次提交的说明，可以输入任意内容,当然最好是有意义的，这样你就能从历史记录里方便地找到改动记录。</p>
-<p>==git commit==命令执行成功后会告诉你，1个文件被改动（我们新添加的readme.txt文件），插入了两行内容（readme.txt有两行内容）。</p>
-<p>为什么Git添加文件需要==add==，==commit==一共两步呢？因为==commit==可以一次提交很多文件，所以你可以多次==add==不同的文件，比如：</p>
+<p>简单解释一下git commit命令，-m后面输入的是本次提交的说明，可以输入任意内容,当然最好是有意义的，这样你就能从历史记录里方便地找到改动记录。</p>
+<p>git commit命令执行成功后会告诉你，1个文件被改动（我们新添加的readme.txt文件），插入了两行内容（readme.txt有两行内容）。</p>
+<p>为什么Git添加文件需要add，commit一共两步呢？因为commit可以一次提交很多文件，所以你可以多次add不同的文件，比如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add file1.txt</span><br><span class="line">$ git add file2.txt file3.txt</span><br><span class="line">$ git commit -m &quot;add 3 files.&quot;</span><br></pre></td></tr></table></figure>
 <h2 id="查看文件修改信息"><a href="#查看文件修改信息" class="headerlink" title="查看文件修改信息"></a>查看文件修改信息</h2><p>我们已经成功地添加并提交了一个readme.txt文件，现在，是时候继续工作了，于是，我们继续修改readme.txt文件，改成如下内容：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Git is a distributed version control system.</span><br><span class="line">Git is free software.</span><br></pre></td></tr></table></figure>
-<p>现在，运行==git statu==s命令看看结果：</p>
+<p>现在，运行git status命令看看结果：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">G:\myproject&gt;git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">        modified:   readme.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre></td></tr></table></figure>
-<p>==git status==命令可以让我们时刻掌握仓库当前的状态，上面的命令告诉我们，readme.txt被修改过了，但还没有准备提交的修改。</p>
-<p>虽然Git告诉我们readme.txt被修改了，但如果能看看具体修改了什么内容，自然是很好的。比如你休假两周从国外回来，第一天上班时，已经记不清上次怎么修改的readme.txt，所以，需要用==git diff==这个命令看看：</p>
+<p>git status命令可以让我们时刻掌握仓库当前的状态，上面的命令告诉我们，readme.txt被修改过了，但还没有准备提交的修改。</p>
+<p>虽然Git告诉我们readme.txt被修改了，但如果能看看具体修改了什么内容，自然是很好的。比如你休假两周从国外回来，第一天上班时，已经记不清上次怎么修改的readme.txt，所以，需要用git diff这个命令看看：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">G:\myproject&gt;git diff</span><br><span class="line">diff --git a/readme.txt b/readme.txt</span><br><span class="line">index 188e70b..013b5bc 100644</span><br><span class="line">--- a/readme.txt</span><br><span class="line">+++ b/readme.txt</span><br><span class="line">@@ -1,2 +1,2 @@</span><br><span class="line">-Git is a version control system.</span><br><span class="line">-Git is free software.1</span><br><span class="line">\ No newline at end of file</span><br><span class="line">+Git is a distributed version control system.</span><br><span class="line">+Git is free software.</span><br><span class="line">\ No newline at end of file</span><br></pre></td></tr></table></figure>
 <p>可以从上面的命令输出看到，我们在第一行添加了一个“distributed”单词。知道了对readme.txt作了什么修改后，再把它提交到仓库就放心多了。</p>
 <h2 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h2><p>现在，你已经学会了修改文件，然后把修改提交到Git版本库，现在，再练习一次，修改readme.txt文件如下：</p>
 <p>然后尝试提交：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">G:\myproject&gt;git add readme.txt</span><br><span class="line"></span><br><span class="line">G:\myproject&gt;git commit -m &quot;third&quot;</span><br><span class="line">[master 52a89b8] third</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br></pre></td></tr></table></figure>
-<p>我们可以使用 ==git log ==命令查看我们一共有几个版本提交到git版本库中了</p>
+<p>我们可以使用 git log 命令查看我们一共有几个版本提交到git版本库中了</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">G:\myproject&gt;git log</span><br><span class="line">commit 52a89b86b2b54f223e17a84801ae6f78d01f3057</span><br><span class="line">Author: admin &lt;admin@qq.com&gt;</span><br><span class="line">Date:   Sat Sep 9 09:26:06 2017 +0800</span><br><span class="line"></span><br><span class="line">    third</span><br><span class="line"></span><br><span class="line">commit 95c55bfa753a2827e499b5ab2f58b442fedc8a4f</span><br><span class="line">Author: admin &lt;admin@qq.com&gt;</span><br><span class="line">Date:   Fri Sep 8 22:10:53 2017 +0800</span><br><span class="line"></span><br><span class="line">    second</span><br><span class="line"></span><br><span class="line">commit 6d5bb1a4018c70bd01e4927c4c5af8449ef8aad5</span><br><span class="line">Author: admin &lt;admin@qq.com&gt;</span><br><span class="line">Date:   Fri Sep 8 21:05:49 2017 +0800</span><br><span class="line"></span><br><span class="line">    first time</span><br></pre></td></tr></table></figure>
-<p>==git log==命令显示从最近到最远的提交日志，我们可以看到3次提交，最近的一次是third，上一次是second，最早的一次是first time。<br>如果嫌输出信息太多，看得眼花缭乱的，可以试试加上–pretty=oneline参数：</p>
+<p>git log命令显示从最近到最远的提交日志，我们可以看到3次提交，最近的一次是third，上一次是second，最早的一次是first time。<br>如果嫌输出信息太多，看得眼花缭乱的，可以试试加上–pretty=oneline参数：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">G:\myproject&gt;git log --pretty=oneline</span><br><span class="line">52a89b86b2b54f223e17a84801ae6f78d01f3057 third</span><br><span class="line">95c55bfa753a2827e499b5ab2f58b442fedc8a4f second</span><br><span class="line">6d5bb1a4018c70bd01e4927c4c5af8449ef8aad5 first time</span><br></pre></td></tr></table></figure>
-<p>你看到的一大串类似3628164…882e1e0的是==commit id==（版本号）</p>
+<p>你看到的一大串类似3628164…882e1e0的是commit id（版本号）</p>
 <p>好了，现在我们启动时光穿梭机，准备把readme.txt回退到上一个版本，也就是“second”的那个版本，怎么做呢？</p>
-<p>Git必须知道当前版本是哪个版本，在Git中，用==HEAD==表示当前版本，也就是最新的提交3628164…882e1e0（注意我的提交ID和你的肯定不一样），</p>
-<p>上一个版本就是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<p>git reset –hard HEAD~1<br>HEAD is now at 95c55bf second<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这样我们就回退到了第二个版本,此时HEAD也指向了second版本</span><br></pre></td></tr></table></figure></p>
-<p>Git is a distributed version control system.<br>Git is free software.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在使用git log命令查看版本情况</span><br></pre></td></tr></table></figure></p>
-<p>G:\myproject&gt;git log<br>commit 95c55bfa753a2827e499b5ab2f58b442fedc8a4f<br>Author: admin <a href="mailto:&#97;&#100;&#x6d;&#x69;&#x6e;&#x40;&#113;&#113;&#46;&#99;&#111;&#x6d;" target="_blank" rel="noopener">&#97;&#100;&#x6d;&#x69;&#x6e;&#x40;&#113;&#113;&#46;&#99;&#111;&#x6d;</a><br>Date:   Fri Sep 8 22:10:53 2017 +0800</p>
-<pre><code>second
-</code></pre><p>commit 6d5bb1a4018c70bd01e4927c4c5af8449ef8aad5<br>Author: admin <a href="mailto:&#97;&#100;&#109;&#x69;&#x6e;&#x40;&#x71;&#x71;&#46;&#99;&#x6f;&#109;" target="_blank" rel="noopener">&#97;&#100;&#109;&#x69;&#x6e;&#x40;&#x71;&#x71;&#46;&#99;&#x6f;&#109;</a><br>Date:   Fri Sep 8 21:05:49 2017 +0800</p>
-<pre><code>first time
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如果你现在又想回到third版本怎么办？只需要找到third版本的版本号，版本号没必要写全，前几位就可以了，Git会自动去找。</span><br><span class="line"></span><br><span class="line">可以使用==git reflog==命令查看以前每次版本的版本号（这个命令用于查看你的每一次操作）</span><br></pre></td></tr></table></figure>
-<p>G:\myproject&gt;git reflog<br>95c55bf HEAD@{0}: reset: moving to HEAD~1<br>52a89b8 HEAD@{1}: commit: third<br>95c55bf HEAD@{2}: commit: second<br>6d5bb1a HEAD@{3}: commit (initial): first time<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">我们看到thid版本的版本号前几位是52a89b8，输入如下命令：</span><br></pre></td></tr></table></figure></p>
-<p>git reset –hard 52a89b<br>HEAD is now at 52a89b third<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这是readme的内容又回到了third版本。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 撤销修改</span><br><span class="line"></span><br><span class="line">凌晨两点，你正在赶一份工作报告，你在readme.txt中添加了一行：</span><br></pre></td></tr></table></figure></p>
-<p>Git is a distributed version control system.<br>Git is free software distributed under the GPL.<br>Git has a mutable index called stage.<br>Git tracks changes of files.<br>My stupid boss still prefers SVN.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在你准备提交前，一杯咖啡起了作用，你猛然发现了“stupid boss”可能会让你丢掉这个月的奖金！</span><br><span class="line"></span><br><span class="line">既然错误发现得很及时，就可以很容易地纠正它。你可以删掉最后一行，手动把文件恢复到上一个版本的状态。如果用==git status==查看一下：</span><br></pre></td></tr></table></figure></p>
-<p>G:\myproject&gt;git status<br>On branch master<br>Changes not staged for commit:<br>  (use “git add <file>…” to update what will be committed)<br>  (use “git checkout – <file>…” to discard changes in working directory)</file></file></p>
-<pre><code>modified:   readme.txt
-</code></pre><p>no changes added to commit (use “git add” and/or “git commit -a”)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">你可以发现，Git会告诉你，==git checkout -- file==可以丢弃工作区的修改：</span><br></pre></td></tr></table></figure></p>
-<p> git checkout – readme.txt<br><code>`</code></p>
-<p>命令==git checkout – readme.txt==意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：</p>
+<p>Git必须知道当前版本是哪个版本，在Git中，用HEAD表示当前版本，也就是最新的提交3628164…882e1e0（注意我的提交ID和你的肯定不一样），</p>
+<p>上一个版本就是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HEAD^</span><br></pre></td></tr></table></figure></p>
+<p>上上一个版本就是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HEAD^^</span><br></pre></td></tr></table></figure></p>
+<p>当然往上100个版本写<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">100个^</span><br></pre></td></tr></table></figure></p>
+<p>比较容易数不过来，所以写成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HEAD~100</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD~1</span><br><span class="line">HEAD is now at 95c55bf second</span><br></pre></td></tr></table></figure>
+<p>这样我们就回退到了第二个版本,此时HEAD也指向了second版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Git is a distributed version control system.</span><br><span class="line">Git is free software.</span><br></pre></td></tr></table></figure>
+<p>在使用git log命令查看版本情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">G:\myproject&gt;git log</span><br><span class="line">commit 95c55bfa753a2827e499b5ab2f58b442fedc8a4f</span><br><span class="line">Author: admin &lt;admin@qq.com&gt;</span><br><span class="line">Date:   Fri Sep 8 22:10:53 2017 +0800</span><br><span class="line"></span><br><span class="line">    second</span><br><span class="line"></span><br><span class="line">commit 6d5bb1a4018c70bd01e4927c4c5af8449ef8aad5</span><br><span class="line">Author: admin &lt;admin@qq.com&gt;</span><br><span class="line">Date:   Fri Sep 8 21:05:49 2017 +0800</span><br><span class="line"></span><br><span class="line">    first time</span><br></pre></td></tr></table></figure>
+<p>如果你现在又想回到third版本怎么办？只需要找到third版本的版本号，版本号没必要写全，前几位就可以了，Git会自动去找。</p>
+<p>可以使用git reflog命令查看以前每次版本的版本号（这个命令用于查看你的每一次操作）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">G:\myproject&gt;git reflog</span><br><span class="line">95c55bf HEAD@&#123;0&#125;: reset: moving to HEAD~1</span><br><span class="line">52a89b8 HEAD@&#123;1&#125;: commit: third</span><br><span class="line">95c55bf HEAD@&#123;2&#125;: commit: second</span><br><span class="line">6d5bb1a HEAD@&#123;3&#125;: commit (initial): first time</span><br></pre></td></tr></table></figure>
+<p>我们看到thid版本的版本号前几位是52a89b8，输入如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 52a89b</span><br><span class="line">HEAD is now at 52a89b third</span><br></pre></td></tr></table></figure>
+<p>这是readme的内容又回到了third版本。</p>
+<h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><p>凌晨两点，你正在赶一份工作报告，你在readme.txt中添加了一行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Git is a distributed version control system.</span><br><span class="line">Git is free software distributed under the GPL.</span><br><span class="line">Git has a mutable index called stage.</span><br><span class="line">Git tracks changes of files.</span><br><span class="line">My stupid boss still prefers SVN.</span><br></pre></td></tr></table></figure>
+<p>在你准备提交前，一杯咖啡起了作用，你猛然发现了“stupid boss”可能会让你丢掉这个月的奖金！</p>
+<p>既然错误发现得很及时，就可以很容易地纠正它。你可以删掉最后一行，手动把文件恢复到上一个版本的状态。如果用git status查看一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">G:\myproject&gt;git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">        modified:   readme.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre></td></tr></table></figure>
+<p>你可以发现，Git会告诉你，git checkout – file可以丢弃工作区的修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- readme.txt</span><br></pre></td></tr></table></figure>
+<p>命令git checkout – readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：</p>
 <p>一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</p>
 <p>一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</p>
-<p>总之，就是让这个文件回到最近一次==git commit==或==git add==时的状态。</p>
-<p>==git checkout – file==命令中的–很重要，没有–，就变成了“切换到另一个分支”的命令，我们在后面的分支管理中会再次遇到==git checkout==命令。</p>
+<p>总之，就是让这个文件回到最近一次git commit或git add时的状态。</p>
+<p>git checkout – file命令中的–很重要，没有–，就变成了“切换到另一个分支”的命令，我们在后面的分支管理中会再次遇到git checkout命令。</p>
 
         </div>
         <footer class="article-footer">
@@ -241,7 +248,7 @@
 
 
 
-    <a data-url="http://yoursite.com/2018/09/08/git基本操作/" data-id="cjned5dt90003eu0dbzpc296u" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+    <a data-url="http://lisq.xyz/2018/09/08/git基本操作/" data-id="cjng0ei0z00008p0dqdnr2i7t" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -576,7 +583,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://yoursite.com/2018/09/08/git基本操作/';
+    var disqus_url = 'http://lisq.xyz/2018/09/08/git基本操作/';
     
     (function() {
     var dsq = document.createElement('script');

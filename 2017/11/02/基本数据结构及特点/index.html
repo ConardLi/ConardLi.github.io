@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>基本数据结构及特点 | 李世奇的技术专栏</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="算法和数据结构" />
+    
+    <meta name="description" content="什么是数据结构数据元素相互之间存在的一种和多种特定的关系集合 包括二个部分组成逻辑结构，存储结构。 逻辑结构 简单的来说 逻辑结构就是数据之间的关系,逻辑结构大概统一的可以分成两种 一种是线性结构，非线性结构 。 线性结构 是一个有序数据元素的集合。 其中数据元素之间的关系是一对一的关系，即除了第一个和最后一个数据元素之外，其它数据元素都是首尾相接的。 常用的线性结构有: 栈，队列，链表，线性表。">
+<meta name="keywords" content="算法和数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基本数据结构及特点">
+<meta property="og:url" content="http://lisq.xyz/2017/11/02/基本数据结构及特点/index.html">
+<meta property="og:site_name" content="李世奇的技术专栏">
+<meta property="og:description" content="什么是数据结构数据元素相互之间存在的一种和多种特定的关系集合 包括二个部分组成逻辑结构，存储结构。 逻辑结构 简单的来说 逻辑结构就是数据之间的关系,逻辑结构大概统一的可以分成两种 一种是线性结构，非线性结构 。 线性结构 是一个有序数据元素的集合。 其中数据元素之间的关系是一对一的关系，即除了第一个和最后一个数据元素之外，其它数据元素都是首尾相接的。 常用的线性结构有: 栈，队列，链表，线性表。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://img.blog.csdn.net/20180304133022660?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzQxNDk4MDU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:updated_time" content="2018-10-23T13:14:53.202Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基本数据结构及特点">
+<meta name="twitter:description" content="什么是数据结构数据元素相互之间存在的一种和多种特定的关系集合 包括二个部分组成逻辑结构，存储结构。 逻辑结构 简单的来说 逻辑结构就是数据之间的关系,逻辑结构大概统一的可以分成两种 一种是线性结构，非线性结构 。 线性结构 是一个有序数据元素的集合。 其中数据元素之间的关系是一对一的关系，即除了第一个和最后一个数据元素之外，其它数据元素都是首尾相接的。 常用的线性结构有: 栈，队列，链表，线性表。">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20180304133022660?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzQxNDk4MDU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+    
+
+    
+        <link rel="alternate" href="/" title="李世奇的技术专栏" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/board">更新日志</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    uncategorized
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-基本数据结构及特点" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        基本数据结构及特点
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/11/02/基本数据结构及特点/" class="article-date">
+            <time datetime="2017-11-02T13:13:54.000Z" itemprop="datePublished">2017-11-02</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/算法和数据结构/">算法和数据结构</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="什么是数据结构"><a href="#什么是数据结构" class="headerlink" title="什么是数据结构"></a>什么是数据结构</h1><p>数据元素相互之间存在的一种和多种特定的关系集合 包括二个部分组成逻辑结构，存储结构。</p>
+<p><strong>逻辑结构</strong></p>
+<p>简单的来说 逻辑结构就是数据之间的关系,逻辑结构大概统一的可以分成两种 一种是线性结构，非线性结构 。</p>
+<p><strong>线性结构</strong></p>
+<p>是一个有序数据元素的集合。 其中数据元素之间的关系是一对一的关系，即除了第一个和最后一个数据元素之外，其它数据元素都是首尾相接的。</p>
+<p>常用的线性结构有: 栈，队列，链表，线性表。</p>
+<p><strong>非线性结构</strong></p>
+<p>各个数据元素不再保持在一个线性序列中，每个数据元素可能与零个或者多个其他数据元素发生联系。</p>
+<p>常见的线性结构有 二维数组，树(二叉树等)等。</p>
+<p><strong>存储结构</strong></p>
+<p>逻辑结构指的是数据间的关系，而存储结构是逻辑结构用计算机语言的实现。 常见的存储结构有顺序存储、链式存储、索引存储以及散列存储（哈希表）。</p>
+<h1 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h1><p>一个算法的时间复杂度反映了程序运行从开始到结束所需要的时间。</p>
+<p>把算法中基本操作重复执行的次数（频度）作为算法的时间复杂度。</p>
+<p>没有循环语句，记作O(1)，也称为常数阶。</p>
+<p>只有一重循环，则算法的基本操作的执行频度与问题规模n呈线性增大关系，记作O（n），也叫线性阶。</p>
+<p>常用的还有平方阶O（n2）、立方阶O（n3）、对数阶O(log2n)等。 常见的时间复杂度有：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O(<span class="number">1</span>)&lt; O(log2n)&lt; O（n）&lt; O（n2）&lt; O（ n3 ）&lt; O（ <span class="number">2</span>n ）</span><br></pre></td></tr></table></figure></p>
+<h1 id="顺序表"><a href="#顺序表" class="headerlink" title="顺序表"></a>顺序表</h1><p>把线性表的结点按逻辑顺序一次存放在一组地址连续的存储单元中。</p>
+<p>可以直接通过下标获取到数据，查询快。</p>
+<p>插入和删除时要移动后续元素，还要考虑扩容问题，插入慢。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">List</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 列表的元素个数</span></span><br><span class="line">    <span class="keyword">this</span>.listSize = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 列表的当前位置 是第几个</span></span><br><span class="line">    <span class="keyword">this</span>.pos = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化一个空数组来保存列表元素</span></span><br><span class="line">    <span class="keyword">this</span>.dataStore = [];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">List.prototype = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="keyword">return</span> &#123;</span><br><span class="line">        clear: clear,</span><br><span class="line">        find: find,</span><br><span class="line">        toString: toString,</span><br><span class="line">        insert: insert,</span><br><span class="line">        append: append,</span><br><span class="line">        remove: remove,</span><br><span class="line">        front: front,</span><br><span class="line">        end: end,</span><br><span class="line">        prev: prev,</span><br><span class="line">        next: next,</span><br><span class="line">        hasNext: hasNext,</span><br><span class="line">        hasPrev: hasPrev,</span><br><span class="line">        length: length,</span><br><span class="line">        currPos: currPos,</span><br><span class="line">        moveTo: moveTo,</span><br><span class="line">        getElement: getElement</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">      * 给列表最后添加元素的时候，列表元素个数+1</span></span><br><span class="line"><span class="comment">      * @param element</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">append</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">this</span>.listSize++;</span><br><span class="line">         <span class="keyword">this</span>.dataSource.push(element);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * @param element </span></span><br><span class="line"><span class="comment">     * @returns &#123;number&#125; 如果找到，返回位置，否则-1</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">find</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.dataSource.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.dataSource[i] === element) &#123;</span><br><span class="line">                 <span class="keyword">return</span> i;</span><br><span class="line">             &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除元素成功，元素个数-1</span></span><br><span class="line"><span class="comment">     * @param element</span></span><br><span class="line"><span class="comment">     * @returns &#123;boolean&#125;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">remove</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">var</span> removeIndex = <span class="keyword">this</span>.find(element);</span><br><span class="line">         <span class="keyword">if</span> (removeIndex !== <span class="number">-1</span>) &#123;</span><br><span class="line">             <span class="keyword">this</span>.dataSource.splice(removeIndex, <span class="number">1</span>);</span><br><span class="line">             <span class="keyword">this</span>.listSize--;</span><br><span class="line">             <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">/**</span></span><br><span class="line"><span class="comment">      * 插入某个元素</span></span><br><span class="line"><span class="comment">      * @param element 要插入的元素</span></span><br><span class="line"><span class="comment">      * @param afterElement 列表中的元素之后</span></span><br><span class="line"><span class="comment">      * @returns &#123;boolean&#125;</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">insert</span>(<span class="params">element, afterElement</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">var</span> insertIndex = <span class="keyword">this</span>.find(afterElement);</span><br><span class="line">         <span class="keyword">if</span> (insertIndex !== <span class="number">-1</span>) &#123;</span><br><span class="line">             <span class="keyword">this</span>.dataSource.splice(insertIndex + <span class="number">1</span>, <span class="number">0</span>, element);</span><br><span class="line">             <span class="keyword">this</span>.listSize++;</span><br><span class="line">             <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">  &#125;());</span><br></pre></td></tr></table></figure>
+<h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><p>用一组任意存储的单元来存储线性表的数据元素。</p>
+<p>一个对象存储着本身的值和下一个元素的地址。</p>
+<p>需要遍历才能查询到元素，查询慢。</p>
+<p>插入元素只需断开连接重新赋值，插入快。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">LinkList</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">node</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.value = element;</span><br><span class="line">        <span class="keyword">this</span>.next = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> length = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> head = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">LinkList.prototype = &#123;</span><br><span class="line">    append:<span class="function"><span class="keyword">function</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> node = <span class="keyword">new</span> node(element);</span><br><span class="line">        <span class="keyword">var</span> temp = <span class="keyword">this</span>.head;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.head)&#123;</span><br><span class="line">            <span class="comment">//遍历找到链表的终点</span></span><br><span class="line">            <span class="keyword">while</span>(temp.next)&#123;</span><br><span class="line">                temp = temp.next;</span><br><span class="line">            &#125;</span><br><span class="line">            temp.next = node;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.head = node;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.length++;</span><br><span class="line">    &#125;,</span><br><span class="line">    insert:<span class="function"><span class="keyword">function</span>(<span class="params">element,index</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(index &lt;= <span class="keyword">this</span>.length &amp;&amp; index&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">var</span> node = <span class="keyword">new</span> node(element);</span><br><span class="line">            <span class="keyword">var</span> currentIndex = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">var</span> currentNode = <span class="keyword">this</span>.head;</span><br><span class="line">            <span class="keyword">var</span> preNode = <span class="literal">null</span>;</span><br><span class="line">            <span class="keyword">if</span> (currentIndex === <span class="number">0</span>) &#123;</span><br><span class="line">                node.next = currentNode;</span><br><span class="line">                <span class="keyword">this</span>.head = node;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(currentIndex&lt;index)&#123;</span><br><span class="line">                preNode = currentNode;</span><br><span class="line">                currentNode = currentNode.next;</span><br><span class="line">                currentIndex++;</span><br><span class="line">            &#125;</span><br><span class="line">            preNode.next = node;</span><br><span class="line">            node.next = currentNode;</span><br><span class="line">            <span class="keyword">this</span>.length++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="链表翻转"><a href="#链表翻转" class="headerlink" title="链表翻转"></a>链表翻转</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">reverse: <span class="function"><span class="keyword">function</span> (<span class="params">node</span>) </span>&#123;</span><br><span class="line">               <span class="comment">//把初始链表头当做基准点，移动下一个元素到头部，直到下一个元素为空</span></span><br><span class="line">               <span class="keyword">var</span> currentNode = node.next;</span><br><span class="line">               node.next = node.next.next;</span><br><span class="line">               currentNode.next = <span class="keyword">this</span>.head;</span><br><span class="line">               <span class="keyword">this</span>.head = currentNode;</span><br><span class="line">               <span class="keyword">if</span>(node.next)&#123;</span><br><span class="line">                   <span class="keyword">this</span>.reverse(node);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;z</span><br></pre></td></tr></table></figure>
+<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p>先进后出</p>
+<p>进栈：push (在尾部插入元素)</p>
+<p>出栈：pop（在尾部删除元素并返回此元素）</p>
+<h1 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h1><p>先进先出</p>
+<p>进队列：unshift（在头部插入元素）</p>
+<p>出队列：pop(在尾部删除元素并返回)</p>
+<h1 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h1><p>哈希的基本原理是将给定的键值转换为偏移地址来检索记录。</p>
+<p>键转换为地址是通过一种关系（公式）来完成的，这就是哈希（散列）函数。</p>
+<p>虽然哈希表是一种有效的搜索技术，但是它还有些缺点。两个不同的关键字，由于哈希函数值相同，因而被映射到同一表位置上。该现象称为冲突(Collision)或碰撞。发生冲突的两个关键字称为该哈希函数的同义词(Synonym)。</p>
+<p><img src="http://img.blog.csdn.net/20180304133022660?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzQxNDk4MDU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>好的哈希函数的选择有两条标准：</p>
+<p>1)简单并且能够快速计算　</p>
+<p>2)能够在址空间中获取键的均匀人分布</p>
+<p>除余法是最为简单常用的一种方法。它是以表长m来除关键字，取其余数作为散列地址，即 h(key)=key％m</p>
+<p><strong>解决hash冲突：链表法</strong></p>
+<p> 链表法解决冲突的做法是：将所有关键字为同义词的结点链接在同一个单链表中。</p>
+<p>具体的关键字列表为（19,14,23,01,68,20,84,27,55,11,10,79），则哈希函数为H（key）=key MOD 13。则采用除留余数法和链地址法后得到的预想结果应该为：</p>
+<p><img src="https://pic002.cnblogs.com/images/2012/382323/2012050815172783.png" alt="image"></p>
+<p>哈希造表完成后，进行查找时，首先是根据哈希函数找到关键字的位置链，然后在该链中进行搜索，如果存在和关键字值相同的值，则查找成功，否则若到链表尾部仍未找到，则该关键字不存在。</p>
+<p>插入元素：直接按地址插入到链表末尾。</p>
+<p>综合了链表和数组的优点，查询插入都很快。</p>
+<p>构造hash表</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">linklist</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">funtion hashtable&#123;</span><br><span class="line">    length <span class="number">0</span></span><br><span class="line">    data []</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://lisq.xyz/2017/11/02/基本数据结构及特点/" data-id="cjnlrabea0007e50d1pvhkf81" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/10/28/老版本浏览器兼容问题总结/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">老版本浏览器兼容问题总结</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/02/基本数据结构及特点/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20180304133022660?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzQxNDk4MDU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)" alt="基本数据结构及特点" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/11/02/基本数据结构及特点/" class="title">基本数据结构及特点</a></p>
+                            <p class="item-date"><time datetime="2017-11-02T13:13:54.000Z" itemprop="datePublished">2017-11-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/28/老版本浏览器兼容问题总结/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/10/28/老版本浏览器兼容问题总结/" class="title">老版本浏览器兼容问题总结</a></p>
+                            <p class="item-date"><time datetime="2017-10-28T15:43:12.000Z" itemprop="datePublished">2017-10-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/10/21/git分支操作/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/10/21/git分支操作/" class="title">git分支操作</a></p>
+                            <p class="item-date"><time datetime="2017-10-21T13:02:18.000Z" itemprop="datePublished">2017-10-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/20/本地git链接到github/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://pci54wuwr.bkt.clouddn.com/git4.png)" alt="本地git链接到github" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/20/本地git链接到github/" class="title">本地git链接到github</a></p>
+                            <p class="item-date"><time datetime="2017-09-20T15:07:36.000Z" itemprop="datePublished">2017-09-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/09/git工作区和暂存区/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://pci54wuwr.bkt.clouddn.com/git1.jpeg)" alt="git工作区和暂存区" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/09/git工作区和暂存区/" class="title">git工作区和暂存区</a></p>
+                            <p class="item-date"><time datetime="2017-09-09T12:56:00.000Z" itemprop="datePublished">2017-09-09</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/three-js/">three.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webgl/">webgl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/三维/">三维</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全景/">全景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器兼容/">浏览器兼容</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本控制/">版本控制</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法和数据结构/">算法和数据结构</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/webgl/" style="font-size: 10px;">webgl</a> <a href="/tags/三维/" style="font-size: 15px;">三维</a> <a href="/tags/全景/" style="font-size: 10px;">全景</a> <a href="/tags/浏览器兼容/" style="font-size: 10px;">浏览器兼容</a> <a href="/tags/版本控制/" style="font-size: 20px;">版本控制</a> <a href="/tags/算法和数据结构/" style="font-size: 10px;">算法和数据结构</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy;
+                    2018
+                    ConardLi
+                </p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice"
+                        target="_blank">ConardLi</a></p>
+                <script type="text/javascript">
+                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1275088352'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1275088352%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+            </div>
+            <div class="footer-plugins">
+                
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://lisq.xyz/2017/11/02/基本数据结构及特点/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

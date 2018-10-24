@@ -6,26 +6,24 @@
     
 
     
-    <title>git工作区和暂存区 | 李世奇的技术专栏</title>
+    <title>二叉树 | 李世奇的技术专栏</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="git,版本控制" />
+        <meta name="keywords" content="算法和数据结构" />
     
-    <meta name="description" content="Git和其他版本控制系统如SVN的一个不同之处就是有暂存区的概念。 工作区（Working Directory） 就是你在电脑里能看到的目录，比如我的myproject文件夹就是一个工作区： 版本库（Repository） 工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。 Git的版本库里存了很多东西，其中最重要的就是称为==stage==（或者叫index）的暂存区，还有Git">
-<meta name="keywords" content="git,版本控制">
+    <meta name="description" content="基本结构插入，遍历，深度 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293function N">
+<meta name="keywords" content="算法和数据结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git工作区和暂存区">
-<meta property="og:url" content="http://lisq.xyz/2017/09/09/git工作区和暂存区/index.html">
+<meta property="og:title" content="二叉树">
+<meta property="og:url" content="http://lisq.xyz/2018/10/24/二叉树/index.html">
 <meta property="og:site_name" content="李世奇的技术专栏">
-<meta property="og:description" content="Git和其他版本控制系统如SVN的一个不同之处就是有暂存区的概念。 工作区（Working Directory） 就是你在电脑里能看到的目录，比如我的myproject文件夹就是一个工作区： 版本库（Repository） 工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。 Git的版本库里存了很多东西，其中最重要的就是称为==stage==（或者叫index）的暂存区，还有Git">
+<meta property="og:description" content="基本结构插入，遍历，深度 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293function N">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://pci54wuwr.bkt.clouddn.com/git1.jpeg">
-<meta property="og:updated_time" content="2018-10-19T13:05:56.671Z">
+<meta property="og:updated_time" content="2018-10-24T07:45:36.514Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git工作区和暂存区">
-<meta name="twitter:description" content="Git和其他版本控制系统如SVN的一个不同之处就是有暂存区的概念。 工作区（Working Directory） 就是你在电脑里能看到的目录，比如我的myproject文件夹就是一个工作区： 版本库（Repository） 工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。 Git的版本库里存了很多东西，其中最重要的就是称为==stage==（或者叫index）的暂存区，还有Git">
-<meta name="twitter:image" content="http://pci54wuwr.bkt.clouddn.com/git1.jpeg">
+<meta name="twitter:title" content="二叉树">
+<meta name="twitter:description" content="基本结构插入，遍历，深度 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293function N">
     
 
     
@@ -143,14 +141,14 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-git工作区和暂存区" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-二叉树" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        git工作区和暂存区
+        二叉树
         </h1>
     
 
@@ -160,8 +158,8 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2017/09/09/git工作区和暂存区/" class="article-date">
-            <time datetime="2017-09-09T12:56:00.000Z" itemprop="datePublished">2017-09-09</time>
+        <a href="/2018/10/24/二叉树/" class="article-date">
+            <time datetime="2018-10-24T07:42:10.000Z" itemprop="datePublished">2018-10-24</time>
         </a>
     </div>
 
@@ -170,50 +168,28 @@
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/git/">git</a>, <a class="tag-link" href="/tags/版本控制/">版本控制</a>
+        <a class="tag-link" href="/tags/算法和数据结构/">算法和数据结构</a>
     </div>
 
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p>Git和其他版本控制系统如SVN的一个不同之处就是有暂存区的概念。</p>
-<p><strong>工作区（Working Directory）</strong></p>
-<p>就是你在电脑里能看到的目录，比如我的myproject文件夹就是一个工作区：</p>
-<p><strong>版本库（Repository）</strong></p>
-<p>工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。</p>
-<p>Git的版本库里存了很多东西，其中最重要的就是称为==stage==（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支==master==，以及指向==master==的一个指针叫==HEAD==。</p>
-<p><img src="http://pci54wuwr.bkt.clouddn.com/git1.jpeg" alt="image"></p>
-<p>第一步是用==git add==把文件添加进去，实际上就是把文件修改添加到暂存区；</p>
-<p>第二步是用==git commit==提交更改，实际上就是把暂存区的所有内容提交到当前分支。</p>
-<p>因为我们创建Git版本库时，Git自动为我们创建了唯一一个==master==分支，所以，现在，==git commit==就是往==master==分支上提交更改。</p>
-<p>你可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。</p>
-<p>先对==readme.txt==做个修改，比如加上一行内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Git is a distributed version control system.</span><br><span class="line">Git is free software distributed under the GPL.</span><br><span class="line">Git has a mutable index called stage.</span><br></pre></td></tr></table></figure>
-<p>然后，在工作区新增一个==LICENSE==文本文件（内容随便写）。</p>
-<p>先用==git status==查看一下状态：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">G:\myproject&gt;git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">        modified:   readme.txt</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">        LICENSE.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre></td></tr></table></figure>
-<p>Git非常清楚地告诉我们，==readme.txt==被修改了，而==LICENSE==还从来没有被添加过，所以它的状态是==Untracked==。</p>
-<p>现在，使用两次命令==git add==，把==readme.txt==和==LICENSE==都添加后，用==git status==再查看一下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">G:\myproject&gt;git status</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">        new file:   LICENSE.txt</span><br><span class="line">        modified:   readme.txt</span><br></pre></td></tr></table></figure>
-<p>现在，暂存区的状态就变成这样了：</p>
-<p><img src="http://pci54wuwr.bkt.clouddn.com/git2.jpeg" alt="image"></p>
-<p>所以，==git add==命令实际上就是把要提交的所有修改放到暂存区（Stage），然后，执行==git commit==就可以一次性把暂存区的所有修改提交到分支。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">G:\myproject&gt;git commit -m  &quot;fourth&quot;</span><br><span class="line">[master 9069b76] fourth</span><br><span class="line"> 2 files changed, 3 insertions(+), 1 deletion(-)</span><br><span class="line"> create mode 100644 LICENSE.txt</span><br></pre></td></tr></table></figure>
-<p>一旦提交后，如果你又没有对工作区做任何修改，那么工作区就是“干净”的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">G:\myproject&gt;git status</span><br><span class="line">On branch master</span><br><span class="line">nothing to commit, working tree clean</span><br></pre></td></tr></table></figure>
-<p>现在版本库变成了这样，暂存区就没有任何内容了：</p>
-<p><img src="http://pci54wuwr.bkt.clouddn.com/git3.jpeg" alt="image"></p>
-<p>每次修改，如果不==add==到暂存区，那就不会加入到==commit==中。</p>
-<p>所以为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件。</p>
-
+            <h1 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h1><p>插入，遍历，深度</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Node</span>(<span class="params">data, left, right</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.data = data;</span><br><span class="line">    <span class="keyword">this</span>.left = left;</span><br><span class="line">    <span class="keyword">this</span>.right = right;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Node.prototype = &#123;</span><br><span class="line">    show: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Tree</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.root = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Tree.prototype = &#123;</span><br><span class="line">    insert: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> node = <span class="keyword">new</span> Node(data, <span class="literal">null</span>, <span class="literal">null</span>);</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>.root) &#123;</span><br><span class="line">            <span class="keyword">this</span>.root = node;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> current = <span class="keyword">this</span>.root;</span><br><span class="line">        <span class="keyword">var</span> parent = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">while</span> (current) &#123;</span><br><span class="line">            parent = current;</span><br><span class="line">            <span class="keyword">if</span> (data &lt; parent.data) &#123;</span><br><span class="line">                current = current.left;</span><br><span class="line">                <span class="keyword">if</span> (!current) &#123;</span><br><span class="line">                    parent.left = node;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                current = current.right;</span><br><span class="line">                <span class="keyword">if</span> (!current) &#123;</span><br><span class="line">                    parent.right = node;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    preOrder: <span class="function"><span class="keyword">function</span> (<span class="params">node</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (node) &#123;</span><br><span class="line">            node.show();</span><br><span class="line">            <span class="keyword">this</span>.preOrder(node.left);</span><br><span class="line">            <span class="keyword">this</span>.preOrder(node.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    middleOrder: <span class="function"><span class="keyword">function</span> (<span class="params">node</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (node) &#123;</span><br><span class="line">            <span class="keyword">this</span>.middleOrder(node.left);</span><br><span class="line">            node.show();</span><br><span class="line">            <span class="keyword">this</span>.middleOrder(node.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    laterOrder: <span class="function"><span class="keyword">function</span> (<span class="params">node</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (node) &#123;</span><br><span class="line">            <span class="keyword">this</span>.laterOrder(node.left);</span><br><span class="line">            <span class="keyword">this</span>.laterOrder(node.right);</span><br><span class="line">            node.show();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    getMin: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> current = <span class="keyword">this</span>.root;</span><br><span class="line">        <span class="keyword">while</span>(current)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!current.left)&#123;</span><br><span class="line">                <span class="keyword">return</span> current;</span><br><span class="line">            &#125;</span><br><span class="line">            current = current.left;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    getMax: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> current = <span class="keyword">this</span>.root;</span><br><span class="line">        <span class="keyword">while</span>(current)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!current.right)&#123;</span><br><span class="line">                <span class="keyword">return</span> current;</span><br><span class="line">            &#125;</span><br><span class="line">            current = current.right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    getDeep: <span class="function"><span class="keyword">function</span> (<span class="params">node,deep</span>) </span>&#123;</span><br><span class="line">        deep = deep || <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(node == <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> deep;</span><br><span class="line">        &#125;</span><br><span class="line">        deep++;</span><br><span class="line">        <span class="keyword">var</span> dleft = <span class="keyword">this</span>.getDeep(node.left,deep);</span><br><span class="line">        <span class="keyword">var</span> dright = <span class="keyword">this</span>.getDeep(node.right,deep);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.max(dleft,dright);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> t = <span class="keyword">new</span> Tree();</span><br><span class="line">t.insert(<span class="number">3</span>);</span><br><span class="line">t.insert(<span class="number">8</span>);</span><br><span class="line">t.insert(<span class="number">1</span>);</span><br><span class="line">t.insert(<span class="number">2</span>);</span><br><span class="line">t.insert(<span class="number">5</span>);</span><br><span class="line">t.insert(<span class="number">7</span>);</span><br><span class="line">t.insert(<span class="number">6</span>);</span><br><span class="line">t.insert(<span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(t);</span><br><span class="line"><span class="comment">// t.middleOrder(t.root);</span></span><br><span class="line"><span class="built_in">console</span>.log(t.getMin(), t.getMax());</span><br><span class="line"><span class="built_in">console</span>.log(t.getDeep(t.root, <span class="number">0</span>));</span><br><span class="line"><span class="built_in">console</span>.log(t.getNode(<span class="number">5</span>,t.root));</span><br></pre></td></tr></table></figure>
+<h1 id="树查找"><a href="#树查找" class="headerlink" title="树查找"></a>树查找</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">getNode: <span class="function"><span class="keyword">function</span> (<span class="params">data, node</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node) &#123;</span><br><span class="line">        <span class="keyword">if</span> (data === node.data) &#123;</span><br><span class="line">            <span class="keyword">return</span> node;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (data &lt; node.data) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.getNode(data,node.left);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.getNode(data,node.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>利用二分的思想</p>
+<h1 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h1><p>二分查找的条件是必须是有序的线性表。</p>
+<p>和线性表的中点值进行比较，如果小就继续在小的序列中查找，如此递归直到找到相同的值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearch</span>(<span class="params">data, arr, start, end</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (start &gt; end) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> mid = <span class="built_in">Math</span>.floor((end + start) / <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">if</span> (data == arr[mid]) &#123;</span><br><span class="line">        <span class="keyword">return</span> mid;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (data &lt; arr[mid]) &#123;</span><br><span class="line">        <span class="keyword">return</span> binarySearch(data, arr, start, mid - <span class="number">1</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> binarySearch(data, arr, mid + <span class="number">1</span>, end);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]</span><br><span class="line"><span class="built_in">console</span>.log(binarySearch(<span class="number">1</span>, arr, <span class="number">0</span>, arr.length<span class="number">-1</span>));</span><br></pre></td></tr></table></figure>
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="http://lisq.xyz/2017/09/09/git工作区和暂存区/" data-id="cjnmutynk0008rl0dm9gwyd24" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://lisq.xyz/2018/10/24/二叉树/" data-id="cjnmutyni0005rl0draewi32j" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -351,20 +327,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2017/09/20/本地git链接到github/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            本地git链接到github
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2017/09/08/git基本操作/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/11/02/基本数据结构及特点/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">git基本操作</p>
+        <p class="article-nav-title">基本数据结构及特点</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -578,7 +544,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://lisq.xyz/2017/09/09/git工作区和暂存区/';
+    var disqus_url = 'http://lisq.xyz/2018/10/24/二叉树/';
     
     (function() {
     var dsq = document.createElement('script');

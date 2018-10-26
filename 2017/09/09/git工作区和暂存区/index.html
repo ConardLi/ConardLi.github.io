@@ -20,12 +20,12 @@
 <meta property="og:site_name" content="李世奇的技术专栏">
 <meta property="og:description" content="Git和其他版本控制系统如SVN的一个不同之处就是有暂存区的概念。 工作区（Working Directory） 就是你在电脑里能看到的目录，比如我的myproject文件夹就是一个工作区： 版本库（Repository） 工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。 Git的版本库里存了很多东西，其中最重要的就是称为==stage==（或者叫index）的暂存区，还有Git">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://pci54wuwr.bkt.clouddn.com/git1.jpeg">
-<meta property="og:updated_time" content="2018-10-19T13:05:56.671Z">
+<meta property="og:image" content="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/git1.jpeg">
+<meta property="og:updated_time" content="2018-10-26T11:43:11.241Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git工作区和暂存区">
 <meta name="twitter:description" content="Git和其他版本控制系统如SVN的一个不同之处就是有暂存区的概念。 工作区（Working Directory） 就是你在电脑里能看到的目录，比如我的myproject文件夹就是一个工作区： 版本库（Repository） 工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。 Git的版本库里存了很多东西，其中最重要的就是称为==stage==（或者叫index）的暂存区，还有Git">
-<meta name="twitter:image" content="http://pci54wuwr.bkt.clouddn.com/git1.jpeg">
+<meta name="twitter:image" content="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/git1.jpeg">
     
 
     
@@ -72,13 +72,13 @@
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Home</a>
+                                    <a class="main-nav-list-link" href="/">Inici</a>
                                 </li>
                             
                                         
                                     
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -90,7 +90,7 @@
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -111,8 +111,8 @@
         TRANSLATION: {
             POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            CATEGORIES: 'categories',
+            TAGS: 'etiquetes',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -138,7 +138,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    uncategorized
+    Sense categoria
     </h1>
 </div>
 
@@ -183,7 +183,7 @@
 <p><strong>版本库（Repository）</strong></p>
 <p>工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。</p>
 <p>Git的版本库里存了很多东西，其中最重要的就是称为==stage==（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支==master==，以及指向==master==的一个指针叫==HEAD==。</p>
-<p><img src="http://pci54wuwr.bkt.clouddn.com/git1.jpeg" alt="image"></p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/git1.jpeg" alt="image"></p>
 <p>第一步是用==git add==把文件添加进去，实际上就是把文件修改添加到暂存区；</p>
 <p>第二步是用==git commit==提交更改，实际上就是把暂存区的所有内容提交到当前分支。</p>
 <p>因为我们创建Git版本库时，Git自动为我们创建了唯一一个==master==分支，所以，现在，==git commit==就是往==master==分支上提交更改。</p>
@@ -197,13 +197,13 @@
 <p>现在，使用两次命令==git add==，把==readme.txt==和==LICENSE==都添加后，用==git status==再查看一下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">G:\myproject&gt;git status</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">        new file:   LICENSE.txt</span><br><span class="line">        modified:   readme.txt</span><br></pre></td></tr></table></figure>
 <p>现在，暂存区的状态就变成这样了：</p>
-<p><img src="http://pci54wuwr.bkt.clouddn.com/git2.jpeg" alt="image"></p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/git2.jpeg" alt="image"></p>
 <p>所以，==git add==命令实际上就是把要提交的所有修改放到暂存区（Stage），然后，执行==git commit==就可以一次性把暂存区的所有修改提交到分支。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">G:\myproject&gt;git commit -m  &quot;fourth&quot;</span><br><span class="line">[master 9069b76] fourth</span><br><span class="line"> 2 files changed, 3 insertions(+), 1 deletion(-)</span><br><span class="line"> create mode 100644 LICENSE.txt</span><br></pre></td></tr></table></figure>
 <p>一旦提交后，如果你又没有对工作区做任何修改，那么工作区就是“干净”的：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">G:\myproject&gt;git status</span><br><span class="line">On branch master</span><br><span class="line">nothing to commit, working tree clean</span><br></pre></td></tr></table></figure>
 <p>现在版本库变成了这样，暂存区就没有任何内容了：</p>
-<p><img src="http://pci54wuwr.bkt.clouddn.com/git3.jpeg" alt="image"></p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/git3.jpeg" alt="image"></p>
 <p>每次修改，如果不==add==到暂存区，那就不会加入到==commit==中。</p>
 <p>所以为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件。</p>
 
@@ -213,7 +213,7 @@
 
 
 
-    <a data-url="http://lisq.xyz/2017/09/09/git工作区和暂存区/" data-id="cjnple0pm0008hh0dsstsval3" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://lisq.xyz/2017/09/09/git工作区和暂存区/" data-id="cjnpy77uj0003th0dye1u72n9" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -294,7 +294,7 @@
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>follow:</p>
+        <p>seguir:</p>
         <ul class="social-links">
             
                 
@@ -352,7 +352,7 @@
 <nav id="article-nav">
     
         <a href="/2017/09/20/本地git链接到github/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
+        <strong class="article-nav-caption">més nou</strong>
         <p class="article-nav-title">
         
             本地git链接到github
@@ -363,7 +363,7 @@
     
     
         <a href="/2017/09/08/git基本操作/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">older</strong>
+        <strong class="article-nav-caption">antic</strong>
         <p class="article-nav-title">git基本操作</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
@@ -449,7 +449,7 @@
                             <a href="/2017/11/02/基本数据结构及特点/" class="thumbnail">
     
     
-        <span style="background-image:url(http://pci54wuwr.bkt.clouddn.com/2012050815172783.png)" alt="基本数据结构及特点" class="thumbnail-image"></span>
+        <span style="background-image:url(https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/2012050815172783.png)" alt="基本数据结构及特点" class="thumbnail-image"></span>
     
     
 </a>
@@ -493,7 +493,7 @@
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">archives</h3>
+        <h3 class="widget-title">arxius</h3>
         <div class="widget">
             <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li></ul>
         </div>
@@ -503,7 +503,7 @@
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">tags</h3>
+        <h3 class="widget-title">etiquetes</h3>
         <div class="widget">
             <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/three-js/">three.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webgl/">webgl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/三维/">三维</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全景/">全景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器兼容/">浏览器兼容</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本控制/">版本控制</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法和数据结构/">算法和数据结构</a><span class="tag-list-count">4</span></li></ul>
         </div>
@@ -513,7 +513,7 @@
             
                 
     <div class="widget-wrap widget-float">
-        <h3 class="widget-title">tag cloud</h3>
+        <h3 class="widget-title">etiqueta cloud</h3>
         <div class="widget tagcloud">
             <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/webgl/" style="font-size: 10px;">webgl</a> <a href="/tags/三维/" style="font-size: 13.33px;">三维</a> <a href="/tags/全景/" style="font-size: 10px;">全景</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/浏览器兼容/" style="font-size: 10px;">浏览器兼容</a> <a href="/tags/版本控制/" style="font-size: 20px;">版本控制</a> <a href="/tags/算法和数据结构/" style="font-size: 16.67px;">算法和数据结构</a>
         </div>

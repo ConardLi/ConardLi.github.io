@@ -10,22 +10,22 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="三维,全景,three.js" />
+        <meta name="keywords" content="全景,三维,three.js" />
     
     <meta name="description" content="最近一直在研究全景功能，于是封装成一个方便小巧的插件以便大家使用！ 插件包括两部分：全景展示部分，全景标记编辑部分，二者结合使用非常方便！ 使用插件首先需要引用 three.js 1.全景展示1.1 参数说明   参数名称 类型 说明      container string 存放全景的容器id    url string 存放全景图片的路径    lables array {position:">
-<meta name="keywords" content="三维,全景,three.js">
+<meta name="keywords" content="全景,三维,three.js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一款非常好用的全景生成，全景标记编辑插件">
 <meta property="og:url" content="http://lisq.xyz/2017/08/24/一款非常好用的全景生成，全景标记编辑插件/index.html">
 <meta property="og:site_name" content="李世奇的技术专栏">
 <meta property="og:description" content="最近一直在研究全景功能，于是封装成一个方便小巧的插件以便大家使用！ 插件包括两部分：全景展示部分，全景标记编辑部分，二者结合使用非常方便！ 使用插件首先需要引用 three.js 1.全景展示1.1 参数说明   参数名称 类型 说明      container string 存放全景的容器id    url string 存放全景图片的路径    lables array {position:">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://pci54wuwr.bkt.clouddn.com/%E5%85%A8%E6%99%AF1.png">
-<meta property="og:updated_time" content="2018-10-17T15:00:21.845Z">
+<meta property="og:image" content="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/%E5%85%A8%E6%99%AF1.png">
+<meta property="og:updated_time" content="2018-10-26T11:43:11.241Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一款非常好用的全景生成，全景标记编辑插件">
 <meta name="twitter:description" content="最近一直在研究全景功能，于是封装成一个方便小巧的插件以便大家使用！ 插件包括两部分：全景展示部分，全景标记编辑部分，二者结合使用非常方便！ 使用插件首先需要引用 three.js 1.全景展示1.1 参数说明   参数名称 类型 说明      container string 存放全景的容器id    url string 存放全景图片的路径    lables array {position:">
-<meta name="twitter:image" content="http://pci54wuwr.bkt.clouddn.com/%E5%85%A8%E6%99%AF1.png">
+<meta name="twitter:image" content="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/%E5%85%A8%E6%99%AF1.png">
     
 
     
@@ -72,13 +72,13 @@
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Home</a>
+                                    <a class="main-nav-list-link" href="/">Inici</a>
                                 </li>
                             
                                         
                                     
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -90,7 +90,7 @@
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -111,8 +111,8 @@
         TRANSLATION: {
             POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            CATEGORIES: 'categories',
+            TAGS: 'etiquetes',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -138,7 +138,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    uncategorized
+    Sense categoria
     </h1>
 </div>
 
@@ -262,7 +262,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> opt,tp;</span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    opt = &#123;</span><br><span class="line">        container:<span class="string">'panoramaConianer'</span>,<span class="comment">//容器</span></span><br><span class="line">        url:<span class="string">'img/p1.png'</span>,</span><br><span class="line">        lables:[</span><br><span class="line">            &#123;<span class="attr">position</span>:&#123;<span class="attr">lon</span>:<span class="number">180</span>,<span class="attr">lat</span>:<span class="number">0</span>&#125;,<span class="attr">logoUrl</span>:<span class="string">''</span>,<span class="attr">text</span>:<span class="string">'我是一个标记'</span>&#125;</span><br><span class="line">        ],</span><br><span class="line">        widthSegments: <span class="number">60</span>,<span class="comment">//水平切段数</span></span><br><span class="line">        heightSegments: <span class="number">40</span>,<span class="comment">//垂直切段数（值小粗糙速度快，值大精细速度慢）</span></span><br><span class="line">        pRadius: <span class="number">1000</span>,<span class="comment">//全景球的半径，推荐使用默认值</span></span><br><span class="line">        minFocalLength: <span class="number">6</span>,<span class="comment">//镜头最a小拉近距离</span></span><br><span class="line">        maxFocalLength: <span class="number">100</span>,<span class="comment">//镜头最大拉近距离</span></span><br><span class="line">        showlable: <span class="string">'show'</span> <span class="comment">// show,click</span></span><br><span class="line">    &#125;</span><br><span class="line">    tp = <span class="keyword">new</span> tpanorama(opt);</span><br><span class="line">    tp.init();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>修改某些参数</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">opt.showlable = <span class="string">'click'</span>;</span><br><span class="line">opt.lables = [&#123;<span class="attr">position</span>:&#123;<span class="attr">lon</span>:<span class="number">180</span>,<span class="attr">lat</span>:<span class="number">0</span>&#125;,<span class="attr">logoUrl</span>:<span class="string">'img/logo.png'</span>,<span class="attr">text</span>:<span class="string">'点击了这个标记'</span>&#125;];</span><br><span class="line">opt.url = <span class="string">'img/p1.png'</span>;</span><br><span class="line">tp.clean();</span><br><span class="line">tp.config(opt);</span><br><span class="line">tp.init();</span><br></pre></td></tr></table></figure>
-<p><img src="http://pci54wuwr.bkt.clouddn.com/%E5%85%A8%E6%99%AF1.png" alt="这里写图片描述"></p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/%E5%85%A8%E6%99%AF1.png" alt="这里写图片描述"></p>
 <h1 id="2-添加全景标记工具"><a href="#2-添加全景标记工具" class="headerlink" title="2.添加全景标记工具"></a>2.添加全景标记工具</h1><p>在展示全景的时候，你或许会对标记的位置产生了疑问，如何确定标记的位置？</p>
 <p>我们可以使用类似经纬度的参数来表达它，注意这里使用的经纬度并不是真正的经纬度，是我们根据地球的经纬度模拟出来的一个参数。</p>
 <p>下面这个工具就是用于获取我们想标记位置的 ‘经纬度’的一种方法，有了这个工具就可以完美结合上面的全景展示工具来使用了。</p>
@@ -375,7 +375,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> opt,s;</span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">     opt = &#123;</span><br><span class="line">        container: <span class="string">'set'</span>,<span class="comment">//setting容器</span></span><br><span class="line">        imgUrl: <span class="string">'img/p3.png'</span>,</span><br><span class="line">        width: <span class="string">'1000px'</span>,<span class="comment">//指定宽度，高度自适应</span></span><br><span class="line">        showGrid: <span class="literal">true</span>,<span class="comment">//是否显示格网</span></span><br><span class="line">        showPosition: <span class="literal">true</span>,<span class="comment">//是否显示经纬度提示</span></span><br><span class="line">        lableColor: <span class="string">'#9400D3'</span>,<span class="comment">//标记颜色</span></span><br><span class="line">        gridColor: <span class="string">'#48D1CC'</span>,<span class="comment">//格网颜色</span></span><br><span class="line">        lables: [</span><br><span class="line">            &#123;<span class="attr">lon</span>:<span class="number">-72.00</span>,<span class="attr">lat</span>:<span class="number">9.00</span>,<span class="attr">text</span>:<span class="string">'蓝窗户'</span>&#125;,&#123;<span class="attr">lon</span>:<span class="number">114.12</span>,<span class="attr">lat</span>:<span class="number">69.48</span>,<span class="attr">text</span>:<span class="string">'一片云彩'</span>&#125;,&#123;<span class="attr">lon</span>:<span class="number">132.48</span>,<span class="attr">lat</span>:<span class="number">-12.24</span>,<span class="attr">text</span>:<span class="string">'大海'</span>&#125;</span><br><span class="line">            ],<span class="comment">//标记   &#123;lon:114,lat:38,text:'标记一'&#125;</span></span><br><span class="line">        addLable: <span class="literal">true</span>,<span class="comment">//开启后双击添加标记  (必须开启经纬度提示)</span></span><br><span class="line">        getLable: <span class="literal">true</span>,<span class="comment">//开启后右键查询标记  (必须开启经纬度提示)</span></span><br><span class="line">        deleteLbale:<span class="literal">true</span><span class="comment">//开启后中键删除(必须开启经纬度提示)</span></span><br><span class="line">    &#125;;</span><br><span class="line">    s = <span class="keyword">new</span> tpanoramaSetting(opt);</span><br><span class="line">    s.init();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>参数切换</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeImg</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (name == <span class="string">"p1"</span>)&#123;</span><br><span class="line">        opt.lables = [&#123;<span class="attr">lon</span>:<span class="number">178.56</span>,<span class="attr">lat</span>:<span class="number">-15.84</span>,<span class="attr">text</span>:<span class="string">'神像'</span>&#125;]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (name == <span class="string">"p2"</span>)&#123;</span><br><span class="line">        opt.lables = [&#123;<span class="attr">lon</span>:<span class="number">-80.64</span>,<span class="attr">lat</span>:<span class="number">-16.92</span>,<span class="attr">text</span>:<span class="string">'蓝色'</span>&#125;,&#123;<span class="attr">lon</span>:<span class="number">46.80</span>,<span class="attr">lat</span>:<span class="number">10.44</span>,<span class="attr">text</span>:<span class="string">'绿色'</span>&#125;]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (name == <span class="string">"p4"</span>)&#123;</span><br><span class="line">        opt.lables = [&#123;<span class="attr">lon</span>:<span class="number">48.96</span>,<span class="attr">lat</span>:<span class="number">-20.16</span>,<span class="attr">text</span>:<span class="string">'樱花'</span>&#125;]</span><br><span class="line">    &#125;</span><br><span class="line">    opt.imgUrl = <span class="string">'img/'</span>+name+<span class="string">'.png'</span>;</span><br><span class="line">    s.clean();</span><br><span class="line">    s.config(opt);</span><br><span class="line">    s.init();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="http://pci54wuwr.bkt.clouddn.com/%E5%85%A8%E6%99%AF2.png" alt="这里写图片描述"></p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/%E5%85%A8%E6%99%AF2.png" alt="这里写图片描述"></p>
 <h3 id="2-3-2-自定义事件"><a href="#2-3-2-自定义事件" class="headerlink" title="2.3.2 自定义事件"></a>2.3.2 自定义事件</h3><p>很多情况下默认参数不能满足我们的业务需求，这时可以自定义事件。</p>
 <p>插件提供了listen函数用于监听各种事件。</p>
 <p>添加标记：</p>
@@ -392,7 +392,7 @@
 
 
 
-    <a data-url="http://lisq.xyz/2017/08/24/一款非常好用的全景生成，全景标记编辑插件/" data-id="cjnple0pr000dhh0d59bim8ex" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://lisq.xyz/2017/08/24/一款非常好用的全景生成，全景标记编辑插件/" data-id="cjnpy77un0005th0dvbojzwl2" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -473,7 +473,7 @@
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>follow:</p>
+        <p>seguir:</p>
         <ul class="social-links">
             
                 
@@ -531,7 +531,7 @@
 <nav id="article-nav">
     
         <a href="/2017/09/08/git命令大全/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
+        <strong class="article-nav-caption">més nou</strong>
         <p class="article-nav-title">
         
             git命令大全
@@ -542,7 +542,7 @@
     
     
         <a href="/2017/07/09/webgl基础/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">older</strong>
+        <strong class="article-nav-caption">antic</strong>
         <p class="article-nav-title">webgl基础</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
@@ -628,7 +628,7 @@
                             <a href="/2017/11/02/基本数据结构及特点/" class="thumbnail">
     
     
-        <span style="background-image:url(http://pci54wuwr.bkt.clouddn.com/2012050815172783.png)" alt="基本数据结构及特点" class="thumbnail-image"></span>
+        <span style="background-image:url(https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/2012050815172783.png)" alt="基本数据结构及特点" class="thumbnail-image"></span>
     
     
 </a>
@@ -672,7 +672,7 @@
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">archives</h3>
+        <h3 class="widget-title">arxius</h3>
         <div class="widget">
             <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li></ul>
         </div>
@@ -682,7 +682,7 @@
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">tags</h3>
+        <h3 class="widget-title">etiquetes</h3>
         <div class="widget">
             <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/three-js/">three.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webgl/">webgl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/三维/">三维</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全景/">全景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器兼容/">浏览器兼容</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本控制/">版本控制</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法和数据结构/">算法和数据结构</a><span class="tag-list-count">4</span></li></ul>
         </div>
@@ -692,7 +692,7 @@
             
                 
     <div class="widget-wrap widget-float">
-        <h3 class="widget-title">tag cloud</h3>
+        <h3 class="widget-title">etiqueta cloud</h3>
         <div class="widget tagcloud">
             <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/webgl/" style="font-size: 10px;">webgl</a> <a href="/tags/三维/" style="font-size: 13.33px;">三维</a> <a href="/tags/全景/" style="font-size: 10px;">全景</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/浏览器兼容/" style="font-size: 10px;">浏览器兼容</a> <a href="/tags/版本控制/" style="font-size: 20px;">版本控制</a> <a href="/tags/算法和数据结构/" style="font-size: 16.67px;">算法和数据结构</a>
         </div>

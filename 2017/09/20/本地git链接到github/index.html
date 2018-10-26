@@ -20,12 +20,12 @@
 <meta property="og:site_name" content="李世奇的技术专栏">
 <meta property="og:description" content="本地git服务器与github建立链接Git是分布式版本控制系统，同一个Git仓库，可以分布到不同的机器上。怎么分布呢？最早，肯定只有一台机器有一个原始版本库，此后，别的机器可以“克隆”这个原始版本库，而且每台机器的版本库其实都是一样的，并没有主次之分。 我们使用GitHub完全可以代替这个中心仓库，这个网站就是提供Git仓库托管服务的，所以，只要注册一个GitHub账号，就可以免费获得Git远程">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://pci54wuwr.bkt.clouddn.com/git4.png">
-<meta property="og:updated_time" content="2018-10-20T15:08:15.440Z">
+<meta property="og:image" content="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/git4.png">
+<meta property="og:updated_time" content="2018-10-26T11:43:11.267Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="本地git链接到github">
 <meta name="twitter:description" content="本地git服务器与github建立链接Git是分布式版本控制系统，同一个Git仓库，可以分布到不同的机器上。怎么分布呢？最早，肯定只有一台机器有一个原始版本库，此后，别的机器可以“克隆”这个原始版本库，而且每台机器的版本库其实都是一样的，并没有主次之分。 我们使用GitHub完全可以代替这个中心仓库，这个网站就是提供Git仓库托管服务的，所以，只要注册一个GitHub账号，就可以免费获得Git远程">
-<meta name="twitter:image" content="http://pci54wuwr.bkt.clouddn.com/git4.png">
+<meta name="twitter:image" content="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/git4.png">
     
 
     
@@ -72,13 +72,13 @@
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Home</a>
+                                    <a class="main-nav-list-link" href="/">Inici</a>
                                 </li>
                             
                                         
                                     
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -90,7 +90,7 @@
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -111,8 +111,8 @@
         TRANSLATION: {
             POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            CATEGORIES: 'categories',
+            TAGS: 'etiquetes',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -138,7 +138,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    uncategorized
+    Sense categoria
     </h1>
 </div>
 
@@ -186,15 +186,15 @@
 <p>如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有==id_rsa==和==id_rsa.pub==两个文件，这两个就是SSH Key的秘钥，==id_rsa==是私钥，不能泄露出去，==id_rsa.pub==是公钥，可以放心地告诉任何人。</p>
 <p>第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面：</p>
 <p>然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴==id_rsa.pub==文件的内容：</p>
-<p><img src="http://pci54wuwr.bkt.clouddn.com/git4.png" alt="image"></p>
-<p><img src="http://pci54wuwr.bkt.clouddn.com/git5.png" alt="image"></p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/git4.png" alt="image"></p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/git5.png" alt="image"></p>
 <p>为什么GitHub需要SSH Key呢？因为GitHub需要识别出你推送的提交确实是你推送的，而不是别人冒充的，而Git支持SSH协议，所以，GitHub只要知道了你的公钥，就可以确认只有你自己才能推送。</p>
 <p>当然，GitHub允许你添加多个Key。假定你有若干电脑，你一会儿在公司提交，一会儿在家里提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了。</p>
 <h2 id="推送本地代码到github"><a href="#推送本地代码到github" class="headerlink" title="推送本地代码到github"></a>推送本地代码到github</h2><p>你已经在本地创建了一个Git仓库后，又想在GitHub创建一个Git仓库，并且让这两个仓库进行远程同步，这样，GitHub上的仓库既可以作为备份，又可以让其他人通过该仓库来协作，真是一举多得。</p>
 <p>首先，登陆GitHub，然后，在右上角找到“Create a new project”按钮，创建一个新的仓库：</p>
-<p><img src="http://pci54wuwr.bkt.clouddn.com/git6.png" alt="image"></p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/git6.png" alt="image"></p>
 <p>在Repository name填入learngit，其他保持默认设置，点击“Create repository”按钮，就成功地创建了一个新的Git仓库：</p>
-<p><img src="http://pci54wuwr.bkt.clouddn.com/git7.png" alt="image"></p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/git7.png" alt="image"></p>
 <p>目前，在GitHub上的这个learngit仓库还是空的，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。</p>
 <p>现在，我们根据GitHub的提示，在本地的learngit仓库下运行命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:michaelliao/learngit.git</span><br></pre></td></tr></table></figure>
@@ -205,7 +205,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
 <p>由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的==master==分支内容推送的远程新的==master==分支，还会把本地的==master==分支和远程的==master==分支关联起来，在以后的推送或者拉取时就可以简化命令。</p>
 <p>推送成功后，可以立刻在GitHub页面中看到远程库的内容已经和本地一模一样：</p>
-<p><img src="http://pci54wuwr.bkt.clouddn.com/git8.png" alt="image"></p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/git8.png" alt="image"></p>
 <p>从现在起，只要本地作了提交，就可以通过命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
 <h2 id="从远程库克隆"><a href="#从远程库克隆" class="headerlink" title="从远程库克隆"></a>从远程库克隆</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:michaelliao/gitskills.git</span><br></pre></td></tr></table></figure>
@@ -218,7 +218,7 @@
 
 
 
-    <a data-url="http://lisq.xyz/2017/09/20/本地git链接到github/" data-id="cjnple0pw000ihh0dis4zg1vq" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://lisq.xyz/2017/09/20/本地git链接到github/" data-id="cjnpy77vu000gth0dwkhe5deg" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -299,7 +299,7 @@
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>follow:</p>
+        <p>seguir:</p>
         <ul class="social-links">
             
                 
@@ -357,7 +357,7 @@
 <nav id="article-nav">
     
         <a href="/2017/10/21/git分支操作/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
+        <strong class="article-nav-caption">més nou</strong>
         <p class="article-nav-title">
         
             git分支操作
@@ -368,7 +368,7 @@
     
     
         <a href="/2017/09/09/git工作区和暂存区/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">older</strong>
+        <strong class="article-nav-caption">antic</strong>
         <p class="article-nav-title">git工作区和暂存区</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
@@ -454,7 +454,7 @@
                             <a href="/2017/11/02/基本数据结构及特点/" class="thumbnail">
     
     
-        <span style="background-image:url(http://pci54wuwr.bkt.clouddn.com/2012050815172783.png)" alt="基本数据结构及特点" class="thumbnail-image"></span>
+        <span style="background-image:url(https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/2012050815172783.png)" alt="基本数据结构及特点" class="thumbnail-image"></span>
     
     
 </a>
@@ -498,7 +498,7 @@
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">archives</h3>
+        <h3 class="widget-title">arxius</h3>
         <div class="widget">
             <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li></ul>
         </div>
@@ -508,7 +508,7 @@
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">tags</h3>
+        <h3 class="widget-title">etiquetes</h3>
         <div class="widget">
             <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/three-js/">three.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webgl/">webgl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/三维/">三维</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全景/">全景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器兼容/">浏览器兼容</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本控制/">版本控制</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法和数据结构/">算法和数据结构</a><span class="tag-list-count">4</span></li></ul>
         </div>
@@ -518,7 +518,7 @@
             
                 
     <div class="widget-wrap widget-float">
-        <h3 class="widget-title">tag cloud</h3>
+        <h3 class="widget-title">etiqueta cloud</h3>
         <div class="widget tagcloud">
             <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/webgl/" style="font-size: 10px;">webgl</a> <a href="/tags/三维/" style="font-size: 13.33px;">三维</a> <a href="/tags/全景/" style="font-size: 10px;">全景</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/浏览器兼容/" style="font-size: 10px;">浏览器兼容</a> <a href="/tags/版本控制/" style="font-size: 20px;">版本控制</a> <a href="/tags/算法和数据结构/" style="font-size: 16.67px;">算法和数据结构</a>
         </div>

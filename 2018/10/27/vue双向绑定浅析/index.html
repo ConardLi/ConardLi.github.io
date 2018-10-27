@@ -6,20 +6,26 @@
     
 
     
-    <title>Arxiu: 2017/9 | 李世奇的技术专栏</title>
+    <title>vue双向绑定浅析 | 李世奇的技术专栏</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="description" content="Fe Coder">
-<meta property="og:type" content="website">
-<meta property="og:title" content="李世奇的技术专栏">
-<meta property="og:url" content="http://lisq.xyz/archives/2017/09/index.html">
+        <meta name="keywords" content="vue,双向绑定,数据流" />
+    
+    <meta name="description" content="原理数据劫持: vue.js 则是采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。 实现流程1、实现一个数据监听器Observer，能够对数据对象的所有属性进行监听，如有变动可拿到最新值并通知订阅者 2、实现一个指令解析器Compile，对每个元素节点的指令进行">
+<meta name="keywords" content="vue,双向绑定,数据流">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue双向绑定浅析">
+<meta property="og:url" content="http://lisq.xyz/2018/10/27/vue双向绑定浅析/index.html">
 <meta property="og:site_name" content="李世奇的技术专栏">
-<meta property="og:description" content="Fe Coder">
+<meta property="og:description" content="原理数据劫持: vue.js 则是采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。 实现流程1、实现一个数据监听器Observer，能够对数据对象的所有属性进行监听，如有变动可拿到最新值并通知订阅者 2、实现一个指令解析器Compile，对每个元素节点的指令进行">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/vue%E5%8E%9F%E7%90%86.png">
+<meta property="og:updated_time" content="2018-10-27T13:53:58.976Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="李世奇的技术专栏">
-<meta name="twitter:description" content="Fe Coder">
+<meta name="twitter:title" content="vue双向绑定浅析">
+<meta name="twitter:description" content="原理数据劫持: vue.js 则是采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。 实现流程1、实现一个数据监听器Observer，能够对数据对象的所有属性进行监听，如有变动可拿到最新值并通知订阅者 2、实现一个指令解析器Compile，对每个元素节点的指令进行">
+<meta name="twitter:image" content="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/vue%E5%8E%9F%E7%90%86.png">
     
 
     
@@ -132,262 +138,143 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-archive"></i>Arxiu: 2017/9
+    Sense categoria
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="post-vue双向绑定浅析" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2017" class="archive-year"><i class="icon fa fa-calendar-o"></i>2017</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/09/20/本地git链接到github/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/git4.png)" alt="本地git链接到github" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://lisq.xyz/2017/09/20/本地git链接到github/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            
-            </div>
-            <div class="date"><time datetime="2017-09-20T15:07:36.000Z" itemprop="datePublished">2017-09-20</time></div>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/20/本地git链接到github/">本地git链接到github</a>
+        vue双向绑定浅析
         </h1>
     
 
-        <p class="article-excerpt">
-            本地git服务器与github建立链接Git是分布式版本控制系统，同一个Git仓库，可以分布到不同的机器上。怎么分布呢？最早，肯定只有一台机器有一个原始版本库，此后，别的机器可以“克隆”这个原始版本库，而且每台机器的版本库其实都是一样的，并没有主次之分。
-我们使用GitHub完全可以代替这个中心仓库，这个网站就是提供Git仓库托管服务的，所以，只要注册一个GitHub账号，就可以免费获得Git远程
-        </p>
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/10/27/vue双向绑定浅析/" class="article-date">
+            <time datetime="2018-10-27T13:53:09.000Z" itemprop="datePublished">2018-10-27</time>
+        </a>
     </div>
-</article>
-    
 
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/09/09/git工作区和暂存区/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/git1.jpeg)" alt="git工作区和暂存区" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://lisq.xyz/2017/09/09/git工作区和暂存区/">0</span>
-    
-</span>
+		
 
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/vue/">vue</a>, <a class="tag-link" href="/tags/双向绑定/">双向绑定</a>, <a class="tag-link" href="/tags/数据流/">数据流</a>
+    </div>
 
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            
             </div>
-            <div class="date"><time datetime="2017-09-09T12:56:00.000Z" itemprop="datePublished">2017-09-09</time></div>
-        </div>
         
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/09/git工作区和暂存区/">git工作区和暂存区</a>
-        </h1>
-    
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>数据劫持: vue.js 则是采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。</p>
+<h1 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h1><p>1、实现一个数据监听器Observer，能够对数据对象的所有属性进行监听，如有变动可拿到最新值并通知订阅者</p>
+<p>2、实现一个指令解析器Compile，对每个元素节点的指令进行扫描和解析，根据指令模板替换数据，以及绑定相应的更新函数</p>
+<p>3、实现一个Watcher，作为连接Observer和Compile的桥梁，能够订阅并收到每个属性变动的通知，执行指令绑定的相应回调函数，从而更新视图</p>
+<p>4、mvvm入口函数，整合以上三者</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/vue%E5%8E%9F%E7%90%86.png" alt="image"></p>
+<h1 id="实现Observer"><a href="#实现Observer" class="headerlink" title="实现Observer"></a>实现Observer</h1><p>可以利用Obeject.defineProperty()来监听属性变动<br>那么将需要observe的数据对象进行递归遍历，包括子属性对象的属性，都加上 setter和getter<br>这样的话，给这个对象的某个值赋值，就会触发setter，那么就能监听到了数据变化。。相关代码可以是这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = &#123;<span class="attr">name</span>: <span class="string">'kindeng'</span>&#125;;</span><br><span class="line">observe(data);</span><br><span class="line">data.name = <span class="string">'dmq'</span>; <span class="comment">// 哈哈哈，监听到值变化了 kindeng --&gt; dmq</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">observe</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!data || <span class="keyword">typeof</span> data !== <span class="string">'object'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 取出所有属性遍历</span></span><br><span class="line">    <span class="built_in">Object</span>.keys(data).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">key</span>) </span>&#123;</span><br><span class="line">        defineReactive(data, key, data[key]);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">defineReactive</span>(<span class="params">data, key, val</span>) </span>&#123;</span><br><span class="line">    observe(val); <span class="comment">// 监听子属性</span></span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(data, key, &#123;</span><br><span class="line">        enumerable: <span class="literal">true</span>, <span class="comment">// 可枚举</span></span><br><span class="line">        configurable: <span class="literal">false</span>, <span class="comment">// 不能再define</span></span><br><span class="line">        get: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> val;</span><br><span class="line">        &#125;,</span><br><span class="line">        set: <span class="function"><span class="keyword">function</span>(<span class="params">newVal</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'哈哈哈，监听到值变化了 '</span>, val, <span class="string">' --&gt; '</span>, newVal);</span><br><span class="line">            val = newVal;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="dep"><a href="#dep" class="headerlink" title="dep"></a>dep</h1><p>dep的作用是消息订阅器，很简单，维护一个数组，用来收集订阅者，数据变动触发notify，再调用订阅者的update方法</p>
+<h1 id="complie"><a href="#complie" class="headerlink" title="complie"></a>complie</h1><p>compile主要做的事情是解析模板指令，将模板中的变量替换成数据，然后初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据有变动，收到通知，更新视图</p>
+<p>因为遍历解析的过程有多次操作dom节点，为提高性能和效率，会先将跟节点el转换成文档碎片fragment进行解析编译操作，解析完成，再将fragment添加回原来的真实dom节点中。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Compile</span>(<span class="params">el</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.$el = <span class="keyword">this</span>.isElementNode(el) ? el : <span class="built_in">document</span>.querySelector(el);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.$el) &#123;</span><br><span class="line">        <span class="keyword">this</span>.$fragment = <span class="keyword">this</span>.node2Fragment(<span class="keyword">this</span>.$el);</span><br><span class="line">        <span class="keyword">this</span>.init();</span><br><span class="line">        <span class="keyword">this</span>.$el.appendChild(<span class="keyword">this</span>.$fragment);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Compile.prototype = &#123;</span><br><span class="line">    init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">this</span>.compileElement(<span class="keyword">this</span>.$fragment); &#125;,</span><br><span class="line">    node2Fragment: <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> fragment = <span class="built_in">document</span>.createDocumentFragment(), child;</span><br><span class="line">        <span class="comment">// 将原生节点拷贝到fragment</span></span><br><span class="line">        <span class="keyword">while</span> (child = el.firstChild) &#123;</span><br><span class="line">            fragment.appendChild(child);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> fragment;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>compileElement方法将遍历所有节点及其子节点，进行扫描解析编译，调用对应的指令渲染函数进行数据渲染，并调用对应的指令更新函数进行绑定。遍历后将自己每一个元素作为一个订阅者添加到dep的数组中。</p>
+<p>在compileElement中做监听，值改变了再去改变MVVM的值。</p>
+<h1 id="watcher"><a href="#watcher" class="headerlink" title="watcher"></a>watcher</h1><p>1、在自身实例化时往属性订阅器(dep)里面添加自己</p>
+<p>2、自身必须有一个update()方法</p>
+<p>3、待属性变动dep.notice()通知时，能调用自身的update()方法，并触发Compile中绑定的回调</p>
+<p>主要作用是将元素封装成一个订阅对象，内含有updae函数，从而把自身加入到订阅器列表中作为订阅者。</p>
 
-        <p class="article-excerpt">
-            Git和其他版本控制系统如SVN的一个不同之处就是有暂存区的概念。
-工作区（Working Directory）
-就是你在电脑里能看到的目录，比如我的myproject文件夹就是一个工作区：
-版本库（Repository）
-工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。
-Git的版本库里存了很多东西，其中最重要的就是称为==stage==（或者叫index）的暂存区，还有Git
-        </p>
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://lisq.xyz/2018/10/27/vue双向绑定浅析/" data-id="cjnrib3sx0003qs0dyus2c9jb" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
-    
-        </div>
-    
 
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/09/08/git基本操作/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/gitaa.jpeg)" alt="git基本操作" class="thumbnail-image"></span>
-    
+    <section id="comments">
     
         
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://lisq.xyz/2017/09/08/git基本操作/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            
-            </div>
-            <div class="date"><time datetime="2017-09-08T13:47:57.000Z" itemprop="datePublished">2017-09-08</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/08/git基本操作/">git基本操作</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            
-创建版本库版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。
-第一步很简单，就是找到你想让git管理的项目目录或者新建一个目录。
-第二步，通过git init命令把这个目录变成Git可以管理的仓库：
-12G:\myproject&gt
-        </p>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-</article>
-    
 
     
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/09/08/git命令大全/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/git.png)" alt="git命令大全" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://lisq.xyz/2017/09/08/git命令大全/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            
-            </div>
-            <div class="date"><time datetime="2017-09-08T05:10:01.000Z" itemprop="datePublished">2017-09-08</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/09/08/git命令大全/">git命令大全</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            
-
-
-
-指令
-作用
-
-
-
-
-git init
-创建版本库
-
-
-git add
-将工作区文件放到暂存区,可反复多次使用，添加多个文件
-
-
-git commit
-将暂存区文件放到分支
-
-
-git statu
-查看仓库当前状况（有多少文件修改，在什么位置）
-
-
-git diff
-查看文件具体做了什么修改
-
-
-git log
-查看提交历史，以便确定要回退到哪个版本
-
-
-git reset
-重新设定版本
-
-
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-
-    </div></section>
+    </section>
 
 
 
@@ -449,6 +336,29 @@ git reset
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/11/03/二叉树/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">més nou</strong>
+        <p class="article-nav-title">
+        
+            二叉树
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/10/26/前端常见算法/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">antic</strong>
+        <p class="article-nav-title">前端常见算法</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -657,11 +567,13 @@ git reset
     var disqus_shortname = 'hexo-theme-hueman';
     
     
+    var disqus_url = 'http://lisq.xyz/2018/10/27/vue双向绑定浅析/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>

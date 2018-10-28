@@ -274,14 +274,14 @@ code {
 .logo {
   display: block;
   padding: 10px 0;
-  width: 165px;
-  height: 60px;
-  background-image: url("https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/bloglogo.png");
+  width: 326px;
+  height: 91px;
+  background-image: url("https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/logo.png");
   background-position: 0px 10px;
   background-repeat: no-repeat;
-  -webkit-background-size: 165px 60px;
-  -moz-background-size: 165px 60px;
-  background-size: 165px 60px;
+  -webkit-background-size: 326px 91px;
+  -moz-background-size: 326px 91px;
+  background-size: 326px 91px;
 }
 .main-body {
   margin-top: -60px;
@@ -378,7 +378,7 @@ code {
 #header-title .subtitle {
   font-size: 16px;
   font-style: italic;
-  line-height: 70px;
+  line-height: 101px;
   color: rgba(255,255,255,0.7);
   text-shadow: 0 1px rgba(0,0,0,0.2);
 }
@@ -1658,11 +1658,11 @@ a.article-title:hover {
   line-height: 22px;
 }
 #footer .logo {
-  width: 132px;
-  height: 48px;
-  -webkit-background-size: 132px 48px;
-  -moz-background-size: 132px 48px;
-  background-size: 132px 48px;
+  width: 260.8px;
+  height: 72.8px;
+  -webkit-background-size: 260.8px 72.8px;
+  -moz-background-size: 260.8px 72.8px;
+  background-size: 260.8px 72.8px;
 }
 i.icon {
   display: inline-block;

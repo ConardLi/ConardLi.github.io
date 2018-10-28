@@ -12,18 +12,20 @@
     
         <meta name="keywords" content="算法和数据结构" />
     
-    <meta name="description" content="基本结构插入，遍历，深度 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293function N">
+    <meta name="description" content="基本结构插入，遍历，深度 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293function">
 <meta name="keywords" content="算法和数据结构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二叉树">
 <meta property="og:url" content="http://lisq.xyz/2017/11/03/二叉树/index.html">
 <meta property="og:site_name" content="李世奇的技术专栏">
-<meta property="og:description" content="基本结构插入，遍历，深度 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293function N">
+<meta property="og:description" content="基本结构插入，遍历，深度 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293function">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-28T05:29:21.238Z">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540746915472&amp;di=ca90212177dadb83a6d0b3977a2f03ea&amp;imgtype=0&amp;src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F4afbfbedab64034ff026953ca4c379310a551d24.jpg">
+<meta property="og:updated_time" content="2018-10-28T14:28:15.200Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二叉树">
-<meta name="twitter:description" content="基本结构插入，遍历，深度 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293function N">
+<meta name="twitter:description" content="基本结构插入，遍历，深度 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293function">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540746915472&amp;di=ca90212177dadb83a6d0b3977a2f03ea&amp;imgtype=0&amp;src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F4afbfbedab64034ff026953ca4c379310a551d24.jpg">
     
 
     
@@ -51,6 +53,7 @@
 
 
 </head>
+
 
 <body>
     <div id="wrap">
@@ -175,7 +178,8 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h1 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h1><p>插入，遍历，深度</p>
+            <p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540746915472&amp;di=ca90212177dadb83a6d0b3977a2f03ea&amp;imgtype=0&amp;src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F4afbfbedab64034ff026953ca4c379310a551d24.jpg" alt="image"></p>
+<h1 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h1><p>插入，遍历，深度</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Node</span>(<span class="params">data, left, right</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.data = data;</span><br><span class="line">    <span class="keyword">this</span>.left = left;</span><br><span class="line">    <span class="keyword">this</span>.right = right;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Node.prototype = &#123;</span><br><span class="line">    show: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Tree</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.root = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Tree.prototype = &#123;</span><br><span class="line">    insert: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> node = <span class="keyword">new</span> Node(data, <span class="literal">null</span>, <span class="literal">null</span>);</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>.root) &#123;</span><br><span class="line">            <span class="keyword">this</span>.root = node;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> current = <span class="keyword">this</span>.root;</span><br><span class="line">        <span class="keyword">var</span> parent = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">while</span> (current) &#123;</span><br><span class="line">            parent = current;</span><br><span class="line">            <span class="keyword">if</span> (data &lt; parent.data) &#123;</span><br><span class="line">                current = current.left;</span><br><span class="line">                <span class="keyword">if</span> (!current) &#123;</span><br><span class="line">                    parent.left = node;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                current = current.right;</span><br><span class="line">                <span class="keyword">if</span> (!current) &#123;</span><br><span class="line">                    parent.right = node;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    preOrder: <span class="function"><span class="keyword">function</span> (<span class="params">node</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (node) &#123;</span><br><span class="line">            node.show();</span><br><span class="line">            <span class="keyword">this</span>.preOrder(node.left);</span><br><span class="line">            <span class="keyword">this</span>.preOrder(node.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    middleOrder: <span class="function"><span class="keyword">function</span> (<span class="params">node</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (node) &#123;</span><br><span class="line">            <span class="keyword">this</span>.middleOrder(node.left);</span><br><span class="line">            node.show();</span><br><span class="line">            <span class="keyword">this</span>.middleOrder(node.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    laterOrder: <span class="function"><span class="keyword">function</span> (<span class="params">node</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (node) &#123;</span><br><span class="line">            <span class="keyword">this</span>.laterOrder(node.left);</span><br><span class="line">            <span class="keyword">this</span>.laterOrder(node.right);</span><br><span class="line">            node.show();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    getMin: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> current = <span class="keyword">this</span>.root;</span><br><span class="line">        <span class="keyword">while</span>(current)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!current.left)&#123;</span><br><span class="line">                <span class="keyword">return</span> current;</span><br><span class="line">            &#125;</span><br><span class="line">            current = current.left;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    getMax: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> current = <span class="keyword">this</span>.root;</span><br><span class="line">        <span class="keyword">while</span>(current)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!current.right)&#123;</span><br><span class="line">                <span class="keyword">return</span> current;</span><br><span class="line">            &#125;</span><br><span class="line">            current = current.right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    getDeep: <span class="function"><span class="keyword">function</span> (<span class="params">node,deep</span>) </span>&#123;</span><br><span class="line">        deep = deep || <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(node == <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> deep;</span><br><span class="line">        &#125;</span><br><span class="line">        deep++;</span><br><span class="line">        <span class="keyword">var</span> dleft = <span class="keyword">this</span>.getDeep(node.left,deep);</span><br><span class="line">        <span class="keyword">var</span> dright = <span class="keyword">this</span>.getDeep(node.right,deep);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.max(dleft,dright);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> t = <span class="keyword">new</span> Tree();</span><br><span class="line">t.insert(<span class="number">3</span>);</span><br><span class="line">t.insert(<span class="number">8</span>);</span><br><span class="line">t.insert(<span class="number">1</span>);</span><br><span class="line">t.insert(<span class="number">2</span>);</span><br><span class="line">t.insert(<span class="number">5</span>);</span><br><span class="line">t.insert(<span class="number">7</span>);</span><br><span class="line">t.insert(<span class="number">6</span>);</span><br><span class="line">t.insert(<span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(t);</span><br><span class="line"><span class="comment">// t.middleOrder(t.root);</span></span><br><span class="line"><span class="built_in">console</span>.log(t.getMin(), t.getMax());</span><br><span class="line"><span class="built_in">console</span>.log(t.getDeep(t.root, <span class="number">0</span>));</span><br><span class="line"><span class="built_in">console</span>.log(t.getNode(<span class="number">5</span>,t.root));</span><br></pre></td></tr></table></figure>
 <h1 id="树查找"><a href="#树查找" class="headerlink" title="树查找"></a>树查找</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">getNode: <span class="function"><span class="keyword">function</span> (<span class="params">data, node</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node) &#123;</span><br><span class="line">        <span class="keyword">if</span> (data === node.data) &#123;</span><br><span class="line">            <span class="keyword">return</span> node;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (data &lt; node.data) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.getNode(data,node.left);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.getNode(data,node.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -189,7 +193,7 @@
 
 
 
-    <a data-url="http://lisq.xyz/2017/11/03/二叉树/" data-id="cjnsyh3nx000cqa0df5tpp8az" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://lisq.xyz/2017/11/03/二叉树/" data-id="cjnsz1f4l000c2z0dv1dtilbd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -354,7 +358,7 @@
 </nav>
 
     
-    <div class="widgets-container" style="background-color: #fff;">
+    <div class="widgets-container" style="background-color: #fff; border-right: 1px solid #e2e2e2;">
         
         
         
@@ -372,7 +376,7 @@
                             <a href="/2017/12/24/vue问题记录/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540746776597&amp;di=e67e78ce003f64d97d8079f5cbc59143&amp;imgtype=0&amp;src=http%3A%2F%2Fold.bz55.com%2Fuploads%2Fallimg%2F140608%2F1-14060Q04042.jpg)" alt="vue问题记录" class="thumbnail-image"></span>
     
     
 </a>
@@ -392,7 +396,7 @@
                             <a href="/2017/12/02/vue双向绑定浅析/" class="thumbnail">
     
     
-        <span style="background-image:url(https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/vue%E5%8E%9F%E7%90%86.png)" alt="vue双向绑定浅析" class="thumbnail-image"></span>
+        <span style="background-image:url(https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540746776597&amp;di=e67e78ce003f64d97d8079f5cbc59143&amp;imgtype=0&amp;src=http%3A%2F%2Fold.bz55.com%2Fuploads%2Fallimg%2F140608%2F1-14060Q04042.jpg)" alt="vue双向绑定浅析" class="thumbnail-image"></span>
     
     
 </a>
@@ -412,7 +416,7 @@
                             <a href="/2017/11/09/前端常见算法/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540746915439&amp;di=54161e41c528f0413acbb3c66ef897e0&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.juimg.com%2Ftuku%2Fyulantu%2F140726%2F330628-140H621524262.jpg)" alt="前端常见算法" class="thumbnail-image"></span>
     
     
 </a>
@@ -432,7 +436,7 @@
                             <a href="/2017/11/05/排序总结/" class="thumbnail">
     
     
-        <span style="background-image:url(http://s8.51cto.com/wyfs02/M02/19/FF/wKiom1MUSRPjUTOIAAC-kWvhNhc591.jpg)" alt="排序总结" class="thumbnail-image"></span>
+        <span style="background-image:url(https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540747040378&amp;di=6860cbf022b005ee5b5d7ac49c1a5438&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.senkon.cn%2Fupload%2Fimg%2FpoWFjdQfmNGw3hfPpivZJJDiMcsRsOwF8iUqGHIAUwxCRJawempoMRSNJZrI7Dv7KOyQFxiQyMJkVwhxnwM5WtR6%2FSCAsQ.jpg)" alt="排序总结" class="thumbnail-image"></span>
     
     
 </a>
@@ -452,7 +456,7 @@
                             <a href="/2017/11/03/二叉树/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540746915472&amp;di=ca90212177dadb83a6d0b3977a2f03ea&amp;imgtype=0&amp;src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F4afbfbedab64034ff026953ca4c379310a551d24.jpg)" alt="二叉树" class="thumbnail-image"></span>
     
     
 </a>
@@ -597,4 +601,5 @@
 
     </div>
 </body>
+
 </html>

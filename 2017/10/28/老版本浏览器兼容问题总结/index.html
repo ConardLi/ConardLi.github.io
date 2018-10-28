@@ -20,10 +20,12 @@
 <meta property="og:site_name" content="李世奇的技术专栏">
 <meta property="og:description" content="1.ajax12345try&amp;#123;　　xhr = new XMLHttpRequest();&amp;#125;catch(e)&amp;#123;　　xhr = new ActiveXObject(&amp;quot;Microsoft.XMLHTTP&amp;quot;);&amp;#125;; 2.事件12345678var addEvent = function(element,type,callback)&amp;#123;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-22T15:44:01.670Z">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540747068334&amp;di=67adc04c07a9bd9c2aeed68855e19b01&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F014857554932d90000019ae93e9318.jpg%401280w_1l_2o_100sh.jpg">
+<meta property="og:updated_time" content="2018-10-28T14:30:06.650Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="老版本浏览器兼容问题总结">
 <meta name="twitter:description" content="1.ajax12345try&amp;#123;　　xhr = new XMLHttpRequest();&amp;#125;catch(e)&amp;#123;　　xhr = new ActiveXObject(&amp;quot;Microsoft.XMLHTTP&amp;quot;);&amp;#125;; 2.事件12345678var addEvent = function(element,type,callback)&amp;#123;">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540747068334&amp;di=67adc04c07a9bd9c2aeed68855e19b01&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F014857554932d90000019ae93e9318.jpg%401280w_1l_2o_100sh.jpg">
     
 
     
@@ -51,6 +53,7 @@
 
 
 </head>
+
 
 <body>
     <div id="wrap">
@@ -175,7 +178,8 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h2 id="1-ajax"><a href="#1-ajax" class="headerlink" title="1.ajax"></a>1.ajax</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">　　xhr = new XMLHttpRequest();</span><br><span class="line">&#125;catch(e)&#123;</span><br><span class="line">　　xhr = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+            <p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540747068334&amp;di=67adc04c07a9bd9c2aeed68855e19b01&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F014857554932d90000019ae93e9318.jpg%401280w_1l_2o_100sh.jpg" alt="image"></p>
+<h2 id="1-ajax"><a href="#1-ajax" class="headerlink" title="1.ajax"></a>1.ajax</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">　　xhr = new XMLHttpRequest();</span><br><span class="line">&#125;catch(e)&#123;</span><br><span class="line">　　xhr = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h2 id="2-事件"><a href="#2-事件" class="headerlink" title="2.事件"></a>2.事件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var addEvent = function(element,type,callback)&#123;</span><br><span class="line">    if(element.addEventListener)&#123;</span><br><span class="line">        element.addEventListener(type,callback,false);</span><br><span class="line">    &#125;else if(element.attachEvent)&#123;</span><br><span class="line">        element.attachEvent(&apos;on&apos; + type,callback)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="3-innerText"><a href="#3-innerText" class="headerlink" title="3.innerText"></a>3.innerText</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function getInnerText(element) &#123;</span><br><span class="line">    return (typeof element.textContent == &quot;string&quot;) ? element.textContent : element.innerText;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="4-indexof"><a href="#4-indexof" class="headerlink" title="4.indexof()"></a>4.indexof()</h2><p>IE8以下不兼容indexof()方法, 添加indexof的原型方法即可；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (!Array.prototype.indexOf)&#123;</span><br><span class="line">  Array.prototype.indexOf = function(elt)&#123;</span><br><span class="line">     ...</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -189,7 +193,7 @@
 
 
 
-    <a data-url="http://lisq.xyz/2017/10/28/老版本浏览器兼容问题总结/" data-id="cjnsyh3o2000iqa0d9ihe55c0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://lisq.xyz/2017/10/28/老版本浏览器兼容问题总结/" data-id="cjnsz1f4r000i2z0d5sxvpf13" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -354,7 +358,7 @@
 </nav>
 
     
-    <div class="widgets-container" style="background-color: #fff;">
+    <div class="widgets-container" style="background-color: #fff; border-right: 1px solid #e2e2e2;">
         
         
         
@@ -372,7 +376,7 @@
                             <a href="/2017/12/24/vue问题记录/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540746776597&amp;di=e67e78ce003f64d97d8079f5cbc59143&amp;imgtype=0&amp;src=http%3A%2F%2Fold.bz55.com%2Fuploads%2Fallimg%2F140608%2F1-14060Q04042.jpg)" alt="vue问题记录" class="thumbnail-image"></span>
     
     
 </a>
@@ -392,7 +396,7 @@
                             <a href="/2017/12/02/vue双向绑定浅析/" class="thumbnail">
     
     
-        <span style="background-image:url(https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/vue%E5%8E%9F%E7%90%86.png)" alt="vue双向绑定浅析" class="thumbnail-image"></span>
+        <span style="background-image:url(https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540746776597&amp;di=e67e78ce003f64d97d8079f5cbc59143&amp;imgtype=0&amp;src=http%3A%2F%2Fold.bz55.com%2Fuploads%2Fallimg%2F140608%2F1-14060Q04042.jpg)" alt="vue双向绑定浅析" class="thumbnail-image"></span>
     
     
 </a>
@@ -412,7 +416,7 @@
                             <a href="/2017/11/09/前端常见算法/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540746915439&amp;di=54161e41c528f0413acbb3c66ef897e0&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.juimg.com%2Ftuku%2Fyulantu%2F140726%2F330628-140H621524262.jpg)" alt="前端常见算法" class="thumbnail-image"></span>
     
     
 </a>
@@ -432,7 +436,7 @@
                             <a href="/2017/11/05/排序总结/" class="thumbnail">
     
     
-        <span style="background-image:url(http://s8.51cto.com/wyfs02/M02/19/FF/wKiom1MUSRPjUTOIAAC-kWvhNhc591.jpg)" alt="排序总结" class="thumbnail-image"></span>
+        <span style="background-image:url(https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540747040378&amp;di=6860cbf022b005ee5b5d7ac49c1a5438&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.senkon.cn%2Fupload%2Fimg%2FpoWFjdQfmNGw3hfPpivZJJDiMcsRsOwF8iUqGHIAUwxCRJawempoMRSNJZrI7Dv7KOyQFxiQyMJkVwhxnwM5WtR6%2FSCAsQ.jpg)" alt="排序总结" class="thumbnail-image"></span>
     
     
 </a>
@@ -452,7 +456,7 @@
                             <a href="/2017/11/03/二叉树/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540746915472&amp;di=ca90212177dadb83a6d0b3977a2f03ea&amp;imgtype=0&amp;src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F4afbfbedab64034ff026953ca4c379310a551d24.jpg)" alt="二叉树" class="thumbnail-image"></span>
     
     
 </a>
@@ -597,4 +601,5 @@
 
     </div>
 </body>
+
 </html>

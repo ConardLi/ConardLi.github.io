@@ -229,7 +229,7 @@ body,
   background: #62bbc3;
 }
 body {
-  background: #fff;
+  background: #f5f5f5;
   font: 14px "Titillium Web", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
   -webkit-text-size-adjust: 100%;
 }
@@ -1258,7 +1258,7 @@ a.article-title:hover {
   line-height: 1em;
   padding: 6px 15px;
   border-radius: 15px;
-  background: #fff;
+  background: #f5f5f5;
   color: #aaa;
   text-shadow: 0 1px #fff;
   text-decoration: none;
@@ -1332,7 +1332,7 @@ a.article-title:hover {
   line-height: 36px;
 }
 .article-share-links {
-  background: #fff;
+  background: #f5f5f5;
 }
 .article-share-links:before,
 .article-share-links:after {
@@ -1638,7 +1638,7 @@ a.article-title:hover {
   padding: 0px 30px 30px 30px;
 }
 #footer #back-to-top {
-  background: #fff;
+  background: #f5f5f5;
   color: #777;
   overflow: hidden;
   text-align: center;
@@ -2134,7 +2134,7 @@ i.icon:before {
     float: none;
     margin: 0px;
     width: 100%;
-    background: #f0f0f0;
+    background: #fff;
   }
   #sidebar .sidebar-top,
   #sidebar .widget-wrap {

@@ -8,35 +8,34 @@
 
 ## 前端面试总结
 
-- [变量和类型计算](https://lisq.xyz/2018/10/30/js%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93-%E5%8F%98%E9%87%8F%E5%92%8C%E7%B1%BB%E5%9E%8B%E8%AE%A1%E7%AE%97/）
+- [变量和类型计算](https://lisq.xyz/2018/10/30/js%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93-%E5%8F%98%E9%87%8F%E5%92%8C%E7%B1%BB%E5%9E%8B%E8%AE%A1%E7%AE%97/)
 
 ## 算法和数据结构
 
-- [前端常见算法](https://lisq.xyz/2017/11/09/%E5%89%8D%E7%AB%AF%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/）
-- [排序总结](https://lisq.xyz/2017/11/05/%E6%8E%92%E5%BA%8F%E6%80%BB%E7%BB%93/）
-- [二叉树](https://lisq.xyz/2017/11/03/%E4%BA%8C%E5%8F%89%E6%A0%91/）
-- [基本数据结构及特点](https://lisq.xyz/2017/11/02/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%89%B9%E7%82%B9/）
+- [前端常见算法](https://lisq.xyz/2017/11/09/%E5%89%8D%E7%AB%AF%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/)
+- [排序总结](https://lisq.xyz/2017/11/05/%E6%8E%92%E5%BA%8F%E6%80%BB%E7%BB%93/)
+- [二叉树](https://lisq.xyz/2017/11/03/%E4%BA%8C%E5%8F%89%E6%A0%91/)
+- [基本数据结构及特点](https://lisq.xyz/2017/11/02/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%89%B9%E7%82%B9/)
 
 ## vue
-- [vue问题记录](https://lisq.xyz/2017/12/24/vue%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/）
-- [vue双向绑定浅析](https://lisq.xyz/2017/12/02/vue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E6%B5%85%E6%9E%90/）
+- [vue问题记录](https://lisq.xyz/2017/12/24/vue%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/)
+- [vue双向绑定浅析](https://lisq.xyz/2017/12/02/vue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E6%B5%85%E6%9E%90/)
 
 ## 打包工具
 
-- [webpack使用小结](https://lisq.xyz/2017/12/06/webpack%E5%B0%8F%E7%BB%93/）
+- [webpack使用小结](https://lisq.xyz/2017/12/06/webpack%E5%B0%8F%E7%BB%93/)
 
 ## 浏览器兼容
 
-- [老版本浏览器兼容问题总结](https://lisq.xyz/2017/10/28/%E8%80%81%E7%89%88%E6%9C%AC%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/）
-
+- [老版本浏览器兼容问题总结](https://lisq.xyz/2017/10/28/%E8%80%81%E7%89%88%E6%9C%AC%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/)
 
 ## 版本控制
 
 - [git基本操作](https://lisq.xyz/2018/09/08/git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/)
 - [git命令大全](https://lisq.xyz/2018/09/08/git%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/)
 - [git工作区和暂存区](https://lisq.xyz/2018/09/08/git%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA/)
-- [git分支操作](https://lisq.xyz/2017/10/21/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/）
-- [本地git链接到github](https://lisq.xyz/2017/09/20/%E6%9C%AC%E5%9C%B0git%E9%93%BE%E6%8E%A5%E5%88%B0github/）
+- [git分支操作](https://lisq.xyz/2017/10/21/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/)
+- [本地git链接到github](https://lisq.xyz/2017/09/20/%E6%9C%AC%E5%9C%B0git%E9%93%BE%E6%8E%A5%E5%88%B0github/)
 
 
 ## webgl/三维

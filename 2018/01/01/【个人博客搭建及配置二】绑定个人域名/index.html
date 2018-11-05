@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>【个人博客搭建及配置二】绑定个人域名 | 李世奇的技术专栏</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="博客搭建" />
+    
+    <meta name="description" content="博客地址： https://www.lisq.xyz/ 1.购买一个域名这里我选择的是阿里云，挑选一个自己喜欢的域名购买。 2.域名解析进入控制台添加域名解析。 按照如下规则添加两条记录。  这时去访问解析好的域名会出现如下页面。  这说明域名解析没有问题，接下来进入github进行配置 3.hexo配置在本地的博客目录中找到source文件夹。 新建一个没有后缀名的文件GNAME 在文件中添加">
+<meta name="keywords" content="博客搭建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【个人博客搭建及配置二】绑定个人域名">
+<meta property="og:url" content="https://www.lisq.xyz/2018/01/01/【个人博客搭建及配置二】绑定个人域名/index.html">
+<meta property="og:site_name" content="李世奇的技术专栏">
+<meta property="og:description" content="博客地址： https://www.lisq.xyz/ 1.购买一个域名这里我选择的是阿里云，挑选一个自己喜欢的域名购买。 2.域名解析进入控制台添加域名解析。 按照如下规则添加两条记录。  这时去访问解析好的域名会出现如下页面。  这说明域名解析没有问题，接下来进入github进行配置 3.hexo配置在本地的博客目录中找到source文件夹。 新建一个没有后缀名的文件GNAME 在文件中添加">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img1.ph.126.net/OJm3HCAMBBQKMG0ejvAQRA==/6631496575234319893.jpg">
+<meta property="og:updated_time" content="2018-11-05T15:35:02.609Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【个人博客搭建及配置二】绑定个人域名">
+<meta name="twitter:description" content="博客地址： https://www.lisq.xyz/ 1.购买一个域名这里我选择的是阿里云，挑选一个自己喜欢的域名购买。 2.域名解析进入控制台添加域名解析。 按照如下规则添加两条记录。  这时去访问解析好的域名会出现如下页面。  这说明域名解析没有问题，接下来进入github进行配置 3.hexo配置在本地的博客目录中找到source文件夹。 新建一个没有后缀名的文件GNAME 在文件中添加">
+<meta name="twitter:image" content="http://img1.ph.126.net/OJm3HCAMBBQKMG0ejvAQRA==/6631496575234319893.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="李世奇的技术专栏" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/board">更新日志</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-【个人博客搭建及配置二】绑定个人域名" class="article article-single article-type-post"
+    itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        <header class="article-header">
+            
+    
+        <h1 class="article-title" itemprop="name">
+        【个人博客搭建及配置二】绑定个人域名
+        </h1>
+    
+
+        </header>
+        
+        
+        <div class="article-meta">
+            
+    <div class="article-date">
+        <a href="/2018/01/01/【个人博客搭建及配置二】绑定个人域名/" class="article-date">
+            <time datetime="2018-01-01T15:28:31.000Z" itemprop="datePublished">2018-01-01</time>
+        </a>
+    </div>
+
+            
+
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/博客搭建/">博客搭建</a>
+    </div>
+
+            <span id="busuanzi_container_page_pv" style="position: relative;float: right;">
+                本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+            </span>
+        </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://img1.ph.126.net/OJm3HCAMBBQKMG0ejvAQRA==/6631496575234319893.jpg" alt="image"></p>
+<p>博客地址： <a href="https://www.lisq.xyz/">https://www.lisq.xyz/</a></p>
+<h1 id="1-购买一个域名"><a href="#1-购买一个域名" class="headerlink" title="1.购买一个域名"></a>1.购买一个域名</h1><p>这里我选择的是阿里云，挑选一个自己喜欢的域名购买。</p>
+<h1 id="2-域名解析"><a href="#2-域名解析" class="headerlink" title="2.域名解析"></a>2.域名解析</h1><p>进入控制台添加域名解析。</p>
+<p>按照如下规则添加两条记录。</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png" alt="image"></p>
+<p>这时去访问解析好的域名会出现如下页面。</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/github404.png" alt="image"></p>
+<p>这说明域名解析没有问题，接下来进入github进行配置</p>
+<h1 id="3-hexo配置"><a href="#3-hexo配置" class="headerlink" title="3.hexo配置"></a>3.hexo配置</h1><p>在本地的博客目录中找到source文件夹。</p>
+<p>新建一个没有后缀名的文件GNAME</p>
+<p>在文件中添加你的域名，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lisq.xyz</span><br></pre></td></tr></table></figure>
+<p>保存后重新生成，并提交你的博客。</p>
+<h1 id="4-github配置"><a href="#4-github配置" class="headerlink" title="4.github配置"></a>4.github配置</h1><p>在github中找到你的博客仓库。</p>
+<p>点击<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">找到```Custom domain</span><br></pre></td></tr></table></figure></p>
+<p>输入你的域名点击save</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/githubdomain.png" alt="image"></p>
+<p>然后你就可以在浏览器用你的域名愉快的访问啦！</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://www.lisq.xyz/2018/01/01/【个人博客搭建及配置二】绑定个人域名/" data-id="cjo4h2y95000kje0dpzdd1i0r" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments" style="padding: 30px;"></div>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 's1xL54gwvPRsIy3ciItiPhyD-gzGzoHsz',
+        appKey: 'CmP8stKpHUHtp5abbTxpqc4H'
+    })
+</script>
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>
+            关注我 :</p>
+        <ul class="social-links">
+            
+            
+            <li>
+                <a class="social-tooltip" title="twitter" href="/"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-twitter"></i>
+                </a>
+            </li>
+            
+            
+            
+            <li>
+                <a class="social-tooltip" title="facebook" href="/"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-facebook"></i>
+                </a>
+            </li>
+            
+            
+            
+            <li>
+                <a class="social-tooltip" title="google-plus" href="/"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-google-plus"></i>
+                </a>
+            </li>
+            
+            
+            
+            <li>
+                <a class="social-tooltip" title="github" href="https://github.com/ConardLi"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-github"></i>
+                </a>
+            </li>
+            
+            
+            
+            <li>
+                <a class="social-tooltip" title="weibo" href="/"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-weibo"></i>
+                </a>
+            </li>
+            
+            
+            
+            <li>
+                <a class="social-tooltip" title="rss" href="/"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-rss"></i>
+                </a>
+            </li>
+            
+            
+        </ul>
+    </div>
+    
+    
+<nav id="article-nav">
+    
+        <a href="/2018/01/02/【个人博客搭建及配置三】同时托管到github和coding上/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            【个人博客搭建及配置三】同时托管到github和coding上
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/01/01/【个人博客搭建及配置一】基础配置/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">【个人博客搭建及配置一】基础配置</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container" style="background-color: #fff; border-right: 1px solid #e2e2e2;">
+        
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">
+        微信公众号
+    </h3>
+    <div class="widget">
+        <img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/gzh/qrcode.jpg" alt="">
+    </div>
+</div>
+
+        
+        
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/11/05/【个人博客搭建及配置七】seo优化/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img1.ph.126.net/yUAuLy3fTe5_mWJQW1I1mA==/6630563089863916639.jpg)" alt="【个人博客搭建及配置七】seo优化" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/11/05/【个人博客搭建及配置七】seo优化/" class="title">【个人博客搭建及配置七】seo优化</a></p>
+                            <p class="item-date"><time datetime="2018-11-05T15:39:37.000Z" itemprop="datePublished">2018-11-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/02/【个人博客搭建及配置六】评论系统/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img1.ph.126.net/yrbplMkbZoY45T0lLfZsig==/1761751879332166780.jpg)" alt="【个人博客搭建及配置六】评论系统" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/01/02/【个人博客搭建及配置六】评论系统/" class="title">【个人博客搭建及配置六】评论系统</a></p>
+                            <p class="item-date"><time datetime="2018-01-02T10:44:32.000Z" itemprop="datePublished">2018-01-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/02/【个人博客搭建及配置五】阅读统计/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img0.ph.126.net/v73LMDJkhYV183Pi2BhDbA==/2395070576849196315.jpg)" alt="【个人博客搭建及配置五】阅读统计" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/01/02/【个人博客搭建及配置五】阅读统计/" class="title">【个人博客搭建及配置五】阅读统计</a></p>
+                            <p class="item-date"><time datetime="2018-01-02T07:06:53.000Z" itemprop="datePublished">2018-01-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/02/【个人博客搭建及配置四】站长统计/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img1.ph.126.net/25F8P0mstKaIrB-UJWqslQ==/6631411912839985534.jpg)" alt="【个人博客搭建及配置四】站长统计" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/01/02/【个人博客搭建及配置四】站长统计/" class="title">【个人博客搭建及配置四】站长统计</a></p>
+                            <p class="item-date"><time datetime="2018-01-02T03:15:50.000Z" itemprop="datePublished">2018-01-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/02/【个人博客搭建及配置三】同时托管到github和coding上/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img1.ph.126.net/9MYGhqsZMqho13IyZpfh-A==/6630329993398535464.jpg)" alt="【个人博客搭建及配置三】同时托管到github和coding上" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/01/02/【个人博客搭建及配置三】同时托管到github和coding上/" class="title">【个人博客搭建及配置三】同时托管到github和coding上</a></p>
+                            <p class="item-date"><time datetime="2018-01-02T02:34:06.000Z" itemprop="datePublished">2018-01-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+        
+        
+        
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/seo/">seo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/three-js/">three.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webgl/">webgl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/三维/">三维</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全景/">全景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/双向绑定/">双向绑定</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打包工具/">打包工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据流/">数据流</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器兼容/">浏览器兼容</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本控制/">版本控制</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法和数据结构/">算法和数据结构</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/git/" style="font-size: 16.67px;">git</a> <a href="/tags/github/" style="font-size: 13.33px;">github</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/seo/" style="font-size: 10px;">seo</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/vue/" style="font-size: 11.67px;">vue</a> <a href="/tags/webgl/" style="font-size: 10px;">webgl</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/三维/" style="font-size: 11.67px;">三维</a> <a href="/tags/全景/" style="font-size: 10px;">全景</a> <a href="/tags/博客搭建/" style="font-size: 20px;">博客搭建</a> <a href="/tags/双向绑定/" style="font-size: 10px;">双向绑定</a> <a href="/tags/基础/" style="font-size: 10px;">基础</a> <a href="/tags/打包工具/" style="font-size: 10px;">打包工具</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/数据流/" style="font-size: 10px;">数据流</a> <a href="/tags/浏览器兼容/" style="font-size: 10px;">浏览器兼容</a> <a href="/tags/版本控制/" style="font-size: 18.33px;">版本控制</a> <a href="/tags/算法和数据结构/" style="font-size: 15px;">算法和数据结构</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">友情链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+        
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy;
+                    2018
+                    ConardLi
+                </p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice"
+                        target="_blank">ConardLi</a></p>
+                <script type="text/javascript">
+                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1275088352'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1275088352%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+                <span id="busuanzi_container_site_pv" style="margin-left:50px;">
+                    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+                </span>
+                <span id="busuanzi_container_site_uv" style="margin-left:50px;">
+                    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+                </span>
+            </div>
+            <div class="footer-plugins">
+                
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://www.lisq.xyz/2018/01/01/【个人博客搭建及配置二】绑定个人域名/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+
+</html>

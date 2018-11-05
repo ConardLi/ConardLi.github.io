@@ -2,7 +2,13 @@
 
 使用```hexo + githubpage```搭建，主题使用了```hueman```。
 
-[博客搭建+各个模块构建流程](https://www.www.lisq.xyz/)
+- [【个人博客搭建及配置一】基础配置](https://www.lisq.xyz/2018/01/01/%E3%80%90%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E4%B8%80%E3%80%91%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/)
+- [【个人博客搭建及配置二】绑定个人域名](https://www.lisq.xyz/2018/01/01/%E3%80%90%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E4%BA%8C%E3%80%91%E7%BB%91%E5%AE%9A%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D/)
+- [【个人博客搭建及配置三】同时托管到github和coding上](https://www.lisq.xyz/2018/01/02/%E3%80%90%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E4%B8%89%E3%80%91%E5%90%8C%E6%97%B6%E6%89%98%E7%AE%A1%E5%88%B0github%E5%92%8Ccoding%E4%B8%8A/)
+- [【个人博客搭建及配置四】站长统计](https://www.lisq.xyz/2018/01/02/%E3%80%90%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E5%9B%9B%E3%80%91%E7%AB%99%E9%95%BF%E7%BB%9F%E8%AE%A1/)
+- [【个人博客搭建及配置五】阅读统计](https://www.lisq.xyz/2018/01/02/%E3%80%90%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E4%BA%94%E3%80%91%E9%98%85%E8%AF%BB%E7%BB%9F%E8%AE%A1/)
+- [【个人博客搭建及配置六】评论系统](https://www.lisq.xyz/2018/01/02/%E3%80%90%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E5%85%AD%E3%80%91%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/)
+- [【个人博客搭建及配置七】seo优化](https://www.lisq.xyz/2018/01/05/%E3%80%90%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E4%B8%83%E3%80%91seo%E4%BC%98%E5%8C%96/)
 
 # 博客导航
 

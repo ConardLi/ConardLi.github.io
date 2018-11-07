@@ -1,3 +1,5 @@
+https://www.lisq.xyz/2018/11/07/electron程序保护措施（崩溃监控，开机自启，托盘关闭）/
+https://www.lisq.xyz/2018/11/01/使用electron静默打印/
 https://www.lisq.xyz/2018/01/05/【个人博客搭建及配置七】seo优化/
 https://www.lisq.xyz/2018/01/02/【个人博客搭建及配置六】评论系统/
 https://www.lisq.xyz/2018/01/02/【个人博客搭建及配置五】阅读统计/

@@ -31,6 +31,13 @@
 
 - [webpack使用小结](https://www.lisq.xyz/2017/12/06/webpack%E5%B0%8F%E7%BB%93/)
 
+## electron
+
+- [electron程序保护措施（崩溃监控，开机自启，托盘关闭）](hhttps://www.lisq.xyz/2018/11/07/electron%E7%A8%8B%E5%BA%8F%E4%BF%9D%E6%8A%A4%E6%8E%AA%E6%96%BD%EF%BC%88%E5%B4%A9%E6%BA%83%E7%9B%91%E6%8E%A7%EF%BC%8C%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%EF%BC%8C%E6%89%98%E7%9B%98%E5%85%B3%E9%97%AD%EF%BC%89/)
+
+- [使用electron静默打印](https://www.lisq.xyz/2018/11/01/%E4%BD%BF%E7%94%A8electron%E9%9D%99%E9%BB%98%E6%89%93%E5%8D%B0/)
+
+
 ## 浏览器兼容
 
 - [老版本浏览器兼容问题总结](https://www.lisq.xyz/2017/10/28/%E8%80%81%E7%89%88%E6%9C%AC%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/)

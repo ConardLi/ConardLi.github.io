@@ -1,3 +1,4 @@
+https://www.lisq.xyz/2018/11/09/【前端面试】作用域和闭包/
 https://www.lisq.xyz/2018/11/08/【前端面试】原型和原型链/
 https://www.lisq.xyz/2018/11/07/electron程序保护措施（崩溃监控，开机自启，托盘关闭）/
 https://www.lisq.xyz/2018/11/01/使用electron静默打印/

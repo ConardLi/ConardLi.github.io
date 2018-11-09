@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>【前端面试】作用域和闭包 | 李世奇的技术专栏</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="javascript,基础,面试,作用域" />
+    
+    <meta name="description" content="1. 题目说一下对变量提升的理解 说明this的几种不同使用场景 创建10个a标签，点击的时候弹出来相应的序号 如何理解作用域 实际开发中闭包的应用 2. 知识点2.1 执行上下文范围：一段script或者一个函数 全局：变量定义、函数声明  script 函数：变量定义、函数声明、this、arguments  （执行之前） 函数声明和函数表达式的区别： 12345a(); //报错  函数表">
+<meta name="keywords" content="javascript,基础,面试,作用域">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【前端面试】作用域和闭包">
+<meta property="og:url" content="https://www.lisq.xyz/2018/11/09/【前端面试】作用域和闭包/index.html">
+<meta property="og:site_name" content="李世奇的技术专栏">
+<meta property="og:description" content="1. 题目说一下对变量提升的理解 说明this的几种不同使用场景 创建10个a标签，点击的时候弹出来相应的序号 如何理解作用域 实际开发中闭包的应用 2. 知识点2.1 执行上下文范围：一段script或者一个函数 全局：变量定义、函数声明  script 函数：变量定义、函数声明、this、arguments  （执行之前） 函数声明和函数表达式的区别： 12345a(); //报错  函数表">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img0.ph.126.net/-vmRuCxqIdlYpfbkwoW9ag==/1839720447880980216.jpg">
+<meta property="og:updated_time" content="2018-11-09T14:28:35.559Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【前端面试】作用域和闭包">
+<meta name="twitter:description" content="1. 题目说一下对变量提升的理解 说明this的几种不同使用场景 创建10个a标签，点击的时候弹出来相应的序号 如何理解作用域 实际开发中闭包的应用 2. 知识点2.1 执行上下文范围：一段script或者一个函数 全局：变量定义、函数声明  script 函数：变量定义、函数声明、this、arguments  （执行之前） 函数声明和函数表达式的区别： 12345a(); //报错  函数表">
+<meta name="twitter:image" content="http://img0.ph.126.net/-vmRuCxqIdlYpfbkwoW9ag==/1839720447880980216.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="李世奇的技术专栏" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/board">更新日志</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-【前端面试】作用域和闭包" class="article article-single article-type-post"
+    itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        <header class="article-header">
+            
+    
+        <h1 class="article-title" itemprop="name">
+        【前端面试】作用域和闭包
+        </h1>
+    
+
+        </header>
+        
+        
+        <div class="article-meta">
+            
+    <div class="article-date">
+        <a href="/2018/11/09/【前端面试】作用域和闭包/" class="article-date">
+            <time datetime="2018-11-09T14:24:59.000Z" itemprop="datePublished">2018-11-09</time>
+        </a>
+    </div>
+
+            
+
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/javascript/">javascript</a>, <a class="tag-link" href="/tags/作用域/">作用域</a>, <a class="tag-link" href="/tags/基础/">基础</a>, <a class="tag-link" href="/tags/面试/">面试</a>
+    </div>
+
+            <span id="busuanzi_container_page_pv" style="position: relative;float: right;">
+                本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+            </span>
+        </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://img0.ph.126.net/-vmRuCxqIdlYpfbkwoW9ag==/1839720447880980216.jpg" alt="image"></p>
+<h1 id="1-题目"><a href="#1-题目" class="headerlink" title="1. 题目"></a>1. 题目</h1><p>说一下对变量提升的理解</p>
+<p>说明this的几种不同使用场景</p>
+<p>创建10个a标签，点击的时候弹出来相应的序号</p>
+<p>如何理解作用域</p>
+<p>实际开发中闭包的应用</p>
+<h1 id="2-知识点"><a href="#2-知识点" class="headerlink" title="2. 知识点"></a>2. 知识点</h1><h2 id="2-1-执行上下文"><a href="#2-1-执行上下文" class="headerlink" title="2.1 执行上下文"></a>2.1 执行上下文</h2><p>范围：一段script或者一个函数</p>
+<p>全局：变量定义、函数声明  script</p>
+<p>函数：变量定义、函数声明、this、arguments  （执行之前）</p>
+<p>函数声明和函数表达式的区别：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a(); <span class="comment">//报错  函数表达式 变量声明 会提前。</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">b(); <span class="comment">// 不报错  函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>变量定义时会默认把他的变量声明提升：(仅限于他的执行上下文，比如一段script和一个函数中)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>实际上是</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line">a = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-this"><a href="#2-2-this" class="headerlink" title="2.2 this"></a>2.2 this</h2><p>this要在执行时才能确认，定义时无法确认。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;</span><br><span class="line">    name:<span class="string">'a'</span>,</span><br><span class="line">    fn:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">a.fn();  <span class="comment">// a</span></span><br><span class="line">a.fn.apply(&#123;<span class="attr">name</span>:<span class="string">'b'</span>&#125;);  <span class="comment">// b  a.fn.call(&#123;name:'b'&#125;);</span></span><br><span class="line"><span class="keyword">var</span> fn1 = a.fn();</span><br><span class="line">fn1();  <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>this的使用场景</p>
+<p>构造函数中（指向构造的对象）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fun</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> Fun(<span class="string">'a'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(f.name);</span><br></pre></td></tr></table></figure>
+<p>对象属性中（指向该对象）</p>
+<p>普通函数中（指向window）</p>
+<p>call apply bind</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fun = <span class="function"><span class="keyword">function</span> (<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(name);</span><br><span class="line">&#125;.bind(&#123;<span class="attr">a</span>:<span class="number">1</span>&#125;);</span><br><span class="line">fun(<span class="string">"name"</span>);</span><br></pre></td></tr></table></figure>
+<p>arguments中的this：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> length = <span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.length)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    length: <span class="number">5</span>,</span><br><span class="line">    method: <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">arguments</span>[<span class="number">0</span>]()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>obj.method(fn)//输出1<br>这里没有输出5，也没有输出10，反而输出了1，有趣。这里arguments是javascript的一个内置对象（可以参见mdn：arguments - JavaScript），是一个类数组（就是长的比较像数组，但是欠缺一些数组的方法，可以用slice.call转换，具体参见上面的链接），其存储的是函数的参数。也就是说，这里arguments[0]指代的就是你method函数的第一个参数：fn，所以arguments<a href="">0</a>的意思就是：fn()。</p>
+<p>不过这里有个疑问，为何这里没有输出5呢？我method里面用this，不应该指向obj么，至少也会输出10呀，这个1是闹哪样？</p>
+<p>实际上，这个1就是arguments.length，也就是本函数参数的个数。为啥这里的this指向了arguments呢？因为在Javascript里，数组只不过使用数字做属性名的方法，也就是说：arguments<a href="">0</a>的意思，和arguments.0()的意思差不多（当然这么写是不允许的），你更可以这么理解：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">arguments</span> = &#123;</span><br><span class="line">    <span class="number">0</span>: fn, <span class="comment">//也就是 functon() &#123;alert(this.length)&#125; </span></span><br><span class="line">    <span class="number">1</span>: 第二个参数, <span class="comment">//没有 </span></span><br><span class="line">    <span class="number">2</span>: 第三个参数, <span class="comment">//没有</span></span><br><span class="line">    ..., </span><br><span class="line">    length: <span class="number">1</span> <span class="comment">//只有一个参数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>所以这里alert出来的结果是1。</p>
+<p>如果要输出5应该咋写呢？直接 method: fn 就行了。</p>
+<h2 id="2-3-作用域"><a href="#2-3-作用域" class="headerlink" title="2.3 作用域"></a>2.3 作用域</h2><p>没有块级作用域</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">"test"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(name);</span><br></pre></td></tr></table></figure>
+<p>尽量不要在块中声明变量。</p>
+<p>只有函数级作用域</p>
+<h2 id="2-4-作用域链"><a href="#2-4-作用域链" class="headerlink" title="2.4 作用域链"></a>2.4 作用域链</h2><p><strong>自由变量</strong>  当前作用域没有定义的变量 即为自由变量。</p>
+<p>自由变量会去其父级作用域找。是定义时的父级作用域，而不是执行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">100</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> b = <span class="number">200</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> c = <span class="number">300</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(a); <span class="comment">//自由变量</span></span><br><span class="line">        <span class="built_in">console</span>.log(b); <span class="comment">//自由变量</span></span><br><span class="line">        <span class="built_in">console</span>.log(c);</span><br><span class="line">    &#125;</span><br><span class="line">    f2();</span><br><span class="line">&#125;;</span><br><span class="line">f1();</span><br></pre></td></tr></table></figure>
+<h2 id="2-5-闭包"><a href="#2-5-闭包" class="headerlink" title="2.5 闭包"></a>2.5 闭包</h2><p>　一个函数中嵌套另外一个函数，并且将这个函数return出去，然后将这个return出来的函数保存到了一个变量中，那么就创建了一个闭包。</p>
+<p>闭包的两个使用场景</p>
+<p>1.函数作为返回值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(a); <span class="comment">//自由变量，去定义时的父级作用域找</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f1 = fun();</span><br><span class="line">a = <span class="number">1000</span>;</span><br><span class="line">f1();</span><br></pre></td></tr></table></figure>
+<p>2.函数作为参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(a); <span class="comment">//自由变量，去定义时的父级作用域找</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun2</span>(<span class="params">f2</span>)</span>&#123;</span><br><span class="line">    a = <span class="number">10000</span></span><br><span class="line">    f2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f1 = fun();</span><br><span class="line"></span><br><span class="line">fun2(f1);</span><br></pre></td></tr></table></figure>
+<p>具体解释看 高级-闭包中的说明</p>
+<p>闭包的两个作用：</p>
+<p>能够读取其他函数内部变量的函数</p>
+<p>可以让函数内部的变量一直保存在内存中</p>
+<p>实际应用场景1：</p>
+<p>闭包可以将一些不希望暴露在全局的变量封装成“私有变量”。</p>
+<p>假如有一个计算乘积的函数，mult函数接收一些number类型的参数，并返回乘积结果。为了提高函数性能，我们增加缓存机制，将之前计算过的结果缓存起来，下次遇到同样的参数，就可以直接返回结果，而不需要参与运算。这里，存放缓存结果的变量不需要暴露给外界，并且需要在函数运行结束后，仍然保存，所以可以采用闭包。</p>
+<p>上代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calculate</span>(<span class="params">param</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> cache = &#123;&#125;;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!cache.parame)&#123;</span><br><span class="line">            <span class="keyword">return</span> cache.param;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">//缓存计算....</span></span><br><span class="line">            <span class="comment">//cache.param = result</span></span><br><span class="line">            <span class="comment">//下次访问直接取</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>实际应用场景2</p>
+<p>延续局部变量的寿命</p>
+<p>img 对象经常用于进行数据上报，如下所示：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> report = <span class="function"><span class="keyword">function</span>(<span class="params"> src </span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">    img.src = src;</span><br><span class="line">&#125;;</span><br><span class="line">report( <span class="string">'http://xxx.com/getUserInfo'</span> );</span><br></pre></td></tr></table></figure></p>
+<p>但是通过查询后台的记录我们得知，因为一些低版本浏览器的实现存在 bug，在这些浏览器<br>下使用 report 函数进行数据上报会丢失 30%左右的数据，也就是说， report 函数并不是每一次<br>都成功发起了 HTTP 请求。</p>
+<p>丢失数据的原因是 img 是 report 函数中的局部变量，当 report 函数的<br>调用结束后， img 局部变量随即被销毁，而此时或许还没来得及发出 HTTP 请求，所以此次请求<br>就会丢失掉。</p>
+<p>现在我们把 img 变量用闭包封闭起来，便能解决请求丢失的问题：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> report = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> imgs = [];</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"> src </span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">        imgs.push( img );</span><br><span class="line">        img.src = src;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+<p>闭包缺点：浪费资源！</p>
+<h1 id="3-题目解答"><a href="#3-题目解答" class="headerlink" title="3. 题目解答"></a>3. 题目解答</h1><h2 id="3-1-说一下对变量提升的理解"><a href="#3-1-说一下对变量提升的理解" class="headerlink" title="3.1 说一下对变量提升的理解"></a>3.1 说一下对变量提升的理解</h2><p>变量定义和函数声明</p>
+<p>注意函数声明和函数表达式的区别</p>
+<p>变量定义时会默认把他的变量声明提升：(仅限于他的执行上下文，比如一段script和一个函数中)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>实际上是</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line">a = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-说明this的几种不同使用场景"><a href="#3-2-说明this的几种不同使用场景" class="headerlink" title="3.2 说明this的几种不同使用场景"></a>3.2 说明this的几种不同使用场景</h2><ul>
+<li><p>构造函数中（指向构造的对象）</p>
+</li>
+<li><p>对象属性中（指向该对象）</p>
+</li>
+<li><p>普通函数中（指向window）</p>
+</li>
+<li><p>call apply bind</p>
+</li>
+</ul>
+<h2 id="3-3-创建10个a标签，点击的时候弹出来相应的序号"><a href="#3-3-创建10个a标签，点击的时候弹出来相应的序号" class="headerlink" title="3.3 创建10个a标签，点击的时候弹出来相应的序号"></a>3.3 创建10个a标签，点击的时候弹出来相应的序号</h2><p>实现方法1：用let声明i</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> body = <span class="built_in">document</span>.body;</span><br><span class="line"><span class="built_in">console</span>.log(body);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> obj = <span class="built_in">document</span>.createElement(<span class="string">'i'</span>);</span><br><span class="line">    obj.innerHTML = i + <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line">    body.appendChild(obj);</span><br><span class="line">    obj.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(i);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现方法2 包装作用域</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> body = <span class="built_in">document</span>.body;</span><br><span class="line"><span class="built_in">console</span>.log(body);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span> (<span class="params">i</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> obj = <span class="built_in">document</span>.createElement(<span class="string">'i'</span>);</span><br><span class="line">        obj.innerHTML = i + <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line">        body.appendChild(obj);</span><br><span class="line">        obj.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            alert(i);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-4-实际开发中闭包的应用"><a href="#3-4-实际开发中闭包的应用" class="headerlink" title="3.4 实际开发中闭包的应用"></a>3.4 实际开发中闭包的应用</h2><p>能够读取其他函数内部变量的函数</p>
+<p>可以让函数内部的变量一直保存在内存中</p>
+<p>封装变量，权限收敛</p>
+<p>应用1</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> report = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> imgs = [];</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"> src </span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">        imgs.push( img );</span><br><span class="line">        img.src = src;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>用于防止变量销毁。</p>
+<p>应用2</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isFirstLoad</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> arr = [];</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">str</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (arr.indexOf(str) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="literal">false</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            arr.push(str);</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fun = isFirstLoad();</span><br><span class="line">fun(<span class="number">10</span>);</span><br><span class="line">fun(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<p>将arr封装在函数内部，禁止随意修改，防止变量销毁。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://www.lisq.xyz/2018/11/09/【前端面试】作用域和闭包/" data-id="cjoa49sm1000l0r0denroccwx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments" style="padding: 30px;"></div>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 's1xL54gwvPRsIy3ciItiPhyD-gzGzoHsz',
+        appKey: 'CmP8stKpHUHtp5abbTxpqc4H'
+    })
+</script>
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>
+            关注我 :</p>
+        <ul class="social-links">
+            
+            
+            <li>
+                <a class="social-tooltip" title="twitter" href="/"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-twitter"></i>
+                </a>
+            </li>
+            
+            
+            
+            <li>
+                <a class="social-tooltip" title="facebook" href="/"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-facebook"></i>
+                </a>
+            </li>
+            
+            
+            
+            <li>
+                <a class="social-tooltip" title="google-plus" href="/"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-google-plus"></i>
+                </a>
+            </li>
+            
+            
+            
+            <li>
+                <a class="social-tooltip" title="github" href="https://github.com/ConardLi"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-github"></i>
+                </a>
+            </li>
+            
+            
+            
+            <li>
+                <a class="social-tooltip" title="weibo" href="/"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-weibo"></i>
+                </a>
+            </li>
+            
+            
+            
+            <li>
+                <a class="social-tooltip" title="rss" href="/"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-rss"></i>
+                </a>
+            </li>
+            
+            
+        </ul>
+    </div>
+    
+    
+<nav id="article-nav">
+    
+    
+        <a href="/2018/11/08/【前端面试】原型和原型链/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">【前端面试】原型和原型链</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container" style="background-color: #fff; border-right: 1px solid #e2e2e2;">
+        
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">
+        微信公众号
+    </h3>
+    <div class="widget">
+        <img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/gzh/qrcode.jpg" alt="">
+    </div>
+</div>
+
+        
+        
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/11/09/【前端面试】作用域和闭包/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img0.ph.126.net/-vmRuCxqIdlYpfbkwoW9ag==/1839720447880980216.jpg)" alt="【前端面试】作用域和闭包" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/11/09/【前端面试】作用域和闭包/" class="title">【前端面试】作用域和闭包</a></p>
+                            <p class="item-date"><time datetime="2018-11-09T14:24:59.000Z" itemprop="datePublished">2018-11-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/11/08/【前端面试】原型和原型链/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img2.ph.126.net/PSUriJ_a16K5Y0kuyleDiw==/6597589835656300664.jpg)" alt="【前端面试】原型和原型链" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/11/08/【前端面试】原型和原型链/" class="title">【前端面试】原型和原型链</a></p>
+                            <p class="item-date"><time datetime="2018-11-08T14:53:59.000Z" itemprop="datePublished">2018-11-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/11/07/electron程序保护措施（崩溃监控，开机自启，托盘关闭）/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img2.ph.126.net/UKs-oRKKvYIYPNdEryHQdA==/6608259496493530976.jpg)" alt="electron程序保护措施（崩溃监控，开机自启，托盘关闭）" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/11/07/electron程序保护措施（崩溃监控，开机自启，托盘关闭）/" class="title">electron程序保护措施（崩溃监控，开机自启，托盘关闭）</a></p>
+                            <p class="item-date"><time datetime="2018-11-07T12:11:41.000Z" itemprop="datePublished">2018-11-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/11/01/使用electron静默打印/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img0.ph.126.net/QpktoFWsbMaEJ-fxUnvw5A==/2471350295529576639.jpg)" alt="使用electron静默打印" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/11/01/使用electron静默打印/" class="title">使用electron静默打印</a></p>
+                            <p class="item-date"><time datetime="2018-11-01T10:30:14.000Z" itemprop="datePublished">2018-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/05/【个人博客搭建及配置七】seo优化/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img1.ph.126.net/yUAuLy3fTe5_mWJQW1I1mA==/6630563089863916639.jpg)" alt="【个人博客搭建及配置七】seo优化" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/01/05/【个人博客搭建及配置七】seo优化/" class="title">【个人博客搭建及配置七】seo优化</a></p>
+                            <p class="item-date"><time datetime="2018-01-05T09:39:37.000Z" itemprop="datePublished">2018-01-05</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+        
+        
+        
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/electron/">electron</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/seo/">seo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/three-js/">three.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webgl/">webgl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/三维/">三维</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/作用域/">作用域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全景/">全景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型链/">原型链</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/双向绑定/">双向绑定</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/崩溃监控/">崩溃监控</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打包工具/">打包工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打印/">打印</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据流/">数据流</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器兼容/">浏览器兼容</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本控制/">版本控制</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法和数据结构/">算法和数据结构</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/electron/" style="font-size: 11.67px;">electron</a> <a href="/tags/git/" style="font-size: 16.67px;">git</a> <a href="/tags/github/" style="font-size: 13.33px;">github</a> <a href="/tags/javascript/" style="font-size: 13.33px;">javascript</a> <a href="/tags/seo/" style="font-size: 10px;">seo</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/vue/" style="font-size: 11.67px;">vue</a> <a href="/tags/webgl/" style="font-size: 10px;">webgl</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/三维/" style="font-size: 11.67px;">三维</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/全景/" style="font-size: 10px;">全景</a> <a href="/tags/博客搭建/" style="font-size: 20px;">博客搭建</a> <a href="/tags/原型链/" style="font-size: 10px;">原型链</a> <a href="/tags/双向绑定/" style="font-size: 10px;">双向绑定</a> <a href="/tags/基础/" style="font-size: 13.33px;">基础</a> <a href="/tags/崩溃监控/" style="font-size: 10px;">崩溃监控</a> <a href="/tags/打包工具/" style="font-size: 10px;">打包工具</a> <a href="/tags/打印/" style="font-size: 10px;">打印</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/数据流/" style="font-size: 10px;">数据流</a> <a href="/tags/浏览器兼容/" style="font-size: 10px;">浏览器兼容</a> <a href="/tags/版本控制/" style="font-size: 18.33px;">版本控制</a> <a href="/tags/算法和数据结构/" style="font-size: 15px;">算法和数据结构</a> <a href="/tags/面试/" style="font-size: 13.33px;">面试</a>
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">友情链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+        
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy;
+                    2018
+                    ConardLi
+                </p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice"
+                        target="_blank">ConardLi</a></p>
+                <script type="text/javascript">
+                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1275088352'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1275088352%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+                <span id="busuanzi_container_site_pv" style="margin-left:50px;">
+                    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+                </span>
+                <span id="busuanzi_container_site_uv" style="margin-left:50px;">
+                    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+                </span>
+            </div>
+            <div class="footer-plugins">
+                
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://www.lisq.xyz/2018/11/09/【前端面试】作用域和闭包/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+
+</html>

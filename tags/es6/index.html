@@ -6,14 +6,14 @@
     
 
     
-    <title>归档: 2018/11 | 李世奇的技术专栏</title>
+    <title>标签：: es6 | 李世奇的技术专栏</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="description" content="Fe Coder">
 <meta property="og:type" content="website">
 <meta property="og:title" content="李世奇的技术专栏">
-<meta property="og:url" content="https://www.lisq.xyz/archives/2018/11/index.html">
+<meta property="og:url" content="https://www.lisq.xyz/tags/es6/index.html">
 <meta property="og:site_name" content="李世奇的技术专栏">
 <meta property="og:description" content="Fe Coder">
 <meta property="og:locale" content="zh-CN">
@@ -133,7 +133,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-archive"></i>归档: 2018/11
+    <i class="icon fa fa-tag"></i>标签：: <em>es6</em>
     </h1>
 </div>
 
@@ -157,17 +157,17 @@
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2018/11/07/electron程序保护措施（崩溃监控，开机自启，托盘关闭）/" class="thumbnail">
+        <a href="/2018/01/29/promise/" class="thumbnail">
     
     
-        <span style="background-image:url(http://img2.ph.126.net/UKs-oRKKvYIYPNdEryHQdA==/6608259496493530976.jpg)" alt="electron程序保护措施（崩溃监控，开机自启，托盘关闭）" class="thumbnail-image"></span>
+        <span style="background-image:url(https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/promise.jpeg)" alt="promise" class="thumbnail-image"></span>
     
     
         
 <span class="">
     <i class="fa fa-comments-o"></i>
     
-    <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://www.lisq.xyz/2018/11/07/electron程序保护措施（崩溃监控，开机自启，托盘关闭）/">0</span>
+    <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://www.lisq.xyz/2018/01/29/promise/">0</span>
     
 </span>
 
@@ -179,71 +179,26 @@
             <div class="category">
             
             </div>
-            <div class="date"><time datetime="2018-11-07T12:11:41.000Z" itemprop="datePublished">2018-11-07</time></div>
+            <div class="date"><time datetime="2018-01-29T09:18:05.000Z" itemprop="datePublished">2018-01-29</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2018/11/07/electron程序保护措施（崩溃监控，开机自启，托盘关闭）/">electron程序保护措施（崩溃监控，开机自启，托盘关闭）</a>
+        <a href="/2018/01/29/promise/">promise</a>
         </h1>
     
 
         <p class="article-excerpt">
-            
-在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。
-以下几种方式可以帮助我们做到这一点：
-1.崩溃监控electron为我们提供了监听程序崩溃的事件：
-123456Event: &apos;crashed&apos;返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发
-此事件是用来家庭渲染进程崩溃的，但是当主进程意外崩溃时也
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2018/11/01/使用electron静默打印/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://img0.ph.126.net/QpktoFWsbMaEJ-fxUnvw5A==/2471350295529576639.jpg)" alt="使用electron静默打印" class="thumbnail-image"></span>
-    
-    
-        
-<span class="">
-    <i class="fa fa-comments-o"></i>
-    
-    <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://www.lisq.xyz/2018/11/01/使用electron静默打印/">0</span>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            
-            </div>
-            <div class="date"><time datetime="2018-11-01T10:30:14.000Z" itemprop="datePublished">2018-11-01</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/11/01/使用electron静默打印/">使用electron静默打印</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            
-1.使用electron打印的理由很多情况下程序中使用的打印都是用户无感知的。并且想要灵活的控制打印内容，往往需要借助打印机给我们提供的api再进行开发，这种开发方式非常繁琐，并且开发难度较大。
-electron提供的打印api可以非常灵活的控制打印设置的显示，并且可以通过html来书写打印内容。
-2.apielectron提供了两种方式进行打印，一种是直接调用打印机打印，一种是打印到pdf。
-
+            概念主要用于异步计算
+可以将异步操作队列化，按照期望的顺序执行，返回符合预期的结果。
+promise是一个代理对象，他和原先要进行的操作并无关系。
+他通过引入一个回调，避免其他回调。
+三个状态：
+pending【待定】初始状态
+fulfilled【实现】操作成功
+rejected【被否决】操作失败
+promise状态改变，就会出发.then里的响应函数处理后续步骤
+promise状态改变以后不会再
         </p>
     </div>
 </article>

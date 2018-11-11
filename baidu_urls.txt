@@ -1,6 +1,7 @@
-https://www.lisq.xyz/2018/11/10/【前端面试】异步和单线程/
 https://www.lisq.xyz/2018/11/07/electron程序保护措施（崩溃监控，开机自启，托盘关闭）/
 https://www.lisq.xyz/2018/11/01/使用electron静默打印/
+https://www.lisq.xyz/2018/01/29/promise/
+https://www.lisq.xyz/2018/01/22/【前端面试】异步和单线程/
 https://www.lisq.xyz/2018/01/20/【前端面试】作用域和闭包/
 https://www.lisq.xyz/2018/01/17/【前端面试】原型和原型链/
 https://www.lisq.xyz/2018/01/05/【个人博客搭建及配置七】seo优化/

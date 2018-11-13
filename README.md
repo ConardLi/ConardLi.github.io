@@ -12,6 +12,12 @@
 
 # 博客导航
 
+## 前端基础总结
+
+- [async-await](https://www.lisq.xyz/2018/02/06/async-await/)
+
+- [promise](https://www.lisq.xyz/2018/01/29/promise/)
+
 ## 前端面试总结
 
 - [变量和类型计算](https://www.lisq.xyz/2017/12/27/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E5%8F%98%E9%87%8F%E5%92%8C%E7%B1%BB%E5%9E%8B%E8%AE%A1%E7%AE%97/)
@@ -39,7 +45,7 @@
 
 ## electron
 
-- [electron程序保护措施（崩溃监控，开机自启，托盘关闭）](hhttps://www.lisq.xyz/2018/11/07/electron%E7%A8%8B%E5%BA%8F%E4%BF%9D%E6%8A%A4%E6%8E%AA%E6%96%BD%EF%BC%88%E5%B4%A9%E6%BA%83%E7%9B%91%E6%8E%A7%EF%BC%8C%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%EF%BC%8C%E6%89%98%E7%9B%98%E5%85%B3%E9%97%AD%EF%BC%89/)
+- [electron程序保护措施（崩溃监控，开机自启，托盘关闭）](https://www.lisq.xyz/2018/11/07/electron%E7%A8%8B%E5%BA%8F%E4%BF%9D%E6%8A%A4%E6%8E%AA%E6%96%BD%EF%BC%88%E5%B4%A9%E6%BA%83%E7%9B%91%E6%8E%A7%EF%BC%8C%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%EF%BC%8C%E6%89%98%E7%9B%98%E5%85%B3%E9%97%AD%EF%BC%89/)
 
 - [使用electron静默打印](https://www.lisq.xyz/2018/11/01/%E4%BD%BF%E7%94%A8electron%E9%9D%99%E9%BB%98%E6%89%93%E5%8D%B0/)
 

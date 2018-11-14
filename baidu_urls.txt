@@ -1,5 +1,6 @@
 https://www.lisq.xyz/2018/11/07/electron程序保护措施（崩溃监控，开机自启，托盘关闭）/
 https://www.lisq.xyz/2018/11/01/使用electron静默打印/
+https://www.lisq.xyz/2018/02/07/webworker/
 https://www.lisq.xyz/2018/02/06/async-await/
 https://www.lisq.xyz/2018/01/29/promise/
 https://www.lisq.xyz/2018/01/22/【前端面试】异步和单线程/

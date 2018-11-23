@@ -26,6 +26,7 @@
 - [异步和单线程](https://www.lisq.xyz/2018/01/22/%E3%80%90%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E3%80%91%E5%BC%82%E6%AD%A5%E5%92%8C%E5%8D%95%E7%BA%BF%E7%A8%8B/)
 - [数组和对象](https://www.lisq.xyz/2018/02/26/%E3%80%90%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E3%80%91%E6%95%B0%E7%BB%84%E5%92%8C%E5%AF%B9%E8%B1%A1/)
 - [dom和bom](https://www.lisq.xyz/2018/03/02/%E3%80%90%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E3%80%91dom%E5%92%8Cbom)
+- [事件绑定](https://www.lisq.xyz/2018/03/14/%E3%80%90%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E3%80%91%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A/)
 
 ## 算法和数据结构
 

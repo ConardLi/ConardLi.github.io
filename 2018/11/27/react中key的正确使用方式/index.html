@@ -6,26 +6,26 @@
     
 
     
-    <title>webpack使用小结 | 李世奇的技术专栏</title>
+    <title>react中key的正确使用方式 | 李世奇的技术专栏</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="webpack,打包工具" />
+        <meta name="keywords" content="react,原理" />
     
-    <meta name="description" content="1.将图片输出成base64，减少http请求2.loadercss-loader,style-loader:两个建议配合使用，用来解析css文件，能够解释@import,url()如果需要解析less就在后面加一个less-loader babel-loader： 让下一代的js文件转换成现代浏览器能够支持的JS文件 pluginExtractTextWebpackPlugin: 它会将入口中">
-<meta name="keywords" content="webpack,打包工具">
+    <meta name="description" content="在开发react程序时我们经常会遇到这样的警告，然后就会想到：哦！循环子组件忘记加key了～ 出于方便，有时候会不假思索的使用循环的索引作为key，但是这样真的好吗？什么样的值才是key的最佳选择？ 为了弄明白，本文将从三个方面来分析”key”： 1.为什么要使用key 2.使用index做key存在的问题 3.正确的选择key 1.为什么要使用keyreact官方文档是这样描述key的：">
+<meta name="keywords" content="react,原理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack使用小结">
-<meta property="og:url" content="https://www.lisq.xyz/2017/12/06/webpack小结/index.html">
+<meta property="og:title" content="react中key的正确使用方式">
+<meta property="og:url" content="https://www.lisq.xyz/2018/11/27/react中key的正确使用方式/index.html">
 <meta property="og:site_name" content="李世奇的技术专栏">
-<meta property="og:description" content="1.将图片输出成base64，减少http请求2.loadercss-loader,style-loader:两个建议配合使用，用来解析css文件，能够解释@import,url()如果需要解析less就在后面加一个less-loader babel-loader： 让下一代的js文件转换成现代浏览器能够支持的JS文件 pluginExtractTextWebpackPlugin: 它会将入口中">
+<meta property="og:description" content="在开发react程序时我们经常会遇到这样的警告，然后就会想到：哦！循环子组件忘记加key了～ 出于方便，有时候会不假思索的使用循环的索引作为key，但是这样真的好吗？什么样的值才是key的最佳选择？ 为了弄明白，本文将从三个方面来分析”key”： 1.为什么要使用key 2.使用index做key存在的问题 3.正确的选择key 1.为什么要使用keyreact官方文档是这样描述key的：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540825115703&amp;di=53ce44dcde4b359c4a68b9a6572921f2&amp;imgtype=0&amp;src=http%3A%2F%2Fimg01.gqtpw.com%2F150412%2F330495-15041211241650.jpg">
-<meta property="og:updated_time" content="2018-10-29T12:12:03.505Z">
+<meta property="og:image" content="http://img2.ph.126.net/3LZAfQOD9b8LESlNfSzO8Q==/2170453545515915552.jpg">
+<meta property="og:updated_time" content="2018-11-26T17:52:20.367Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="webpack使用小结">
-<meta name="twitter:description" content="1.将图片输出成base64，减少http请求2.loadercss-loader,style-loader:两个建议配合使用，用来解析css文件，能够解释@import,url()如果需要解析less就在后面加一个less-loader babel-loader： 让下一代的js文件转换成现代浏览器能够支持的JS文件 pluginExtractTextWebpackPlugin: 它会将入口中">
-<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540825115703&amp;di=53ce44dcde4b359c4a68b9a6572921f2&amp;imgtype=0&amp;src=http%3A%2F%2Fimg01.gqtpw.com%2F150412%2F330495-15041211241650.jpg">
+<meta name="twitter:title" content="react中key的正确使用方式">
+<meta name="twitter:description" content="在开发react程序时我们经常会遇到这样的警告，然后就会想到：哦！循环子组件忘记加key了～ 出于方便，有时候会不假思索的使用循环的索引作为key，但是这样真的好吗？什么样的值才是key的最佳选择？ 为了弄明白，本文将从三个方面来分析”key”： 1.为什么要使用key 2.使用index做key存在的问题 3.正确的选择key 1.为什么要使用keyreact官方文档是这样描述key的：">
+<meta name="twitter:image" content="http://img2.ph.126.net/3LZAfQOD9b8LESlNfSzO8Q==/2170453545515915552.jpg">
     
 
     
@@ -144,7 +144,7 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-webpack小结" class="article article-single article-type-post"
+                            <article id="post-react中key的正确使用方式" class="article article-single article-type-post"
     itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -152,7 +152,7 @@
             
     
         <h1 class="article-title" itemprop="name">
-        webpack使用小结
+        react中key的正确使用方式
         </h1>
     
 
@@ -162,8 +162,8 @@
         <div class="article-meta">
             
     <div class="article-date">
-        <a href="/2017/12/06/webpack小结/" class="article-date">
-            <time datetime="2017-12-06T12:10:06.000Z" itemprop="datePublished">2017-12-06</time>
+        <a href="/2018/11/27/react中key的正确使用方式/" class="article-date">
+            <time datetime="2018-11-26T17:50:45.000Z" itemprop="datePublished">2018-11-27</time>
         </a>
     </div>
 
@@ -172,7 +172,7 @@
             
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/webpack/">webpack</a>, <a class="tag-link" href="/tags/打包工具/">打包工具</a>
+        <a class="tag-link" href="/tags/react/">react</a>, <a class="tag-link" href="/tags/原理/">原理</a>
     </div>
 
             <span id="busuanzi_container_page_pv" style="position: relative;float: right;">
@@ -182,38 +182,67 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540825115703&amp;di=53ce44dcde4b359c4a68b9a6572921f2&amp;imgtype=0&amp;src=http%3A%2F%2Fimg01.gqtpw.com%2F150412%2F330495-15041211241650.jpg" alt="image"></p>
-<h1 id="1-将图片输出成base64，减少http请求"><a href="#1-将图片输出成base64，减少http请求" class="headerlink" title="1.将图片输出成base64，减少http请求"></a>1.将图片输出成base64，减少http请求</h1><h1 id="2-loader"><a href="#2-loader" class="headerlink" title="2.loader"></a>2.loader</h1><p>css-loader,style-loader:两个建议配合使用，用来解析css文件，能够解释@import,url()如果需要解析less就在后面加一个less-loader</p>
-<p>babel-loader： 让下一代的js文件转换成现代浏览器能够支持的JS文件</p>
-<h1 id="plugin"><a href="#plugin" class="headerlink" title="plugin"></a>plugin</h1><p>ExtractTextWebpackPlugin: 它会将入口中引用css文件，都打包都独立的css文件中，而不是内嵌在js打包文件中。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> ExtractTextPlugin = <span class="built_in">require</span>(<span class="string">'extract-text-webpack-plugin'</span>)</span><br><span class="line">        <span class="keyword">var</span> lessRules = &#123;</span><br><span class="line">            use: [</span><br><span class="line">                &#123;<span class="attr">loader</span>: <span class="string">'css-loader'</span>&#125;,</span><br><span class="line">                &#123;<span class="attr">loader</span>: <span class="string">'less-loader'</span>&#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">var</span> baseConfig = &#123;</span><br><span class="line">            <span class="comment">// ... </span></span><br><span class="line">            <span class="built_in">module</span>: &#123;</span><br><span class="line">                rules: [</span><br><span class="line">                    <span class="comment">// ...</span></span><br><span class="line">                    &#123;<span class="attr">test</span>: <span class="regexp">/\.less$/</span>, <span class="attr">use</span>: ExtractTextPlugin.extract(lessRules)&#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            plugins: [</span><br><span class="line">                <span class="keyword">new</span> ExtractTextPlugin(<span class="string">'main.css'</span>)</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="entry"><a href="#entry" class="headerlink" title="entry"></a>entry</h1><p>output: 即使入口文件有多个，但是只有一个输出配置<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line">    <span class="keyword">var</span> baseConfig = &#123;</span><br><span class="line">        entry: &#123;</span><br><span class="line">            main: <span class="string">'./src/index.js'</span></span><br><span class="line">        &#125;,</span><br><span class="line">        output: &#123;</span><br><span class="line">            filename: <span class="string">'main.js'</span>,</span><br><span class="line">            path: path.resolve(<span class="string">'./build'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">module</span>.exports = baseConfig</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">        filename: <span class="string">'[name].js'</span>,</span><br><span class="line">        path: path.resolve(<span class="string">'./build'</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="开发环境和生产环境"><a href="#开发环境和生产环境" class="headerlink" title="开发环境和生产环境"></a>开发环境和生产环境</h1><p>在开发时，不可避免会产生大量debug又或是测试的代码，这些代码不应出现在生产环境中（也即不应提供给用户）。</p>
-<p>在把页面部署到服务器时，为了追求极致的技术指标，我们会对代码进行各种各样的优化，比如说混淆、压缩，这些手段往往会彻底破坏代码本身的可读性，不利于我们进行debug等工作。</p>
-<p>数据源的差异化，比如说在本地开发时，读取的往往是本地mock出来的数据，而正式上线后读取的自然是API提供的数据了。</p>
-<p>把原来开发用的的webpack.config.js改成webpack.dev.config.js，并备份一份命名为webpack.prod.config.js。修改package.json和server中对配置文件的引用。</p>
-<p>然后针对生成环境的配置文件做一些修改，主要涉及导出目录、代码混淆、去除冗余代码等相关配置。用到了以下插件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DefinePlugin：定义环境变量</span><br><span class="line">webpack.LoaderOptionsPlugin：去除调试代码，压缩代码</span><br><span class="line">webpack.optimize.UglifyJsPlugin：针对JS的混淆配置</span><br><span class="line">CopyWebpackPlugin：复制手动引入的资源文件到指定目录</span><br></pre></td></tr></table></figure></p>
-<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><h2 id="Webpack的核心原理"><a href="#Webpack的核心原理" class="headerlink" title="Webpack的核心原理"></a>Webpack的核心原理</h2><p>Webpack的两个最核心的原理分别是：</p>
-<ol>
-<li>一切皆模块</li>
-</ol>
-<p>正如js文件可以是一个“模块（module）”一样，其他的（如css、image或html）文件也可视作模 块。因此，你可以require(‘myJSfile.js’)亦可以require(‘myCSSfile.css’)。这意味着我们可以将事物（业务）分割成更小的易于管理的片段，从而达到重复利用等的目的。</p>
-<ol start="2">
-<li>按需加载</li>
-</ol>
-<p>传统的模块打包工具（module bundlers）最终将所有的模块编译生成一个庞大的bundle.js文件。但是在真实的app里边，“bundle.js”文件可能有10M到15M之大可能会导致应用一直处于加载中状态。因此Webpack使用许多特性来分割代码然后生成多个“bundle”文件，而且异步加载部分代码以实现按需加载。</p>
-<h2 id="打包原理"><a href="#打包原理" class="headerlink" title="打包原理"></a>打包原理</h2><p>每个文件都是一个资源，可以用require/import导入js</p>
-<p>每个入口文件会把自己所依赖(即require)的资源全部打包在一起，一个资源多次引用的话，只会打包一份</p>
-<p>对于多个入口的情况，其实就是分别独立的执行单个入口情况，每个入口文件不相干</p>
-<p>把所有依赖打包成一个bundle.js文件，通过代码分割成单元片段并按需加载。</p>
-<p><img src="http://i.imgur.com/A5h5ks9.png" alt="image"></p>
-<p>如图，entry.js是入口文件，调用了util1.js和util2.js，而util1.js又调用了util2.js。</p>
-<p>打包后的bundle.js例子</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/******/</span> ([</span><br><span class="line"><span class="comment">/* 0 */</span>     <span class="comment">//模块id</span></span><br><span class="line"><span class="comment">/***/</span> <span class="function"><span class="keyword">function</span>(<span class="params">module, exports, __webpack_require__</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    __webpack_require__(<span class="number">1</span>);     <span class="comment">//require资源文件id</span></span><br><span class="line">    __webpack_require__(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/***/</span> &#125;,</span><br><span class="line"><span class="comment">/* 1 */</span></span><br><span class="line"><span class="comment">/***/</span> <span class="function"><span class="keyword">function</span>(<span class="params">module, exports, __webpack_require__</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//util1.js文件</span></span><br><span class="line">    __webpack_require__(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">var</span> util1=<span class="number">1</span>;</span><br><span class="line">    exports.util1=util1;</span><br><span class="line"></span><br><span class="line"><span class="comment">/***/</span> &#125;,</span><br><span class="line"><span class="comment">/* 2 */</span></span><br><span class="line"><span class="comment">/***/</span> <span class="function"><span class="keyword">function</span>(<span class="params">module, exports</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//util2.js文件</span></span><br><span class="line">    <span class="keyword">var</span> util2=<span class="number">1</span>;</span><br><span class="line">    exports.util2=util2;</span><br><span class="line"></span><br><span class="line"><span class="comment">/***/</span> &#125;</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="comment">/******/</span> ]);</span><br></pre></td></tr></table></figure>
-<p>1.bundle.js是以模块 id 为记号，通过函数把各个文件依赖封装达到分割效<br>果，如上代码 id 为 0 表示 entry 模块需要的依赖， 1 表示 util1模块需要的依赖</p>
-<p>2.require资源文件 id 表示该文件需要加载的各个模块，如上代码_webpack_require__(1) 表示 util1.js 模块，<strong>webpack_require</strong>(2) 表示 util2.js 模块</p>
-<p>3.exports.util1=util1 模块化的体现，输出该模块</p>
+            <p><img src="http://img2.ph.126.net/3LZAfQOD9b8LESlNfSzO8Q==/2170453545515915552.jpg" alt="image"></p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/key1.png" alt="image"></p>
+<p>在开发react程序时我们经常会遇到这样的警告，然后就会想到：哦！循环子组件忘记加key了～</p>
+<p>出于方便，有时候会不假思索的使用循环的索引作为key，但是这样真的好吗？什么样的值才是key的最佳选择？</p>
+<p>为了弄明白，本文将从三个方面来分析”key”：</p>
+<p>1.为什么要使用key</p>
+<p>2.使用index做key存在的问题</p>
+<p>3.正确的选择key</p>
+<h1 id="1-为什么要使用key"><a href="#1-为什么要使用key" class="headerlink" title="1.为什么要使用key"></a>1.为什么要使用key</h1><p>react官方文档是这样描述key的：</p>
+<blockquote>
+<p>Keys可以在DOM中的某些元素被增加或删除的时候帮助React识别哪些元素发生了变化。因此你应当给数组中的每一个元素赋予一个确定的标识。</p>
+</blockquote>
+<p>react的diff算法是把key当成唯一id然后比对组件的value来确定是否需要更新的，所以如果没有key，react将不会知道该如何更新组件。</p>
+<p>你不传key也能用是因为react检测到子组件没有key后，会默认将数组的索引作为key。</p>
+<p>react根据key来决定是销毁重新创建组件还是更新组件，原则是：</p>
+<ul>
+<li>key相同，组件有所变化，react会只更新组件对应变化的属性。</li>
+<li>key不同，组件会销毁之前的组件，将整个组件重新渲染。</li>
+</ul>
+<h1 id="2-使用index做key存在的问题"><a href="#2-使用index做key存在的问题" class="headerlink" title="2.使用index做key存在的问题"></a>2.使用index做key存在的问题</h1><h2 id="2-1-受控组件"><a href="#2-1-受控组件" class="headerlink" title="2.1 受控组件"></a>2.1 受控组件</h2><p>单纯的展示组件比如span，这些组件是受控组件，意味着他们的值将是我们给定好的。</p>
+<p>如果子组件只是受控组件，使用index作为key，可能表面上不会有什么问题，实际上性能会受很大的影响。例如下面的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// [&apos;张三&apos;,&apos;李四&apos;,&apos;王五&apos;]=&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li key=&quot;0&quot;&gt;张三&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;1&quot;&gt;李四&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;2&quot;&gt;王五&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">// 数组重排 -&gt; [&apos;王五&apos;,&apos;张三&apos;,&apos;李四&apos;] =&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li key=&quot;0&quot;&gt;王五&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;1&quot;&gt;张三&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;2&quot;&gt;李四&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>当元素数据源的顺序发生改变时，对应的：</p>
+<p>key为0，1，2的组件都发生了变化，三个子组件都会被重新渲染。（这里的重新渲染不是销毁，因为key还在）</p>
+<p>相反，我们使用唯一id作为key：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// [&apos;张三&apos;,&apos;李四&apos;,&apos;王五&apos;]=&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li key=&quot;000&quot;&gt;张三&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;111&quot;&gt;李四&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;222&quot;&gt;王五&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">// 数组重排 -&gt; [&apos;王五&apos;,&apos;张三&apos;,&apos;李四&apos;] =&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li key=&quot;222&quot;&gt;王五&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;000&quot;&gt;张三&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;111&quot;&gt;李四&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>根据上面的更新原则，子组件的值和key均未发生变化，只是顺序发生改变，因此react只是将他们做了移动，并未重新渲染。</p>
+<h2 id="2-2-非受控组件"><a href="#2-2-非受控组件" class="headerlink" title="2.2 非受控组件"></a>2.2 非受控组件</h2><p>像input这样可以由用户任意改变值，不受我们控制的组件，在使用了index作为key时可能会发生问题，看如下的栗子：</p>
+<p>子组件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;p &gt;值：&#123;this.props.value&#125;&lt;/p&gt;</span><br><span class="line">        &lt;input /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>父组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">this.state.data.map((element, index) =&gt; &#123;</span><br><span class="line">    return &lt;Child value=&#123;element&#125; key=&#123;index&#125; /&gt;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们在前两个输入框分别输入对应的值：</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/key2.png" alt="image"></p>
+<p>然后在头部添加一个元素：</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/key3.png" alt="image"></p>
+<p>很明显，这个结果并不符合我们的预期，我们来分析一下发生了什么：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div key=&quot;0&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：0&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;1&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：1&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;2&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：2&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>变化后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div key=&quot;0&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：5&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;1&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：0&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;2&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：1&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;3&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：2&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>可以发现：key 0，1，2并没有发生改变，根据规则，不会卸载组件，只会更新改变的属性。</p>
+<p>react只diff到了p标签内值的变化，而input框中的值并未发生改变，因此不会重新渲染，只更新的p标签的值。</p>
+<p>当使用唯一id作为key后：</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/key5.png" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div key=&quot;000&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：0&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;111&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：1&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;222&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：2&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>变化后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div key=&quot;555&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：5&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;000&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：0&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;111&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：1&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;222&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：2&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>可以很明显的发现：key为 111，222，333的组件没有发生任何改变，react不会更新他们，只是新插入了子组件555，并改变了其他组件的位置。</p>
+<h1 id="3-正确的选择key"><a href="#3-正确的选择key" class="headerlink" title="3.正确的选择key"></a>3.正确的选择key</h1><h2 id="3-1-纯展示"><a href="#3-1-纯展示" class="headerlink" title="3.1 纯展示"></a>3.1 纯展示</h2><p>如果组件单纯的用于展示，不会发生其他变更，那么使用index或者其他任何不相同的值作为key是没有任何问题的，因为不会发生diff，就不会用到key。</p>
+<h2 id="3-2-推荐使用index的情况"><a href="#3-2-推荐使用index的情况" class="headerlink" title="3.2 推荐使用index的情况"></a>3.2 推荐使用index的情况</h2><p>并不是任何情况使用index作为key会有缺陷，比如如下情况：</p>
+<p>你要分页渲染一个列表，每次点击翻页会重新渲染：</p>
+<p>使用唯一id：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">第一页</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li key=&quot;000&quot;&gt;张三&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;111&quot;&gt;李四&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;222&quot;&gt;王五&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">第二页</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li key=&quot;333&quot;&gt;张三三&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;444&quot;&gt;李四四&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;555&quot;&gt;王五五&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>翻页后，三条记录的key和组件都发生了改变，因此三个子组件都会被卸载然后重新渲染。</p>
+<p>使用index：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">第一页</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li key=&quot;0&quot;&gt;张三&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;1&quot;&gt;李四&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;2&quot;&gt;王五&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">第二页</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li key=&quot;0&quot;&gt;张三三&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;1&quot;&gt;李四四&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;2&quot;&gt;王五五&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>翻页后，key不变，子组件值发生改变，组件并不会被卸载，只发生更新。</p>
+<h2 id="3-3-子组件可能发生变更-使用了非受控组件"><a href="#3-3-子组件可能发生变更-使用了非受控组件" class="headerlink" title="3.3 子组件可能发生变更/使用了非受控组件"></a>3.3 子组件可能发生变更/使用了非受控组件</h2><p>大多数情况下，使用唯一id作为子组件的key是不会有任何问题的。</p>
+<p>这个id一定要是唯一，并且稳定的，意思是这条记录对应的id一定是独一无二的，并且永远不会发生改变。</p>
+<p>不推荐使用math.random或者其他的第三方库来生成唯一值作为key。</p>
+<p>因为当数据变更后，相同的数据的key也有可能会发生变化，从而重新渲染，引起不必要的性能浪费。</p>
+<p>如果数据源不满足我们这样的需求，我们可以在渲染之前为数据源手动添加唯一id，而不是在渲染时添加。</p>
 
         </div>
         <footer class="article-footer">
@@ -221,7 +250,7 @@
 
 
 
-    <a data-url="https://www.lisq.xyz/2017/12/06/webpack小结/" data-id="cjoym165n000g9u88d23py7mb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://www.lisq.xyz/2018/11/27/react中key的正确使用方式/" data-id="cjoym165e00089u88u0vi0tjn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -376,20 +405,10 @@
     
 <nav id="article-nav">
     
-        <a href="/2017/12/24/vue问题记录/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">下一篇</strong>
-        <p class="article-nav-title">
-        
-            vue问题记录
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2017/12/02/vue双向绑定浅析/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/11/07/electron程序保护措施（崩溃监控，开机自启，托盘关闭）/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">vue双向绑定浅析</p>
+        <p class="article-nav-title">electron程序保护措施（崩溃监控，开机自启，托盘关闭）</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -619,7 +638,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://www.lisq.xyz/2017/12/06/webpack小结/';
+    var disqus_url = 'https://www.lisq.xyz/2018/11/27/react中key的正确使用方式/';
     
     (function() {
     var dsq = document.createElement('script');

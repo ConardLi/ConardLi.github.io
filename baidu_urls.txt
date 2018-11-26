@@ -1,6 +1,6 @@
-https://www.lisq.xyz/2018/11/26/【前端面试】ajax/
 https://www.lisq.xyz/2018/11/07/electron程序保护措施（崩溃监控，开机自启，托盘关闭）/
 https://www.lisq.xyz/2018/11/01/使用electron静默打印/
+https://www.lisq.xyz/2018/03/18/【前端面试】ajax/
 https://www.lisq.xyz/2018/03/14/【前端面试】事件绑定/
 https://www.lisq.xyz/2018/03/02/【前端面试】dom和bom/
 https://www.lisq.xyz/2018/02/26/【前端面试】数组和对象/

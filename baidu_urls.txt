@@ -1,3 +1,4 @@
+https://www.lisq.xyz/2018/11/30/【前端面试】web存储/
 https://www.lisq.xyz/2018/11/27/react中key的正确使用方式/
 https://www.lisq.xyz/2018/11/07/electron程序保护措施（崩溃监控，开机自启，托盘关闭）/
 https://www.lisq.xyz/2018/11/01/使用electron静默打印/

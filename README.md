@@ -18,6 +18,7 @@
 - [promise](https://www.lisq.xyz/2018/01/29/promise/)
 - [webworker](https://www.lisq.xyz/2018/02/07/webworker/)
 - [http总结](https://www.lisq.xyz/2018/12/07/http%E6%80%BB%E7%BB%93/)
+- [tcp总结](https://conardli.github.io/2018/12/08/TCP%E6%80%BB%E7%BB%93/) 
 
 ## 前端面试总结
 

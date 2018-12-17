@@ -20,7 +20,7 @@
 <meta property="og:description" content="1.powercfg命令。使用powercfg.exe控制电源计划（也称为电源使用方案）。 2.ac和dc一般电源有两种供电模式： ac代表交流电源 dc代表直流电源 一般情况下ac就是直接接通电源，dc是使用电池供电。 一般电源命令都需要分别设置在ac和dc下的模式。 3.电源选项的唯一标识每个电源选项都有一个唯一的guid标识，我们可以使用某些命令通过这个唯一标识来设定这个电源选项。 例如官">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1545052028454&amp;di=e1e4d419ce0d3f51f88d47ef038108d7&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01421d575699170000012e7e81ec5a.jpg%401280w_1l_2o_100sh.jpg">
-<meta property="og:updated_time" content="2018-12-17T10:19:25.062Z">
+<meta property="og:updated_time" content="2018-12-17T10:23:47.416Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="指令控制 windows 电源选项">
 <meta name="twitter:description" content="1.powercfg命令。使用powercfg.exe控制电源计划（也称为电源使用方案）。 2.ac和dc一般电源有两种供电模式： ac代表交流电源 dc代表直流电源 一般情况下ac就是直接接通电源，dc是使用电池供电。 一般电源命令都需要分别设置在ac和dc下的模式。 3.电源选项的唯一标识每个电源选项都有一个唯一的guid标识，我们可以使用某些命令通过这个唯一标识来设定这个电源选项。 例如官">
@@ -188,17 +188,39 @@
 <p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/电源计划.png" alt="image"></p>
 <p>如图：电源计划 节电，平衡，高性能分别对应了一个guid。</p>
 <p>我们可以通过查阅windows文档或者使用</p>
-<figure class="highlight plain"><figcaption><span>/query```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">命令来查询每个选项对应的guid。</span><br><span class="line"></span><br><span class="line">![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/电源uuid.png)</span><br><span class="line"></span><br><span class="line"># 4.设置电源计划</span><br></pre></td></tr></table></figure>
-<p>powercfg -setactive guid<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可以通过-setactive来设置当前电源计划。</span><br><span class="line"></span><br><span class="line">例如下面的代码将电源设置为平衡模式</span><br></pre></td></tr></table></figure></p>
-<p>powercfg -setactive 381b4222-f694-41f0-9685-ff5bb260df2e<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 5.修改电源计划中的电源选项</span><br><span class="line"></span><br><span class="line">直接查看控制面板中的电源选项可以看到下面的界面</span><br><span class="line"></span><br><span class="line">![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/电源选项.png)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">我们可以通过下面的命令来修改</span><br></pre></td></tr></table></figure></p>
-<p>powercfg -change  value<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">后面的value有如下几个选项</span><br></pre></td></tr></table></figure></p>
-<p>monitor-timeout-ac &lt;分钟&gt;<br>monitor-timeout-dc &lt;分钟&gt;<br>disk-timeout-ac &lt;分钟&gt;<br>disk-timeout-dc &lt;分钟&gt;<br>standby-timeout-ac &lt;分钟&gt;<br>standby-timeout-dc &lt;分钟&gt;<br>hibernate-timeout-ac &lt;分钟&gt;<br>hibernate-timeout-dc &lt;分钟&gt;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">monitor:屏幕</span><br><span class="line">disk:磁盘</span><br><span class="line">standby:待机</span><br><span class="line">hibernate:休眠</span><br><span class="line"></span><br><span class="line">实例：</span><br></pre></td></tr></table></figure></p>
-<p>powercfg /change monitor-timeout-ac 5<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">表示：在接通电源模式下设置屏幕5分钟后关闭。</span><br></pre></td></tr></table></figure></p>
-<p>powercfg /change monitor-hibernate-dc 0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">表示：在不接通电源模式下永不休眠</span><br><span class="line"></span><br><span class="line"># 6.高级选项</span><br><span class="line"></span><br><span class="line">还有一些其他选项，例如按下电源按钮，睡眠按钮，关闭盖子等发生的操作。</span><br><span class="line"></span><br><span class="line">![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/电源高级.png)</span><br><span class="line"></span><br><span class="line">可以使用如下命令设置：</span><br></pre></td></tr></table></figure></p>
-<p>powercfg  /setacvalueindex  scheme_GUID  sub_GUID  setting_GUID  setting_index</p>
-<p>powercfg  /setdcvalueindex  scheme_GUID  sub_GUID  setting_GUID  setting_index<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">scheme_GUID : 电源计划guid，可以通过powercfg /list查询</span><br><span class="line"></span><br><span class="line">sub_GUID：子组guid，可以解释成在众多的电源选项上又分的一层组，可以通过过powercfg /query查询</span><br><span class="line"></span><br><span class="line">setting_GUID：选项guid，具体的电源选项。</span><br><span class="line"></span><br><span class="line">setting_index：具体设置的索引，如下图：</span><br><span class="line"></span><br><span class="line">![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/电源index.png)</span><br><span class="line"></span><br><span class="line">不采取任何操作，睡眠，休眠，关机</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">例如：</span><br></pre></td></tr></table></figure></p>
-<p>powercfg -SetAcValueIndex 381b4222-f694-41f0-9685-ff5bb260df2e 4f971e89-eebd-4455-a8de-9e59040e7347 5ca83367-6e45-459f-a27b-476b1d01c936 0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">表示：设置接通电源的情况下，电源关盖后不采取任何操作。</span><br></pre></td></tr></table></figure></p>
-<p>powercfg -SetDcValueIndex 381b4222-f694-41f0-9685-ff5bb260df2e 4f971e89-eebd-4455-a8de-9e59040e7347 7648efa3-dd9c-4e3e-b566-50f929386280 1<br><code>`</code><br>表示：设置未接通电源的情况下，按下电源键使电脑进入睡眠。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powercfg /query</span><br></pre></td></tr></table></figure>
+<p>命令来查询每个选项对应的guid。</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/电源uuid.png" alt="image"></p>
+<h1 id="4-设置电源计划"><a href="#4-设置电源计划" class="headerlink" title="4.设置电源计划"></a>4.设置电源计划</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powercfg -setactive guid</span><br></pre></td></tr></table></figure>
+<p>可以通过-setactive来设置当前电源计划。</p>
+<p>例如下面的代码将电源设置为平衡模式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powercfg -setactive 381b4222-f694-41f0-9685-ff5bb260df2e</span><br></pre></td></tr></table></figure>
+<h1 id="5-修改电源计划中的电源选项"><a href="#5-修改电源计划中的电源选项" class="headerlink" title="5.修改电源计划中的电源选项"></a>5.修改电源计划中的电源选项</h1><p>直接查看控制面板中的电源选项可以看到下面的界面</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/电源选项.png" alt="image"></p>
+<p>我们可以通过下面的命令来修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powercfg -change  value</span><br></pre></td></tr></table></figure></p>
+<p>后面的value有如下几个选项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">monitor-timeout-ac &lt;分钟&gt;</span><br><span class="line">monitor-timeout-dc &lt;分钟&gt;</span><br><span class="line">disk-timeout-ac &lt;分钟&gt;</span><br><span class="line">disk-timeout-dc &lt;分钟&gt;</span><br><span class="line">standby-timeout-ac &lt;分钟&gt;</span><br><span class="line">standby-timeout-dc &lt;分钟&gt;</span><br><span class="line">hibernate-timeout-ac &lt;分钟&gt;</span><br><span class="line">hibernate-timeout-dc &lt;分钟&gt;</span><br></pre></td></tr></table></figure>
+<p>monitor:屏幕<br>disk:磁盘<br>standby:待机<br>hibernate:休眠</p>
+<p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powercfg /change monitor-timeout-ac 5</span><br></pre></td></tr></table></figure>
+<p>表示：在接通电源模式下设置屏幕5分钟后关闭。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powercfg /change monitor-hibernate-dc 0</span><br></pre></td></tr></table></figure>
+<p>表示：在不接通电源模式下永不休眠</p>
+<h1 id="6-高级选项"><a href="#6-高级选项" class="headerlink" title="6.高级选项"></a>6.高级选项</h1><p>还有一些其他选项，例如按下电源按钮，睡眠按钮，关闭盖子等发生的操作。</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/电源高级.png" alt="image"></p>
+<p>可以使用如下命令设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">powercfg  /setacvalueindex  scheme_GUID  sub_GUID  setting_GUID  setting_index</span><br><span class="line"></span><br><span class="line">powercfg  /setdcvalueindex  scheme_GUID  sub_GUID  setting_GUID  setting_index</span><br></pre></td></tr></table></figure>
+<p>scheme_GUID : 电源计划guid，可以通过powercfg /list查询</p>
+<p>sub_GUID：子组guid，可以解释成在众多的电源选项上又分的一层组，可以通过过powercfg /query查询</p>
+<p>setting_GUID：选项guid，具体的电源选项。</p>
+<p>setting_index：具体设置的索引，如下图：</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/电源index.png" alt="image"></p>
+<p>不采取任何操作，睡眠，休眠，关机</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powercfg -SetAcValueIndex 381b4222-f694-41f0-9685-ff5bb260df2e 4f971e89-eebd-4455-a8de-9e59040e7347 5ca83367-6e45-459f-a27b-476b1d01c936 0</span><br></pre></td></tr></table></figure>
+<p>表示：设置接通电源的情况下，电源关盖后不采取任何操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powercfg -SetDcValueIndex 381b4222-f694-41f0-9685-ff5bb260df2e 4f971e89-eebd-4455-a8de-9e59040e7347 7648efa3-dd9c-4e3e-b566-50f929386280 1</span><br></pre></td></tr></table></figure>
+<p>表示：设置未接通电源的情况下，按下电源键使电脑进入睡眠。</p>
 <h1 id="7-总结"><a href="#7-总结" class="headerlink" title="7.总结"></a>7.总结</h1><p>有了这些操作，我们就可以使用某些语言比如node，来批处理windows电源选项了。</p>
 <p>更详细的选项可以查询windows官方文档：</p>
 <p><a href="https://docs.microsoft.com/en-us/windows-hardware/design/device-experiences/powercfg-command-line-options#option_getactivescheme" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/windows-hardware/design/device-experiences/powercfg-command-line-options#option_getactivescheme</a></p>
@@ -209,7 +231,7 @@
 
 
 
-    <a data-url="https://www.lisq.xyz/2018/12/17/指令控制-windows-电源选项/" data-id="cjps63hw5001u0r0d1v47g57z" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://www.lisq.xyz/2018/12/17/指令控制-windows-电源选项/" data-id="cjps69b4e001q550dzwd6jwjw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

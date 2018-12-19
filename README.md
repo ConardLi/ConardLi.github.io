@@ -44,6 +44,9 @@
 - [vue问题记录](https://www.lisq.xyz/2017/12/24/vue%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/)
 - [vue双向绑定浅析](https://www.lisq.xyz/2017/12/02/vue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E6%B5%85%E6%9E%90/)
 
+## react
+-[react中key的正确使用方式/](https://www.lisq.xyz/2018/11/27/react%E4%B8%ADkey%E7%9A%84%E6%AD%A3%E7%A1%AE%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F/)
+
 ## 打包工具
 
 - [webpack使用小结](https://www.lisq.xyz/2017/12/06/webpack%E5%B0%8F%E7%BB%93/)

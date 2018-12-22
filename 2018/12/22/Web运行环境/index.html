@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>Web运行环境总结 | 李世奇的技术专栏</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="基础,浏览器,css" />
+    
+    <meta name="description" content="1. 页面加载过程1.1 加载一个资源的过程在浏览器地址栏输入URL 浏览器查看缓存(强缓存) 浏览器解析URL获取协议，主机，端口，path 浏览器组装一个HTTP（GET）请求报文 浏览器根据DNS服务器得要域名的IP地址 打开一个socket与目标IP地址，端口建立TCP链接 向这个IP的机器发送http/https请求 服务器收到处理并返回http请求 判断协商缓存 服务器将响应报文通过">
+<meta name="keywords" content="基础,浏览器,css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web运行环境总结">
+<meta property="og:url" content="https://www.lisq.xyz/2018/12/22/Web运行环境/index.html">
+<meta property="og:site_name" content="李世奇的技术专栏">
+<meta property="og:description" content="1. 页面加载过程1.1 加载一个资源的过程在浏览器地址栏输入URL 浏览器查看缓存(强缓存) 浏览器解析URL获取协议，主机，端口，path 浏览器组装一个HTTP（GET）请求报文 浏览器根据DNS服务器得要域名的IP地址 打开一个socket与目标IP地址，端口建立TCP链接 向这个IP的机器发送http/https请求 服务器收到处理并返回http请求 判断协商缓存 服务器将响应报文通过">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img1.ph.126.net/8Fjnq7HgtlgAIDQifet3qg==/6598104407100071266.jpg">
+<meta property="og:updated_time" content="2018-12-22T14:42:14.822Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web运行环境总结">
+<meta name="twitter:description" content="1. 页面加载过程1.1 加载一个资源的过程在浏览器地址栏输入URL 浏览器查看缓存(强缓存) 浏览器解析URL获取协议，主机，端口，path 浏览器组装一个HTTP（GET）请求报文 浏览器根据DNS服务器得要域名的IP地址 打开一个socket与目标IP地址，端口建立TCP链接 向这个IP的机器发送http/https请求 服务器收到处理并返回http请求 判断协商缓存 服务器将响应报文通过">
+<meta name="twitter:image" content="http://img1.ph.126.net/8Fjnq7HgtlgAIDQifet3qg==/6598104407100071266.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="李世奇的技术专栏" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/board">更新日志</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-Web运行环境" class="article article-single article-type-post"
+    itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        <header class="article-header">
+            
+    
+        <h1 class="article-title" itemprop="name">
+        Web运行环境总结
+        </h1>
+    
+
+        </header>
+        
+        
+        <div class="article-meta">
+            
+    <div class="article-date">
+        <a href="/2018/12/22/Web运行环境/" class="article-date">
+            <time datetime="2018-12-22T14:38:50.000Z" itemprop="datePublished">2018-12-22</time>
+        </a>
+    </div>
+
+            
+
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/css/">css</a>, <a class="tag-link" href="/tags/基础/">基础</a>, <a class="tag-link" href="/tags/浏览器/">浏览器</a>
+    </div>
+
+            <span id="busuanzi_container_page_pv" style="position: relative;float: right;">
+                本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+            </span>
+        </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://img1.ph.126.net/8Fjnq7HgtlgAIDQifet3qg==/6598104407100071266.jpg" alt="image"></p>
+<h1 id="1-页面加载过程"><a href="#1-页面加载过程" class="headerlink" title="1. 页面加载过程"></a>1. 页面加载过程</h1><h2 id="1-1-加载一个资源的过程"><a href="#1-1-加载一个资源的过程" class="headerlink" title="1.1 加载一个资源的过程"></a>1.1 加载一个资源的过程</h2><p>在浏览器地址栏输入URL</p>
+<p>浏览器查看缓存(强缓存)</p>
+<p>浏览器解析URL获取协议，主机，端口，path</p>
+<p>浏览器组装一个HTTP（GET）请求报文</p>
+<p>浏览器根据DNS服务器得要域名的IP地址</p>
+<p>打开一个socket与目标IP地址，端口建立TCP链接</p>
+<p>向这个IP的机器发送http/https请求</p>
+<p>服务器收到处理并返回http请求</p>
+<p>判断协商缓存</p>
+<p>服务器将响应报文通过TCP连接发送回浏览器</p>
+<p>关闭TCP连接</p>
+<p>浏览器检查响应状态吗做出不同处理</p>
+<p>如果资源可缓存，进行缓存</p>
+<p>浏览器得到返回的内容</p>
+<h2 id="1-2-浏览器渲染页面的过程"><a href="#1-2-浏览器渲染页面的过程" class="headerlink" title="1.2 浏览器渲染页面的过程"></a>1.2 浏览器渲染页面的过程</h2><p>根据HTML结构生成DOM Tree</p>
+<p>根据CSS生成CSSOM</p>
+<p>将DOM和CSSOM整合成RenderTree（渲染树，比DOM树多了样式）</p>
+<p>根据RenderTree开始渲染和展示</p>
+<p>HTML解析器遇到没有async和defer的script时，会执行并阻塞渲染 （js可能会改变dom结构）</p>
+<p>浏览器在Document对象上触发DOMContentLoaded事件</p>
+<p>显示页面</p>
+<p>图片加载完毕</p>
+<p>调用onload</p>
+<h2 id="1-3-为什么把css放在head中"><a href="#1-3-为什么把css放在head中" class="headerlink" title="1.3 为什么把css放在head中"></a>1.3 为什么把css放在head中</h2><p>在html渲染之前渲染css</p>
+<p>如果css放在html元素后面，会先按没有css的情况渲染html，然后加载到css后再重新渲染html元素，这样会损耗性能。</p>
+<h2 id="1-4-为什么要把js放在body的最下面"><a href="#1-4-为什么要把js放在body的最下面" class="headerlink" title="1.4 为什么要把js放在body的最下面"></a>1.4 为什么要把js放在body的最下面</h2><p>1.不会阻塞body中元素的渲染，能让页面更快出来</p>
+<p>2.script能拿到所有的标签</p>
+<h2 id="1-5-图片"><a href="#1-5-图片" class="headerlink" title="1.5 图片"></a>1.5 图片</h2><p>图片是异步请求，不会影响dom树的渲染</p>
+<h2 id="1-6-load-DOMContentLoaded"><a href="#1-6-load-DOMContentLoaded" class="headerlink" title="1.6 load,DOMContentLoaded"></a>1.6 load,DOMContentLoaded</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'load'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> <span class="comment">//页面资源全部加载完成，包括图片视频</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'DOMContentLoaded'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> <span class="comment">//DOM 渲染完即可执行，图片视频还没有加载完</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>DOMContentLoaded : dom结构化完成以后</p>
+</li>
+<li><p>load：dom 结构化以及静态资源全部加载完毕以后</p>
+</li>
+<li><p>$(document).ready 底层是DOMContentLoaded函数</p>
+</li>
+<li><p>$(window).load 底层是load函数</p>
+</li>
+<li><p>$(function () {}) 是$(document).ready的缩写</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> show = <span class="built_in">console</span>.log.bind(<span class="built_in">console</span>);</span><br><span class="line"></span><br><span class="line">        show(<span class="string">'观察脚本加载的顺序'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="built_in">document</span>.addEventListener(<span class="string">"DOMContentLoaded"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            show(<span class="string">'DOMContentLoaded回调'</span>)</span><br><span class="line">        &#125;, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">window</span>.addEventListener(<span class="string">"load"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            show(<span class="string">'load事件回调'</span>)</span><br><span class="line">        &#125;, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        show(<span class="string">'脚本解析一'</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            show(<span class="string">'$(document).ready'</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 测试加载</span></span><br><span class="line">        $(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            show(<span class="string">'脚本解析二'</span>);</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        $(<span class="built_in">window</span>).load(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            show(<span class="string">'$(document).load'</span>);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        show(<span class="string">'脚本解析三'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="1-7-重排Reflow"><a href="#1-7-重排Reflow" class="headerlink" title="1.7 重排Reflow"></a>1.7 重排Reflow</h2><p>DOM结构中的元素都有自己的盒子，这些都需要浏览器根据各种样式来计算并根据计算结果来将元素放到他们该出现的位置，称为Reflow。</p>
+<p>触发reflow的条件：</p>
+<p>1.增删改dom节点</p>
+<p>2.移动dom位置或者有动画</p>
+<p>3.修改css样式</p>
+<p>4.resize窗口或者滚动（移动端没有该问题）</p>
+<h2 id="1-8-重绘Repaint"><a href="#1-8-重绘Repaint" class="headerlink" title="1.8 重绘Repaint"></a>1.8 重绘Repaint</h2><p>页面要呈现的内容绘制在屏幕上。</p>
+<p>DOM改动，CSS改动（判断页面呈现的内容有没有发生变化）</p>
+<h2 id="1-9-避免relow和repaint"><a href="#1-9-避免relow和repaint" class="headerlink" title="1.9 避免relow和repaint"></a>1.9 避免relow和repaint</h2><p>1.尽量用class来修改样式</p>
+<p>如果要修改多个样式，每个样式修改时都会出发reflow，可以将这些样式保存在一个class中，每次修改只reflow一次。</p>
+<ol start="2">
+<li><p>将元素的position设置为absolute和fixed可以使元素从DOM树结构中脱离出来独立的存在，而浏览器在需要渲染时只需要渲染该元素以及位于该元素下方的元素，从而在某种程度上缩短浏览器渲染时间，这在当今越来越多的Javascript动画方面尤其值得考虑。</p>
+</li>
+<li><p>不要使用 table 布局，可能很小的一个小改动会造成整个 table 的重新布局</p>
+</li>
+</ol>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://www.lisq.xyz/2018/12/22/Web运行环境/" data-id="cjpzkoutt0001ec0deyxppn2f" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments" style="padding: 30px;"></div>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 's1xL54gwvPRsIy3ciItiPhyD-gzGzoHsz',
+        appKey: 'CmP8stKpHUHtp5abbTxpqc4H'
+    })
+</script>
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>
+            关注我 :</p>
+        <ul class="social-links">
+            
+            
+            <li>
+                <a class="social-tooltip" title="twitter" href="/"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-twitter"></i>
+                </a>
+            </li>
+            
+            
+            
+            <li>
+                <a class="social-tooltip" title="facebook" href="/"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-facebook"></i>
+                </a>
+            </li>
+            
+            
+            
+            <li>
+                <a class="social-tooltip" title="google-plus" href="/"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-google-plus"></i>
+                </a>
+            </li>
+            
+            
+            
+            <li>
+                <a class="social-tooltip" title="github" href="https://github.com/ConardLi"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-github"></i>
+                </a>
+            </li>
+            
+            
+            
+            <li>
+                <a class="social-tooltip" title="weibo" href="/"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-weibo"></i>
+                </a>
+            </li>
+            
+            
+            
+            <li>
+                <a class="social-tooltip" title="rss" href="/"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-rss"></i>
+                </a>
+            </li>
+            
+            
+        </ul>
+    </div>
+    
+    
+<nav id="article-nav">
+    
+    
+        <a href="/2018/12/17/指令控制-windows-电源选项/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">指令控制 windows 电源选项</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container" style="background-color: #fff; border-right: 1px solid #e2e2e2;">
+        
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">
+        微信公众号
+    </h3>
+    <div class="widget">
+        <img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/gzh/qrcode.jpg" alt="">
+    </div>
+</div>
+
+        
+        
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/22/Web运行环境/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img1.ph.126.net/8Fjnq7HgtlgAIDQifet3qg==/6598104407100071266.jpg)" alt="Web运行环境总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/22/Web运行环境/" class="title">Web运行环境总结</a></p>
+                            <p class="item-date"><time datetime="2018-12-22T14:38:50.000Z" itemprop="datePublished">2018-12-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/17/指令控制-windows-电源选项/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1545052028454&amp;di=e1e4d419ce0d3f51f88d47ef038108d7&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01421d575699170000012e7e81ec5a.jpg%401280w_1l_2o_100sh.jpg)" alt="指令控制 windows 电源选项" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/17/指令控制-windows-电源选项/" class="title">指令控制 windows 电源选项</a></p>
+                            <p class="item-date"><time datetime="2018-12-17T10:07:12.000Z" itemprop="datePublished">2018-12-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/08/TCP总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/tcpip.png)" alt="TCP总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/08/TCP总结/" class="title">TCP总结</a></p>
+                            <p class="item-date"><time datetime="2018-12-08T08:11:30.000Z" itemprop="datePublished">2018-12-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/07/http总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://upload-images.jianshu.io/upload_images/2964446-fdfb1a8fce8de946.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&amp;_=5984001)" alt="http总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/07/http总结/" class="title">http总结</a></p>
+                            <p class="item-date"><time datetime="2018-12-07T06:19:06.000Z" itemprop="datePublished">2018-12-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/11/27/react中key的正确使用方式/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img2.ph.126.net/3LZAfQOD9b8LESlNfSzO8Q==/2170453545515915552.jpg)" alt="react中key的正确使用方式" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/11/27/react中key的正确使用方式/" class="title">react中key的正确使用方式</a></p>
+                            <p class="item-date"><time datetime="2018-11-26T17:50:45.000Z" itemprop="datePublished">2018-11-27</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/async/" style="font-size: 10px;">async</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/dom/" style="font-size: 10px;">dom</a> <a href="/tags/electron/" style="font-size: 11.25px;">electron</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/es7/" style="font-size: 10px;">es7</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/github/" style="font-size: 12.5px;">github</a> <a href="/tags/html5/" style="font-size: 10px;">html5</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/seo/" style="font-size: 10px;">seo</a> <a href="/tags/tcp/" style="font-size: 10px;">tcp</a> <a href="/tags/three-js/" style="font-size: 10px;">three.js</a> <a href="/tags/vue/" style="font-size: 11.25px;">vue</a> <a href="/tags/webgl/" style="font-size: 10px;">webgl</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/三维/" style="font-size: 11.25px;">三维</a> <a href="/tags/事件/" style="font-size: 10px;">事件</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/全景/" style="font-size: 10px;">全景</a> <a href="/tags/协议/" style="font-size: 11.25px;">协议</a> <a href="/tags/博客搭建/" style="font-size: 17.5px;">博客搭建</a> <a href="/tags/原型链/" style="font-size: 10px;">原型链</a> <a href="/tags/原理/" style="font-size: 10px;">原理</a> <a href="/tags/双向绑定/" style="font-size: 10px;">双向绑定</a> <a href="/tags/基础/" style="font-size: 20px;">基础</a> <a href="/tags/存储/" style="font-size: 10px;">存储</a> <a href="/tags/崩溃监控/" style="font-size: 10px;">崩溃监控</a> <a href="/tags/异步/" style="font-size: 13.75px;">异步</a> <a href="/tags/打包工具/" style="font-size: 10px;">打包工具</a> <a href="/tags/打印/" style="font-size: 10px;">打印</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/数据流/" style="font-size: 10px;">数据流</a> <a href="/tags/浏览器/" style="font-size: 11.25px;">浏览器</a> <a href="/tags/版本控制/" style="font-size: 16.25px;">版本控制</a> <a href="/tags/算法和数据结构/" style="font-size: 13.75px;">算法和数据结构</a> <a href="/tags/网络/" style="font-size: 11.25px;">网络</a> <a href="/tags/面试/" style="font-size: 18.75px;">面试</a>
+        </div>
+    </div>
+
+
+        
+        
+        
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/async/">async</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dom/">dom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/electron/">electron</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es7/">es7</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">html5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/">promise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">react</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/seo/">seo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tcp/">tcp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/three-js/">three.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webgl/">webgl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/三维/">三维</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事件/">事件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/作用域/">作用域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/全景/">全景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协议/">协议</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型链/">原型链</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原理/">原理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/双向绑定/">双向绑定</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/存储/">存储</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/崩溃监控/">崩溃监控</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步/">异步</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打包工具/">打包工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打印/">打印</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序/">排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据流/">数据流</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本控制/">版本控制</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法和数据结构/">算法和数据结构</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">11</span></li></ul>
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">友情链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://chuangzaoshi.com/">创造狮导航</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+        
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy;
+                    2018
+                    ConardLi
+                </p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice"
+                        target="_blank">ConardLi</a></p>
+                <script type="text/javascript">
+                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1275088352'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1275088352%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+                <span id="busuanzi_container_site_pv" style="margin-left:50px;">
+                    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+                </span>
+                <span id="busuanzi_container_site_uv" style="margin-left:50px;">
+                    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+                </span>
+            </div>
+            <div class="footer-plugins">
+                
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://www.lisq.xyz/2018/12/22/Web运行环境/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>

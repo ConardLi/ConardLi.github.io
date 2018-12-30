@@ -19,6 +19,9 @@
 - [webworker](https://www.lisq.xyz/2018/02/07/webworker/)
 - [http总结](https://www.lisq.xyz/2018/12/07/http%E6%80%BB%E7%BB%93/)
 - [tcp总结](https://www.lisq.xyz/2018/12/08/TCP%E6%80%BB%E7%BB%93/) 
+- [Web运行环境总结](https://www.lisq.xyz/2018/12/22/Web%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83/)
+- [前端性能优化总结](https://www.lisq.xyz/2018/12/28/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/)
+- [前端安全性浅析](https://www.lisq.xyz/2018/12/30/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8%E6%80%A7%E6%B5%85%E6%9E%90/)
 
 ## 前端面试总结
 
@@ -54,8 +57,9 @@
 ## electron
 
 - [electron程序保护措施（崩溃监控，开机自启，托盘关闭）](https://www.lisq.xyz/2018/11/07/electron%E7%A8%8B%E5%BA%8F%E4%BF%9D%E6%8A%A4%E6%8E%AA%E6%96%BD%EF%BC%88%E5%B4%A9%E6%BA%83%E7%9B%91%E6%8E%A7%EF%BC%8C%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%EF%BC%8C%E6%89%98%E7%9B%98%E5%85%B3%E9%97%AD%EF%BC%89/)
-
 - [使用electron静默打印](https://www.lisq.xyz/2018/11/01/%E4%BD%BF%E7%94%A8electron%E9%9D%99%E9%BB%98%E6%89%93%E5%8D%B0/)
+- [指令控制 windows 电源选项](https://www.lisq.xyz/2018/12/17/%E6%8C%87%E4%BB%A4%E6%8E%A7%E5%88%B6-windows-%E7%94%B5%E6%BA%90%E9%80%89%E9%A1%B9/)
+
 
 
 ## 浏览器兼容

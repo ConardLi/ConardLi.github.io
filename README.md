@@ -94,3 +94,7 @@
 - 明确署名，即至少注明 作者：ConardLi 字样以及文章的原始链接，且不得使用 rel="nofollow" 标记。
 
 如需商业合作，请直接联系作者。
+
+微信公众号
+
+![](http://ww1.sinaimg.cn/large/005PubN1ly1fyowrg2hsxj30by0by753.jpg)

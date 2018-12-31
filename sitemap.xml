@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.lisq.xyz/2017/12/24/vue%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</loc>
+    
+    <lastmod>2018-12-31T14:49:40.279Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.lisq.xyz/2018/12/30/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8%E6%80%A7%E6%B5%85%E6%9E%90/</loc>
     
     <lastmod>2018-12-30T09:12:19.058Z</lastmod>
@@ -222,13 +229,6 @@
     <loc>https://www.lisq.xyz/2017/12/06/webpack%E5%B0%8F%E7%BB%93/</loc>
     
     <lastmod>2018-10-29T12:12:03.505Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.lisq.xyz/2017/12/24/vue%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</loc>
-    
-    <lastmod>2018-10-28T14:34:34.670Z</lastmod>
     
   </url>
   

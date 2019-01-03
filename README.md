@@ -22,6 +22,7 @@
 - [Web运行环境总结](https://www.lisq.xyz/2018/12/22/Web%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83/)
 - [前端性能优化总结](https://www.lisq.xyz/2018/12/28/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/)
 - [前端安全性浅析](https://www.lisq.xyz/2018/12/30/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8%E6%80%A7%E6%B5%85%E6%9E%90/)
+- [es6学习记录](https://www.lisq.xyz/2019/01/01/es6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/)
 
 ## 前端面试总结
 

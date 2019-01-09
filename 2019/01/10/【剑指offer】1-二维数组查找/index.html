@@ -6,26 +6,26 @@
     
 
     
-    <title>排序总结 | 李世奇的技术专栏</title>
+    <title>【剑指offer】1.二维数组查找 | 李世奇的技术专栏</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="算法和数据结构,排序" />
+        <meta name="keywords" content="javascript,面试,算法,数组" />
     
-    <meta name="description" content="冒泡排序基本思路： 从第一个数开始，和右侧的数比较，如果右侧比左侧小，交换左右位置。 这样第一轮比较后，最大的数排到最后。 第二轮比较，不用比较最后一个数。 优化算法 直接使用普通的冒泡排序，无论排序是否完成，都会执行数组的总个数次，实际情况下排序成功所需次数可能非常少。 所以优化思路就是在已经完成排序后跳出循环。 12345678910111213141516171819function bu">
-<meta name="keywords" content="算法和数据结构,排序">
+    <meta name="description" content="题目在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 基本思路二维数组是有序的，比如下面的数据：1231 2 34 5 67 8 9 可以直接利用左下角数字开始查找： 大于：比较上移 小于：比较右移 代码思路将二维数组看作平面坐标系 从左下角（0,arr">
+<meta name="keywords" content="javascript,面试,算法,数组">
 <meta property="og:type" content="article">
-<meta property="og:title" content="排序总结">
-<meta property="og:url" content="https://www.lisq.xyz/2017/11/05/排序总结/index.html">
+<meta property="og:title" content="【剑指offer】1.二维数组查找">
+<meta property="og:url" content="https://www.lisq.xyz/2019/01/10/【剑指offer】1-二维数组查找/index.html">
 <meta property="og:site_name" content="李世奇的技术专栏">
-<meta property="og:description" content="冒泡排序基本思路： 从第一个数开始，和右侧的数比较，如果右侧比左侧小，交换左右位置。 这样第一轮比较后，最大的数排到最后。 第二轮比较，不用比较最后一个数。 优化算法 直接使用普通的冒泡排序，无论排序是否完成，都会执行数组的总个数次，实际情况下排序成功所需次数可能非常少。 所以优化思路就是在已经完成排序后跳出循环。 12345678910111213141516171819function bu">
+<meta property="og:description" content="题目在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 基本思路二维数组是有序的，比如下面的数据：1231 2 34 5 67 8 9 可以直接利用左下角数字开始查找： 大于：比较上移 小于：比较右移 代码思路将二维数组看作平面坐标系 从左下角（0,arr">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540747040378&amp;di=6860cbf022b005ee5b5d7ac49c1a5438&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.senkon.cn%2Fupload%2Fimg%2FpoWFjdQfmNGw3hfPpivZJJDiMcsRsOwF8iUqGHIAUwxCRJawempoMRSNJZrI7Dv7KOyQFxiQyMJkVwhxnwM5WtR6%2FSCAsQ.jpg">
-<meta property="og:updated_time" content="2018-10-28T14:29:27.902Z">
+<meta property="og:image" content="http://img2.ph.126.net/qJoWVhVfQZeaWiUbEhW00A==/1296473742747029981.jpg">
+<meta property="og:updated_time" content="2019-01-09T16:30:56.326Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="排序总结">
-<meta name="twitter:description" content="冒泡排序基本思路： 从第一个数开始，和右侧的数比较，如果右侧比左侧小，交换左右位置。 这样第一轮比较后，最大的数排到最后。 第二轮比较，不用比较最后一个数。 优化算法 直接使用普通的冒泡排序，无论排序是否完成，都会执行数组的总个数次，实际情况下排序成功所需次数可能非常少。 所以优化思路就是在已经完成排序后跳出循环。 12345678910111213141516171819function bu">
-<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540747040378&amp;di=6860cbf022b005ee5b5d7ac49c1a5438&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.senkon.cn%2Fupload%2Fimg%2FpoWFjdQfmNGw3hfPpivZJJDiMcsRsOwF8iUqGHIAUwxCRJawempoMRSNJZrI7Dv7KOyQFxiQyMJkVwhxnwM5WtR6%2FSCAsQ.jpg">
+<meta name="twitter:title" content="【剑指offer】1.二维数组查找">
+<meta name="twitter:description" content="题目在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 基本思路二维数组是有序的，比如下面的数据：1231 2 34 5 67 8 9 可以直接利用左下角数字开始查找： 大于：比较上移 小于：比较右移 代码思路将二维数组看作平面坐标系 从左下角（0,arr">
+<meta name="twitter:image" content="http://img2.ph.126.net/qJoWVhVfQZeaWiUbEhW00A==/1296473742747029981.jpg">
     
 
     
@@ -144,7 +144,7 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-排序总结" class="article article-single article-type-post"
+                            <article id="post-【剑指offer】1-二维数组查找" class="article article-single article-type-post"
     itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -152,7 +152,7 @@
             
     
         <h1 class="article-title" itemprop="name">
-        排序总结
+        【剑指offer】1.二维数组查找
         </h1>
     
 
@@ -162,8 +162,8 @@
         <div class="article-meta">
             
     <div class="article-date">
-        <a href="/2017/11/05/排序总结/" class="article-date">
-            <time datetime="2017-11-05T13:21:04.000Z" itemprop="datePublished">2017-11-05</time>
+        <a href="/2019/01/10/【剑指offer】1-二维数组查找/" class="article-date">
+            <time datetime="2019-01-09T16:29:17.000Z" itemprop="datePublished">2019-01-10</time>
         </a>
     </div>
 
@@ -172,7 +172,7 @@
             
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/排序/">排序</a>, <a class="tag-link" href="/tags/算法和数据结构/">算法和数据结构</a>
+        <a class="tag-link" href="/tags/javascript/">javascript</a>, <a class="tag-link" href="/tags/数组/">数组</a>, <a class="tag-link" href="/tags/算法/">算法</a>, <a class="tag-link" href="/tags/面试/">面试</a>
     </div>
 
             <span id="busuanzi_container_page_pv" style="position: relative;float: right;">
@@ -182,68 +182,31 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540747040378&amp;di=6860cbf022b005ee5b5d7ac49c1a5438&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.senkon.cn%2Fupload%2Fimg%2FpoWFjdQfmNGw3hfPpivZJJDiMcsRsOwF8iUqGHIAUwxCRJawempoMRSNJZrI7Dv7KOyQFxiQyMJkVwhxnwM5WtR6%2FSCAsQ.jpg" alt="image"></p>
-<h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><p>基本思路：</p>
-<p>从第一个数开始，和右侧的数比较，如果右侧比左侧小，交换左右位置。</p>
-<p>这样第一轮比较后，最大的数排到最后。</p>
-<p>第二轮比较，不用比较最后一个数。</p>
-<p>优化算法</p>
-<p>直接使用普通的冒泡排序，无论排序是否完成，都会执行数组的总个数次，实际情况下排序成功所需次数可能非常少。</p>
-<p>所以优化思路就是在已经完成排序后跳出循环。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubling</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> isComplete;</span><br><span class="line">    <span class="keyword">var</span> temp;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        isComplete = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; arr.length - i - <span class="number">1</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                a = arr[j];</span><br><span class="line">                arr[j] = arr[j + <span class="number">1</span>];</span><br><span class="line">                arr[j + <span class="number">1</span>] = a;</span><br><span class="line">                isComplete = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (isComplete) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试排序10000个数花费1113毫秒</p>
-<h1 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>对于给定的一组记录，初始时假设第一个记录自成一个有序序列，其余记录为无序序列。</p>
-<p>从第二个记录开始，按照记录的大小依次将当期处理的记录插入到其之前的有序序列中，直至最后一个记录插入到有序序列为止。</p>
-<p>思路：</p>
-<p>取出第二个数，将它插入到由开头1个数组成的有序序列中。</p>
-<p>取出第三个数，插入到开头2个数组成的有序序列中。</p>
-<p>取出第n个数，插入到开头n-1个数组成的有序序列中。</p>
-<p>直到n为最后一个数。</p>
-<h2 id="关键"><a href="#关键" class="headerlink" title="关键"></a>关键</h2><p>找到插入的节点m</p>
-<p>让arr[m] - arr[i-1] 整体后移一位</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insert</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//最大插入次数 n-1次</span></span><br><span class="line">    <span class="keyword">var</span> temp;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> m = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[i]&lt;arr[j])&#123;</span><br><span class="line">                m = j;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(m != <span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="comment">//将arr[i] 插入 arr[m] </span></span><br><span class="line">            <span class="comment">//即将arr[m] - arr[i-1]整体后移一位</span></span><br><span class="line">            temp = arr[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> j = i; j &gt; m; j--) &#123;</span><br><span class="line">                arr[j] = arr[j<span class="number">-1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            arr[m] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>一万个数花费700毫秒</p>
-<p>上述实现可以改进：</p>
-<p>不去先找m的位置，而是直接进行插入。</p>
-<p>让i和有序序列从右到左开始比较，如果比较的值比i大，交换两个数的位置。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insert</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//最大插入次数 n-1次</span></span><br><span class="line">    <span class="keyword">var</span> temp,j;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        temp = arr[i];</span><br><span class="line">        j = i - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>( j&gt;=<span class="number">0</span> &amp;&amp; temp &lt; arr[j] )&#123;</span><br><span class="line">            arr[j+<span class="number">1</span>] = arr[j];</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        arr[j+<span class="number">1</span>] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><h2 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h2><p><img src="http://s8.51cto.com/wyfs02/M02/19/FF/wKiom1MUSRPjUTOIAAC-kWvhNhc591.jpg" alt="image"></p>
-<p>找出一个基准数</p>
-<p>从右侧找比基准数小的</p>
-<p>从左侧找比基准数大的</p>
-<p>交换值直到没有可以交换的。</p>
-<p>将基准数复位</p>
-<p>将基准数左侧的数进行快排</p>
-<p>将基准数右侧的数进行快排</p>
-<h2 id="关键-1"><a href="#关键-1" class="headerlink" title="关键"></a>关键</h2><p>退出快排的条件：left == right </p>
-<p>先找基准数小的数</p>
-<p>大于等于和小于等于（避免找到相同的数）</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quick</span>(<span class="params">arr,left,right</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> temp = arr[left];<span class="comment">//基准数</span></span><br><span class="line">    <span class="keyword">var</span> i = left;<span class="comment">//副本可改变</span></span><br><span class="line">    <span class="keyword">var</span> j = right;<span class="comment">//副本可改变</span></span><br><span class="line">    <span class="keyword">var</span> t;<span class="comment">//临时交换值</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(i&gt;=j)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(i!=j)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//找到比基准数小的数 （如果没有比基准数小的数，那么i=j=left 不用做交换）</span></span><br><span class="line">        <span class="keyword">while</span>(arr[j]&gt;=temp &amp;&amp; i&lt;j )&#123;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//找到比基准数大的数</span></span><br><span class="line">        <span class="keyword">while</span> (arr[i]&lt;=temp &amp;&amp; i&lt;j) &#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//交换i和j</span></span><br><span class="line">        <span class="keyword">if</span>(i!=j)&#123;</span><br><span class="line">            t = arr[i];</span><br><span class="line">            arr[i] = arr[j];</span><br><span class="line">            arr[j] = t;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    arr[left] = arr[i];</span><br><span class="line">    arr[i] = temp;</span><br><span class="line">    quick(arr,left,i<span class="number">-1</span>);</span><br><span class="line">    quick(arr,i+<span class="number">1</span>,right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>一万个数花费7毫秒</p>
-<h2 id="优化版"><a href="#优化版" class="headerlink" title="优化版"></a>优化版</h2><p>比temp小的数放在左数组里，比temp大的数放在右数组里，左数组+右数组+temp就是排序好的数。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quick</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (arr.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> left = [];</span><br><span class="line">    <span class="keyword">let</span> right = [];</span><br><span class="line">    <span class="keyword">let</span> temp = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>, l = arr.length; i &lt; l; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] &gt; temp) &#123;</span><br><span class="line">            right.push(arr[i]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            left.push(arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> [].concat(quick(left), [temp], quick(right));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h1><p>将每个数与开头数作比较，比它小则交换位置。重复比较n-1轮</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">select</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> temp;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; arr.length; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &lt; arr[i]) &#123;</span><br><span class="line">                temp = arr[i];</span><br><span class="line">                arr[i] = arr[j];</span><br><span class="line">                arr[j] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h1><p>把记录按步长 gap 分组，对每组记录采用直接插入排序方法进行排序。<br>随着步长逐渐减小，所分成的组包含的记录越来越多，当步长的值减小到 1 时，整个数据合成为一组，构成一组有序记录，则完成排序。</p>
-<p>例子：9 1 2 5 7 4 8 6 3 5</p>
-<p>gap是步长，也就是两个数之间的间隔。</p>
-<p>gap=length/2</p>
-<p>gap=gap/2</p>
-<p>跳出循环的条件为gap&gt;0</p>
-<p><img src="http://images2015.cnblogs.com/blog/318837/201604/318837-20160422102024757-37862627.png" alt="image"></p>
-<p>插入排序</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insert</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">            <span class="comment">//最大插入次数 n-1次</span></span><br><span class="line">            <span class="keyword">var</span> temp,j;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">                temp = arr[i];</span><br><span class="line">                j = i - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span>( j&gt;=<span class="number">0</span> &amp;&amp; temp &lt; arr[j] )&#123;</span><br><span class="line">                    arr[j+<span class="number">1</span>] = arr[j];</span><br><span class="line">                    j--;</span><br><span class="line">                &#125;</span><br><span class="line">                arr[j+<span class="number">1</span>] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> arr;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>给定增量值</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shellSort</span>(<span class="params">arr, gap</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> temp, j;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = gap; i &lt; arr.length; i++) &#123;</span><br><span class="line">        temp = arr[i];</span><br><span class="line">        j = i - gap;</span><br><span class="line">        <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; temp &lt; arr[i]) &#123;</span><br><span class="line">            arr[j + gap] = arr[j];</span><br><span class="line">            j -= gap;</span><br><span class="line">        &#125;</span><br><span class="line">        arr[j + <span class="number">1</span>] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>增量值递减：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shell</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> gap = <span class="built_in">Math</span>.floor(arr.length / <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">var</span> temp, j;</span><br><span class="line">    <span class="keyword">while</span> (gap &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(gap);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = gap; i &lt; arr.length; i++) &#123;</span><br><span class="line">            temp = arr[i];</span><br><span class="line">            j = i - gap;</span><br><span class="line">            <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; temp &lt; arr[j]) &#123;</span><br><span class="line">                arr[j + gap] = arr[j];</span><br><span class="line">                j -= gap;</span><br><span class="line">            &#125;</span><br><span class="line">            arr[j + gap] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        gap = <span class="built_in">Math</span>.floor(gap / <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <p><img src="http://img2.ph.126.net/qJoWVhVfQZeaWiUbEhW00A==/1296473742747029981.jpg" alt="i"></p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><p>二维数组是有序的，比如下面的数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 2 3</span><br><span class="line">4 5 6</span><br><span class="line">7 8 9</span><br></pre></td></tr></table></figure></p>
+<p>可以直接利用左下角数字开始查找：</p>
+<p>大于：比较上移</p>
+<p>小于：比较右移</p>
+<h2 id="代码思路"><a href="#代码思路" class="headerlink" title="代码思路"></a>代码思路</h2><p>将二维数组看作平面坐标系</p>
+<p>从左下角（0,arr.length-1）开始比较：</p>
+<p>目标值大于坐标值—x坐标+1</p>
+<p>目标值小于坐标值—y坐标-1</p>
+<p>注意：</p>
+<p>二维数组arr[i][j]中</p>
+<p>j代表x坐标</p>
+<p>i代表y坐标</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function Find(target, array) &#123;</span><br><span class="line">  let i = array.length - 1; // y坐标</span><br><span class="line">  let j = 0; // x坐标</span><br><span class="line">  return compare(target, array, i, j);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function compare(target, array, i, j) &#123;</span><br><span class="line">  if (array[i] === undefined || array[i][j] === undefined) &#123;</span><br><span class="line">    return false;</span><br><span class="line">  &#125;</span><br><span class="line">  const temp = array[i][j];</span><br><span class="line">  if (target === temp) &#123;</span><br><span class="line">    return true;</span><br><span class="line">  &#125;</span><br><span class="line">  else if (target &gt; temp) &#123;</span><br><span class="line">    return compare(target, array, i, j+1);</span><br><span class="line">  &#125;</span><br><span class="line">  else if (target &lt; temp) &#123;</span><br><span class="line">    return compare(target, array, i-1, j);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="拓展：二分查找"><a href="#拓展：二分查找" class="headerlink" title="拓展：二分查找"></a>拓展：二分查找</h2><p>二分查找的条件是必须有序。</p>
+<p>和线性表的中点值进行比较，如果小就继续在小的序列中查找，如此递归直到找到相同的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function binarySearch(data, arr, start, end) &#123;</span><br><span class="line">    if (start &gt; end) &#123;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    var mid = Math.floor((end + start) / 2);</span><br><span class="line">    if (data == arr[mid]) &#123;</span><br><span class="line">        return mid;</span><br><span class="line">    &#125; else if (data &lt; arr[mid]) &#123;</span><br><span class="line">        return binarySearch(data, arr, start, mid - 1);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return binarySearch(data, arr, mid + 1, end);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="https://www.lisq.xyz/2017/11/05/排序总结/" data-id="cjqpehxgh002bl888mutelvec" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://www.lisq.xyz/2019/01/10/【剑指offer】1-二维数组查找/" data-id="cjqpehxg1001pl888qox69t1x" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -398,20 +361,10 @@
     
 <nav id="article-nav">
     
-        <a href="/2017/11/09/前端常见算法/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">下一篇</strong>
-        <p class="article-nav-title">
-        
-            前端常见算法
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2017/11/03/二叉树/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2019/01/04/css面试题总结/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">二叉树</p>
+        <p class="article-nav-title">css面试题总结</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -641,7 +594,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://www.lisq.xyz/2017/11/05/排序总结/';
+    var disqus_url = 'https://www.lisq.xyz/2019/01/10/【剑指offer】1-二维数组查找/';
     
     (function() {
     var dsq = document.createElement('script');

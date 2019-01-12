@@ -44,6 +44,9 @@
 - [排序总结](https://www.lisq.xyz/2017/11/05/%E6%8E%92%E5%BA%8F%E6%80%BB%E7%BB%93/)
 - [二叉树](https://www.lisq.xyz/2017/11/03/%E4%BA%8C%E5%8F%89%E6%A0%91/)
 - [基本数据结构及特点](https://www.lisq.xyz/2017/11/02/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%89%B9%E7%82%B9/)
+- [【剑指offer】1.二维数组查找](https://www.lisq.xyz/2019/01/10/%E3%80%90%E5%89%91%E6%8C%87offer%E3%80%911-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E6%9F%A5%E6%89%BE/)
+- [【剑指offer】2.替换空格](https://www.lisq.xyz/2019/01/10/%E3%80%90%E5%89%91%E6%8C%87offer%E3%80%912-%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC/)
+- [【剑指offer】3.从尾到头打印链表](https://www.lisq.xyz/2019/01/10/%E3%80%90%E5%89%91%E6%8C%87offer%E3%80%913-%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8/)
 
 ## vue
 - [vue问题记录](https://www.lisq.xyz/2017/12/24/vue%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/)

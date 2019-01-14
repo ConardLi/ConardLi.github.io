@@ -6,26 +6,26 @@
     
 
     
-    <title>【前端面试】变量和类型计算 | 李世奇的技术专栏</title>
+    <title>【剑指offer】5.二叉树的镜像和打印 | 李世奇的技术专栏</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="基础,javascript,面试" />
+        <meta name="keywords" content="javascript,面试,算法,二叉树" />
     
-    <meta name="description" content="1.题目 1.JS使用typeof能得到哪些类型 === 和 == 的选择 JS中有哪些内置函数 JS变量按存储方式分为哪些类型，并描述其特点 如何理解JSON  2.知识点2.1 值类型和引用类型值类型（boolean,string,number,null,undefined） 1234var a = 10;var b = a;a = 20;console.log(b); //10 引用类型（">
-<meta name="keywords" content="基础,javascript,面试">
+    <meta name="description" content="二叉树简介基本结构： 12345function TreeNode(x) &amp;#123;    this.val = x;    this.left = null;    this.right = null;&amp;#125; 二叉树的前序、中序、后序遍历的定义： 前序遍历：对任一子树，先访问跟，然后遍历其左子树，最后遍历其右子树； 中序遍历：对任一子树，先遍历其左子树，然后访问根，最后遍历其右子树；">
+<meta name="keywords" content="javascript,面试,算法,二叉树">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【前端面试】变量和类型计算">
-<meta property="og:url" content="https://www.lisq.xyz/2017/12/27/【前端面试】变量和类型计算/index.html">
+<meta property="og:title" content="【剑指offer】5.二叉树的镜像和打印">
+<meta property="og:url" content="https://www.lisq.xyz/2019/01/14/【剑指offer】5-二叉树的镜像和打印/index.html">
 <meta property="og:site_name" content="李世奇的技术专栏">
-<meta property="og:description" content="1.题目 1.JS使用typeof能得到哪些类型 === 和 == 的选择 JS中有哪些内置函数 JS变量按存储方式分为哪些类型，并描述其特点 如何理解JSON  2.知识点2.1 值类型和引用类型值类型（boolean,string,number,null,undefined） 1234var a = 10;var b = a;a = 20;console.log(b); //10 引用类型（">
+<meta property="og:description" content="二叉树简介基本结构： 12345function TreeNode(x) &amp;#123;    this.val = x;    this.left = null;    this.right = null;&amp;#125; 二叉树的前序、中序、后序遍历的定义： 前序遍历：对任一子树，先访问跟，然后遍历其左子树，最后遍历其右子树； 中序遍历：对任一子树，先遍历其左子树，然后访问根，最后遍历其右子树；">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://img17.3lian.com/d/file/201702/27/b5caf2cd065019ba3eee8f067abe5a62.jpg">
-<meta property="og:updated_time" content="2019-01-03T10:48:03.198Z">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1548080182&amp;di=57840610229448ee380a64011c5354fe&amp;imgtype=jpg&amp;er=1&amp;src=http%3A%2F%2Fac-r.static.booking.cn%2Fimages%2Fhotel%2Fmax1024x768%2F987%2F98767654.jpg">
+<meta property="og:updated_time" content="2019-01-14T14:16:32.215Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【前端面试】变量和类型计算">
-<meta name="twitter:description" content="1.题目 1.JS使用typeof能得到哪些类型 === 和 == 的选择 JS中有哪些内置函数 JS变量按存储方式分为哪些类型，并描述其特点 如何理解JSON  2.知识点2.1 值类型和引用类型值类型（boolean,string,number,null,undefined） 1234var a = 10;var b = a;a = 20;console.log(b); //10 引用类型（">
-<meta name="twitter:image" content="http://img17.3lian.com/d/file/201702/27/b5caf2cd065019ba3eee8f067abe5a62.jpg">
+<meta name="twitter:title" content="【剑指offer】5.二叉树的镜像和打印">
+<meta name="twitter:description" content="二叉树简介基本结构： 12345function TreeNode(x) &amp;#123;    this.val = x;    this.left = null;    this.right = null;&amp;#125; 二叉树的前序、中序、后序遍历的定义： 前序遍历：对任一子树，先访问跟，然后遍历其左子树，最后遍历其右子树； 中序遍历：对任一子树，先遍历其左子树，然后访问根，最后遍历其右子树；">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1548080182&amp;di=57840610229448ee380a64011c5354fe&amp;imgtype=jpg&amp;er=1&amp;src=http%3A%2F%2Fac-r.static.booking.cn%2Fimages%2Fhotel%2Fmax1024x768%2F987%2F98767654.jpg">
     
 
     
@@ -144,7 +144,7 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-【前端面试】变量和类型计算" class="article article-single article-type-post"
+                            <article id="post-【剑指offer】5-二叉树的镜像和打印" class="article article-single article-type-post"
     itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -152,7 +152,7 @@
             
     
         <h1 class="article-title" itemprop="name">
-        【前端面试】变量和类型计算
+        【剑指offer】5.二叉树的镜像和打印
         </h1>
     
 
@@ -162,8 +162,8 @@
         <div class="article-meta">
             
     <div class="article-date">
-        <a href="/2017/12/27/【前端面试】变量和类型计算/" class="article-date">
-            <time datetime="2017-12-27T14:28:48.000Z" itemprop="datePublished">2017-12-27</time>
+        <a href="/2019/01/14/【剑指offer】5-二叉树的镜像和打印/" class="article-date">
+            <time datetime="2019-01-14T14:13:51.000Z" itemprop="datePublished">2019-01-14</time>
         </a>
     </div>
 
@@ -172,7 +172,7 @@
             
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/javascript/">javascript</a>, <a class="tag-link" href="/tags/基础/">基础</a>, <a class="tag-link" href="/tags/面试/">面试</a>
+        <a class="tag-link" href="/tags/javascript/">javascript</a>, <a class="tag-link" href="/tags/二叉树/">二叉树</a>, <a class="tag-link" href="/tags/算法/">算法</a>, <a class="tag-link" href="/tags/面试/">面试</a>
     </div>
 
             <span id="busuanzi_container_page_pv" style="position: relative;float: right;">
@@ -182,100 +182,28 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p><img src="http://img17.3lian.com/d/file/201702/27/b5caf2cd065019ba3eee8f067abe5a62.jpg" alt="image"></p>
-<h1 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h1><ul>
-<li>1.JS使用typeof能得到哪些类型</li>
-<li>=== 和 == 的选择</li>
-<li>JS中有哪些内置函数</li>
-<li>JS变量按存储方式分为哪些类型，并描述其特点</li>
-<li>如何理解JSON</li>
-</ul>
-<h1 id="2-知识点"><a href="#2-知识点" class="headerlink" title="2.知识点"></a>2.知识点</h1><h2 id="2-1-值类型和引用类型"><a href="#2-1-值类型和引用类型" class="headerlink" title="2.1 值类型和引用类型"></a>2.1 值类型和引用类型</h2><p>值类型（boolean,string,number,null,undefined）</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> b = a;</span><br><span class="line">a = <span class="number">20</span>;</span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">//10</span></span><br></pre></td></tr></table></figure>
-<p>引用类型（对象，数组，函数）</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">x</span>:<span class="number">10</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a;</span><br><span class="line">a.x = <span class="number">20</span>;</span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">//20</span></span><br></pre></td></tr></table></figure>
-<p>值类型直接把值存储在堆中，把a赋值给b在内存中是又给b开辟了一块新的空间，存储了同样的值。</p>
-<p>引用类型分两块存储，先在堆中存储一个实际的值，再在栈中存储一个堆中值的引用地址，指向堆中的对象。把a赋值给b是在栈中重新开辟一块空间存储的还是相同对象的引用地址，a和b存储的地址相同，指向的对象也相同。当对象值发生改变时，两者会同时改变。</p>
-<p>引用类型的值一般都比较大，采用此种存储方式可以节省内存空间。</p>
-<h2 id="2-2-typeof运算符"><a href="#2-2-typeof运算符" class="headerlink" title="2.2 typeof运算符"></a>2.2 typeof运算符</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="string">'abc'</span> <span class="comment">//string</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="number">123</span>  <span class="comment">//number</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">true</span>  <span class="comment">//boolean</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">undefined</span>  <span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span>  <span class="comment">//object</span></span><br><span class="line"><span class="keyword">typeof</span> &#123;<span class="attr">a</span>:<span class="number">10</span>&#125;  <span class="comment">//object</span></span><br><span class="line"><span class="keyword">typeof</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]  <span class="comment">//object</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">console</span>.log()  <span class="comment">//function</span></span><br></pre></td></tr></table></figure>
-<h2 id="2-3-类型转换"><a href="#2-3-类型转换" class="headerlink" title="2.3 类型转换"></a>2.3 类型转换</h2><p>强类型转换：通过String（），Number（），Boolean（），parseInt（）函数强制转换</p>
-<p>可能发生隐式类型转换的场景</p>
-<ul>
-<li>字符串拼接</li>
-<li>使用==</li>
-<li>if语句</li>
-<li>逻辑循环</li>
-</ul>
-<p>一、首先看双等号前后有没有NaN，如果存在NaN，一律返回false。</p>
-<p>二、再看双等号前后有没有布尔，有布尔就将布尔转换为数字。（false是0，true是1）</p>
-<p>三、接着看双等号前后有没有字符串, 有三种情况：</p>
-<p>1、对方是对象，对象使用toString()或者valueOf()进行转换；<br>2、对方是数字，字符串转数字；（前面已经举例）<br>3、对方是字符串，直接比较；<br>4、其他返回false<br>四、如果是数字，对方是对象，对象取valueOf()或者toString()进行比较, 其他一律返回false</p>
-<p>五、null, undefined不会进行类型转换, 但它们俩相等</p>
-<p>上面的转换顺序一定要牢记，面试的时候，经常会出现类型的问题。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'100'</span>==<span class="number">100</span>  <span class="comment">//转换成字符串</span></span><br><span class="line"><span class="string">''</span>==<span class="number">0</span>  <span class="comment">//转换成false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="literal">null</span>; <span class="comment">// true</span></span><br><span class="line"><span class="number">1</span> == <span class="literal">true</span>; <span class="comment">// true</span></span><br><span class="line"><span class="number">2</span> == <span class="literal">true</span>; <span class="comment">// false</span></span><br><span class="line"><span class="number">0</span> == <span class="literal">false</span>; <span class="comment">// true</span></span><br><span class="line"><span class="number">0</span> == <span class="string">' '</span>; <span class="comment">// true</span></span><br><span class="line"><span class="literal">NaN</span> == <span class="literal">NaN</span>; <span class="comment">// false</span></span><br><span class="line">[] == <span class="literal">false</span>; <span class="comment">// true</span></span><br><span class="line">[] == ![]; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在if中转换成false的：</span></span><br><span class="line"><span class="literal">null</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line"><span class="string">''</span></span><br><span class="line"><span class="literal">NaN</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span> &amp;&amp; <span class="number">0</span>  <span class="comment">//0  10转换成true</span></span><br><span class="line"><span class="string">''</span> || <span class="string">'abc'</span> <span class="comment">//abc   ''转换成false</span></span><br><span class="line">!<span class="built_in">window</span>.abc  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<h2 id="2-4-null和undefined的区别"><a href="#2-4-null和undefined的区别" class="headerlink" title="2.4 null和undefined的区别"></a>2.4 null和undefined的区别</h2><p>null：是被赋值过的对象，刻意把一个对象赋值为null，故意表示其为空，不应有值，所以对象为null是正常的，typeof null 返回 ‘object’ ，null可以转换为0</p>
-<p>undefined 表示“缺少值”，即此处应有一个值，但还没有定义；转为数值时为NaN(非数字值的特殊值) typeof undefined 返回 ‘undefined’</p>
-<h1 id="3-题目解答"><a href="#3-题目解答" class="headerlink" title="3.题目解答"></a>3.题目解答</h1><h2 id="3-1-JS使用typeof能得到哪些类型"><a href="#3-1-JS使用typeof能得到哪些类型" class="headerlink" title="3.1 JS使用typeof能得到哪些类型"></a>3.1 JS使用typeof能得到哪些类型</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="string">'abc'</span> <span class="comment">//string</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="number">123</span>  <span class="comment">//number</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">true</span>  <span class="comment">//boolean</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">undefined</span>  <span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span>  <span class="comment">//object</span></span><br><span class="line"><span class="keyword">typeof</span> &#123;<span class="attr">a</span>:<span class="number">10</span>&#125;  <span class="comment">//object</span></span><br><span class="line"><span class="keyword">typeof</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]  <span class="comment">//object</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">console</span>.log()  <span class="comment">//function</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-2-和-的选择"><a href="#3-2-和-的选择" class="headerlink" title="3.2 === 和 == 的选择"></a>3.2 === 和 == 的选择</h2><p>jquery源码中的写法：</p>
-<p>除了以下方式其他全部使用 ===</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(obj.a == null)&#123;</span><br><span class="line">   //相当于 obj.a === undefined || obj.a === null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="3-3-JS中有哪些内置函数"><a href="#3-3-JS中有哪些内置函数" class="headerlink" title="3.3 JS中有哪些内置函数"></a>3.3 JS中有哪些内置函数</h2><p>单纯作为语言来说，不考虑node和浏览器web</p>
-<ul>
-<li>Object</li>
-<li>Array</li>
-<li>Boolean</li>
-<li>Number</li>
-<li>String</li>
-<li>Function</li>
-<li>Date</li>
-<li>RegExp</li>
-<li>Error</li>
-</ul>
-<p>内置对象：Math,JSON</p>
-<h2 id="3-4-JS变量按存储方式分为哪些类型，并描述其特点"><a href="#3-4-JS变量按存储方式分为哪些类型，并描述其特点" class="headerlink" title="3.4 JS变量按存储方式分为哪些类型，并描述其特点"></a>3.4 JS变量按存储方式分为哪些类型，并描述其特点</h2><p>值类型何引用类型</p>
-<h2 id="3-5-如何理解JSON"><a href="#3-5-如何理解JSON" class="headerlink" title="3.5 如何理解JSON"></a>3.5 如何理解JSON</h2><p>JSON是JS中的一个内置对象</p>
-<p>区别</p>
-<ul>
-<li>JS对象   {x:10}</li>
-<li>JSON对象 {‘x’:10}</li>
-<li>JSON串   “{‘x’:10}”</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将JS对象转换成json串</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify(&#123;<span class="attr">x</span>:<span class="number">10</span>&#125;);</span><br><span class="line"><span class="comment">//将json字符串转换成json对象</span></span><br><span class="line"><span class="built_in">JSON</span>.parse(<span class="string">"&#123;'x':10&#125;"</span>);</span><br></pre></td></tr></table></figure>
-<h1 id="3-6-严格模式"><a href="#3-6-严格模式" class="headerlink" title="3.6 严格模式"></a>3.6 严格模式</h1><p>目的</p>
-<p>消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;<br>　<br>消除代码运行的一些不安全之处，保证代码运行的安全；</p>
-<p>提高编译器效率，增加运行速度；</p>
-<p>为未来新版本的Javascript做好铺垫。</p>
-<p>特性</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">　　"use strict"</span>;</span><br></pre></td></tr></table></figure>
-<p>可以选择放在一个函数中或自定义作用域中。</p>
-<p><strong>禁止this指向全局对象</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　　　<span class="keyword">return</span> !<span class="keyword">this</span>;</span><br><span class="line">　　&#125; </span><br><span class="line">　　<span class="comment">// 返回false，因为"this"指向全局对象，"!this"就是false</span></span><br><span class="line">　　<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line"><span class="meta">　　　　"use strict"</span>;</span><br><span class="line">　　　　<span class="keyword">return</span> !<span class="keyword">this</span>;</span><br><span class="line">　　&#125; </span><br><span class="line">　　<span class="comment">// 返回true，因为严格模式下，this的值为undefined，所以"!this"为true。</span></span><br></pre></td></tr></table></figure>
-<p><strong>创设eval作用域</strong></p>
-<p>正常模式下，Javascript语言有两种变量作用域（scope）：全局作用域和函数作用域。严格模式创设了第三种作用域：eval作用域。<br>正常模式下，eval语句的作用域，取决于它处于全局作用域，还是处于函数作用域。严格模式下，eval语句本身就是一个作用域，不再能够生成全局变量了，它所生成的变量只能用于eval内部。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">　　"use strict"</span>;</span><br><span class="line">　　<span class="keyword">var</span> x = <span class="number">2</span>;</span><br><span class="line">　　<span class="built_in">console</span>.info(<span class="built_in">eval</span>(<span class="string">"var x = 5; x"</span>)); <span class="comment">// 5</span></span><br><span class="line">　　<span class="built_in">console</span>.info(x); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
-<p><strong>全局变量显式声明</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　v = <span class="number">1</span>; <span class="comment">// 报错，v未声明</span></span><br><span class="line">　　<span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) &#123; <span class="comment">// 报错，i未声明</span></span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>禁止删除变量</strong></p>
-<p>严格模式下无法删除变量。只有configurable设置为true的对象属性，才能被删除。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">　　"use strict"</span>;</span><br><span class="line">　　<span class="keyword">var</span> x;</span><br><span class="line">　　<span class="keyword">delete</span> x; <span class="comment">// 语法错误</span></span><br><span class="line">　　<span class="keyword">var</span> o = <span class="built_in">Object</span>.create(<span class="literal">null</span>, &#123;<span class="string">'x'</span>: &#123;</span><br><span class="line">　　　　　　value: <span class="number">1</span>,</span><br><span class="line">　　　　　　configurable: <span class="literal">true</span></span><br><span class="line">　　&#125;&#125;);</span><br><span class="line">　　<span class="keyword">delete</span> o.x; <span class="comment">// 删除成功</span></span><br></pre></td></tr></table></figure>
-<p><strong>函数不能有重名的参数</strong></p>
-<p> <strong>保留字</strong></p>
-<p>为了向将来Javascript的新版本过渡，严格模式新增了一些保留字：implements, interface, let, package, private, protected, public, static, yield。<br>使用这些词作为变量名将会报错。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="function"><span class="keyword">function</span> <span class="title">package</span>(<span class="params">protected</span>) </span>&#123; <span class="comment">// 语法错误</span></span><br><span class="line"><span class="meta">　　　　"use strict"</span>;</span><br><span class="line">　　　　<span class="keyword">var</span> implements; <span class="comment">// 语法错误</span></span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="3-7-eval"><a href="#3-7-eval" class="headerlink" title="3.7 eval"></a>3.7 eval</h2><p>1.没有必须使用的应用场景</p>
-<p>2.不容易调试，可读性不好</p>
-<p>3.在旧的浏览器中如果你使用了eval，性能会下降10倍。</p>
-<p>4.容易xss</p>
-<p>前端基础知识面试，万变不离其宗。</p>
-
+            <p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1548080182&amp;di=57840610229448ee380a64011c5354fe&amp;imgtype=jpg&amp;er=1&amp;src=http%3A%2F%2Fac-r.static.booking.cn%2Fimages%2Fhotel%2Fmax1024x768%2F987%2F98767654.jpg" alt="image"></p>
+<h1 id="二叉树简介"><a href="#二叉树简介" class="headerlink" title="二叉树简介"></a>二叉树简介</h1><p>基本结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function TreeNode(x) &#123;</span><br><span class="line">    this.val = x;</span><br><span class="line">    this.left = null;</span><br><span class="line">    this.right = null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>二叉树的前序、中序、后序遍历的定义：</p>
+<p>前序遍历：对任一子树，先访问跟，然后遍历其左子树，最后遍历其右子树；</p>
+<p>中序遍历：对任一子树，先遍历其左子树，然后访问根，最后遍历其右子树；</p>
+<p>后序遍历：对任一子树，先遍历其左子树，然后遍历其右子树，最后访问根。</p>
+<h1 id="题目1-二叉树的镜像"><a href="#题目1-二叉树的镜像" class="headerlink" title="题目1 二叉树的镜像"></a>题目1 二叉树的镜像</h1><h2 id="1-1-题目描述"><a href="#1-1-题目描述" class="headerlink" title="1.1 题目描述"></a>1.1 题目描述</h2><p>操作给定的二叉树，将其变换为源二叉树的镜像。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">输入描述:</span><br><span class="line">二叉树的镜像定义：源二叉树 </span><br><span class="line">    	    8</span><br><span class="line">    	   /  \</span><br><span class="line">    	  6   10</span><br><span class="line">    	 / \  / \</span><br><span class="line">    	5  7 9 11</span><br><span class="line">    	镜像二叉树</span><br><span class="line">    	    8</span><br><span class="line">    	   /  \</span><br><span class="line">    	  10   6</span><br><span class="line">    	 / \  / \</span><br><span class="line">    	11 9 7  5</span><br></pre></td></tr></table></figure></p>
+<h2 id="1-2-解题思路"><a href="#1-2-解题思路" class="headerlink" title="1.2 解题思路"></a>1.2 解题思路</h2><p>递归交换二叉树两棵字树的位置。</p>
+<h2 id="1-3-代码"><a href="#1-3-代码" class="headerlink" title="1.3 代码"></a>1.3 代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function Mirror(root)</span><br><span class="line">&#123;</span><br><span class="line">    if(root)&#123;</span><br><span class="line">        const temp = root.right;</span><br><span class="line">        root.right = root.left;</span><br><span class="line">        root.left = temp;</span><br><span class="line">        Mirror(root.right);</span><br><span class="line">        Mirror(root.left);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="题目2-从上往下打印二叉树"><a href="#题目2-从上往下打印二叉树" class="headerlink" title="题目2 从上往下打印二叉树"></a>题目2 从上往下打印二叉树</h1><h2 id="2-1-题目描述"><a href="#2-1-题目描述" class="headerlink" title="2.1 题目描述"></a>2.1 题目描述</h2><p>从上往下打印出二叉树的每个节点，同层节点从左至右打印。</p>
+<h2 id="2-2-解题思路"><a href="#2-2-解题思路" class="headerlink" title="2.2 解题思路"></a>2.2 解题思路</h2><p>1.借助队列先进先出的数据结构</p>
+<p>2.让二叉树每层依次进入队列</p>
+<p>3.依次打印队列中的值</p>
+<h2 id="2-3-代码"><a href="#2-3-代码" class="headerlink" title="2.3 代码"></a>2.3 代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function PrintFromTopToBottom(root) &#123;</span><br><span class="line">    const queue = [];</span><br><span class="line">    const print = [];</span><br><span class="line">    if(root != null)&#123;</span><br><span class="line">      queue.push(root);</span><br><span class="line">    &#125;</span><br><span class="line">    while (queue.length &gt; 0) &#123;</span><br><span class="line">      const current = queue.shift();</span><br><span class="line">      print.push(current.val);</span><br><span class="line">      if (current.left) &#123;</span><br><span class="line">        queue.push(current.left);</span><br><span class="line">      &#125;</span><br><span class="line">      if (current.right) &#123;</span><br><span class="line">        queue.push(current.right);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return print;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="https://www.lisq.xyz/2017/12/27/【前端面试】变量和类型计算/" data-id="cjqwewbmd003sk30dsyrgbh26" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://www.lisq.xyz/2019/01/14/【剑指offer】5-二叉树的镜像和打印/" data-id="cjqwewbmn004ak30dgnvl26os" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -430,20 +358,10 @@
     
 <nav id="article-nav">
     
-        <a href="/2018/01/01/【个人博客搭建及配置一】基础配置/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">下一篇</strong>
-        <p class="article-nav-title">
-        
-            【个人博客搭建及配置一】基础配置
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2017/12/24/vue问题记录/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2019/01/13/【剑指offer】4-二叉树的遍历和重建/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">vue问题记录</p>
+        <p class="article-nav-title">【剑指offer】4.二叉树的遍历和重建</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -673,7 +591,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://www.lisq.xyz/2017/12/27/【前端面试】变量和类型计算/';
+    var disqus_url = 'https://www.lisq.xyz/2019/01/14/【剑指offer】5-二叉树的镜像和打印/';
     
     (function() {
     var dsq = document.createElement('script');

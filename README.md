@@ -48,6 +48,7 @@
 - [【剑指offer】2.替换空格](https://www.lisq.xyz/2019/01/10/%E3%80%90%E5%89%91%E6%8C%87offer%E3%80%912-%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC/)
 - [【剑指offer】3.从尾到头打印链表](https://www.lisq.xyz/2019/01/10/%E3%80%90%E5%89%91%E6%8C%87offer%E3%80%913-%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8/)
 - [【剑指offer】4.二叉树的遍历和重建](https://www.lisq.xyz/2019/01/13/%E3%80%90%E5%89%91%E6%8C%87offer%E3%80%914-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86%E5%92%8C%E9%87%8D%E5%BB%BA/)
+- [【剑指offer】5.二叉树的镜像和打印](https://www.lisq.xyz/2019/01/14/%E3%80%90%E5%89%91%E6%8C%87offer%E3%80%915-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F%E5%92%8C%E6%89%93%E5%8D%B0/)
 
 ## vue
 - [vue问题记录](https://www.lisq.xyz/2017/12/24/vue%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/)

@@ -1,3 +1,4 @@
+https://www.lisq.xyz/2019/01/19/【剑指offer】6-用两个栈实现队列/
 https://www.lisq.xyz/2019/01/14/【剑指offer】5-二叉树的镜像和打印/
 https://www.lisq.xyz/2019/01/13/【剑指offer】4-二叉树的遍历和重建/
 https://www.lisq.xyz/2019/01/10/【剑指offer】3-从尾到头打印链表/

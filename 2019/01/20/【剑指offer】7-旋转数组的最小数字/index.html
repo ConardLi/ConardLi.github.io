@@ -6,20 +6,26 @@
     
 
     
-    <title>标签：: async | 李世奇的技术专栏</title>
+    <title>【剑指offer】7.旋转数组的最小数字 | 李世奇的技术专栏</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="description" content="Fe Coder">
-<meta property="og:type" content="website">
-<meta property="og:title" content="李世奇的技术专栏">
-<meta property="og:url" content="https://www.lisq.xyz/tags/async/index.html">
+        <meta name="keywords" content="javascript,面试,算法,二进制" />
+    
+    <meta name="description" content="题目把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。 基本思路肯定不能直接遍历，失去了这道题的意义 旋转数组其实是由两个有序数组拼接而成的，因此我们可以使用二分法，只需要">
+<meta name="keywords" content="javascript,面试,算法,二进制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【剑指offer】7.旋转数组的最小数字">
+<meta property="og:url" content="https://www.lisq.xyz/2019/01/20/【剑指offer】7-旋转数组的最小数字/index.html">
 <meta property="og:site_name" content="李世奇的技术专栏">
-<meta property="og:description" content="Fe Coder">
+<meta property="og:description" content="题目把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。 基本思路肯定不能直接遍历，失去了这道题的意义 旋转数组其实是由两个有序数组拼接而成的，因此我们可以使用二分法，只需要">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img0.ph.126.net/-5CEZudpzZ5qUUUvIis04w==/3748402264956170658.jpg">
+<meta property="og:updated_time" content="2019-01-20T14:52:38.661Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="李世奇的技术专栏">
-<meta name="twitter:description" content="Fe Coder">
+<meta name="twitter:title" content="【剑指offer】7.旋转数组的最小数字">
+<meta name="twitter:description" content="题目把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。 基本思路肯定不能直接遍历，失去了这道题的意义 旋转数组其实是由两个有序数组拼接而成的，因此我们可以使用二分法，只需要">
+<meta name="twitter:image" content="http://img0.ph.126.net/-5CEZudpzZ5qUUUvIis04w==/3748402264956170658.jpg">
     
 
     
@@ -133,80 +139,154 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-tag"></i>标签：: <em>async</em>
+    未分类
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="post-【剑指offer】7-旋转数组的最小数字" class="article article-single article-type-post"
+    itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2018" class="archive-year"><i class="icon fa fa-calendar-o"></i>2018</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2018/02/06/async-await/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://img0.ph.126.net/BuDM_stF2LSKwGJbtuDZxA==/6597583238587268160.jpg)" alt="async-await" class="thumbnail-image"></span>
-    
-    
-        
-<span class="">
-    <i class="fa fa-comments-o"></i>
-    
-    <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://www.lisq.xyz/2018/02/06/async-await/">0</span>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
+        <header class="article-header">
             
-            </div>
-            <div class="date"><time datetime="2018-02-06T12:31:09.000Z" itemprop="datePublished">2018-02-06</time></div>
-        </div>
-        
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2018/02/06/async-await/">async-await</a>
+        【剑指offer】7.旋转数组的最小数字
         </h1>
     
 
-        <p class="article-excerpt">
+        </header>
+        
+        
+        <div class="article-meta">
             
-基本用法async 表示这是一个async函数，await只能用在这个函数里面。
-await 表示在这里等待promise返回结果了，再继续执行。
-await 后面跟着的应该是一个promise对象（当然，其他返回值也没关系，只是会立即执行，不过那样就没有意义了…）
-这里我们要实现一个暂停功能，输入N毫秒，则停顿N毫秒后才继续往下执行。
-12345678910111213141516var sl
-        </p>
+    <div class="article-date">
+        <a href="/2019/01/20/【剑指offer】7-旋转数组的最小数字/" class="article-date">
+            <time datetime="2019-01-20T14:51:44.000Z" itemprop="datePublished">2019-01-20</time>
+        </a>
+    </div>
+
+            
+
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/javascript/">javascript</a>, <a class="tag-link" href="/tags/二进制/">二进制</a>, <a class="tag-link" href="/tags/算法/">算法</a>, <a class="tag-link" href="/tags/面试/">面试</a>
+    </div>
+
+            <span id="busuanzi_container_page_pv" style="position: relative;float: right;">
+                本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+            </span>
+        </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://img0.ph.126.net/-5CEZudpzZ5qUUUvIis04w==/3748402264956170658.jpg" alt=""></p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。</p>
+<h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><p>肯定不能直接遍历，失去了这道题的意义</p>
+<p>旋转数组其实是由两个有序数组拼接而成的，因此我们可以使用二分法，只需要找到拼接点即可。</p>
+<p>(1)array[mid] &gt; array[high]:</p>
+<p>出现这种情况的array类似[3,4,5,6,0,1,2]，此时最小数字一定在mid的右边。<br>low = mid + 1</p>
+<p>(2)array[mid] == array[high]:</p>
+<p>出现这种情况的array类似 [1,0,1,1,1] 或者[1,1,1,0,1]，此时最小数字不好判断在mid左边<br>还是右边,这时只好一个一个试 。<br>high = high - 1</p>
+<p>(3)array[mid] &lt; array[high]:</p>
+<p>出现这种情况的array类似[2,2,3,4,5,6,6],此时最小数字一定就是array[mid]或者在mid的左<br>边。因为右边必然都是递增的。<br>high = mid</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function minNumberInRotateArray(arr)</span><br><span class="line">&#123;</span><br><span class="line">    let len = arr.length;</span><br><span class="line">    if(len == 0)  return 0;</span><br><span class="line">    let low = 0, high = len - 1;</span><br><span class="line">    while(low &lt; high) &#123;</span><br><span class="line">        let mid = low + Math.floor((high-low)/2);</span><br><span class="line">        if(arr[mid] &gt; arr[high]) &#123;</span><br><span class="line">            low = mid + 1;</span><br><span class="line">        &#125; else if(arr[mid] == arr[high]) &#123;</span><br><span class="line">            high = high - 1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            high = mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    return arr[low];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><p>二分查找</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function binarySearch(data, arr, start, end) &#123;</span><br><span class="line">    if (start &gt; end) &#123;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    var mid = Math.floor((end + start) / 2);</span><br><span class="line">    if (data == arr[mid]) &#123;</span><br><span class="line">        return mid;</span><br><span class="line">    &#125; else if (data &lt; arr[mid]) &#123;</span><br><span class="line">        return binarySearch(data, arr, start, mid - 1);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return binarySearch(data, arr, mid + 1, end);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://www.lisq.xyz/2019/01/20/【剑指offer】7-旋转数组的最小数字/" data-id="cjr50tuft005f1h88i1bx97qa" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
+
+    <section id="comments">
     
-        </div>
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
     
-
-
-    </div></section>
+    </section>
 
 
 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments" style="padding: 30px;"></div>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 's1xL54gwvPRsIy3ciItiPhyD-gzGzoHsz',
+        appKey: 'CmP8stKpHUHtp5abbTxpqc4H'
+    })
+</script>
                         </div>
                     </section>
                     <aside id="sidebar">
@@ -272,6 +352,19 @@ await 后面跟着的应该是一个promise对象（当然，其他返回值也�
             
         </ul>
     </div>
+    
+    
+<nav id="article-nav">
+    
+    
+        <a href="/2019/01/19/【剑指offer】6-用两个栈实现队列/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">【剑指offer】6.用两个栈实现队列</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container" style="background-color: #fff; border-right: 1px solid #e2e2e2;">
         
@@ -496,11 +589,13 @@ await 后面跟着的应该是一个promise对象（当然，其他返回值也�
     var disqus_shortname = 'hexo-theme-hueman';
     
     
+    var disqus_url = 'https://www.lisq.xyz/2019/01/20/【剑指offer】7-旋转数组的最小数字/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>

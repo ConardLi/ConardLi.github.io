@@ -6,26 +6,26 @@
     
 
     
-    <title>vue双向绑定浅析 | 李世奇的技术专栏</title>
+    <title>【剑指offer】8.斐波那契数列 | 李世奇的技术专栏</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="vue,双向绑定,数据流" />
+        <meta name="keywords" content="javascript,面试,算法,递归" />
     
-    <meta name="description" content="原理数据劫持: vue.js 则是采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。 实现流程1、实现一个数据监听器Observer，能够对数据对象的所有属性进行监听，如有变动可拿到最新值并通知订阅者 2、实现一个指令解析器Compile，对每个元素节点的指令进">
-<meta name="keywords" content="vue,双向绑定,数据流">
+    <meta name="description" content="题目题目描述大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。 基本思路这道题在剑指offer中实际是当作递归的反例来说的。 递归的本质是吧一个问题分解成两个或者多个小问题，如果多个小问题存在互相重叠的情况，那么就存在重复计算。 f(n) = f(n-1) +  f(n-2) 这种拆分使用递归是典型的存在重叠的情况，所以会造成非常多的重复计算。">
+<meta name="keywords" content="javascript,面试,算法,递归">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue双向绑定浅析">
-<meta property="og:url" content="https://www.lisq.xyz/2017/12/02/vue双向绑定浅析/index.html">
+<meta property="og:title" content="【剑指offer】8.斐波那契数列">
+<meta property="og:url" content="https://www.lisq.xyz/2019/01/29/【剑指offer】8-斐波那契数列/index.html">
 <meta property="og:site_name" content="李世奇的技术专栏">
-<meta property="og:description" content="原理数据劫持: vue.js 则是采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。 实现流程1、实现一个数据监听器Observer，能够对数据对象的所有属性进行监听，如有变动可拿到最新值并通知订阅者 2、实现一个指令解析器Compile，对每个元素节点的指令进">
+<meta property="og:description" content="题目题目描述大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。 基本思路这道题在剑指offer中实际是当作递归的反例来说的。 递归的本质是吧一个问题分解成两个或者多个小问题，如果多个小问题存在互相重叠的情况，那么就存在重复计算。 f(n) = f(n-1) +  f(n-2) 这种拆分使用递归是典型的存在重叠的情况，所以会造成非常多的重复计算。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540746776597&amp;di=e67e78ce003f64d97d8079f5cbc59143&amp;imgtype=0&amp;src=http%3A%2F%2Fold.bz55.com%2Fuploads%2Fallimg%2F140608%2F1-14060Q04042.jpg">
-<meta property="og:updated_time" content="2018-10-28T14:26:22.821Z">
+<meta property="og:image" content="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/矩形覆盖.png">
+<meta property="og:updated_time" content="2019-01-29T08:21:51.282Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vue双向绑定浅析">
-<meta name="twitter:description" content="原理数据劫持: vue.js 则是采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。 实现流程1、实现一个数据监听器Observer，能够对数据对象的所有属性进行监听，如有变动可拿到最新值并通知订阅者 2、实现一个指令解析器Compile，对每个元素节点的指令进">
-<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540746776597&amp;di=e67e78ce003f64d97d8079f5cbc59143&amp;imgtype=0&amp;src=http%3A%2F%2Fold.bz55.com%2Fuploads%2Fallimg%2F140608%2F1-14060Q04042.jpg">
+<meta name="twitter:title" content="【剑指offer】8.斐波那契数列">
+<meta name="twitter:description" content="题目题目描述大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。 基本思路这道题在剑指offer中实际是当作递归的反例来说的。 递归的本质是吧一个问题分解成两个或者多个小问题，如果多个小问题存在互相重叠的情况，那么就存在重复计算。 f(n) = f(n-1) +  f(n-2) 这种拆分使用递归是典型的存在重叠的情况，所以会造成非常多的重复计算。">
+<meta name="twitter:image" content="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/矩形覆盖.png">
     
 
     
@@ -144,7 +144,7 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-vue双向绑定浅析" class="article article-single article-type-post"
+                            <article id="post-【剑指offer】8-斐波那契数列" class="article article-single article-type-post"
     itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -152,7 +152,7 @@
             
     
         <h1 class="article-title" itemprop="name">
-        vue双向绑定浅析
+        【剑指offer】8.斐波那契数列
         </h1>
     
 
@@ -162,8 +162,8 @@
         <div class="article-meta">
             
     <div class="article-date">
-        <a href="/2017/12/02/vue双向绑定浅析/" class="article-date">
-            <time datetime="2017-12-02T13:53:09.000Z" itemprop="datePublished">2017-12-02</time>
+        <a href="/2019/01/29/【剑指offer】8-斐波那契数列/" class="article-date">
+            <time datetime="2019-01-29T08:21:25.000Z" itemprop="datePublished">2019-01-29</time>
         </a>
     </div>
 
@@ -172,7 +172,7 @@
             
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/vue/">vue</a>, <a class="tag-link" href="/tags/双向绑定/">双向绑定</a>, <a class="tag-link" href="/tags/数据流/">数据流</a>
+        <a class="tag-link" href="/tags/javascript/">javascript</a>, <a class="tag-link" href="/tags/算法/">算法</a>, <a class="tag-link" href="/tags/递归/">递归</a>, <a class="tag-link" href="/tags/面试/">面试</a>
     </div>
 
             <span id="busuanzi_container_page_pv" style="position: relative;float: right;">
@@ -182,33 +182,41 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540746776597&amp;di=e67e78ce003f64d97d8079f5cbc59143&amp;imgtype=0&amp;src=http%3A%2F%2Fold.bz55.com%2Fuploads%2Fallimg%2F140608%2F1-14060Q04042.jpg" alt="image"></p>
-<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>数据劫持: vue.js 则是采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。</p>
-<h1 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h1><p>1、实现一个数据监听器Observer，能够对数据对象的所有属性进行监听，如有变动可拿到最新值并通知订阅者</p>
-<p>2、实现一个指令解析器Compile，对每个元素节点的指令进行扫描和解析，根据指令模板替换数据，以及绑定相应的更新函数</p>
-<p>3、实现一个Watcher，作为连接Observer和Compile的桥梁，能够订阅并收到每个属性变动的通知，执行指令绑定的相应回调函数，从而更新视图</p>
-<p>4、mvvm入口函数，整合以上三者</p>
-<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/vue%E5%8E%9F%E7%90%86.png" alt="image"></p>
-<h1 id="实现Observer"><a href="#实现Observer" class="headerlink" title="实现Observer"></a>实现Observer</h1><p>可以利用Obeject.defineProperty()来监听属性变动<br>那么将需要observe的数据对象进行递归遍历，包括子属性对象的属性，都加上 setter和getter<br>这样的话，给这个对象的某个值赋值，就会触发setter，那么就能监听到了数据变化。。相关代码可以是这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = &#123;<span class="attr">name</span>: <span class="string">'kindeng'</span>&#125;;</span><br><span class="line">observe(data);</span><br><span class="line">data.name = <span class="string">'dmq'</span>; <span class="comment">// 哈哈哈，监听到值变化了 kindeng --&gt; dmq</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">observe</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!data || <span class="keyword">typeof</span> data !== <span class="string">'object'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 取出所有属性遍历</span></span><br><span class="line">    <span class="built_in">Object</span>.keys(data).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">key</span>) </span>&#123;</span><br><span class="line">        defineReactive(data, key, data[key]);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">defineReactive</span>(<span class="params">data, key, val</span>) </span>&#123;</span><br><span class="line">    observe(val); <span class="comment">// 监听子属性</span></span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(data, key, &#123;</span><br><span class="line">        enumerable: <span class="literal">true</span>, <span class="comment">// 可枚举</span></span><br><span class="line">        configurable: <span class="literal">false</span>, <span class="comment">// 不能再define</span></span><br><span class="line">        get: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> val;</span><br><span class="line">        &#125;,</span><br><span class="line">        set: <span class="function"><span class="keyword">function</span>(<span class="params">newVal</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'哈哈哈，监听到值变化了 '</span>, val, <span class="string">' --&gt; '</span>, newVal);</span><br><span class="line">            val = newVal;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="dep"><a href="#dep" class="headerlink" title="dep"></a>dep</h1><p>dep的作用是消息订阅器，很简单，维护一个数组，用来收集订阅者，数据变动触发notify，再调用订阅者的update方法</p>
-<h1 id="complie"><a href="#complie" class="headerlink" title="complie"></a>complie</h1><p>compile主要做的事情是解析模板指令，将模板中的变量替换成数据，然后初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据有变动，收到通知，更新视图</p>
-<p>因为遍历解析的过程有多次操作dom节点，为提高性能和效率，会先将跟节点el转换成文档碎片fragment进行解析编译操作，解析完成，再将fragment添加回原来的真实dom节点中。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Compile</span>(<span class="params">el</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.$el = <span class="keyword">this</span>.isElementNode(el) ? el : <span class="built_in">document</span>.querySelector(el);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.$el) &#123;</span><br><span class="line">        <span class="keyword">this</span>.$fragment = <span class="keyword">this</span>.node2Fragment(<span class="keyword">this</span>.$el);</span><br><span class="line">        <span class="keyword">this</span>.init();</span><br><span class="line">        <span class="keyword">this</span>.$el.appendChild(<span class="keyword">this</span>.$fragment);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Compile.prototype = &#123;</span><br><span class="line">    init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">this</span>.compileElement(<span class="keyword">this</span>.$fragment); &#125;,</span><br><span class="line">    node2Fragment: <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> fragment = <span class="built_in">document</span>.createDocumentFragment(), child;</span><br><span class="line">        <span class="comment">// 将原生节点拷贝到fragment</span></span><br><span class="line">        <span class="keyword">while</span> (child = el.firstChild) &#123;</span><br><span class="line">            fragment.appendChild(child);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> fragment;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>compileElement方法将遍历所有节点及其子节点，进行扫描解析编译，调用对应的指令渲染函数进行数据渲染，并调用对应的指令更新函数进行绑定。遍历后将自己每一个元素作为一个订阅者添加到dep的数组中。</p>
-<p>在compileElement中做监听，值改变了再去改变MVVM的值。</p>
-<h1 id="watcher"><a href="#watcher" class="headerlink" title="watcher"></a>watcher</h1><p>1、在自身实例化时往属性订阅器(dep)里面添加自己</p>
-<p>2、自身必须有一个update()方法</p>
-<p>3、待属性变动dep.notice()通知时，能调用自身的update()方法，并触发Compile中绑定的回调</p>
-<p>主要作用是将元素封装成一个订阅对象，内含有updae函数，从而把自身加入到订阅器列表中作为订阅者。</p>
-
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>题目描述<br>大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。</p>
+<h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><p>这道题在剑指offer中实际是当作递归的反例来说的。</p>
+<p>递归的本质是吧一个问题分解成两个或者多个小问题，如果多个小问题存在互相重叠的情况，那么就存在重复计算。</p>
+<p>f(n) = f(n-1) +  f(n-2) 这种拆分使用递归是典型的存在重叠的情况，所以会造成非常多的重复计算。</p>
+<p>另外，每一次函数调用爱内存中都需要分配空间，每个进程的栈的容量是有限的，递归层次过多，就会造成栈溢出。</p>
+<p>递归是从最大数开始，不断拆解成小的数计算，如果不去考虑递归，我们只需要从小数开始算起，从底层不断往上累加就可以了，其实思路也很简单。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function Fibonacci(n)</span><br><span class="line">&#123;</span><br><span class="line">    if(n&lt;=1)&#123;</span><br><span class="line">        return n;</span><br><span class="line">    &#125;</span><br><span class="line">    let i = 1;</span><br><span class="line">    let pre = 0;</span><br><span class="line">    let current = 1;</span><br><span class="line">    let result = 0;</span><br><span class="line">    while(i++ &lt; n)&#123;</span><br><span class="line">        result = pre + current;</span><br><span class="line">        pre = current;</span><br><span class="line">        current = result;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><h3 id="1-跳台阶："><a href="#1-跳台阶：" class="headerlink" title="1.跳台阶："></a>1.跳台阶：</h3><p>一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。</p>
+<p>找规律：</p>
+<p>跳三级台阶等于跳两级台阶的跳法+跳一级台阶的跳法。</p>
+<p>跳四级台阶等于跳三级台阶的跳法+跳二级台阶的跳法。</p>
+<p>明显也符合斐波那契数列的规律</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function jumpFloor(n)</span><br><span class="line">&#123;</span><br><span class="line">    if(n&lt;=2)&#123;</span><br><span class="line">        return n;</span><br><span class="line">    &#125;</span><br><span class="line">    let i = 2;</span><br><span class="line">    let pre = 1;</span><br><span class="line">    let current = 2;</span><br><span class="line">    let result = 0;</span><br><span class="line">    while(i++ &lt; n)&#123;</span><br><span class="line">        result = pre + current;</span><br><span class="line">        pre = current;</span><br><span class="line">        current = result;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-矩形覆盖"><a href="#3-矩形覆盖" class="headerlink" title="3.矩形覆盖"></a>3.矩形覆盖</h3><p>我们可以用2<em>1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2</em>1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？</p>
+<p>跟上面跳台阶那个题很像。</p>
+<p>假设有8个块</p>
+<p>第1块竖着放，后面还剩7块，共f(7)种方法。</p>
+<p>第1块横着放，后面还剩6块，共f(6)种方法。</p>
+<p>即f(8)=f(6)+f(7)   </p>
+<p>f(n)=f(n-1)+f(n-2)</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/矩形覆盖.png" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function rectCover(n)</span><br><span class="line">&#123;</span><br><span class="line">    if(n&lt;=2)&#123;</span><br><span class="line">        return n;</span><br><span class="line">    &#125;</span><br><span class="line">    let i = 2;</span><br><span class="line">    let pre = 1;</span><br><span class="line">    let current = 2;</span><br><span class="line">    let result = 0;</span><br><span class="line">    while(i++ &lt; n)&#123;</span><br><span class="line">        result = pre + current;</span><br><span class="line">        pre = current;</span><br><span class="line">        current = result;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-变态跳台阶"><a href="#3-变态跳台阶" class="headerlink" title="3.变态跳台阶"></a>3.变态跳台阶</h3><p>一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</p>
+<p>每个台阶都可以选择跳或者不跳，最后一个台阶必跳。</p>
+<p>每个台阶有两种选择，n个台阶有2的n次方种选择。</p>
+<p>所以一共有2的n-1次跳法。</p>
+<p>使用位运算</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function jumpFloorII(number)</span><br><span class="line">&#123;</span><br><span class="line">    return 1&lt;&lt;(--number);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="https://www.lisq.xyz/2017/12/02/vue双向绑定浅析/" data-id="cjrhhu1gb000jro0d0epu7wmd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://www.lisq.xyz/2019/01/29/【剑指offer】8-斐波那契数列/" data-id="cjrhhu1j8004jro0d1zqz2dw5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -363,20 +371,10 @@
     
 <nav id="article-nav">
     
-        <a href="/2017/12/06/webpack小结/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">下一篇</strong>
-        <p class="article-nav-title">
-        
-            webpack使用小结
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2017/11/09/前端常见算法/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2019/01/20/【剑指offer】7-旋转数组的最小数字/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">前端常见算法</p>
+        <p class="article-nav-title">【剑指offer】7.旋转数组的最小数字</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -606,7 +604,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://www.lisq.xyz/2017/12/02/vue双向绑定浅析/';
+    var disqus_url = 'https://www.lisq.xyz/2019/01/29/【剑指offer】8-斐波那契数列/';
     
     (function() {
     var dsq = document.createElement('script');

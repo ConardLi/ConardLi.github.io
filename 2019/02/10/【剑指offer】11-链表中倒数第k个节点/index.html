@@ -6,26 +6,26 @@
     
 
     
-    <title>http总结 | 李世奇的技术专栏</title>
+    <title>【剑指offer】11.链表中倒数第k个节点 | 李世奇的技术专栏</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="网络,协议,http" />
+        <meta name="keywords" content="javascript,面试,算法,链表" />
     
-    <meta name="description" content="http协议的主要特点1、简单快速：客户向服务器请求服务时，只需传送请求方法和路径。请求方法常用的有GET、PUT、POST。每种方法规定了客户与服务器联系的类型不同。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快。 2、灵活：HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type加以标记。 3.无连接：无连接的含义是限制每次连接只处理一个请求。服务器">
-<meta name="keywords" content="网络,协议,http">
+    <meta name="description" content="题目输入一个链表，输出该链表中倒数第k个结点。 思路 简单思路： 循环到链表末尾找到 length  在找到length-k节点   需要循环两次。 优化：设定两个节点，间距相差k个节点，当前面的节点到达终点，取后面的节点。 前面的节点到达k后，后面的节点才出发。 本题目着重考察代码鲁棒性、容错率： 需要考虑head为null，k为0，k大于链表长度的情况 代码123456789101112131">
+<meta name="keywords" content="javascript,面试,算法,链表">
 <meta property="og:type" content="article">
-<meta property="og:title" content="http总结">
-<meta property="og:url" content="https://www.lisq.xyz/2018/12/07/http总结/index.html">
+<meta property="og:title" content="【剑指offer】11.链表中倒数第k个节点">
+<meta property="og:url" content="https://www.lisq.xyz/2019/02/10/【剑指offer】11-链表中倒数第k个节点/index.html">
 <meta property="og:site_name" content="李世奇的技术专栏">
-<meta property="og:description" content="http协议的主要特点1、简单快速：客户向服务器请求服务时，只需传送请求方法和路径。请求方法常用的有GET、PUT、POST。每种方法规定了客户与服务器联系的类型不同。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快。 2、灵活：HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type加以标记。 3.无连接：无连接的含义是限制每次连接只处理一个请求。服务器">
+<meta property="og:description" content="题目输入一个链表，输出该链表中倒数第k个结点。 思路 简单思路： 循环到链表末尾找到 length  在找到length-k节点   需要循环两次。 优化：设定两个节点，间距相差k个节点，当前面的节点到达终点，取后面的节点。 前面的节点到达k后，后面的节点才出发。 本题目着重考察代码鲁棒性、容错率： 需要考虑head为null，k为0，k大于链表长度的情况 代码123456789101112131">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2964446-fdfb1a8fce8de946.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&amp;_=5984001">
-<meta property="og:updated_time" content="2018-12-07T06:19:50.859Z">
+<meta property="og:image" content="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/倒数第k个节点.png">
+<meta property="og:updated_time" content="2019-02-10T02:00:37.021Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="http总结">
-<meta name="twitter:description" content="http协议的主要特点1、简单快速：客户向服务器请求服务时，只需传送请求方法和路径。请求方法常用的有GET、PUT、POST。每种方法规定了客户与服务器联系的类型不同。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快。 2、灵活：HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type加以标记。 3.无连接：无连接的含义是限制每次连接只处理一个请求。服务器">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2964446-fdfb1a8fce8de946.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&amp;_=5984001">
+<meta name="twitter:title" content="【剑指offer】11.链表中倒数第k个节点">
+<meta name="twitter:description" content="题目输入一个链表，输出该链表中倒数第k个结点。 思路 简单思路： 循环到链表末尾找到 length  在找到length-k节点   需要循环两次。 优化：设定两个节点，间距相差k个节点，当前面的节点到达终点，取后面的节点。 前面的节点到达k后，后面的节点才出发。 本题目着重考察代码鲁棒性、容错率： 需要考虑head为null，k为0，k大于链表长度的情况 代码123456789101112131">
+<meta name="twitter:image" content="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/倒数第k个节点.png">
     
 
     
@@ -144,7 +144,7 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-http总结" class="article article-single article-type-post"
+                            <article id="post-【剑指offer】11-链表中倒数第k个节点" class="article article-single article-type-post"
     itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -152,7 +152,7 @@
             
     
         <h1 class="article-title" itemprop="name">
-        http总结
+        【剑指offer】11.链表中倒数第k个节点
         </h1>
     
 
@@ -162,8 +162,8 @@
         <div class="article-meta">
             
     <div class="article-date">
-        <a href="/2018/12/07/http总结/" class="article-date">
-            <time datetime="2018-12-07T06:19:06.000Z" itemprop="datePublished">2018-12-07</time>
+        <a href="/2019/02/10/【剑指offer】11-链表中倒数第k个节点/" class="article-date">
+            <time datetime="2019-02-10T02:00:12.000Z" itemprop="datePublished">2019-02-10</time>
         </a>
     </div>
 
@@ -172,7 +172,7 @@
             
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/http/">http</a>, <a class="tag-link" href="/tags/协议/">协议</a>, <a class="tag-link" href="/tags/网络/">网络</a>
+        <a class="tag-link" href="/tags/javascript/">javascript</a>, <a class="tag-link" href="/tags/算法/">算法</a>, <a class="tag-link" href="/tags/链表/">链表</a>, <a class="tag-link" href="/tags/面试/">面试</a>
     </div>
 
             <span id="busuanzi_container_page_pv" style="position: relative;float: right;">
@@ -182,98 +182,13 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h1 id="http协议的主要特点"><a href="#http协议的主要特点" class="headerlink" title="http协议的主要特点"></a>http协议的主要特点</h1><p>1、简单快速：客户向服务器请求服务时，只需传送请求方法和路径。请求方法常用的有GET、PUT、POST。每种方法规定了客户与服务器联系的类型不同。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快。</p>
-<p>2、灵活：HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type加以标记。</p>
-<p>3.无连接：无连接的含义是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。</p>
-<p>4.无状态：HTTP协议是无状态协议。无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的应答就较快。</p>
-<h1 id="http报文的组成部分"><a href="#http报文的组成部分" class="headerlink" title="http报文的组成部分"></a>http报文的组成部分</h1><h2 id="HTTP之请求消息Request"><a href="#HTTP之请求消息Request" class="headerlink" title="HTTP之请求消息Request"></a>HTTP之请求消息Request</h2><p>客户端发送一个HTTP请求到服务器的请求消息包括以下格式：</p>
-<p>请求行（request line）、请求头部（header）、空行和请求数据四个部分组成。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2964446-fdfb1a8fce8de946.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&amp;_=5984001" alt="image"></p>
-<p>Get请求例子，使用Charles抓取的request：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GET /<span class="number">562</span>f25980001b1b106000338.jpg HTTP/<span class="number">1.1</span></span><br><span class="line">Host    img.mukewang.com</span><br><span class="line">User-Agent    Mozilla/<span class="number">5.0</span> (Windows NT <span class="number">10.0</span>; WOW64) AppleWebKit/<span class="number">537.36</span> (KHTML, like Gecko) Chrome/<span class="number">51.0</span><span class="number">.2704</span><span class="number">.106</span> Safari/<span class="number">537.36</span></span><br><span class="line">Accept    image/webp,image<span class="comment">/*,*/</span>*;q=<span class="number">0.8</span></span><br><span class="line">Referer    http:<span class="comment">//www.imooc.com/</span></span><br><span class="line">Accept-Encoding    gzip, deflate, sdch</span><br><span class="line">Accept-Language    zh-CN,zh;q=<span class="number">0.8</span></span><br></pre></td></tr></table></figure>
-<p>第一部分：请求行，用来说明请求类型,要访问的资源以及所使用的HTTP版本.</p>
-<p>GET说明请求类型为GET,[/562f25980001b1b106000338.jpg]为要访问的资源，该行的最后一部分说明使用的是HTTP1.1版本。</p>
-<p>第二部分：请求头部，紧接着请求行（即第一行）之后的部分，用来说明服务器要使用的附加信息</p>
-<p>从第二行起为请求头部，HOST将指出请求的目的地.User-Agent,服务器端和客户端脚本都能访问它,它是浏览器类型检测逻辑的重要基础.该信息由你的浏览器来定义,并且在每个请求中自动发送等等</p>
-<p>第三部分：空行，请求头部后面的空行是必须的</p>
-<p>即使第四部分的请求数据为空，也必须有空行。</p>
-<p>第四部分：请求数据也叫主体，可以添加任意的其他数据。</p>
-<p>这个例子的请求数据为空。</p>
-<p>POST请求例子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST / HTTP1<span class="number">.1</span></span><br><span class="line">Host:www.wrox.com</span><br><span class="line">User-Agent:Mozilla/<span class="number">4.0</span> (compatible; MSIE <span class="number">6.0</span>; Windows NT <span class="number">5.1</span>; SV1; .NET CLR <span class="number">2.0</span><span class="number">.50727</span>; .NET CLR <span class="number">3.0</span><span class="number">.04506</span><span class="number">.648</span>; .NET CLR <span class="number">3.5</span><span class="number">.21022</span>)</span><br><span class="line">Content-Type:application/x-www-form-urlencoded</span><br><span class="line">Content-Length:<span class="number">40</span></span><br><span class="line">Connection: Keep-Alive</span><br><span class="line"></span><br><span class="line">name=Professional%<span class="number">20</span>Ajax&amp;publisher=Wiley</span><br></pre></td></tr></table></figure>
-<p>第一部分：请求行，第一行明了是post请求，以及http1.1版本。</p>
-<p>第二部分：请求头部，第二行至第六行。</p>
-<p>第三部分：空行，第七行的空行。</p>
-<p>第四部分：请求数据，第八行。</p>
-<h2 id="HTTP之响应消息Response"><a href="#HTTP之响应消息Response" class="headerlink" title="HTTP之响应消息Response"></a>HTTP之响应消息Response</h2><p>一般情况下，服务器接收并处理客户端发过来的请求后会返回一个HTTP的响应消息。</p>
-<p>HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2964446-1c4cab46f270d8ee.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&amp;_=5984001" alt="image"></p>
-<p>例子</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Date: Fri, 22 May 2009 06:07:21 GMT</span><br><span class="line">Content-Type: text/html; charset=UTF-8</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--body goes here--&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>第一部分：状态行，由HTTP协议版本号， 状态码， 状态消息 三部分组成。</strong></p>
-<p>第一行为状态行，（HTTP/1.1）表明HTTP版本为1.1版本，状态码为200，状态消息为（ok）</p>
-<p><strong>第二部分：消息报头，用来说明客户端要使用的一些附加信息</strong></p>
-<p>第二行和第三行为消息报头，<br>Date:生成响应的日期和时间；Content-Type:指定了MIME类型的HTML(text/html),编码类型是UTF-8</p>
-<p><strong>第三部分：空行，消息报头后面的空行是必须的</strong></p>
-<p><strong>第四部分：响应正文，服务器返回给客户端的文本信息。</strong></p>
-<p>空行后面的html部分为响应正文。</p>
-<h1 id="GET和POST的区别"><a href="#GET和POST的区别" class="headerlink" title="GET和POST的区别"></a>GET和POST的区别</h1><p><strong>1.请求参数</strong></p>
-<p>GET提交，请求的数据会附在URL之后。</p>
-<p>POST提交：把提交的数据放置在是HTTP包的包体中。</p>
-<p><strong>2.传输数据大小</strong></p>
-<p>GET:特定浏览器和服务器对URL长度有限制，例如 IE对URL长度的限制是2083字节(2K+35)。对于其他浏览器，如Netscape、FireFox等，理论上没有长度限制，其限制取决于操作系 统的支持。</p>
-<p>因此对于GET提交时，传输数据就会受到URL长度的 限制。</p>
-<p>POST:由于不是通过URL传值，理论上数据不受 限。但实际各个WEB服务器会规定对post提交数据大小进行限制，Apache、IIS6都有各自的配置。</p>
-<p><strong>3.安全性</strong></p>
-<p>GET请求的参数会暴露在URL中，不能存放敏感信息</p>
-<p>GET请求会被浏览器主动缓存，POST要设置</p>
-<p><strong>4.取值</strong></p>
-<p>GET方式需要使用Request.QueryString来取得变量的值，而POST方式通过Request.Form来获取变量的值。</p>
-<h2 id="5-回退"><a href="#5-回退" class="headerlink" title="5.回退"></a>5.回退</h2><p>GET在浏览器回退时是无害的，而post会重新提交</p>
-<h2 id="6-收藏"><a href="#6-收藏" class="headerlink" title="6.收藏"></a>6.收藏</h2><p>GET产生的URL可以被收藏，POST不可以</p>
-<h2 id="7-编码"><a href="#7-编码" class="headerlink" title="7.编码"></a>7.编码</h2><p>GET只接受ASCll编码的参数，而POST不限制</p>
-<h1 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h1><p>状态代码有三位数字组成，第一个数字定义了响应的类别，共分五种类别:</p>
-<p>1xx：指示信息–表示请求已接收，继续处理</p>
-<p>2xx：成功–表示请求已被成功接收、理解、接受</p>
-<p>3xx：重定向–要完成请求必须进行更进一步的操作</p>
-<p>4xx：客户端错误–请求有语法错误或请求无法实现</p>
-<p>5xx：服务器端错误–服务器未能实现合法的请求</p>
-<p>常见状态码：</p>
-<p>200 OK //客户端请求成功</p>
-<p>206 服务端发送了一个带有range头的请求（设置请求的范围如1-10000字节），服务器完成了他。</p>
-<p>301 所请求的页面已经转移到新的url</p>
-<p>302 请求页面临时转移</p>
-<p>304  服务端告诉浏览器有缓存可以直接使用，不用在服务器中取</p>
-<p>400 Bad Request //客户端请求有语法错误，不能被服务器所理解</p>
-<p>401 Unauthorized //请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用</p>
-<p>403 Forbidden //服务器收到请求，但是拒绝提供服务（只允许服务端访问）</p>
-<p>404 Not Found //请求资源不存在，eg：输入了错误的URL</p>
-<p>500 Internal Server Error //服务器发生不可预期的错误</p>
-<p>503 Server Unavailable //服务器当前不能处理客户端的请求（服务器临时过载），一段时间后可能恢复正常</p>
-<h1 id="持久链接"><a href="#持久链接" class="headerlink" title="持久链接"></a>持久链接</h1><p>HTTP协议使用”请求-应答”模式，即非keep-active模式，每个请求应答客户和服务器都要建立一次连接，完成之后即断开连接。</p>
-<p>当时用keep-active模式（持久链接），keep-active功能使服务端到客户端的连接持久有效，当出现对服务器的后继请求时，keep-active避免了建立或重新建立连接。（1.1版本支持）</p>
-<h1 id="管线化"><a href="#管线化" class="headerlink" title="管线化"></a>管线化</h1><p>使用持久链接的情况，某个链接类似于下面的情况：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">请求<span class="number">1</span>-&gt;响应<span class="number">1</span>-&gt;请求<span class="number">2</span>-&gt;响应<span class="number">2</span></span><br></pre></td></tr></table></figure></p>
-<p>箭头代表链接一直没有中断</p>
-<p>管线化情况：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">请求<span class="number">1</span>-&gt;请求<span class="number">2</span>-&gt;响应<span class="number">1</span>-&gt;响应<span class="number">2</span></span><br></pre></td></tr></table></figure></p>
-<p>将请求打包一次请求，响应打包一次返回。</p>
-<p>特点：</p>
-<ul>
-<li>浏览器没有默认开启管线化，服务端可能不支持</li>
-<li>通过持久连接完成的，必须要求1.1</li>
-<li>只有GET请求可以实现管线化，post有所限制</li>
-</ul>
-<h1 id="https"><a href="#https" class="headerlink" title="https"></a>https</h1><p>http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。</p>
-<p>HTTPS可以理解为HTTP+TLS,TLS是传输层加密协议</p>
-<p>https是在客户端和服务器端通信的过程中加密数据的.</p>
-<p>使用 https 可以有效防止别人使用抓包工具获得你的报文的信息，因为 https 在通信的时候是加密的，http 直接抓包就能获得明文信息。而使用 https 获得的是一串乱码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">大概过程，（实际过程更复杂）：</span><br><span class="line"></span><br><span class="line">     1.  你访问HTTPS网站，网站把公钥给你。</span><br><span class="line"></span><br><span class="line">     2. 你验证公钥，然后生成一个串随机AES_128密码（假如是用AES加密），并把这个密码用刚才那个公钥加密，发给服务端。</span><br><span class="line"></span><br><span class="line">     3. 服务端用私钥解密你的发送的数据，得到你随机生成的AES_128密码，并把网页内容全部用AES_128加密器起来，发会给你。</span><br><span class="line"></span><br><span class="line">    4. 浏览器用刚刚的AES_128密码解密 服务器返回的数据，得到你可读的内容。</span><br><span class="line"></span><br><span class="line">    5. 之后你发出的请求数据，也是用AES_128密码来加密。</span><br></pre></td></tr></table></figure>
-<h1 id="版本迭代"><a href="#版本迭代" class="headerlink" title="版本迭代"></a>版本迭代</h1><p><strong>HTTP/1.1</strong></p>
-<p>HTTP协议的第三个版本是HTTP/1.1，是目前使用最广泛的协议版本。HTTP/1.1是目前主流的HTTP协议版本，相对于HTTP/1.0新增了以下内容：</p>
-<p>HTTP 1.1支持长连接和请求的流水线）处理，在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟，在HTTP1.1中默认开启Connection：keep-alive，一定程度上弥补了HTTP1.0每次请求都要创建连接的缺点。</p>
-<p>多了一些缓存处理字段 HTTP/1.1在1.0的基础上加入了一些cache的新特性</p>
-<p><strong>HTTP/2.0</strong></p>
-<p>头部压缩  HTTP/1.1 的首部带有大量信息，而且每次都要重复发送。HTTP/2.0 要求通讯双方各自缓存一份首部字段表，从而避免了重复传输。</p>
-<p>服务端推送   服务端推送能把客户端所需要的资源伴随着index.html一起发送到客户端，省去了客户端重复请求的步骤。正因为没有发起请求，建立连接等操作，所以静态资源通过服务端推送的方式可以极大地提升速度。</p>
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>输入一个链表，输出该链表中倒数第k个结点。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/倒数第k个节点.png" alt="image"></p>
+<p>简单思路： 循环到链表末尾找到 length  在找到length-k节点   需要循环两次。</p>
+<p>优化：设定两个节点，间距相差k个节点，当前面的节点到达终点，取后面的节点。</p>
+<p>前面的节点到达k后，后面的节点才出发。</p>
+<p>本题目着重考察代码鲁棒性、容错率： 需要考虑head为null，k为0，k大于链表长度的情况</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function FindKthToTail(head, k) &#123;</span><br><span class="line">  if (!head || !k) return null;</span><br><span class="line">  let front = head;</span><br><span class="line">  let behind = head;</span><br><span class="line">  let index = 1;</span><br><span class="line">  while (front.next) &#123;</span><br><span class="line">    index++;</span><br><span class="line">    front = front.next;</span><br><span class="line">    if (index &gt; k) &#123;</span><br><span class="line">      behind = behind.next;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return (k &lt;= index) &amp;&amp; behind;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
         <footer class="article-footer">
@@ -281,7 +196,7 @@
 
 
 
-    <a data-url="https://www.lisq.xyz/2018/12/07/http总结/" data-id="cjry9hwgb000lm00dwwwwzkkr" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://www.lisq.xyz/2019/02/10/【剑指offer】11-链表中倒数第k个节点/" data-id="cjry9hwhc001vm00dpf9xsve1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -436,20 +351,10 @@
     
 <nav id="article-nav">
     
-        <a href="/2018/12/08/TCP总结/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">下一篇</strong>
-        <p class="article-nav-title">
-        
-            TCP总结
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2018/11/27/react中key的正确使用方式/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2019/02/06/【剑指offer】10-程序的完整性/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">react中key的正确使用方式</p>
+        <p class="article-nav-title">【剑指offer】10.程序的完整性</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -679,7 +584,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://www.lisq.xyz/2018/12/07/http总结/';
+    var disqus_url = 'https://www.lisq.xyz/2019/02/10/【剑指offer】11-链表中倒数第k个节点/';
     
     (function() {
     var dsq = document.createElement('script');

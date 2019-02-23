@@ -12,19 +12,19 @@
     
         <meta name="keywords" content="" />
     
-    <meta name="description" content="!()[https://cdn.pixabay.com/photo/2017/01/04/13/57/wine-1952051_960_720.jpg] 一.几个开发中经常会遇到的问题以下几个问题是我们在实际开发中经常会遇到的场景，下面用几个简单的示例代码来还原一下。 1.setState是同步还是异步的，为什么有的时候不能立即拿到更新结果而有的时候可以?1.1 钩子函数和React合成事件中的s">
+    <meta name="description" content="一.几个开发中经常会遇到的问题以下几个问题是我们在实际开发中经常会遇到的场景，下面用几个简单的示例代码来还原一下。 1.setState是同步还是异步的，为什么有的时候不能立即拿到更新结果而有的时候可以?1.1 钩子函数和React合成事件中的setState现在有两个组件 123456789101112componentDidMount() &amp;#123;  console.log(&apos;paren">
 <meta property="og:type" content="article">
 <meta property="og:title" content="由实际问题探究setState的执行机制">
 <meta property="og:url" content="https://www.lisq.xyz/2019/02/23/由实际问题探究setState的执行机制/index.html">
 <meta property="og:site_name" content="李世奇的技术专栏">
-<meta property="og:description" content="!()[https://cdn.pixabay.com/photo/2017/01/04/13/57/wine-1952051_960_720.jpg] 一.几个开发中经常会遇到的问题以下几个问题是我们在实际开发中经常会遇到的场景，下面用几个简单的示例代码来还原一下。 1.setState是同步还是异步的，为什么有的时候不能立即拿到更新结果而有的时候可以?1.1 钩子函数和React合成事件中的s">
+<meta property="og:description" content="一.几个开发中经常会遇到的问题以下几个问题是我们在实际开发中经常会遇到的场景，下面用几个简单的示例代码来还原一下。 1.setState是同步还是异步的，为什么有的时候不能立即拿到更新结果而有的时候可以?1.1 钩子函数和React合成事件中的setState现在有两个组件 123456789101112componentDidMount() &amp;#123;  console.log(&apos;paren">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/2/23/169197bbda942d55?w=332&amp;h=337&amp;f=png&amp;s=37749">
-<meta property="og:updated_time" content="2019-02-23T11:27:38.445Z">
+<meta property="og:image" content="https://cdn.pixabay.com/photo/2017/01/04/13/57/wine-1952051_960_720.jpg">
+<meta property="og:updated_time" content="2019-02-23T11:31:22.379Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="由实际问题探究setState的执行机制">
-<meta name="twitter:description" content="!()[https://cdn.pixabay.com/photo/2017/01/04/13/57/wine-1952051_960_720.jpg] 一.几个开发中经常会遇到的问题以下几个问题是我们在实际开发中经常会遇到的场景，下面用几个简单的示例代码来还原一下。 1.setState是同步还是异步的，为什么有的时候不能立即拿到更新结果而有的时候可以?1.1 钩子函数和React合成事件中的s">
-<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/2/23/169197bbda942d55?w=332&amp;h=337&amp;f=png&amp;s=37749">
+<meta name="twitter:description" content="一.几个开发中经常会遇到的问题以下几个问题是我们在实际开发中经常会遇到的场景，下面用几个简单的示例代码来还原一下。 1.setState是同步还是异步的，为什么有的时候不能立即拿到更新结果而有的时候可以?1.1 钩子函数和React合成事件中的setState现在有两个组件 123456789101112componentDidMount() &amp;#123;  console.log(&apos;paren">
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2017/01/04/13/57/wine-1952051_960_720.jpg">
     
 
     
@@ -176,7 +176,7 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p>!()[<a href="https://cdn.pixabay.com/photo/2017/01/04/13/57/wine-1952051_960_720.jpg]" target="_blank" rel="noopener">https://cdn.pixabay.com/photo/2017/01/04/13/57/wine-1952051_960_720.jpg]</a></p>
+            <p><img src="https://cdn.pixabay.com/photo/2017/01/04/13/57/wine-1952051_960_720.jpg" alt=""></p>
 <h1 id="一-几个开发中经常会遇到的问题"><a href="#一-几个开发中经常会遇到的问题" class="headerlink" title="一.几个开发中经常会遇到的问题"></a>一.几个开发中经常会遇到的问题</h1><p>以下几个问题是我们在实际开发中经常会遇到的场景，下面用几个简单的示例代码来还原一下。</p>
 <h2 id="1-setState是同步还是异步的，为什么有的时候不能立即拿到更新结果而有的时候可以"><a href="#1-setState是同步还是异步的，为什么有的时候不能立即拿到更新结果而有的时候可以" class="headerlink" title="1.setState是同步还是异步的，为什么有的时候不能立即拿到更新结果而有的时候可以?"></a>1.setState是同步还是异步的，为什么有的时候不能立即拿到更新结果而有的时候可以?</h2><h3 id="1-1-钩子函数和React合成事件中的setState"><a href="#1-1-钩子函数和React合成事件中的setState" class="headerlink" title="1.1 钩子函数和React合成事件中的setState"></a>1.1 钩子函数和React合成事件中的<code>setState</code></h3><p>现在有两个组件</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount() &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'parent componentDidMount'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">render() &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;SetState2&gt;<span class="xml"><span class="tag">&lt;/<span class="name">SetState2</span>&gt;</span></span></span><br><span class="line">      &lt;SetState&gt;<span class="xml"><span class="tag">&lt;/<span class="name">SetState</span>&gt;</span></span></span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
@@ -260,7 +260,7 @@
 
 
 
-    <a data-url="https://www.lisq.xyz/2019/02/23/由实际问题探究setState的执行机制/" data-id="cjshehb23005vtx0du080wyx0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://www.lisq.xyz/2019/02/23/由实际问题探究setState的执行机制/" data-id="cjshem9ac0039xf0ddj1uhklk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -454,7 +454,7 @@
                             <a href="/2019/02/23/由实际问题探究setState的执行机制/" class="thumbnail">
     
     
-        <span style="background-image:url(https://user-gold-cdn.xitu.io/2019/2/23/169197bbda942d55?w=332&amp;h=337&amp;f=png&amp;s=37749)" alt="由实际问题探究setState的执行机制" class="thumbnail-image"></span>
+        <span style="background-image:url(https://cdn.pixabay.com/photo/2017/01/04/13/57/wine-1952051_960_720.jpg)" alt="由实际问题探究setState的执行机制" class="thumbnail-image"></span>
     
     
 </a>

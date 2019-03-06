@@ -317,58 +317,6 @@
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2019/02/23/由实际问题探究setState的执行机制/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://cdn.pixabay.com/photo/2017/01/04/13/57/wine-1952051_960_720.jpg)" alt="由实际问题探究setState的执行机制" class="thumbnail-image"></span>
-    
-    
-        
-<span class="">
-    <i class="fa fa-comments-o"></i>
-    
-    <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://www.lisq.xyz/2019/02/23/由实际问题探究setState的执行机制/">0</span>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            
-            </div>
-            <div class="date"><time datetime="2019-02-23T11:18:57.000Z" itemprop="datePublished">2019-02-23</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2019/02/23/由实际问题探究setState的执行机制/">由实际问题探究setState的执行机制</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            
-一.几个开发中经常会遇到的问题以下几个问题是我们在实际开发中经常会遇到的场景，下面用几个简单的示例代码来还原一下。
-1.setState是同步还是异步的，为什么有的时候不能立即拿到更新结果而有的时候可以?1.1 钩子函数和React合成事件中的setState现在有两个组件
-123456789101112componentDidMount() &#123;  console.log('paren
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
         <a href="/2019/02/19/【剑指offer】12-合并两个有序链表/" class="thumbnail">
     
     
@@ -413,10 +361,14 @@
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -464,14 +416,10 @@
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -519,10 +467,14 @@ base为0的情况。
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -570,14 +522,10 @@ base为0的情况。
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -623,10 +571,14 @@ f(n) = f(n-1) +  f(n-2) 这种拆分使用递归是典型的存在重叠的情�
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -667,6 +619,60 @@ f(n) = f(n-1) +  f(n-2) 这种拆分使用递归是典型的存在重叠的情�
 题目把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。
 基本思路肯定不能直接遍历，失去了这道题的意义
 旋转数组其实是由两个有序数组拼接而成的，因此我们可以使用二分法，只需要
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2019/01/19/【剑指offer】6-用两个栈实现队列/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/queue.png)" alt="【剑指offer】6.用两个栈实现队列" class="thumbnail-image"></span>
+    
+    
+        
+<span class="">
+    <i class="fa fa-comments-o"></i>
+    
+    <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://www.lisq.xyz/2019/01/19/【剑指offer】6-用两个栈实现队列/">0</span>
+    
+</span>
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            
+            </div>
+            <div class="date"><time datetime="2019-01-19T14:50:47.000Z" itemprop="datePublished">2019-01-19</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2019/01/19/【剑指offer】6-用两个栈实现队列/">【剑指offer】6.用两个栈实现队列</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            题目用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。
+基本思路栈1:
+用于入队列存储
+栈2:
+出队列时将栈1的数据依次出栈，并入栈到栈2中
+栈2出栈即栈1的底部数据即队列要出的数据。
+注意:
+栈2为空才能补充栈1的数据，否则会打乱当前的顺序。
+
+代码12345678910111213141516const stack1 = [];const stack2 = [
         </p>
     </div>
 </article>
@@ -836,26 +842,6 @@ f(n) = f(n-1) +  f(n-2) 这种拆分使用递归是典型的存在重叠的情�
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2019/02/23/由实际问题探究setState的执行机制/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://cdn.pixabay.com/photo/2017/01/04/13/57/wine-1952051_960_720.jpg)" alt="由实际问题探究setState的执行机制" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2019/02/23/由实际问题探究setState的执行机制/" class="title">由实际问题探究setState的执行机制</a></p>
-                            <p class="item-date"><time datetime="2019-02-23T11:18:57.000Z" itemprop="datePublished">2019-02-23</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
                             <a href="/2019/02/19/【剑指offer】12-合并两个有序链表/" class="thumbnail">
     
     
@@ -870,6 +856,26 @@ f(n) = f(n-1) +  f(n-2) 这种拆分使用递归是典型的存在重叠的情�
                             <p class="item-category"></p>
                             <p class="item-title"><a href="/2019/02/19/【剑指offer】12-合并两个有序链表/" class="title">【剑指offer】12.合并两个有序链表</a></p>
                             <p class="item-date"><time datetime="2019-02-19T10:52:12.000Z" itemprop="datePublished">2019-02-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/10/【剑指offer】11-链表中倒数第k个节点/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/倒数第k个节点.png)" alt="【剑指offer】11.链表中倒数第k个节点" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/10/【剑指offer】11-链表中倒数第k个节点/" class="title">【剑指offer】11.链表中倒数第k个节点</a></p>
+                            <p class="item-date"><time datetime="2019-02-10T02:00:12.000Z" itemprop="datePublished">2019-02-10</time></p>
                         </div>
                     </li>
                 
@@ -894,7 +900,7 @@ f(n) = f(n-1) +  f(n-2) 这种拆分使用递归是典型的存在重叠的情�
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 

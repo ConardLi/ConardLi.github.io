@@ -23,6 +23,7 @@
 - [前端性能优化总结](https://www.lisq.xyz/2018/12/28/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/)
 - [前端安全性浅析](https://www.lisq.xyz/2018/12/30/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8%E6%80%A7%E6%B5%85%E6%9E%90/)
 - [es6学习记录](https://www.lisq.xyz/2019/01/01/es6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/)
+- [一个函数让你看懂 Why 0.1+0.2!=0.3](https://www.lisq.xyz/2019/03/06/%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E8%AE%A9%E4%BD%A0%E7%9C%8B%E6%87%82-Why-0-1-0-2-0-3/)
 
 ## 前端面试总结
 
@@ -61,6 +62,8 @@
 - [vue双向绑定浅析](https://www.lisq.xyz/2017/12/02/vue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E6%B5%85%E6%9E%90/)
 
 ## react
+- [【React深入】setState的执行机制](https://www.lisq.xyz/2019/03/06/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91setState%E7%9A%84%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/)
+- [【React深入】React事件机制](https://www.lisq.xyz/2019/03/06/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91setState%E7%9A%84%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/)
 - [react中key的正确使用方式/](https://www.lisq.xyz/2018/11/27/react%E4%B8%ADkey%E7%9A%84%E6%AD%A3%E7%A1%AE%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F/)
 
 ## 打包工具

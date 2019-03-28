@@ -1,9 +1,10 @@
 # 关于博客
 
-这里是`ConardLi`写博客的地方，您也可以在下面的地方关注我。
+这里是`ConardLi`写博客的地方，您还可以在下面的地方关注我。
+
 
 <a href="https://juejin.im/user/5bea27965188250edf4ad8b7" >
-  <img src="./img/juejin.png"  width="250px" height="150px" /> 
+  <img src="./img/juejin.png"  width="220px" height="110px" /> 
 </a>
 
 <a href="https://segmentfault.com/u/conardli" class="item" >
@@ -28,6 +29,9 @@
 
 重新写作中...
 
+- [深入分析前端小数计算问题]()
+
+
 ## React
 - [【React深入】setState的执行机制](https://www.lisq.xyz/2019/03/06/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91setState%E7%9A%84%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/)
 - [【React深入】React事件机制](https://www.lisq.xyz/2019/03/06/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91setState%E7%9A%84%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/)
@@ -35,22 +39,26 @@
 
 ## 浏览器和网络
 
-- [前端开发者必备的nginx知识]()
+- [全面分析前端的网络请求方式]()
+
 
 ## 前端工程
 
-- [全面分析前端的网络请求方式]()
+- [前端开发者必备的nginx知识](https://www.lisq.xyz/2019/03/12/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%80%85%E5%BF%85%E5%A4%87%E7%9A%84nginx%E7%9F%A5%E8%AF%86/)
 - webpack从原理到使用
 - 深入理解git
 - React PC 脚手架工程搭建
 - React Native PC 脚手架工程搭建
 
+## 性能优化
+
+- [前端性能优化总结]()
 
 ## electron
 
-- [electron程序保护措施（崩溃监控，开机自启，托盘关闭）](https://www.lisq.xyz/2018/11/07/electron%E7%A8%8B%E5%BA%8F%E4%BF%9D%E6%8A%A4%E6%8E%AA%E6%96%BD%EF%BC%88%E5%B4%A9%E6%BA%83%E7%9B%91%E6%8E%A7%EF%BC%8C%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%EF%BC%8C%E6%89%98%E7%9B%98%E5%85%B3%E9%97%AD%EF%BC%89/)
-- [使用electron静默打印](https://www.lisq.xyz/2018/11/01/%E4%BD%BF%E7%94%A8electron%E9%9D%99%E9%BB%98%E6%89%93%E5%8D%B0/)
-- [指令控制 windows 电源选项](https://www.lisq.xyz/2018/12/17/%E6%8C%87%E4%BB%A4%E6%8E%A7%E5%88%B6-windows-%E7%94%B5%E6%BA%90%E9%80%89%E9%A1%B9/)
+- [【electron】程序保护措施（崩溃监控，开机自启，托盘关闭）](https://www.lisq.xyz/2018/11/07/electron%E7%A8%8B%E5%BA%8F%E4%BF%9D%E6%8A%A4%E6%8E%AA%E6%96%BD%EF%BC%88%E5%B4%A9%E6%BA%83%E7%9B%91%E6%8E%A7%EF%BC%8C%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%EF%BC%8C%E6%89%98%E7%9B%98%E5%85%B3%E9%97%AD%EF%BC%89/)
+- [【electron】使用electron静默打印](https://www.lisq.xyz/2018/11/01/%E4%BD%BF%E7%94%A8electron%E9%9D%99%E9%BB%98%E6%89%93%E5%8D%B0/)
+- [【electron】指令控制 windows 电源选项](https://www.lisq.xyz/2018/12/17/%E6%8C%87%E4%BB%A4%E6%8E%A7%E5%88%B6-windows-%E7%94%B5%E6%BA%90%E9%80%89%E9%A1%B9/)
 
 
 ## 算法和数据结构

@@ -111,11 +111,6 @@ const array = [
                 title: '站长统计'
             },
             {
-                url: 'http://218.241.135.34:88/',
-                img: 'cnzz',
-                title: 'gitstar'
-            },
-            {
                 url: 'https://wux-weapp.github.io/wux-weapp-docs/#/quickstart',
                 img: 'cnzz',
                 title: 'wux ui'
@@ -184,16 +179,6 @@ const array = [
                 url: 'https://www.google.com/?hl=zh_cn',
                 img: 'geogle',
                 title: 'geogle'
-            }
-        ]
-    },
-    {
-        name: '阅读收藏',
-        data: [
-            {
-                url: 'https://github.com/mqyqingfeng/Blog',
-                img: 'yayu',
-                title: '冴羽'
             }
         ]
     }

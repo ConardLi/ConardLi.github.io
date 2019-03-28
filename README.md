@@ -2,26 +2,21 @@
 
 这里是`ConardLi`写博客的地方，您也可以在下面的地方关注我。
 
-<a href="https://juejin.im/user/5bea27965188250edf4ad8b7" class="item" >
-  <img src="./img/juejin.png" class="icon" />
-  <span class="title">
-     掘金
-  </span>
+<a href="https://juejin.im/user/5bea27965188250edf4ad8b7" >
+  <img src="./img/juejin.png"  width:"150px" height:"150px" />
 </a>
 
 <a href="https://segmentfault.com/u/conardli" class="item" >
-  <img src="./img/segmentfault.jpg" class="icon" />
-  <span class="title">
-     segmentfault
-  </span>
+  <img src="./img/segmentfault.jpg" width:"150px" height:"150px" />
 </a>
 
 <a href="https://mp.weixin.qq.com/s/dYZEHTgqvxGV7mL99JuxRQ" class="item" >
-  <img src="./img/gongzhonghao.png" class="icon" />
+  <img src="./img/gongzhonghao.png" width:"150"  height:"150" />
   <span class="title">
      微信公众号
   </span>
 </a>
+
 
 
 博客使用`hexo + github Page`搭建，主题使用了`hueman`。
@@ -114,19 +109,8 @@
 
 
 <style>
-.item {
-  text-align: center;
-  font-size: 14px;
-  width: 200px;
-  color: white;
-  font-weight: 600;
-  border: 1px solid white;
-  border-radius: 10px;
-  padding: 10px 0px;
-  display: inline-block;
-  margin: 20px;
-  transition: box-shadow 0.5s, background-color 0.5s;
-  background-color: rgba(63, 63, 63, 0.233);
+  
+.item {text-align: center;font-size: 14px;width: 200px;color: white;font-weight: 600;border: 1px solid white;border-radius: 10px;padding: 10px 0px;display: inline-block;margin: 20px;transition: box-shadow 0.5s, background-color 0.5s;background-color: rgba(63, 63, 63, 0.233);
 }
 .icon {
   height: 160px;
@@ -167,5 +151,4 @@
     height: 260px;
    width: 260px;
 }
-
 </style>

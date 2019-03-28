@@ -3,18 +3,15 @@
 这里是`ConardLi`写博客的地方，您也可以在下面的地方关注我。
 
 <a href="https://juejin.im/user/5bea27965188250edf4ad8b7" >
-  <img src="./img/juejin.png"  width:"150px" height:"150px" />
+  <img src="./img/juejin.png"  width="250px" height="150px" /> 
 </a>
 
 <a href="https://segmentfault.com/u/conardli" class="item" >
-  <img src="./img/segmentfault.jpg" width:"150px" height:"150px" />
+  <img src="./img/segmentfault.jpg" width="150px" height="150px" />
 </a>
 
 <a href="https://mp.weixin.qq.com/s/dYZEHTgqvxGV7mL99JuxRQ" class="item" >
-  <img src="./img/gongzhonghao.png" width:"150"  height:"150" />
-  <span class="title">
-     微信公众号
-  </span>
+  <img src="./img/gongzhonghao.png" width="150"  height="150" />
 </a>
 
 
@@ -64,27 +61,11 @@
 
 # 友情链接
 
-<a href="https://github.com/ConardLi/tpanorama" class="item item2" >
-  <img src="./img/tpanorama.jpg" class="icon icon2" />
-  <span class="title title2">
-     tpanorama
-  </span>
-</a>
+- [tpanorama](https://github.com/ConardLi/tpanorama)
 
-<a href="https://github.com/ConardLi/electron-react" class="item item2" >
-  <img src="./img/electron.png" class="icon icon2" />
-  <span class="title title2">
-     electron-react
-  </span>
-</a>
+- [electron-react](https://github.com/ConardLi/electron-react)
 
-<a href="https://github.com/ConardLi/30-seconds-of-code-Zh-CN" class="item item2" >
-  <img src="./img/30second.png" class="icon icon2" />
-  <span class="title title2">
-     30second
-  </span>
-</a>
-
+- [30-seconds-of-code-Zh-CN](https://github.com/ConardLi/30-seconds-of-code-Zh-CN)
 
 
 
@@ -104,51 +85,4 @@
 
 每日推送精品文章，免费领取大量资料教程。
 
- <img src="./img/gongzhonghao.png" class="bottomIcon" />
-
-
-
-<style>
-  
-.item {text-align: center;font-size: 14px;width: 200px;color: white;font-weight: 600;border: 1px solid white;border-radius: 10px;padding: 10px 0px;display: inline-block;margin: 20px;transition: box-shadow 0.5s, background-color 0.5s;background-color: rgba(63, 63, 63, 0.233);
-}
-.icon {
-  height: 160px;
-  width: 160px;
-  transition: transform 0.8s;
-}
-
-.title {
-  display: block;
-  font-size:20px;
-  color:#81cdc1;
-}
-
-.item2 {
-  width: 100px;
-}
-.icon2 {
-  height: 60px;
-  width: 60px;
-  transition: transform 0.8s;
-}
-
-.title2 {
-  display: block;
-  font-size:14px;
-}
-
-.item:hover>.icon {
-  transform: rotate(720deg);
-}
-
-.item:hover {
-  box-shadow: 0 0 20px rgb(243, 255, 68);
-  background-color: rgba(170, 169, 169, 0.233);
-}
-
-.bottomIcon{
-    height: 260px;
-   width: 260px;
-}
-</style>
+ <img src="./img/gongzhonghao.png"  width="250"  height="250" />

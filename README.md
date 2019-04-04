@@ -21,7 +21,7 @@
 - [个人博客搭建及配置总结](https://www.lisq.xyz/2018/01/01/%E3%80%90%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E3%80%91%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE/)
 
 
-## JavaScript深入
+## JavaScript
 
 - 变量和类型计算
 - 原型和原型链
@@ -36,6 +36,11 @@
 - [【React深入】react中key的正确使用方式](https://www.lisq.xyz/2018/11/27/react%E4%B8%ADkey%E7%9A%84%E6%AD%A3%E7%A1%AE%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F/)
 - 【React深入】从Mixin到HOC再到Hooks
 
+## CSS
+
+- 选择器
+- 动画相关
+
 ## 浏览器和网络
 
 - 前端开发者必备的网络基础
@@ -47,6 +52,7 @@
 ## 前端工程
 
 - [前端开发者必备的nginx知识](https://www.lisq.xyz/2019/03/12/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%80%85%E5%BF%85%E5%A4%87%E7%9A%84nginx%E7%9F%A5%E8%AF%86/)
+- bebel从原理到使用
 - webpack从原理到使用
 - 深入理解git
 - React PC 脚手架工程搭建

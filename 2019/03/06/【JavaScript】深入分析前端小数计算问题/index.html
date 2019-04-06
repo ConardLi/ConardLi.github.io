@@ -21,7 +21,7 @@
 <meta property="og:description" content="话不多说，先上代码12345678910111213141516171819202122232425262728function judgeFloat(n, m) &amp;#123;  const binaryN = n.toString(2);  const binaryM = m.toString(2);  console.log(`$&amp;#123;n&amp;#125;的二进制是    $&amp;#123;bi">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.lisq.xyz/img/4.jpg">
-<meta property="og:updated_time" content="2019-03-28T13:03:34.819Z">
+<meta property="og:updated_time" content="2019-04-06T05:28:05.940Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入分析前端小数计算问题">
 <meta name="twitter:description" content="话不多说，先上代码12345678910111213141516171819202122232425262728function judgeFloat(n, m) &amp;#123;  const binaryN = n.toString(2);  const binaryM = m.toString(2);  console.log(`$&amp;#123;n&amp;#125;的二进制是    $&amp;#123;bi">
@@ -186,7 +186,7 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p><img src="https://www.lisq.xyz/img/4.jpg" alt="image"></p>
+            <p><img src="/img/4.jpg" alt="image"></p>
 <h1 id="话不多说，先上代码"><a href="#话不多说，先上代码" class="headerlink" title="话不多说，先上代码"></a>话不多说，先上代码</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">judgeFloat</span>(<span class="params">n, m</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> binaryN = n.toString(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">const</span> binaryM = m.toString(<span class="number">2</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;n&#125;</span>的二进制是    <span class="subst">$&#123;binaryN&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;m&#125;</span>的二进制是    <span class="subst">$&#123;binaryM&#125;</span>`</span>);</span><br><span class="line">  <span class="keyword">const</span> MN = m + n;</span><br><span class="line">  <span class="keyword">const</span> accuracyMN = (m * <span class="number">100</span> + n * <span class="number">100</span>) / <span class="number">100</span>;</span><br><span class="line">  <span class="keyword">const</span> binaryMN = MN.toString(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">const</span> accuracyBinaryMN = accuracyMN.toString(<span class="number">2</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;n&#125;</span>+<span class="subst">$&#123;m&#125;</span>的二进制是<span class="subst">$&#123;binaryMN&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;accuracyMN&#125;</span>的二进制是    <span class="subst">$&#123;accuracyBinaryMN&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;n&#125;</span>+<span class="subst">$&#123;m&#125;</span>的二进制再转成十进制是<span class="subst">$&#123;to10(binaryMN)&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;accuracyMN&#125;</span>的二进制是再转成十进制是<span class="subst">$&#123;to10(accuracyBinaryMN)&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;n&#125;</span>+<span class="subst">$&#123;m&#125;</span>在js中计算是<span class="subst">$&#123;(to10(binaryMN) === to10(accuracyBinaryMN)) ? <span class="string">''</span> : <span class="string">'不'</span>&#125;</span>准确的`</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">to10</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> pre = (n.split(<span class="string">'.'</span>)[<span class="number">0</span>] - <span class="number">0</span>).toString(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">const</span> arr = n.split(<span class="string">'.'</span>)[<span class="number">1</span>].split(<span class="string">''</span>);</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (i &lt; arr.length) &#123;</span><br><span class="line">    result += arr[i] * <span class="built_in">Math</span>.pow(<span class="number">2</span>, -(i + <span class="number">1</span>));</span><br><span class="line">    i++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line">judgeFloat(<span class="number">0.1</span>, <span class="number">0.2</span>);</span><br><span class="line">judgeFloat(<span class="number">0.6</span>, <span class="number">0.7</span>);</span><br></pre></td></tr></table></figure>
 <p>由于<code>JavaScript</code>中没有将小数的<code>二进制</code>转换成<code>十进制</code>的方法，于是手动实现了一个。</p>
 <p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/二进制3.png" alt="image"></p>
@@ -286,7 +286,7 @@
 
 
 
-    <a data-url="https://www.lisq.xyz/2019/03/06/【JavaScript】深入分析前端小数计算问题/" data-id="cju51hhbe0001070dm0z8walh" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://www.lisq.xyz/2019/03/06/【JavaScript】深入分析前端小数计算问题/" data-id="cju525so900027e0dhycsm7oy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -490,7 +490,7 @@
                             <a href="/2019/03/28/【浏览器和网络】全面分析前端的网络请求方式/" class="thumbnail">
     
     
-        <span style="background-image:url(/img/10.jpg)" alt="全面分析前端的网络请求方式" class="thumbnail-image"></span>
+        <span style="background-image:url(/img/network.jpg)" alt="全面分析前端的网络请求方式" class="thumbnail-image"></span>
     
     
 </a>
@@ -510,7 +510,7 @@
                             <a href="/2019/03/12/【前端工程】前端开发者必备的nginx知识/" class="thumbnail">
     
     
-        <span style="background-image:url(https://www.lisq.xyz/img/8.jpg)" alt="前端开发者必备的nginx知识" class="thumbnail-image"></span>
+        <span style="background-image:url(/img/nginx.jpg)" alt="前端开发者必备的nginx知识" class="thumbnail-image"></span>
     
     
 </a>
@@ -530,7 +530,7 @@
                             <a href="/2019/03/06/【JavaScript】深入分析前端小数计算问题/" class="thumbnail">
     
     
-        <span style="background-image:url(https://www.lisq.xyz/img/4.jpg)" alt="深入分析前端小数计算问题" class="thumbnail-image"></span>
+        <span style="background-image:url(/img/4.jpg)" alt="深入分析前端小数计算问题" class="thumbnail-image"></span>
     
     
 </a>
@@ -550,7 +550,7 @@
                             <a href="/2019/03/06/【React深入】React事件机制/" class="thumbnail">
     
     
-        <span style="background-image:url(https://www.lisq.xyz/img/reactevent.jpg)" alt="【React深入】React事件机制" class="thumbnail-image"></span>
+        <span style="background-image:url(/img/reactevent.jpg)" alt="【React深入】React事件机制" class="thumbnail-image"></span>
     
     
 </a>
@@ -570,7 +570,7 @@
                             <a href="/2019/03/06/【React深入】setState的执行机制/" class="thumbnail">
     
     
-        <span style="background-image:url(https://www.lisq.xyz/img/7.jpg)" alt="【React深入】setState的执行机制" class="thumbnail-image"></span>
+        <span style="background-image:url(/img/setstate.jpg)" alt="【React深入】setState的执行机制" class="thumbnail-image"></span>
     
     
 </a>

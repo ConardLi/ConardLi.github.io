@@ -23,18 +23,18 @@
 
 ## JavaScript
 
-- 变量和类型计算
-- 原型和原型链
-- 作用域和闭包
-- 代码执行机制
+- 1.变量和类型计算
+- 2.原型和原型链
+- 3.作用域和闭包
+- 4.代码执行机制
 - [深入分析前端小数计算问题](https://www.lisq.xyz/2019/03/06/%E3%80%90JavaScript%E3%80%91%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90%E5%89%8D%E7%AB%AF%E5%B0%8F%E6%95%B0%E8%AE%A1%E7%AE%97%E9%97%AE%E9%A2%98/)
 
 
 ## React
-- [【React深入】setState的执行机制](https://www.lisq.xyz/2019/03/06/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91setState%E7%9A%84%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/)
-- [【React深入】React事件机制](https://www.lisq.xyz/2019/03/06/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91setState%E7%9A%84%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/)
-- [【React深入】react中key的正确使用方式](https://www.lisq.xyz/2018/11/27/react%E4%B8%ADkey%E7%9A%84%E6%AD%A3%E7%A1%AE%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F/)
-- 【React深入】从Mixin到HOC再到Hooks
+- 1.[【React深入】setState的执行机制](https://www.lisq.xyz/2019/03/06/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91setState%E7%9A%84%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/)
+- 2.[【React深入】React事件机制](https://www.lisq.xyz/2019/03/06/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91setState%E7%9A%84%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/)
+- 3.[【React深入】react中key的正确使用方式](https://www.lisq.xyz/2018/11/27/react%E4%B8%ADkey%E7%9A%84%E6%AD%A3%E7%A1%AE%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F/)
+- 4.[【React深入】从Mixin到HOC再到Hooks](https://www.lisq.xyz/2019/04/09/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91%E4%BB%8EMixin%E5%88%B0HOC%E5%86%8D%E5%88%B0Hook/)
 
 ## CSS
 

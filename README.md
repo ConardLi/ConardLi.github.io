@@ -27,7 +27,7 @@
 - 2.原型和原型链
 - 3.作用域和闭包
 - 4.代码执行机制
-- [深入分析前端小数计算问题](https://www.lisq.xyz/2019/03/06/%E3%80%90JavaScript%E3%80%91%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90%E5%89%8D%E7%AB%AF%E5%B0%8F%E6%95%B0%E8%AE%A1%E7%AE%97%E9%97%AE%E9%A2%98/)
+- 5.[深入分析前端小数计算问题](https://www.lisq.xyz/2019/03/06/%E3%80%90JavaScript%E3%80%91%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90%E5%89%8D%E7%AB%AF%E5%B0%8F%E6%95%B0%E8%AE%A1%E7%AE%97%E9%97%AE%E9%A2%98/)
 
 
 ## React
@@ -38,25 +38,25 @@
 
 ## CSS
 
-- 选择器
-- 动画相关
+- 1.选择器
+- 2.动画相关
 
 ## 浏览器和网络
 
-- 前端开发者必备的网络基础
-- 深入分析浏览器内部机制（一）
-- 深入分析浏览器内部机制（二）
-- [全面分析前端的网络请求方式](https://www.lisq.xyz/2019/03/28/%E3%80%90%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8C%E7%BD%91%E7%BB%9C%E3%80%91%E5%85%A8%E9%9D%A2%E5%88%86%E6%9E%90%E5%89%8D%E7%AB%AF%E7%9A%84%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/)
+- 1.前端开发者必备的网络基础
+- 2.深入分析浏览器内部机制（一）
+- 3.深入分析浏览器内部机制（二）
+- 4.[全面分析前端的网络请求方式](https://www.lisq.xyz/2019/03/28/%E3%80%90%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8C%E7%BD%91%E7%BB%9C%E3%80%91%E5%85%A8%E9%9D%A2%E5%88%86%E6%9E%90%E5%89%8D%E7%AB%AF%E7%9A%84%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/)
 
 
 ## 前端工程
 
-- [前端开发者必备的nginx知识](https://www.lisq.xyz/2019/03/12/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%80%85%E5%BF%85%E5%A4%87%E7%9A%84nginx%E7%9F%A5%E8%AF%86/)
-- bebel从原理到使用
-- webpack从原理到使用
-- 深入理解git
-- React PC 脚手架工程搭建
-- React Native PC 脚手架工程搭建
+- 1.[前端开发者必备的nginx知识](https://www.lisq.xyz/2019/03/12/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%80%85%E5%BF%85%E5%A4%87%E7%9A%84nginx%E7%9F%A5%E8%AF%86/)
+- 2.bebel从原理到使用
+- 3.webpack从原理到使用
+- 4.深入理解git
+- 5.React PC 脚手架工程搭建
+- 6.React Native PC 脚手架工程搭建
 
 ## 性能优化
 
@@ -65,9 +65,9 @@
 
 ## electron
 
-- [【electron】程序保护措施（崩溃监控，开机自启，托盘关闭）](https://www.lisq.xyz/2018/11/07/electron%E7%A8%8B%E5%BA%8F%E4%BF%9D%E6%8A%A4%E6%8E%AA%E6%96%BD%EF%BC%88%E5%B4%A9%E6%BA%83%E7%9B%91%E6%8E%A7%EF%BC%8C%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%EF%BC%8C%E6%89%98%E7%9B%98%E5%85%B3%E9%97%AD%EF%BC%89/)
-- [【electron】使用electron静默打印](https://www.lisq.xyz/2018/11/01/%E4%BD%BF%E7%94%A8electron%E9%9D%99%E9%BB%98%E6%89%93%E5%8D%B0/)
-- [【electron】指令控制 windows 电源选项](https://www.lisq.xyz/2018/12/17/%E6%8C%87%E4%BB%A4%E6%8E%A7%E5%88%B6-windows-%E7%94%B5%E6%BA%90%E9%80%89%E9%A1%B9/)
+- 1.[【electron】程序保护措施（崩溃监控，开机自启，托盘关闭）](https://www.lisq.xyz/2018/11/07/electron%E7%A8%8B%E5%BA%8F%E4%BF%9D%E6%8A%A4%E6%8E%AA%E6%96%BD%EF%BC%88%E5%B4%A9%E6%BA%83%E7%9B%91%E6%8E%A7%EF%BC%8C%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%EF%BC%8C%E6%89%98%E7%9B%98%E5%85%B3%E9%97%AD%EF%BC%89/)
+- 2.[【electron】使用electron静默打印](https://www.lisq.xyz/2018/11/01/%E4%BD%BF%E7%94%A8electron%E9%9D%99%E9%BB%98%E6%89%93%E5%8D%B0/)
+- 3../b [【electron】指令控制 windows 电源选项](https://www.lisq.xyz/2018/12/17/%E6%8C%87%E4%BB%A4%E6%8E%A7%E5%88%B6-windows-%E7%94%B5%E6%BA%90%E9%80%89%E9%A1%B9/)
 
 
 ## 算法和数据结构

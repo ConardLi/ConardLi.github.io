@@ -1,7 +1,8 @@
 # 关于博客
 
-这里是`ConardLi`写博客的地方，您还可以在下面的地方关注我。
+这里是`ConardLi`写博客的地方，为保证博客质量，之前写的很多博客被移除掉了，后面会更加深入的重新撰写。
 
+您还可以在下面的地方关注我。
 
 <a href="https://juejin.im/user/5bea27965188250edf4ad8b7" >
   <img src="./img/juejin.png"  width="220px" height="110px" /> 

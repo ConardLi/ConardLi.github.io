@@ -6,26 +6,21 @@
     
 
     
-    <title>【React深入】React事件机制 | 李世奇的技术专栏</title>
+    <title>李世奇的技术专栏</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="React" />
-    
-    <meta name="description" content="关于React事件的疑问 1.为什么要手动绑定this  2.React事件和原生事件有什么区别  3.React事件和原生事件的执行顺序，可以混用吗  4.React事件如何解决跨浏览器兼容  5.什么是合成事件   下面是我阅读过源码后，将所有的执行流程总结出来的流程图，不会贴代码，如果你想阅读代码看看具体是如何实现的，可以根据流程图去源码里寻找。 事件注册  组件装载 / 更新。 通过la">
-<meta name="keywords" content="React">
-<meta property="og:type" content="article">
-<meta property="og:title" content="【React深入】React事件机制">
-<meta property="og:url" content="https://www.lisq.xyz/2019/03/06/【React深入】React事件机制/index.html">
+    <meta name="description" content="Document        .item {       display: inline-block;       width: 40px;       height: 40px;       background-color: bisque;       border: 1px solid rgb(182, 182, 182);       text-align:">
+<meta property="og:type" content="website">
+<meta property="og:title" content="李世奇的技术专栏">
+<meta property="og:url" content="https://www.lisq.xyz/demo/机器人的运动范围.html">
 <meta property="og:site_name" content="李世奇的技术专栏">
-<meta property="og:description" content="关于React事件的疑问 1.为什么要手动绑定this  2.React事件和原生事件有什么区别  3.React事件和原生事件的执行顺序，可以混用吗  4.React事件如何解决跨浏览器兼容  5.什么是合成事件   下面是我阅读过源码后，将所有的执行流程总结出来的流程图，不会贴代码，如果你想阅读代码看看具体是如何实现的，可以根据流程图去源码里寻找。 事件注册  组件装载 / 更新。 通过la">
+<meta property="og:description" content="Document        .item {       display: inline-block;       width: 40px;       height: 40px;       background-color: bisque;       border: 1px solid rgb(182, 182, 182);       text-align:">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://www.lisq.xyz/img/reactevent.jpg">
-<meta property="og:updated_time" content="2019-04-06T05:13:09.693Z">
+<meta property="og:updated_time" content="2019-04-12T10:30:06.180Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【React深入】React事件机制">
-<meta name="twitter:description" content="关于React事件的疑问 1.为什么要手动绑定this  2.React事件和原生事件有什么区别  3.React事件和原生事件的执行顺序，可以混用吗  4.React事件如何解决跨浏览器兼容  5.什么是合成事件   下面是我阅读过源码后，将所有的执行流程总结出来的流程图，不会贴代码，如果你想阅读代码看看具体是如何实现的，可以根据流程图去源码里寻找。 事件注册  组件装载 / 更新。 通过la">
-<meta name="twitter:image" content="https://www.lisq.xyz/img/reactevent.jpg">
+<meta name="twitter:title" content="李世奇的技术专栏">
+<meta name="twitter:description" content="Document        .item {       display: inline-block;       width: 40px;       height: 40px;       background-color: bisque;       border: 1px solid rgb(182, 182, 182);       text-align:">
     
 
     
@@ -143,158 +138,199 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    未分类
+    李世奇的技术专栏
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-【React深入】React事件机制" class="article article-single article-type-post"
+                            <article id="page-" class="article article-single article-type-page"
     itemscope itemprop="blogPost">
     <div class="article-inner">
         
-        <header class="article-header">
-            
-    
-        <h1 class="article-title" itemprop="name">
-        【React深入】React事件机制
-        </h1>
-    
-
-        </header>
-        
-        
-        <div class="article-meta">
-            
-    <div class="article-date">
-        <a href="/2019/03/06/【React深入】React事件机制/" class="article-date">
-            <time datetime="2019-03-06T08:19:35.000Z" itemprop="datePublished">2019-03-06</time>
-        </a>
-    </div>
-
-            
-
-            
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/React/">React</a>
-    </div>
-
-            <span id="busuanzi_container_page_pv" style="position: relative;float: right;">
-                本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-            </span>
-        </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p><img src="/img/reactevent.jpg" alt="image"></p>
-<h2 id="关于React事件的疑问"><a href="#关于React事件的疑问" class="headerlink" title="关于React事件的疑问"></a>关于React事件的疑问</h2><ul>
-<li><p>1.为什么要手动绑定<code>this</code></p>
-</li>
-<li><p>2.<code>React</code>事件和原生事件有什么区别</p>
-</li>
-<li><p>3.<code>React</code>事件和原生事件的执行顺序，可以混用吗</p>
-</li>
-<li><p>4.<code>React</code>事件如何解决跨浏览器兼容</p>
-</li>
-<li><p>5.什么是合成事件</p>
-</li>
-</ul>
-<p>下面是我阅读过源码后，将所有的执行流程总结出来的流程图，不会贴代码，如果你想阅读代码看看具体是如何实现的，可以根据流程图去源码里寻找。</p>
-<h2 id="事件注册"><a href="#事件注册" class="headerlink" title="事件注册"></a>事件注册</h2><p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/事件注册.png" alt="image"></p>
-<ul>
-<li>组件装载 / 更新。</li>
-<li>通过<code>lastProps</code>、<code>nextProps</code>判断是否新增、删除事件分别调用事件注册、卸载方法。</li>
-<li>调用<code>EventPluginHub</code>的<code>enqueuePutListener</code>进行事件存储</li>
-<li>获取<code>document</code>对象。</li>
-<li>根据事件名称（如<code>onClick</code>、<code>onCaptureClick</code>）判断是进行冒泡还是捕获。</li>
-<li>判断是否存在<code>addEventListener</code>方法，否则使用<code>attachEvent</code>（兼容IE）。</li>
-<li>给<code>document</code>注册原生事件回调为<code>dispatchEvent</code>（统一的事件分发机制）。</li>
-</ul>
-<h2 id="事件存储"><a href="#事件存储" class="headerlink" title="事件存储"></a>事件存储</h2><p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/事件存储.png" alt="image"></p>
-<ul>
-<li><code>EventPluginHub</code>负责管理React合成事件的<code>callback</code>，它将<code>callback</code>存储在<code>listenerBank</code>中，另外还存储了负责合成事件的<code>Plugin</code>。</li>
-<li><code>EventPluginHub</code>的<code>putListener</code>方法是向存储容器中增加一个listener。</li>
-<li>获取绑定事件的元素的唯一标识<code>key</code>。</li>
-<li>将<code>callback</code>根据事件类型，元素的唯一标识<code>key</code>存储在<code>listenerBank</code>中。</li>
-<li><code>listenerBank</code>的结构是：<code>listenerBank[registrationName][key]</code>。</li>
-</ul>
-<p>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    onClick:&#123;</span><br><span class="line">        nodeid1:()=&gt;&#123;...&#125;</span><br><span class="line">        nodeid2:()=&gt;&#123;...&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    onChange:&#123;</span><br><span class="line">        nodeid3:()=&gt;&#123;...&#125;</span><br><span class="line">        nodeid4:()=&gt;&#123;...&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="事件触发-执行"><a href="#事件触发-执行" class="headerlink" title="事件触发 / 执行"></a>事件触发 / 执行</h2><p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/事件触发.png" alt="image"></p>
-<p>这里的事件执行利用了<code>React</code>的批处理机制，在前一篇的【React深入】setState执行机制中已经分析过，这里不再多加分析。</p>
-<ul>
-<li>触发<code>document</code>注册原生事件的回调<code>dispatchEvent</code></li>
-<li>获取到触发这个事件最深一级的元素</li>
-</ul>
-<p>例如下面的代码：首先会获取到<code>this.child</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div onClick=&#123;this.parentClick&#125; ref=&#123;ref =&gt; this.parent = ref&#125;&gt;</span><br><span class="line">  &lt;div onClick=&#123;this.childClick&#125; ref=&#123;ref =&gt; this.child = ref&#125;&gt;</span><br><span class="line">    test</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>遍历这个元素的所有父元素，依次对每一级元素进行处理。</li>
-<li>构造合成事件。</li>
-<li>将每一级的合成事件存储在<code>eventQueue</code>事件队列中。</li>
-<li>遍历<code>eventQueue</code>。</li>
-<li>通过<code>isPropagationStopped</code>判断当前事件是否执行了阻止冒泡方法。</li>
-<li>如果阻止了冒泡，停止遍历，否则通过<code>executeDispatch</code>执行合成事件。</li>
-<li>释放处理完成的事件。</li>
-</ul>
-<p><code>react</code>在自己的合成事件中重写了<code>stopPropagation</code>方法，将<code>isPropagationStopped</code>设置为<code>true</code>，然后在遍历每一级事件的过程中根据此遍历判断是否继续执行。这就是<code>react</code>自己实现的冒泡机制。</p>
-<h2 id="合成事件"><a href="#合成事件" class="headerlink" title="合成事件"></a>合成事件</h2><p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/合成事件.png" alt="image"></p>
-<ul>
-<li>调用<code>EventPluginHub</code>的<code>extractEvents</code>方法。</li>
-<li>循环所有类型的<code>EventPlugin</code>（用来处理不同事件的工具方法）。</li>
-<li>在每个<code>EventPlugin</code>中根据不同的事件类型，返回不同的事件池。</li>
-<li>在事件池中取出合成事件，如果事件池是空的，那么创建一个新的。</li>
-<li>根据元素<code>nodeid</code>(唯一标识<code>key</code>)和事件类型从<code>listenerBink</code>中取出回调函数</li>
-<li>返回带有合成事件参数的回调函数</li>
-</ul>
-<h3 id="总流程"><a href="#总流程" class="headerlink" title="总流程"></a>总流程</h3><p>将上面的四个流程串联起来。</p>
-<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/react事件机制.png" alt="image"></p>
-<h2 id="为什么要手动绑定this"><a href="#为什么要手动绑定this" class="headerlink" title="为什么要手动绑定this"></a>为什么要手动绑定this</h2><p>通过事件触发过程的分析，<code>dispatchEvent</code>调用了<code>invokeGuardedCallback</code>方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function invokeGuardedCallback(name, func, a) &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    func(a);</span><br><span class="line">  &#125; catch (x) &#123;</span><br><span class="line">    if (caughtError === null) &#123;</span><br><span class="line">      caughtError = x;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可见，回调函数是直接调用调用的，并没有指定调用的组件，所以不进行手动绑定的情况下直接获取到的<code>this</code>是<code>undefined</code>。</p>
-<p>这里可以使用实验性的<a href="https://babeljs.io/docs/en/babel-plugin-proposal-class-properties" target="_blank" rel="noopener">属性初始化语法</a> ，也就是直接在组件声明箭头函数。箭头函数不会创建自己的<code>this</code>，它只会从自己的作用域链的上一层继承<code>this</code>。因此这样我们在<code>React</code>事件中获取到的就是组件本身了。</p>
-<h2 id="和原生事件有什么区别"><a href="#和原生事件有什么区别" class="headerlink" title="和原生事件有什么区别"></a>和原生事件有什么区别</h2><ul>
-<li><p><code>React</code> 事件使用驼峰命名，而不是全部小写。</p>
-</li>
-<li><p>通过 <code>JSX</code> , 你传递一个函数作为事件处理程序，而不是一个字符串。</p>
-</li>
-</ul>
-<p>例如，<code>HTML</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onclick=&quot;activateLasers()&quot;&gt;</span><br><span class="line">  Activate Lasers</span><br><span class="line">&lt;/button&gt;</span><br></pre></td></tr></table></figure></p>
-<p>在 <code>React</code> 中略有不同：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onClick=&#123;activateLasers&#125;&gt;</span><br><span class="line">  Activate Lasers</span><br><span class="line">&lt;/button&gt;</span><br></pre></td></tr></table></figure></p>
-<p>另一个区别是，在 React 中你不能通过返回<code>false</code> 来阻止默认行为。必须明确调用 <code>preventDefault</code>。</p>
-<p>由上面执行机制我们可以得出：<code>React</code>自己实现了一套事件机制，自己模拟了事件冒泡和捕获的过程，采用了事件代理，批量更新等方法，并且抹平了各个浏览器的兼容性问题。</p>
-<h2 id="React事件和原生事件的执行顺序"><a href="#React事件和原生事件的执行顺序" class="headerlink" title="React事件和原生事件的执行顺序"></a><code>React</code>事件和原生事件的执行顺序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount() &#123;</span><br><span class="line">  this.parent.addEventListener(&apos;click&apos;, (e) =&gt; &#123;</span><br><span class="line">    console.log(&apos;dom parent&apos;);</span><br><span class="line">  &#125;)</span><br><span class="line">  this.child.addEventListener(&apos;click&apos;, (e) =&gt; &#123;</span><br><span class="line">    console.log(&apos;dom child&apos;);</span><br><span class="line">  &#125;)</span><br><span class="line">  document.addEventListener(&apos;click&apos;, (e) =&gt; &#123;</span><br><span class="line">    console.log(&apos;document&apos;);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">childClick = (e) =&gt; &#123;</span><br><span class="line">  console.log(&apos;react child&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">parentClick = (e) =&gt; &#123;</span><br><span class="line">  console.log(&apos;react parent&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">render() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div onClick=&#123;this.parentClick&#125; ref=&#123;ref =&gt; this.parent = ref&#125;&gt;</span><br><span class="line">      &lt;div onClick=&#123;this.childClick&#125; ref=&#123;ref =&gt; this.child = ref&#125;&gt;</span><br><span class="line">        test</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>执行结果：</p>
-<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/reactEvent1.png" alt="image"></p>
-<p>由上面的流程我们可以理解：</p>
-<ul>
-<li><code>react</code>的所有事件都挂载在<code>document</code>中</li>
-<li>当真实dom触发后冒泡到<code>document</code>后才会对<code>react</code>事件进行处理</li>
-<li>所以原生的事件会先执行</li>
-<li>然后执行<code>react</code>合成事件</li>
-<li>最后执行真正在<code>document</code>上挂载的事件</li>
-</ul>
-<h1 id="react事件和原生事件可以混用吗？"><a href="#react事件和原生事件可以混用吗？" class="headerlink" title="react事件和原生事件可以混用吗？"></a>react事件和原生事件可以混用吗？</h1><p><code>react</code>事件和原生事件最好不要混用。</p>
-<p>原生事件中如果执行了<code>stopPropagation</code>方法，则会导致其他<code>react</code>事件失效。因为所有元素的事件将无法冒泡到<code>document</code>上。</p>
-<p>由上面的执行机制不难得出，所有的react事件都将无法被注册。</p>
-<h2 id="合成事件、浏览器兼容"><a href="#合成事件、浏览器兼容" class="headerlink" title="合成事件、浏览器兼容"></a>合成事件、浏览器兼容</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function handleClick(e) &#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  console.log(&apos;The link was clicked.&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这里， <code>e</code> 是一个合成的事件。 <code>React</code> 根据<a href="https://www.w3.org/TR/DOM-Level-3-Events/" target="_blank" rel="noopener"> W3C </a>规范 定义了这个合成事件，所以你不需要担心跨浏览器的兼容性问题。</p>
-</blockquote>
-<p>事件处理程序将传递 <code>SyntheticEvent</code> 的实例，这是一个跨浏览器原生事件包装器。 它具有与浏览器原生事件相同的接口，包括<code>stopPropagation()</code> 和 <code>preventDefault()</code> ，在所有浏览器中他们工作方式都相同。</p>
-<p> 每个<code>SyntheticEvent</code>对象都具有以下属性：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">boolean bubbles</span><br><span class="line">boolean cancelable</span><br><span class="line">DOMEventTarget currentTarget</span><br><span class="line">boolean defaultPrevented</span><br><span class="line">number eventPhase</span><br><span class="line">boolean isTrusted</span><br><span class="line">DOMEvent nativeEvent</span><br><span class="line">void preventDefault()</span><br><span class="line">boolean isDefaultPrevented()</span><br><span class="line">void stopPropagation()</span><br><span class="line">boolean isPropagationStopped()</span><br><span class="line">DOMEventTarget target</span><br><span class="line">number timeStamp</span><br><span class="line">string type</span><br></pre></td></tr></table></figure>
-<p><code>React</code>合成的<code>SyntheticEvent</code>采用了事件池，这样做可以大大节省内存，而不会频繁的创建和销毁事件对象。</p>
-<p>另外，不管在什么浏览器环境下，浏览器会将该事件类型统一创建为合成事件，从而达到了浏览器兼容的目的。</p>
-<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p>【React深入】setState的执行机制</p>
+            <!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .item {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: bisque;
+      border: 1px solid rgb(182, 182, 182);
+      text-align: center;
+      line-height: 40px;
+    }
+
+    .blue {
+      background-color: rgb(179, 179, 255);
+    }
+
+    .red {
+      background-color: rgb(255, 96, 96);
+    }
+
+    .green {
+      background-color: rgb(154, 255, 154);
+    }
+
+    #msg {
+      width: 300px;
+      position: absolute;
+      right: 0;
+      top: 50px;
+      height: 500px;
+      overflow-y: scroll;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div id="box">
+    <div>
+      行列数:<input type="number" id="row" value="8"><input type="number" id="col" value="8">
+    </div>
+    <div>
+      临界值:<input type="number" id="threshold" value="3">
+    </div>
+    <div>
+      速度:<input type="number" id="speed" value="5">
+    </div>
+    <div>
+      <button onclick="run()">运行</button>
+    </div>
+  </div>
+
+  <div id="msg">
+
+  </div>
+
+
+  <script>
+
+    speed = 1;
+    function run() {
+      const rows = document.getElementById('row').value;
+      const cols = document.getElementById('col').value;
+      const threshold = document.getElementById('threshold').value;
+      speed = document.getElementById('speed').value;
+      movingCount(threshold, rows, cols);
+    }
+
+
+    let count = 0;
+    function movingCount(threshold, rows, cols) {
+      const flag = createArray(rows, cols);
+      movingCountCore(0, 0, threshold, rows, cols, flag);
+    }
+
+    async function movingCountCore(i, j, threshold, rows, cols, flag) {
+      s = 2000 / speed;
+      if (i < 0 || j < 0 || i >= rows || j >= cols) {
+        msg(`${i},${j}超出范围！`)
+        return 0;
+      }
+      if (flag[i][j]) {
+        msg(`${i},${j}已经走过了`)
+        return 0;
+      }
+      const current = document.getElementById(`id${i}${j}`);
+      current.classList.add('blue');
+      current.innerHTML = '🤪';
+      msg(`🤪${i},${j}现在的位置，正在判断...`)
+      msg('当前位置')
+      await sleep(s);
+      if (condition(i, j, threshold)) {
+        current.classList.add('red');
+        current.innerHTML = '🍏';
+        msg(`🍏${i},${j}不能到达！`)
+        await sleep(s);
+        flag[i][j] = true;
+        return 0;
+      }
+      msg(`🍔${i},${j}可以到达！`)
+      current.classList.add('green');
+      current.innerHTML = '🍔';
+      await sleep(s);
+      flag[i][j] = true;
+      await movingCountCore(i - 1, j, threshold, rows, cols, flag)
+      await movingCountCore(i + 1, j, threshold, rows, cols, flag)
+      await movingCountCore(i, j - 1, threshold, rows, cols, flag)
+      await movingCountCore(i, j + 1, threshold, rows, cols, flag)
+    }
+
+    /**
+     * 判断是否符合条件
+     */
+    function condition(i, j, threshold) {
+      let temp = i + '' + j;
+      let sum = 0;
+      for (var i = 0; i < temp.length; i++) {
+        sum += temp.charAt(i) / 1;
+      }
+      return sum > threshold;
+    }
+
+    /**
+     * 创建一个二维空数组
+     */
+    function createArray(rows, cols) {
+      const result = new Array(rows) || [];
+      const box = document.getElementById('box')
+      box.innerHTML = ''
+      for (let i = 0; i < rows; i++) {
+        const arr = new Array(cols);
+        const container = document.createElement('div');
+        for (let j = 0; j < cols; j++) {
+          const item = document.createElement('div');
+          item.id = "id" + i + j;
+          item.classList.add('item');
+          item.innerHTML = '🍋';
+          container.appendChild(item);
+          arr[j] = false;
+        }
+        box.appendChild(container);
+        result[i] = arr;
+      }
+      return result;
+    }
+
+    function sleep(time) {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          resolve();
+        }, time);
+      })
+    };
+
+    function msg(msg) {
+      var msgDiv = document.getElementById('msg');
+      msgDiv.innerHTML += `<div>${msg}</div>`
+    }
+
+    // movingCount(3, 30, 30);
+    // console.log(movingCount(5, 8, 8));
+
+  </script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="https://www.lisq.xyz/2019/03/06/【React深入】React事件机制/" data-id="cjudxk6zk0001gp0d2ro8mcam" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://www.lisq.xyz/demo/机器人的运动范围.html" data-id="cjudxk70k000ggp0drhpm85j6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -445,29 +481,6 @@
             
         </ul>
     </div>
-    
-    
-<nav id="article-nav">
-    
-        <a href="/2019/03/06/【JavaScript】深入分析前端小数计算问题/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">下一篇</strong>
-        <p class="article-nav-title">
-        
-            深入分析前端小数计算问题
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
-    
-    
-        <a href="/2019/03/06/【React深入】setState的执行机制/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">【React深入】setState的执行机制</p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
-    
-</nav>
-
     
     <div class="widgets-container" style="background-color: #fff; border-right: 1px solid #e2e2e2;">
         
@@ -708,7 +721,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://www.lisq.xyz/2019/03/06/【React深入】React事件机制/';
+    var disqus_url = 'https://www.lisq.xyz/demo/机器人的运动范围.html';
     
     (function() {
     var dsq = document.createElement('script');

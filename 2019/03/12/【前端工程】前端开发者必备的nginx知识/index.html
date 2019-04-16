@@ -148,7 +148,59 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-【前端工程】前端开发者必备的nginx知识" class="article article-single article-type-post"
+                            <style>
+    #article-toc.fixed {
+        position: fixed;
+        top: 30px;
+        bottom: 30px;
+        left: 22px;
+        padding-top: 15px;
+        z-index: 9999;
+        background-color: antiquewhite;
+        width: 200px;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid rgb(122, 122, 122);
+        opacity: 0.8;
+    }
+
+    #article-toc-inner {
+        padding: 10px;
+        width: 200px;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .toc-level-3 {
+        margin-left: 20px;
+    }
+
+    #article-toc a {
+        text-decoration: none;
+        color: #333;
+        padding: 3px 0;
+        color: #000;
+        font-weight: normal;
+    }
+
+    .toc-item {
+        line-height: 30px;
+        list-style-type: initial;
+    }
+
+    #tocbtn {
+        position: fixed;
+        top: 30%;
+        left: 2px;
+        padding: 5px 2px;
+        width: 18px;
+        word-wrap: break-word;
+    }
+</style>
+
+<article id="post-【前端工程】前端开发者必备的nginx知识"
+    class="article article-single article-type-post"
     itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -215,7 +267,7 @@
 <p><strong>反向代理</strong>对服务端是透明的，对我们是非透明的，即我们并不知道自己访问的是代理服务器，而服务器知道反向代理在为他服务。</p>
 <h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><h4 id="配置结构"><a href="#配置结构" class="headerlink" title="配置结构"></a>配置结构</h4><p>下面是一个nginx配置文件的基本结构：</p>
 <p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/nginx1.png" alt="image"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">events &#123; </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http </span><br><span class="line">&#123;</span><br><span class="line">    server</span><br><span class="line">    &#123; </span><br><span class="line">        location path</span><br><span class="line">        &#123;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">        location path</span><br><span class="line">        &#123;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">    server</span><br><span class="line">    &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">events &#123; </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http </span><br><span class="line">&#123;</span><br><span class="line">    server</span><br><span class="line">    &#123; </span><br><span class="line">        location path</span><br><span class="line">        &#123;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">        location path</span><br><span class="line">        &#123;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">    server</span><br><span class="line">    &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>main</code>:nginx的全局配置，对全局生效。</li>
 <li><code>events</code>:配置影响nginx服务器或与用户的网络连接。</li>
@@ -298,13 +350,13 @@
 </ul>
 <p>现在我在<code>fe.server.com</code>对<code>dev.server.com</code>发起请求一定会出现跨域。</p>
 <p>现在我们只需要启动一个nginx服务器，将<code>server_name</code>设置为<code>fe.server.com</code>,然后设置相应的location以拦截前端需要跨域的请求，最后将请求代理回<code>dev.server.com</code>。如下面的配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  fe.server.com;</span><br><span class="line">        location / &#123;</span><br><span class="line">                proxy_pass dev.server.com;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  fe.server.com;</span><br><span class="line">        location / &#123;</span><br><span class="line">                proxy_pass dev.server.com;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这样可以完美绕过浏览器的同源策略：<code>fe.server.com</code>访问<code>nginx</code>的<code>fe.server.com</code>属于同源访问，而<code>nginx</code>对服务端转发的请求不会触发浏览器的同源策略。</p>
 <h2 id="请求过滤"><a href="#请求过滤" class="headerlink" title="请求过滤"></a>请求过滤</h2><p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/404.jpg" alt="image"></p>
-<p>根据状态码过滤<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">error_page 500 501 502 503 504 506 /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        #将跟路径改编为存放html的路径。</span><br><span class="line">        root /root/static/html;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>根据状态码过滤<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">error_page 500 501 502 503 504 506 /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        #将跟路径改编为存放html的路径。</span><br><span class="line">        root /root/static/html;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 <p>根据URL名称过滤，精准匹配URL，不匹配的URL全部重定向到主页。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">    rewrite  ^.*$ /index.html  redirect;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>根据请求类型过滤。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if ( $request_method !~ ^(GET|POST|HEAD)$ ) &#123;</span><br><span class="line">        return 403;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">    rewrite  ^.*$ /index.html  redirect;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据请求类型过滤。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if ( $request_method !~ ^(GET|POST|HEAD)$ ) &#123;</span><br><span class="line">        return 403;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="配置gzip"><a href="#配置gzip" class="headerlink" title="配置gzip"></a>配置gzip</h2><p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/gzip.jpg" alt="image"></p>
 <p><code>GZIP</code>是规定的三种标准HTTP压缩格式之一。目前绝大多数的网站都在使用<code>GZIP</code>传输 <code>HTML</code>、<code>CSS</code>、<code>JavaScript</code> 等资源文件。</p>
 <p>对于文本文件，<code>GZip</code> 的效果非常明显，开启后传输所需流量大约会降至 <code>1/4 ~ 1/3</code>。</p>
@@ -312,7 +364,7 @@
 <p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/gzip1.png" alt="image"></p>
 <p>启用<code>gzip</code>同时需要客户端和服务端的支持，如果客户端支持<code>gzip</code>的解析，那么只要服务端能够返回<code>gzip</code>的文件就可以启用<code>gzip</code>了,我们可以通过<code>nginx</code>的配置来让服务端支持<code>gzip</code>。下面的<code>respone</code>中<code>content-encoding:gzip</code>，指服务端开启了<code>gzip</code>的压缩方式。</p>
 <p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/gzip2.png" alt="image"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gzip                    on;</span><br><span class="line">gzip_http_version       1.1;        </span><br><span class="line">gzip_comp_level         5;</span><br><span class="line">gzip_min_length         1000;</span><br><span class="line">gzip_types text/csv text/xml text/css text/plain text/javascript application/javascript application/x-javascript application/json application/xml;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gzip                    on;</span><br><span class="line">gzip_http_version       1.1;        </span><br><span class="line">gzip_comp_level         5;</span><br><span class="line">gzip_min_length         1000;</span><br><span class="line">gzip_types text/csv text/xml text/css text/plain text/javascript application/javascript application/x-javascript application/json application/xml;</span><br></pre></td></tr></table></figure>
 <h4 id="gzip"><a href="#gzip" class="headerlink" title="gzip"></a>gzip</h4><ul>
 <li>开启或者关闭<code>gzip</code>模块</li>
 <li>默认值为<code>off</code></li>
@@ -349,25 +401,25 @@
 <p>如上面的图，前面是众多的服务窗口，下面有很多用户需要服务，我们需要一个工具或策略来帮助我们将如此多的用户分配到每个窗口，来达到资源的充分利用以及更少的排队时间。</p>
 <p>把前面的服务窗口想像成我们的后端服务器，而后面终端的人则是无数个客户端正在发起请求。负载均衡就是用来帮助我们将众多的客户端请求合理的分配到各个服务器，以达到服务端资源的充分利用和更少的请求时间。</p>
 <h4 id="nginx如何实现负载均衡"><a href="#nginx如何实现负载均衡" class="headerlink" title="nginx如何实现负载均衡"></a>nginx如何实现负载均衡</h4><p>Upstream指定后端服务器地址列表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">upstream balanceServer &#123;</span><br><span class="line">    server 10.1.22.33:12345;</span><br><span class="line">    server 10.1.22.34:12345;</span><br><span class="line">    server 10.1.22.35:12345;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">upstream balanceServer &#123;</span><br><span class="line">    server 10.1.22.33:12345;</span><br><span class="line">    server 10.1.22.34:12345;</span><br><span class="line">    server 10.1.22.35:12345;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在server中拦截响应请求，并将请求转发到Upstream中配置的服务器列表。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    server_name  fe.server.com;</span><br><span class="line">    listen 80;</span><br><span class="line">    location /api &#123;</span><br><span class="line">        proxy_pass http://balanceServer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    server_name  fe.server.com;</span><br><span class="line">    listen 80;</span><br><span class="line">    location /api &#123;</span><br><span class="line">        proxy_pass http://balanceServer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面的配置只是指定了nginx需要转发的服务端列表，并没有指定分配策略。</p>
 <h4 id="nginx实现负载均衡的策略"><a href="#nginx实现负载均衡的策略" class="headerlink" title="nginx实现负载均衡的策略"></a>nginx实现负载均衡的策略</h4><p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/loadBalancing.png" alt="image"></p>
 <p><strong>轮询策略</strong></p>
 <p>默认情况下采用的策略，将所有客户端请求轮询分配给服务端。这种策略是可以正常工作的，但是如果其中某一台服务器压力太大，出现延迟，会影响所有分配在这台服务器下的用户。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">upstream balanceServer &#123;</span><br><span class="line">    server 10.1.22.33:12345;</span><br><span class="line">    server 10.1.22.34:12345;</span><br><span class="line">    server 10.1.22.35:12345;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">upstream balanceServer &#123;</span><br><span class="line">    server 10.1.22.33:12345;</span><br><span class="line">    server 10.1.22.34:12345;</span><br><span class="line">    server 10.1.22.35:12345;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/nginx5.png" alt="image"></p>
 <p><strong>最小连接数策略</strong></p>
 <p>将请求优先分配给压力较小的服务器，它可以平衡每个队列的长度，并避免向压力大的服务器添加更多的请求。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">upstream balanceServer &#123;</span><br><span class="line">    least_conn;</span><br><span class="line">    server 10.1.22.33:12345;</span><br><span class="line">    server 10.1.22.34:12345;</span><br><span class="line">    server 10.1.22.35:12345;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">upstream balanceServer &#123;</span><br><span class="line">    least_conn;</span><br><span class="line">    server 10.1.22.33:12345;</span><br><span class="line">    server 10.1.22.34:12345;</span><br><span class="line">    server 10.1.22.35:12345;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/nginx4.png" alt="image"></p>
 <p><strong>最快响应时间策略</strong></p>
 <p>依赖于NGINX Plus，优先分配给响应时间最短的服务器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">upstream balanceServer &#123;</span><br><span class="line">    fair;</span><br><span class="line">    server 10.1.22.33:12345;</span><br><span class="line">    server 10.1.22.34:12345;</span><br><span class="line">    server 10.1.22.35:12345;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">upstream balanceServer &#123;</span><br><span class="line">    fair;</span><br><span class="line">    server 10.1.22.33:12345;</span><br><span class="line">    server 10.1.22.34:12345;</span><br><span class="line">    server 10.1.22.35:12345;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>客户端ip绑定</strong></p>
-<p>来自同一个ip的请求永远只分配一台服务器，有效解决了动态网页存在的session共享问题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">upstream balanceServer &#123;</span><br><span class="line">    ip_hash;</span><br><span class="line">    server 10.1.22.33:12345;</span><br><span class="line">    server 10.1.22.34:12345;</span><br><span class="line">    server 10.1.22.35:12345;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="静态资源服务器"><a href="#静态资源服务器" class="headerlink" title="静态资源服务器"></a>静态资源服务器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location ~* \.(png|gif|jpg|jpeg)$ &#123;</span><br><span class="line">    root    /root/static/;  </span><br><span class="line">    autoindex on;</span><br><span class="line">    access_log  off;</span><br><span class="line">    expires     10h;# 设置过期时间为10小时          </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>来自同一个ip的请求永远只分配一台服务器，有效解决了动态网页存在的session共享问题。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">upstream balanceServer &#123;</span><br><span class="line">    ip_hash;</span><br><span class="line">    server 10.1.22.33:12345;</span><br><span class="line">    server 10.1.22.34:12345;</span><br><span class="line">    server 10.1.22.35:12345;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="静态资源服务器"><a href="#静态资源服务器" class="headerlink" title="静态资源服务器"></a>静态资源服务器</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">location ~* \.(png|gif|jpg|jpeg)$ &#123;</span><br><span class="line">    root    /root/static/;  </span><br><span class="line">    autoindex on;</span><br><span class="line">    access_log  off;</span><br><span class="line">    expires     10h;# 设置过期时间为10小时          </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>匹配以<code>png|gif|jpg|jpeg</code>为结尾的请求，并将请求转发到本地路径，<code>root</code>中指定的路径即nginx本地路径。同时也可以进行一些缓存的设置。</p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>nginx的功能非常强大，还有很多需要探索，上面的一些配置都是公司配置的真实应用（精简过了），如果您有什么意见或者建议，欢迎在下方留言…</p>
 
@@ -377,7 +429,7 @@
 
 
 
-    <a data-url="https://www.lisq.xyz/2019/03/12/【前端工程】前端开发者必备的nginx知识/" data-id="cjudyt8q0000e600d8spqd8sz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://www.lisq.xyz/2019/03/12/【前端工程】前端开发者必备的nginx知识/" data-id="cjuju23vk000evo0d3ck5ktch" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -441,6 +493,7 @@
     </div>
 </article>
 
+
     <section id="comments">
     
         
@@ -453,6 +506,32 @@
 
 
 
+
+
+<div id="roott"></div>
+
+<button id="tocbtn">打开目录</button>
+
+
+<script>
+    var showToc = false;
+    document.getElementById('tocbtn').onclick = function () {
+        if (showToc) {
+            document.getElementById('roott').innerHTML = ''
+            document.getElementById('tocbtn').innerHTML = '打开目录'
+        } else {
+            document.getElementById('roott').innerHTML = `<aside id="article-toc" role="navigation" class="fixed">
+  <div id="article-toc-inner">
+    <strong class="sidebar-title">
+      目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#nginx在应用程序中的作用"><span class="toc-text">nginx在应用程序中的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正向代理与反向代理"><span class="toc-text">正向代理与反向代理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#正向代理"><span class="toc-text">正向代理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#反向代理"><span class="toc-text">反向代理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本配置"><span class="toc-text">基本配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#配置结构"><span class="toc-text">配置结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内置变量"><span class="toc-text">内置变量</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决跨域"><span class="toc-text">解决跨域</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#跨域的定义"><span class="toc-text">跨域的定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#同源的定义"><span class="toc-text">同源的定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nginx解决跨域的原理"><span class="toc-text">nginx解决跨域的原理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#请求过滤"><span class="toc-text">请求过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置gzip"><span class="toc-text">配置gzip</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gzip"><span class="toc-text">gzip</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gzip-http-version"><span class="toc-text">gzip_http_version</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gzip-comp-level"><span class="toc-text">gzip_comp_level</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gzip-min-length"><span class="toc-text">gzip_min_length</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gzip-types"><span class="toc-text">gzip_types</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#负载均衡"><span class="toc-text">负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是负载均衡"><span class="toc-text">什么是负载均衡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nginx如何实现负载均衡"><span class="toc-text">nginx如何实现负载均衡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nginx实现负载均衡的策略"><span class="toc-text">nginx实现负载均衡的策略</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#静态资源服务器"><span class="toc-text">静态资源服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li></ol>
+  </div>
+</aside>`
+            document.getElementById('tocbtn').innerHTML = '关闭目录'
+        }
+        showToc = !showToc;
+    }
+</script>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
 <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <div id="vcomments" style="padding: 30px;"></div>
@@ -827,6 +906,6 @@
 <script src="/js/main.js"></script>
 
     </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 
 </html>

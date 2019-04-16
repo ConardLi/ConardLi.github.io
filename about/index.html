@@ -143,7 +143,59 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="page-" class="article article-single article-type-page"
+                            <style>
+    #article-toc.fixed {
+        position: fixed;
+        top: 30px;
+        bottom: 30px;
+        left: 22px;
+        padding-top: 15px;
+        z-index: 9999;
+        background-color: antiquewhite;
+        width: 200px;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid rgb(122, 122, 122);
+        opacity: 0.8;
+    }
+
+    #article-toc-inner {
+        padding: 10px;
+        width: 200px;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .toc-level-3 {
+        margin-left: 20px;
+    }
+
+    #article-toc a {
+        text-decoration: none;
+        color: #333;
+        padding: 3px 0;
+        color: #000;
+        font-weight: normal;
+    }
+
+    .toc-item {
+        line-height: 30px;
+        list-style-type: initial;
+    }
+
+    #tocbtn {
+        position: fixed;
+        top: 30%;
+        left: 2px;
+        padding: 5px 2px;
+        width: 18px;
+        word-wrap: break-word;
+    }
+</style>
+
+<article id="page-"
+    class="article article-single article-type-page"
     itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -168,7 +220,7 @@
 
 
 
-    <a data-url="https://www.lisq.xyz/about/index.html" data-id="cjudyt8pd0001600d9osag3ij" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://www.lisq.xyz/about/index.html" data-id="cjuju23v60001vo0dqt44exw6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -232,6 +284,7 @@
     </div>
 </article>
 
+
     <section id="comments">
     
         
@@ -244,6 +297,32 @@
 
 
 
+
+
+<div id="roott"></div>
+
+<button id="tocbtn">打开目录</button>
+
+
+<script>
+    var showToc = false;
+    document.getElementById('tocbtn').onclick = function () {
+        if (showToc) {
+            document.getElementById('roott').innerHTML = ''
+            document.getElementById('tocbtn').innerHTML = '打开目录'
+        } else {
+            document.getElementById('roott').innerHTML = `<aside id="article-toc" role="navigation" class="fixed">
+  <div id="article-toc-inner">
+    <strong class="sidebar-title">
+      目录</strong>
+    
+  </div>
+</aside>`
+            document.getElementById('tocbtn').innerHTML = '关闭目录'
+        }
+        showToc = !showToc;
+    }
+</script>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
 <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <div id="vcomments" style="padding: 30px;"></div>
@@ -595,6 +674,6 @@
 <script src="/js/main.js"></script>
 
     </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 
 </html>

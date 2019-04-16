@@ -21,7 +21,7 @@
 <meta property="og:description" content="1.powercfg命令。使用powercfg.exe控制电源计划（也称为电源使用方案）。 2.ac和dc一般电源有两种供电模式： ac代表交流电源 dc代表直流电源 一般情况下ac就是直接接通电源，dc是使用电池供电。 一般电源命令都需要分别设置在ac和dc下的模式。 3.电源选项的唯一标识每个电源选项都有一个唯一的guid标识，我们可以使用某些命令通过这个唯一标识来设定这个电源选项。 例如官">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.lisq.xyz/img/3.jpg">
-<meta property="og:updated_time" content="2019-04-06T05:28:00.004Z">
+<meta property="og:updated_time" content="2019-04-16T11:42:14.380Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="指令控制 windows 电源选项">
 <meta name="twitter:description" content="1.powercfg命令。使用powercfg.exe控制电源计划（也称为电源使用方案）。 2.ac和dc一般电源有两种供电模式： ac代表交流电源 dc代表直流电源 一般情况下ac就是直接接通电源，dc是使用电池供电。 一般电源命令都需要分别设置在ac和dc下的模式。 3.电源选项的唯一标识每个电源选项都有一个唯一的guid标识，我们可以使用某些命令通过这个唯一标识来设定这个电源选项。 例如官">
@@ -148,7 +148,59 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-【electron】指令控制-windows-电源选项" class="article article-single article-type-post"
+                            <style>
+    #article-toc.fixed {
+        position: fixed;
+        top: 30px;
+        bottom: 30px;
+        left: 22px;
+        padding-top: 15px;
+        z-index: 9999;
+        background-color: antiquewhite;
+        width: 200px;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid rgb(122, 122, 122);
+        opacity: 0.8;
+    }
+
+    #article-toc-inner {
+        padding: 10px;
+        width: 200px;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .toc-level-3 {
+        margin-left: 20px;
+    }
+
+    #article-toc a {
+        text-decoration: none;
+        color: #333;
+        padding: 3px 0;
+        color: #000;
+        font-weight: normal;
+    }
+
+    .toc-item {
+        line-height: 30px;
+        list-style-type: initial;
+    }
+
+    #tocbtn {
+        position: fixed;
+        top: 30%;
+        left: 2px;
+        padding: 5px 2px;
+        width: 18px;
+        word-wrap: break-word;
+    }
+</style>
+
+<article id="post-【electron】指令控制-windows-电源选项"
+    class="article article-single article-type-post"
     itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -198,28 +250,28 @@
 <p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/电源计划.png" alt="image"></p>
 <p>如图：电源计划 节电，平衡，高性能分别对应了一个guid。</p>
 <p>我们可以通过查阅windows文档或者使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powercfg /query</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">powercfg /query</span><br></pre></td></tr></table></figure>
 <p>命令来查询每个选项对应的guid。</p>
 <p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/电源uuid.png" alt="image"></p>
-<h1 id="4-设置电源计划"><a href="#4-设置电源计划" class="headerlink" title="4.设置电源计划"></a>4.设置电源计划</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powercfg -setactive guid</span><br></pre></td></tr></table></figure>
+<h1 id="4-设置电源计划"><a href="#4-设置电源计划" class="headerlink" title="4.设置电源计划"></a>4.设置电源计划</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">powercfg -setactive guid</span><br></pre></td></tr></table></figure>
 <p>可以通过-setactive来设置当前电源计划。</p>
 <p>例如下面的代码将电源设置为平衡模式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powercfg -setactive 381b4222-f694-41f0-9685-ff5bb260df2e</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">powercfg -setactive 381b4222-f694-41f0-9685-ff5bb260df2e</span><br></pre></td></tr></table></figure>
 <h1 id="5-修改电源计划中的电源选项"><a href="#5-修改电源计划中的电源选项" class="headerlink" title="5.修改电源计划中的电源选项"></a>5.修改电源计划中的电源选项</h1><p>直接查看控制面板中的电源选项可以看到下面的界面</p>
 <p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/电源选项.png" alt="image"></p>
-<p>我们可以通过下面的命令来修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powercfg -change  value</span><br></pre></td></tr></table></figure></p>
+<p>我们可以通过下面的命令来修改<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">powercfg -change  value</span><br></pre></td></tr></table></figure></p>
 <p>后面的value有如下几个选项</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">monitor-timeout-ac &lt;分钟&gt;</span><br><span class="line">monitor-timeout-dc &lt;分钟&gt;</span><br><span class="line">disk-timeout-ac &lt;分钟&gt;</span><br><span class="line">disk-timeout-dc &lt;分钟&gt;</span><br><span class="line">standby-timeout-ac &lt;分钟&gt;</span><br><span class="line">standby-timeout-dc &lt;分钟&gt;</span><br><span class="line">hibernate-timeout-ac &lt;分钟&gt;</span><br><span class="line">hibernate-timeout-dc &lt;分钟&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">monitor-timeout-ac &lt;分钟&gt;</span><br><span class="line">monitor-timeout-dc &lt;分钟&gt;</span><br><span class="line">disk-timeout-ac &lt;分钟&gt;</span><br><span class="line">disk-timeout-dc &lt;分钟&gt;</span><br><span class="line">standby-timeout-ac &lt;分钟&gt;</span><br><span class="line">standby-timeout-dc &lt;分钟&gt;</span><br><span class="line">hibernate-timeout-ac &lt;分钟&gt;</span><br><span class="line">hibernate-timeout-dc &lt;分钟&gt;</span><br></pre></td></tr></table></figure>
 <p>monitor:屏幕<br>disk:磁盘<br>standby:待机<br>hibernate:休眠</p>
 <p>实例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powercfg /change monitor-timeout-ac 5</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">powercfg /change monitor-timeout-ac <span class="number">5</span></span><br></pre></td></tr></table></figure>
 <p>表示：在接通电源模式下设置屏幕5分钟后关闭。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powercfg /change monitor-hibernate-dc 0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">powercfg /change monitor-hibernate-dc 0</span><br></pre></td></tr></table></figure>
 <p>表示：在不接通电源模式下永不休眠</p>
 <h1 id="6-高级选项"><a href="#6-高级选项" class="headerlink" title="6.高级选项"></a>6.高级选项</h1><p>还有一些其他选项，例如按下电源按钮，睡眠按钮，关闭盖子等发生的操作。</p>
 <p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/电源高级.png" alt="image"></p>
 <p>可以使用如下命令设置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">powercfg  /setacvalueindex  scheme_GUID  sub_GUID  setting_GUID  setting_index</span><br><span class="line"></span><br><span class="line">powercfg  /setdcvalueindex  scheme_GUID  sub_GUID  setting_GUID  setting_index</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">powercfg  /setacvalueindex  scheme_GUID  sub_GUID  setting_GUID  setting_index</span><br><span class="line"></span><br><span class="line">powercfg  /setdcvalueindex  scheme_GUID  sub_GUID  setting_GUID  setting_index</span><br></pre></td></tr></table></figure>
 <p>scheme_GUID : 电源计划guid，可以通过powercfg /list查询</p>
 <p>sub_GUID：子组guid，可以解释成在众多的电源选项上又分的一层组，可以通过过powercfg /query查询</p>
 <p>setting_GUID：选项guid，具体的电源选项。</p>
@@ -227,9 +279,9 @@
 <p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/电源index.png" alt="image"></p>
 <p>不采取任何操作，睡眠，休眠，关机</p>
 <p>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powercfg -SetAcValueIndex 381b4222-f694-41f0-9685-ff5bb260df2e 4f971e89-eebd-4455-a8de-9e59040e7347 5ca83367-6e45-459f-a27b-476b1d01c936 0</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">powercfg -SetAcValueIndex <span class="number">381</span>b4222-f694<span class="number">-41</span>f0<span class="number">-9685</span>-ff5bb260df2e <span class="number">4</span>f971e89-eebd<span class="number">-4455</span>-a8de<span class="number">-9e59040</span>e7347 <span class="number">5</span>ca83367<span class="number">-6e45</span><span class="number">-459</span>f-a27b<span class="number">-476</span>b1d01c936 <span class="number">0</span></span><br></pre></td></tr></table></figure>
 <p>表示：设置接通电源的情况下，电源关盖后不采取任何操作。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powercfg -SetDcValueIndex 381b4222-f694-41f0-9685-ff5bb260df2e 4f971e89-eebd-4455-a8de-9e59040e7347 7648efa3-dd9c-4e3e-b566-50f929386280 1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">powercfg -SetDcValueIndex 381b4222-f694-41f0-9685-ff5bb260df2e 4f971e89-eebd-4455-a8de-9e59040e7347 7648efa3-dd9c-4e3e-b566-50f929386280 1</span><br></pre></td></tr></table></figure>
 <p>表示：设置未接通电源的情况下，按下电源键使电脑进入睡眠。</p>
 <h1 id="7-总结"><a href="#7-总结" class="headerlink" title="7.总结"></a>7.总结</h1><p>有了这些操作，我们就可以使用某些语言比如node，来批处理windows电源选项了。</p>
 <p>更详细的选项可以查询windows官方文档：</p>
@@ -241,7 +293,7 @@
 
 
 
-    <a data-url="https://www.lisq.xyz/2018/12/17/【electron】指令控制-windows-电源选项/" data-id="cjudyt8pz000c600dxepzku51" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://www.lisq.xyz/2018/12/17/【electron】指令控制-windows-电源选项/" data-id="cjuju23vi000cvo0d8zdtgxsa" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -305,6 +357,7 @@
     </div>
 </article>
 
+
     <section id="comments">
     
         
@@ -317,6 +370,32 @@
 
 
 
+
+
+<div id="roott"></div>
+
+<button id="tocbtn">打开目录</button>
+
+
+<script>
+    var showToc = false;
+    document.getElementById('tocbtn').onclick = function () {
+        if (showToc) {
+            document.getElementById('roott').innerHTML = ''
+            document.getElementById('tocbtn').innerHTML = '打开目录'
+        } else {
+            document.getElementById('roott').innerHTML = `<aside id="article-toc" role="navigation" class="fixed">
+  <div id="article-toc-inner">
+    <strong class="sidebar-title">
+      目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-powercfg命令。"><span class="toc-text">1.powercfg命令。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-ac和dc"><span class="toc-text">2.ac和dc</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-电源选项的唯一标识"><span class="toc-text">3.电源选项的唯一标识</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-设置电源计划"><span class="toc-text">4.设置电源计划</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-修改电源计划中的电源选项"><span class="toc-text">5.修改电源计划中的电源选项</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-高级选项"><span class="toc-text">6.高级选项</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-总结"><span class="toc-text">7.总结</span></a></li></ol>
+  </div>
+</aside>`
+            document.getElementById('tocbtn').innerHTML = '关闭目录'
+        }
+        showToc = !showToc;
+    }
+</script>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
 <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <div id="vcomments" style="padding: 30px;"></div>
@@ -691,6 +770,6 @@
 <script src="/js/main.js"></script>
 
     </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 
 </html>

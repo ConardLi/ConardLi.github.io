@@ -12,19 +12,19 @@
     
         <meta name="keywords" content="JavaScript" />
     
-    <meta name="description" content="话不多说，先上代码12345678910111213141516171819202122232425262728function judgeFloat(n, m) &amp;#123;  const binaryN = n.toString(2);  const binaryM = m.toString(2);  console.log(`$&amp;#123;n&amp;#125;的二进制是    $&amp;#123;bi">
+    <meta name="description" content="话不多说，先上代码function judgeFloat(n, m) &amp;#123;  const binaryN = n.toString(2);  const binaryM = m.toString(2);  console.log(`$&amp;#123;n&amp;#125;的二进制是    $&amp;#123;binaryN&amp;#125;`);  console.log(`$&amp;#123;m&amp;#125;的二进制">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入分析前端小数计算问题">
 <meta property="og:url" content="https://www.lisq.xyz/2019/03/06/【JavaScript】深入分析前端小数计算问题/index.html">
 <meta property="og:site_name" content="李世奇的技术专栏">
-<meta property="og:description" content="话不多说，先上代码12345678910111213141516171819202122232425262728function judgeFloat(n, m) &amp;#123;  const binaryN = n.toString(2);  const binaryM = m.toString(2);  console.log(`$&amp;#123;n&amp;#125;的二进制是    $&amp;#123;bi">
+<meta property="og:description" content="话不多说，先上代码function judgeFloat(n, m) &amp;#123;  const binaryN = n.toString(2);  const binaryM = m.toString(2);  console.log(`$&amp;#123;n&amp;#125;的二进制是    $&amp;#123;binaryN&amp;#125;`);  console.log(`$&amp;#123;m&amp;#125;的二进制">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.lisq.xyz/img/4.jpg">
 <meta property="og:updated_time" content="2019-04-06T05:28:05.940Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入分析前端小数计算问题">
-<meta name="twitter:description" content="话不多说，先上代码12345678910111213141516171819202122232425262728function judgeFloat(n, m) &amp;#123;  const binaryN = n.toString(2);  const binaryM = m.toString(2);  console.log(`$&amp;#123;n&amp;#125;的二进制是    $&amp;#123;bi">
+<meta name="twitter:description" content="话不多说，先上代码function judgeFloat(n, m) &amp;#123;  const binaryN = n.toString(2);  const binaryM = m.toString(2);  console.log(`$&amp;#123;n&amp;#125;的二进制是    $&amp;#123;binaryN&amp;#125;`);  console.log(`$&amp;#123;m&amp;#125;的二进制">
 <meta name="twitter:image" content="https://www.lisq.xyz/img/4.jpg">
     
 
@@ -148,7 +148,59 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-【JavaScript】深入分析前端小数计算问题" class="article article-single article-type-post"
+                            <style>
+    #article-toc.fixed {
+        position: fixed;
+        top: 30px;
+        bottom: 30px;
+        left: 22px;
+        padding-top: 15px;
+        z-index: 9999;
+        background-color: antiquewhite;
+        width: 200px;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid rgb(122, 122, 122);
+        opacity: 0.8;
+    }
+
+    #article-toc-inner {
+        padding: 10px;
+        width: 200px;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .toc-level-3 {
+        margin-left: 20px;
+    }
+
+    #article-toc a {
+        text-decoration: none;
+        color: #333;
+        padding: 3px 0;
+        color: #000;
+        font-weight: normal;
+    }
+
+    .toc-item {
+        line-height: 30px;
+        list-style-type: initial;
+    }
+
+    #tocbtn {
+        position: fixed;
+        top: 30%;
+        left: 2px;
+        padding: 5px 2px;
+        width: 18px;
+        word-wrap: break-word;
+    }
+</style>
+
+<article id="post-【JavaScript】深入分析前端小数计算问题"
+    class="article article-single article-type-post"
     itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -187,7 +239,7 @@
         
         <div class="article-entry" itemprop="articleBody">
             <p><img src="/img/4.jpg" alt="image"></p>
-<h1 id="话不多说，先上代码"><a href="#话不多说，先上代码" class="headerlink" title="话不多说，先上代码"></a>话不多说，先上代码</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">judgeFloat</span>(<span class="params">n, m</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> binaryN = n.toString(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">const</span> binaryM = m.toString(<span class="number">2</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;n&#125;</span>的二进制是    <span class="subst">$&#123;binaryN&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;m&#125;</span>的二进制是    <span class="subst">$&#123;binaryM&#125;</span>`</span>);</span><br><span class="line">  <span class="keyword">const</span> MN = m + n;</span><br><span class="line">  <span class="keyword">const</span> accuracyMN = (m * <span class="number">100</span> + n * <span class="number">100</span>) / <span class="number">100</span>;</span><br><span class="line">  <span class="keyword">const</span> binaryMN = MN.toString(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">const</span> accuracyBinaryMN = accuracyMN.toString(<span class="number">2</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;n&#125;</span>+<span class="subst">$&#123;m&#125;</span>的二进制是<span class="subst">$&#123;binaryMN&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;accuracyMN&#125;</span>的二进制是    <span class="subst">$&#123;accuracyBinaryMN&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;n&#125;</span>+<span class="subst">$&#123;m&#125;</span>的二进制再转成十进制是<span class="subst">$&#123;to10(binaryMN)&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;accuracyMN&#125;</span>的二进制是再转成十进制是<span class="subst">$&#123;to10(accuracyBinaryMN)&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;n&#125;</span>+<span class="subst">$&#123;m&#125;</span>在js中计算是<span class="subst">$&#123;(to10(binaryMN) === to10(accuracyBinaryMN)) ? <span class="string">''</span> : <span class="string">'不'</span>&#125;</span>准确的`</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">to10</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> pre = (n.split(<span class="string">'.'</span>)[<span class="number">0</span>] - <span class="number">0</span>).toString(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">const</span> arr = n.split(<span class="string">'.'</span>)[<span class="number">1</span>].split(<span class="string">''</span>);</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (i &lt; arr.length) &#123;</span><br><span class="line">    result += arr[i] * <span class="built_in">Math</span>.pow(<span class="number">2</span>, -(i + <span class="number">1</span>));</span><br><span class="line">    i++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line">judgeFloat(<span class="number">0.1</span>, <span class="number">0.2</span>);</span><br><span class="line">judgeFloat(<span class="number">0.6</span>, <span class="number">0.7</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="话不多说，先上代码"><a href="#话不多说，先上代码" class="headerlink" title="话不多说，先上代码"></a>话不多说，先上代码</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">judgeFloat</span>(<span class="params">n, m</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> binaryN = n.toString(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">const</span> binaryM = m.toString(<span class="number">2</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;n&#125;</span>的二进制是    <span class="subst">$&#123;binaryN&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;m&#125;</span>的二进制是    <span class="subst">$&#123;binaryM&#125;</span>`</span>);</span><br><span class="line">  <span class="keyword">const</span> MN = m + n;</span><br><span class="line">  <span class="keyword">const</span> accuracyMN = (m * <span class="number">100</span> + n * <span class="number">100</span>) / <span class="number">100</span>;</span><br><span class="line">  <span class="keyword">const</span> binaryMN = MN.toString(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">const</span> accuracyBinaryMN = accuracyMN.toString(<span class="number">2</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;n&#125;</span>+<span class="subst">$&#123;m&#125;</span>的二进制是<span class="subst">$&#123;binaryMN&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;accuracyMN&#125;</span>的二进制是    <span class="subst">$&#123;accuracyBinaryMN&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;n&#125;</span>+<span class="subst">$&#123;m&#125;</span>的二进制再转成十进制是<span class="subst">$&#123;to10(binaryMN)&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;accuracyMN&#125;</span>的二进制是再转成十进制是<span class="subst">$&#123;to10(accuracyBinaryMN)&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;n&#125;</span>+<span class="subst">$&#123;m&#125;</span>在js中计算是<span class="subst">$&#123;(to10(binaryMN) === to10(accuracyBinaryMN)) ? <span class="string">''</span> : <span class="string">'不'</span>&#125;</span>准确的`</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">to10</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> pre = (n.split(<span class="string">'.'</span>)[<span class="number">0</span>] - <span class="number">0</span>).toString(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">const</span> arr = n.split(<span class="string">'.'</span>)[<span class="number">1</span>].split(<span class="string">''</span>);</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (i &lt; arr.length) &#123;</span><br><span class="line">    result += arr[i] * <span class="built_in">Math</span>.pow(<span class="number">2</span>, -(i + <span class="number">1</span>));</span><br><span class="line">    i++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line">judgeFloat(<span class="number">0.1</span>, <span class="number">0.2</span>);</span><br><span class="line">judgeFloat(<span class="number">0.6</span>, <span class="number">0.7</span>);</span><br></pre></td></tr></table></figure>
 <p>由于<code>JavaScript</code>中没有将小数的<code>二进制</code>转换成<code>十进制</code>的方法，于是手动实现了一个。</p>
 <p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/二进制3.png" alt="image"></p>
 <h1 id="先来一个简单的结论"><a href="#先来一个简单的结论" class="headerlink" title="先来一个简单的结论"></a>先来一个简单的结论</h1><p>计算机中所有的数据都是以<code>二进制</code>存储的，所以在计算时计算机要把数据先转换成<code>二进制</code>进行计算，然后在把计算结果转换成<code>十进制</code>。</p>
@@ -195,12 +247,12 @@
 <p>其实有些标题党了，一个函数并不能让你深入理解，还得继续看下面…</p>
 <h1 id="对结果的分析—更多的问题"><a href="#对结果的分析—更多的问题" class="headerlink" title="对结果的分析—更多的问题"></a>对结果的分析—更多的问题</h1><p><code>0.1</code>和<code>0.2</code>的二进制都是以1100无限循环的小数，下面逐个来看JS帮我们计算所得的结果：</p>
 <p><strong>0.1的二进制</strong>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.0001100110011001100110011001100110011001100110011001101</span><br></pre></td></tr></table></figure>
-<p><strong>0.2的二进制</strong>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.001100110011001100110011001100110011001100110011001101</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0.0001100110011001100110011001100110011001100110011001101</span><br></pre></td></tr></table></figure>
+<p><strong>0.2的二进制</strong>：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0.001100110011001100110011001100110011001100110011001101</span><br></pre></td></tr></table></figure></p>
 <p><strong>理论上讲，由上面的结果相加应该：</strong>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.0100110011001100110011001100110011001100110011001100111</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0.0100110011001100110011001100110011001100110011001100111</span><br></pre></td></tr></table></figure>
 <p><strong>实际JS计算得到的0.1+0.2的二进制</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.0100110011001100110011001100110011001100110011001101</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0.0100110011001100110011001100110011001100110011001101</span><br></pre></td></tr></table></figure>
 <p>作为一个代码强迫症的我又产生的新的问题：</p>
 <blockquote>
 <p>Why js计算出的 0.1的二进制 是这么多位而不是更多位？？？</p>
@@ -241,12 +293,12 @@
 <p><code>尾数位</code>存储科学计数法后的有效数字；</p>
 <p>所以我们通常看到的二进制，其实是计算机实际存储的尾数位。</p>
 <h1 id="js中的toString-2"><a href="#js中的toString-2" class="headerlink" title="js中的toString(2)"></a>js中的toString(2)</h1><p>由于尾数位只能存储<code>52</code>个数字，这就能解释<code>toString(2)</code>的执行结果了：</p>
-<p>如果计算机没有存储空间的限制，那么<code>0.1</code>的<code>二进制</code>应该是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.00011001100110011001100110011001100110011001100110011001...</span><br></pre></td></tr></table></figure></p>
+<p>如果计算机没有存储空间的限制，那么<code>0.1</code>的<code>二进制</code>应该是：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0.00011001100110011001100110011001100110011001100110011001...</span><br></pre></td></tr></table></figure></p>
 <p>科学计数法尾数位</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.1001100110011001100110011001100110011001100110011001...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1.1001100110011001100110011001100110011001100110011001...</span><br></pre></td></tr></table></figure>
 <p>但是由于限制，有效数字第<code>53</code>位及以后的数字是不能存储的，它遵循，如果是<code>1</code>就向前一位进<code>1</code>，如果是<code>0</code>就舍弃的原则。</p>
 <p>0.1的二进制科学计数法第53位是1，所以就有了下面的结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.0001100110011001100110011001100110011001100110011001101</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0.0001100110011001100110011001100110011001100110011001101</span><br></pre></td></tr></table></figure>
 <p><code>0.2</code>有着同样的问题，其实正是由于这样的存储，在这里有了精度丢失，导致了<code>0.1+0.2!=0.3</code>。</p>
 <p>事实上有着同样精度问题的计算还有很多，我们无法把他们都记下来，所以当程序中有数字计算时，我们最好用工具库来帮助我们解决，下面是两个推荐使用的开源库：</p>
 <ul>
@@ -258,9 +310,9 @@
 <p>下面我们再来看上面的其他两个问题。</p>
 <h1 id="Why-JavaScript计算出的-0-1的二进制-是这么多位而不是更多位？？？"><a href="#Why-JavaScript计算出的-0-1的二进制-是这么多位而不是更多位？？？" class="headerlink" title="Why JavaScript计算出的 0.1的二进制 是这么多位而不是更多位？？？"></a>Why JavaScript计算出的 0.1的二进制 是这么多位而不是更多位？？？</h1><p>上面的<code>toString</code>原理帮我们解答了这个问题，在有效数字第<code>53</code>位以后的数字将遵循<code>1进0舍</code>的原则，内存中只允许存储<code>52</code>位有效数字。</p>
 <h1 id="Why-JavaScript计算的（0-1-0-2）的二进制和我们自己计算的（0-1-0-2）的二进制结果不一样呢？？？"><a href="#Why-JavaScript计算的（0-1-0-2）的二进制和我们自己计算的（0-1-0-2）的二进制结果不一样呢？？？" class="headerlink" title="Why JavaScript计算的（0.1+0.2）的二进制和我们自己计算的（0.1+0.2）的二进制结果不一样呢？？？"></a>Why JavaScript计算的（0.1+0.2）的二进制和我们自己计算的（0.1+0.2）的二进制结果不一样呢？？？</h1><p><strong>我们自己计算的0.1+0.2：</strong>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.0100110011001100110011001100110011001100110011001100111</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0.0100110011001100110011001100110011001100110011001100111</span><br></pre></td></tr></table></figure>
 <p>实际上这个结果的有效数字已经超过了<code>52</code>位，我们要从末尾进行<code>1进0舍</code>得到下面的结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.0100110011001100110011001100110011001100110011001101</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0.0100110011001100110011001100110011001100110011001101</span><br></pre></td></tr></table></figure>
 <h1 id="JavaScript能表示的最大数字"><a href="#JavaScript能表示的最大数字" class="headerlink" title="JavaScript能表示的最大数字"></a>JavaScript能表示的最大数字</h1><p>由与<code>IEEE 754</code>双精度64位规范的限制：</p>
 <p><code>指数位</code>能表示的最大数字：<code>1023</code>(十进制)</p>
 <p><code>尾数位</code>能表达的最大数字即尾数位都位<code>1</code>的情况</p>
@@ -275,10 +327,10 @@
 <p>其实官方也考虑到了这个问题，<code>bigInt</code>类型在<code>es10</code>中被提出，现在<code>Chrome</code>中已经可以使用。</p>
 <h1 id="bigInt类型"><a href="#bigInt类型" class="headerlink" title="bigInt类型"></a>bigInt类型</h1><p><code>BigInt</code> 是第七种原始类型。</p>
 <p><code>BigInt</code> 是一个任意精度的整数。这意味着变量现在可以计算<code>9007199254740991</code>即最大安全整数以上的数字。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const b = 1n;  // 追加 n 以创建 BigInt</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const b = 1n;  // 追加 n 以创建 BigInt</span><br></pre></td></tr></table></figure>
 <p>在过去，不支持大于 <code>9007199254740992</code> 的整数值。如果超过，该值将锁定为<code>MAX_SAFE_INTEGER + 1</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const limit = Number.MAX_SAFE_INTEGER;</span><br><span class="line">⇨ 9007199254740991</span><br><span class="line">limit + 1;</span><br><span class="line">⇨ 9007199254740992</span><br><span class="line">limit + 2;</span><br><span class="line">⇨ 9007199254740992 &lt;--- MAX_SAFE_INTEGER + 1 exceeded</span><br><span class="line">const larger = 9007199254740991n;</span><br><span class="line">⇨ 9007199254740991n</span><br><span class="line">const integer = BigInt(9007199254740991); // initialize with number</span><br><span class="line">⇨ 9007199254740991n</span><br><span class="line">const same = BigInt(&quot;9007199254740991&quot;); // initialize with &quot;string&quot;</span><br><span class="line">⇨ 9007199254740991n</span><br></pre></td></tr></table></figure>
-<p>typeof<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">typeof 10;</span><br><span class="line">⇨ &apos;number&apos;</span><br><span class="line">typeof 10n;</span><br><span class="line">⇨ &apos;bigint&apos;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const limit = Number.MAX_SAFE_INTEGER;</span><br><span class="line">⇨ 9007199254740991</span><br><span class="line">limit + 1;</span><br><span class="line">⇨ 9007199254740992</span><br><span class="line">limit + 2;</span><br><span class="line">⇨ 9007199254740992 &lt;--- MAX_SAFE_INTEGER + 1 exceeded</span><br><span class="line">const larger = 9007199254740991n;</span><br><span class="line">⇨ 9007199254740991n</span><br><span class="line">const integer = BigInt(9007199254740991); // initialize with number</span><br><span class="line">⇨ 9007199254740991n</span><br><span class="line">const same = BigInt(&quot;9007199254740991&quot;); // initialize with &quot;string&quot;</span><br><span class="line">⇨ 9007199254740991n</span><br></pre></td></tr></table></figure>
+<p>typeof<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">typeof 10;</span><br><span class="line">⇨ &apos;number&apos;</span><br><span class="line">typeof 10n;</span><br><span class="line">⇨ &apos;bigint&apos;</span><br></pre></td></tr></table></figure></p>
 
         </div>
         <footer class="article-footer">
@@ -286,7 +338,7 @@
 
 
 
-    <a data-url="https://www.lisq.xyz/2019/03/06/【JavaScript】深入分析前端小数计算问题/" data-id="cjudyt8p90000600dwi6zbqfr" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://www.lisq.xyz/2019/03/06/【JavaScript】深入分析前端小数计算问题/" data-id="cjuju23v30000vo0d748w09or" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -350,6 +402,7 @@
     </div>
 </article>
 
+
     <section id="comments">
     
         
@@ -362,6 +415,32 @@
 
 
 
+
+
+<div id="roott"></div>
+
+<button id="tocbtn">打开目录</button>
+
+
+<script>
+    var showToc = false;
+    document.getElementById('tocbtn').onclick = function () {
+        if (showToc) {
+            document.getElementById('roott').innerHTML = ''
+            document.getElementById('tocbtn').innerHTML = '打开目录'
+        } else {
+            document.getElementById('roott').innerHTML = `<aside id="article-toc" role="navigation" class="fixed">
+  <div id="article-toc-inner">
+    <strong class="sidebar-title">
+      目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#话不多说，先上代码"><span class="toc-text">话不多说，先上代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#先来一个简单的结论"><span class="toc-text">先来一个简单的结论</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对结果的分析—更多的问题"><span class="toc-text">对结果的分析—更多的问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#js对二进制小数的存储方式"><span class="toc-text">js对二进制小数的存储方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IEEE-754"><span class="toc-text">IEEE 754</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#js中的toString-2"><span class="toc-text">js中的toString(2)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-JavaScript计算出的-0-1的二进制-是这么多位而不是更多位？？？"><span class="toc-text">Why JavaScript计算出的 0.1的二进制 是这么多位而不是更多位？？？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-JavaScript计算的（0-1-0-2）的二进制和我们自己计算的（0-1-0-2）的二进制结果不一样呢？？？"><span class="toc-text">Why JavaScript计算的（0.1+0.2）的二进制和我们自己计算的（0.1+0.2）的二进制结果不一样呢？？？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript能表示的最大数字"><span class="toc-text">JavaScript能表示的最大数字</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#最大安全数字"><span class="toc-text">最大安全数字</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bigInt类型"><span class="toc-text">bigInt类型</span></a></li></ol>
+  </div>
+</aside>`
+            document.getElementById('tocbtn').innerHTML = '关闭目录'
+        }
+        showToc = !showToc;
+    }
+</script>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
 <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <div id="vcomments" style="padding: 30px;"></div>
@@ -736,6 +815,6 @@
 <script src="/js/main.js"></script>
 
     </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 
 </html>

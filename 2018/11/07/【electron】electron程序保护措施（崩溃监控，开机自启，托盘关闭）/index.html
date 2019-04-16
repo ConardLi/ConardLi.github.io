@@ -12,19 +12,19 @@
     
         <meta name="keywords" content="electron" />
     
-    <meta name="description" content="在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。 以下几种方式可以帮助我们做到这一点： 1.崩溃监控electron为我们提供了监听程序崩溃的事件： 123456Event: &amp;apos;crashed&amp;apos;返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发 此事件是用来家庭渲染进程崩溃的，但是当主进程意外崩溃时也">
+    <meta name="description" content="在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。 以下几种方式可以帮助我们做到这一点： 1.崩溃监控electron为我们提供了监听程序崩溃的事件： Event: &apos;crashed&apos;返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发 此事件是用来家庭渲染进程崩溃的，但是当主进程意外崩溃时也会触发该事件。 在监测到程序崩溃">
 <meta name="keywords" content="electron">
 <meta property="og:type" content="article">
 <meta property="og:title" content="electron程序保护措施（崩溃监控，开机自启，托盘关闭）">
 <meta property="og:url" content="https://www.lisq.xyz/2018/11/07/【electron】electron程序保护措施（崩溃监控，开机自启，托盘关闭）/index.html">
 <meta property="og:site_name" content="李世奇的技术专栏">
-<meta property="og:description" content="在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。 以下几种方式可以帮助我们做到这一点： 1.崩溃监控electron为我们提供了监听程序崩溃的事件： 123456Event: &amp;apos;crashed&amp;apos;返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发 此事件是用来家庭渲染进程崩溃的，但是当主进程意外崩溃时也">
+<meta property="og:description" content="在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。 以下几种方式可以帮助我们做到这一点： 1.崩溃监控electron为我们提供了监听程序崩溃的事件： Event: &apos;crashed&apos;返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发 此事件是用来家庭渲染进程崩溃的，但是当主进程意外崩溃时也会触发该事件。 在监测到程序崩溃">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.lisq.xyz/img/1.jpg">
-<meta property="og:updated_time" content="2019-04-06T05:27:51.873Z">
+<meta property="og:updated_time" content="2019-04-16T11:41:55.894Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="electron程序保护措施（崩溃监控，开机自启，托盘关闭）">
-<meta name="twitter:description" content="在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。 以下几种方式可以帮助我们做到这一点： 1.崩溃监控electron为我们提供了监听程序崩溃的事件： 123456Event: &amp;apos;crashed&amp;apos;返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发 此事件是用来家庭渲染进程崩溃的，但是当主进程意外崩溃时也">
+<meta name="twitter:description" content="在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。 以下几种方式可以帮助我们做到这一点： 1.崩溃监控electron为我们提供了监听程序崩溃的事件： Event: &apos;crashed&apos;返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发 此事件是用来家庭渲染进程崩溃的，但是当主进程意外崩溃时也会触发该事件。 在监测到程序崩溃">
 <meta name="twitter:image" content="https://www.lisq.xyz/img/1.jpg">
     
 
@@ -148,7 +148,59 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-【electron】electron程序保护措施（崩溃监控，开机自启，托盘关闭）" class="article article-single article-type-post"
+                            <style>
+    #article-toc.fixed {
+        position: fixed;
+        top: 30px;
+        bottom: 30px;
+        left: 22px;
+        padding-top: 15px;
+        z-index: 9999;
+        background-color: antiquewhite;
+        width: 200px;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid rgb(122, 122, 122);
+        opacity: 0.8;
+    }
+
+    #article-toc-inner {
+        padding: 10px;
+        width: 200px;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .toc-level-3 {
+        margin-left: 20px;
+    }
+
+    #article-toc a {
+        text-decoration: none;
+        color: #333;
+        padding: 3px 0;
+        color: #000;
+        font-weight: normal;
+    }
+
+    .toc-item {
+        line-height: 30px;
+        list-style-type: initial;
+    }
+
+    #tocbtn {
+        position: fixed;
+        top: 30%;
+        left: 2px;
+        padding: 5px 2px;
+        width: 18px;
+        word-wrap: break-word;
+    }
+</style>
+
+<article id="post-【electron】electron程序保护措施（崩溃监控，开机自启，托盘关闭）"
+    class="article article-single article-type-post"
     itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -190,31 +242,31 @@
 <p>在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。</p>
 <p>以下几种方式可以帮助我们做到这一点：</p>
 <h1 id="1-崩溃监控"><a href="#1-崩溃监控" class="headerlink" title="1.崩溃监控"></a>1.崩溃监控</h1><p>electron为我们提供了监听程序崩溃的事件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Event: &apos;crashed&apos;</span><br><span class="line">返回:</span><br><span class="line"></span><br><span class="line">event Event</span><br><span class="line">killed Boolean</span><br><span class="line">当渲染进程崩溃或被结束时触发</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Event: <span class="string">'crashed'</span></span><br><span class="line">返回:</span><br><span class="line"></span><br><span class="line">event Event</span><br><span class="line">killed <span class="built_in">Boolean</span></span><br><span class="line">当渲染进程崩溃或被结束时触发</span><br></pre></td></tr></table></figure>
 <p>此事件是用来家庭渲染进程崩溃的，但是当主进程意外崩溃时也会触发该事件。</p>
 <p>在监测到程序崩溃后，我们要让程序重新启动，此时我们要首先判断window对象是否被销毁，也就是主进程是否被杀死，还是渲染进程崩溃，同时作出不同的处理。</p>
 <p>当mainWin被销毁时我们直接重启整个应用，使用如下api：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">app.relaunch([options])</span><br><span class="line">options Object (可选)</span><br><span class="line"></span><br><span class="line">args String</span><br><span class="line">execPath String (可选)</span><br><span class="line">从当前实例退出，重启应用。</span><br><span class="line"></span><br><span class="line">默认情况下，新的实例会和当前实例使用相同的工作目录以及命令行参数。 当设置了 args 参数时， args 将作为命令行参数传递。 当设置了 execPath ，execPath 将被执行以重新启动，而不是当前的应用程序。</span><br><span class="line"></span><br><span class="line">请注意, 此方法在执行时不会退出当前的应用程序, 你需要在调用 app.relaunch 方法后再执行 app. quit 或者 app.exit 来让应用重启。</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.relaunch([options])</span><br><span class="line">options <span class="built_in">Object</span> (可选)</span><br><span class="line"></span><br><span class="line">args <span class="built_in">String</span></span><br><span class="line">execPath <span class="built_in">String</span> (可选)</span><br><span class="line">从当前实例退出，重启应用。</span><br><span class="line"></span><br><span class="line">默认情况下，新的实例会和当前实例使用相同的工作目录以及命令行参数。 当设置了 args 参数时， args 将作为命令行参数传递。 当设置了 execPath ，execPath 将被执行以重新启动，而不是当前的应用程序。</span><br><span class="line"></span><br><span class="line">请注意, 此方法在执行时不会退出当前的应用程序, 你需要在调用 app.relaunch 方法后再执行 app. quit 或者 app.exit 来让应用重启。</span><br></pre></td></tr></table></figure>
 <p>只是渲染进程崩溃，我们只需将其他窗体销毁，然后重新load我们的主窗口。</p>
 <p>崩溃重启逻辑：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">if (mainWin.isDestroyed()) &#123;</span><br><span class="line">  app.relaunch();</span><br><span class="line">  app.exit(0);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  BrowserWindow.getAllWindows().forEach((w) =&gt; &#123;</span><br><span class="line">    if (w.id !== mainWin.id) w.destroy();</span><br><span class="line">  &#125;);</span><br><span class="line">  mainWin.reload();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (mainWin.isDestroyed()) &#123;</span><br><span class="line">  app.relaunch();</span><br><span class="line">  app.exit(<span class="number">0</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  BrowserWindow.getAllWindows().forEach(<span class="function">(<span class="params">w</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (w.id !== mainWin.id) w.destroy();</span><br><span class="line">  &#125;);</span><br><span class="line">  mainWin.reload();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>当然，我们还要记录一下程序的崩溃日志，我们要确保日志接口发出成功后再重启我们的程序：</p>
 <p>下面是程序崩溃后的完整逻辑：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">import &#123; BrowserWindow, app, dialog&#125; from &apos;electron&apos;;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">const mainWindow = BrowserWindow.fromId(global.mainId);</span><br><span class="line">mainWindow.webContents.on(&apos;crashed&apos;, () =&gt; &#123;</span><br><span class="line">   const options = &#123;</span><br><span class="line">      type: &apos;error&apos;,</span><br><span class="line">      title: &apos;进程崩溃了&apos;,</span><br><span class="line">      message: &apos;这个进程已经崩溃.&apos;,</span><br><span class="line">      buttons: [&apos;重载&apos;, &apos;退出&apos;],</span><br><span class="line">    &#125;;    </span><br><span class="line">   recordCrash().then(() =&gt; &#123;</span><br><span class="line">      dialog.showMessageBox(options, (index) =&gt; &#123;</span><br><span class="line">        if (index === 0) reloadWindow(mainWindow);</span><br><span class="line">        else app.quit();</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;).catch((e) =&gt; &#123;</span><br><span class="line">      console.log(&apos;err&apos;, e);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">function recordCrash() &#123; </span><br><span class="line">    return new Promise(resolve =&gt; &#123; </span><br><span class="line">       // 崩溃日志请求成功.... </span><br><span class="line">      resolve();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line">function reloadWindow(mainWin) &#123;</span><br><span class="line">  if (mainWin.isDestroyed()) &#123;</span><br><span class="line">    app.relaunch();</span><br><span class="line">    app.exit(0);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    BrowserWindow.getAllWindows().forEach((w) =&gt; &#123;</span><br><span class="line">      if (w.id !== mainWin.id) w.destroy();</span><br><span class="line">    &#125;);</span><br><span class="line">    mainWin.reload();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>写好代码之后，我们可以直接在控制台输入 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 2.开机自启</span><br><span class="line"></span><br><span class="line">开机自启是保证我们的程序能长时间在机器上运行很重要的一点。</span><br><span class="line"></span><br><span class="line">电脑上有很多程序都设置了开机自启动，比如qq，微信，迅雷等，他们都是通过修改注册表来实现的，我们可以看一下注册表``` \\Software\\Microsoft\\Windows\\CurrentVersion\\Run```:</span><br><span class="line"></span><br><span class="line">![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/zhucebiao1.bmp)</span><br><span class="line"></span><br><span class="line">所以我们也要将我们程序的路径写到这里。</span><br><span class="line"></span><br><span class="line">发现了一个非常好的写注册表的模块，```winreg</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; BrowserWindow, app, dialog&#125; <span class="keyword">from</span> <span class="string">'electron'</span>;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"><span class="keyword">const</span> mainWindow = BrowserWindow.fromId(global.mainId);</span><br><span class="line">mainWindow.webContents.on(<span class="string">'crashed'</span>, () =&gt; &#123;</span><br><span class="line">   <span class="keyword">const</span> options = &#123;</span><br><span class="line">      type: <span class="string">'error'</span>,</span><br><span class="line">      title: <span class="string">'进程崩溃了'</span>,</span><br><span class="line">      message: <span class="string">'这个进程已经崩溃.'</span>,</span><br><span class="line">      buttons: [<span class="string">'重载'</span>, <span class="string">'退出'</span>],</span><br><span class="line">    &#125;;    </span><br><span class="line">   recordCrash().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      dialog.showMessageBox(options, (index) =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (index === <span class="number">0</span>) reloadWindow(mainWindow);</span><br><span class="line">        <span class="keyword">else</span> app.quit();</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;).catch(<span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'err'</span>, e);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">recordCrash</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123; </span><br><span class="line">       <span class="comment">// 崩溃日志请求成功.... </span></span><br><span class="line">      resolve();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reloadWindow</span>(<span class="params">mainWin</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (mainWin.isDestroyed()) &#123;</span><br><span class="line">    app.relaunch();</span><br><span class="line">    app.exit(<span class="number">0</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    BrowserWindow.getAllWindows().forEach(<span class="function">(<span class="params">w</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (w.id !== mainWin.id) w.destroy();</span><br><span class="line">    &#125;);</span><br><span class="line">    mainWin.reload();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>写好代码之后，我们可以直接在控制台输入 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"># 2.开机自启</span><br><span class="line"></span><br><span class="line">开机自启是保证我们的程序能长时间在机器上运行很重要的一点。</span><br><span class="line"></span><br><span class="line">电脑上有很多程序都设置了开机自启动，比如qq，微信，迅雷等，他们都是通过修改注册表来实现的，我们可以看一下注册表``` \\Software\\Microsoft\\Windows\\CurrentVersion\\Run```:</span><br><span class="line"></span><br><span class="line">![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/zhucebiao1.bmp)</span><br><span class="line"></span><br><span class="line">所以我们也要将我们程序的路径写到这里。</span><br><span class="line"></span><br><span class="line">发现了一个非常好的写注册表的模块，```winreg</span><br></pre></td></tr></table></figure></p>
 <p>注意mac不能使用这个模块，所以首先要判断是否为window再引用这个模块。</p>
 <p>借助这个模块我们可以非常简单的修改注册表：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">const WinReg = require(&apos;winreg&apos;);</span><br><span class="line"></span><br><span class="line">const startOnBoot = &#123;</span><br><span class="line">  enableAutoStart: function (name, file, callback) &#123;</span><br><span class="line">    var key = getKey();</span><br><span class="line">    key.set(name, WinReg.REG_SZ, file, callback || noop);</span><br><span class="line">  &#125;,</span><br><span class="line">  disableAutoStart: function (name, callback) &#123;</span><br><span class="line">    var key = getKey();</span><br><span class="line">    key.remove(name, callback || noop);</span><br><span class="line">  &#125;,</span><br><span class="line">  getAutoStartValue: function (name, callback) &#123;</span><br><span class="line">    var key = getKey();</span><br><span class="line">    key.get(name, function (error, result) &#123;</span><br><span class="line">      if (result) &#123;</span><br><span class="line">        callback(result.value);</span><br><span class="line">      &#125;</span><br><span class="line">      else &#123;</span><br><span class="line">        callback(null, error);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function noop() &#123; &#125;</span><br><span class="line"></span><br><span class="line">const RUN_LOCATION = &apos;\\Software\\Microsoft\\Windows\\CurrentVersion\\Run&apos;;</span><br><span class="line">function getKey() &#123;</span><br><span class="line">  return new WinReg(&#123;</span><br><span class="line">    hive: WinReg.HKCU, //CurrentUser,</span><br><span class="line">    key: RUN_LOCATION</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default function autoStart() &#123;</span><br><span class="line">  startOnBoot.getAutoStartValue(&apos;MY_CLIENT_AUTOSTART&apos;, function (value) &#123;</span><br><span class="line">    if (!value) &#123;</span><br><span class="line">      startOnBoot.enableAutoStart(&apos;MY_CLIENT_AUTOSTART&apos;, process.execPath, function () &#123; console.log(&apos;开机自动启设置&apos;); &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> WinReg = <span class="built_in">require</span>(<span class="string">'winreg'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> startOnBoot = &#123;</span><br><span class="line">  enableAutoStart: <span class="function"><span class="keyword">function</span> (<span class="params">name, file, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> key = getKey();</span><br><span class="line">    key.set(name, WinReg.REG_SZ, file, callback || noop);</span><br><span class="line">  &#125;,</span><br><span class="line">  disableAutoStart: <span class="function"><span class="keyword">function</span> (<span class="params">name, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> key = getKey();</span><br><span class="line">    key.remove(name, callback || noop);</span><br><span class="line">  &#125;,</span><br><span class="line">  getAutoStartValue: <span class="function"><span class="keyword">function</span> (<span class="params">name, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> key = getKey();</span><br><span class="line">    key.get(name, <span class="function"><span class="keyword">function</span> (<span class="params">error, result</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (result) &#123;</span><br><span class="line">        callback(result.value);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> &#123;</span><br><span class="line">        callback(<span class="literal">null</span>, error);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">noop</span>(<span class="params"></span>) </span>&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> RUN_LOCATION = <span class="string">'\\Software\\Microsoft\\Windows\\CurrentVersion\\Run'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getKey</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> WinReg(&#123;</span><br><span class="line">    hive: WinReg.HKCU, <span class="comment">//CurrentUser,</span></span><br><span class="line">    key: RUN_LOCATION</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">autoStart</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  startOnBoot.getAutoStartValue(<span class="string">'MY_CLIENT_AUTOSTART'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!value) &#123;</span><br><span class="line">      startOnBoot.enableAutoStart(<span class="string">'MY_CLIENT_AUTOSTART'</span>, process.execPath, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'开机自动启设置'</span>); &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>执行完程序之后，再看注册表，发现我们程序的路径已经写进去了：</p>
 <p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/zhucebiao2.bmp" alt="image"></p>
 <p>然后电脑重启后你的程序就自动启动了。</p>
 <h1 id="3-托盘关闭"><a href="#3-托盘关闭" class="headerlink" title="3.托盘关闭"></a>3.托盘关闭</h1><p>向qq和微信一样，有的时候我们并不想让用户通过点关闭按钮的时候就关闭程序，而是把程序最小化到托盘，在托盘上做真正的退出操作。</p>
 <p>首先要监听窗口的关闭事件，阻止用户关闭操作的默认行为。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mainWindow.on(&apos;close&apos;, (event) =&gt; &#123;</span><br><span class="line">  mainWindow.hide();</span><br><span class="line">  event.preventDefault();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">mainWindow.on(<span class="string">'close'</span>, (event) =&gt; &#123;</span><br><span class="line">  mainWindow.hide();</span><br><span class="line">  event.preventDefault();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>然而这时你发现，这只是最小化了程序，任务栏里程序依然存在，我们需要让程序在任务栏里也消失：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mainWindow.on(&apos;close&apos;, (event) =&gt; &#123;</span><br><span class="line">  mainWindow.hide();</span><br><span class="line">  mainWindow.setSkipTaskbar(true);</span><br><span class="line">  event.preventDefault();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">mainWindow.on(<span class="string">'close'</span>, (event) =&gt; &#123;</span><br><span class="line">  mainWindow.hide();</span><br><span class="line">  mainWindow.setSkipTaskbar(<span class="literal">true</span>);</span><br><span class="line">  event.preventDefault();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>这时程序就再也找不到了，任务托盘中也没有我们的程序，所以我们要先创建好任务托盘，并做好事件监听：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function createTray() &#123;</span><br><span class="line">    const mainWindow = BrowserWindow.fromId(global.mainId);</span><br><span class="line">    tray = new Tray(path.join(global.__dirname, &apos;icon.ico&apos;));</span><br><span class="line">    const contextMenu = Menu.buildFromTemplate([</span><br><span class="line">      &#123; label: &apos;退出&apos;, click: () =&gt; &#123; mainWindow.destroy(); app.quit(); &#125; &#125;,</span><br><span class="line">    ])</span><br><span class="line">    tray.setToolTip(&apos;我的客户端&apos;)</span><br><span class="line">    tray.setContextMenu(contextMenu)</span><br><span class="line">    tray.on(&apos;click&apos;, () =&gt; &#123;</span><br><span class="line">      if (mainWindow.isVisible()) &#123;</span><br><span class="line">        mainWindow.hide();</span><br><span class="line">        mainWindow.setSkipTaskbar(false);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        mainWindow.show();</span><br><span class="line">        mainWindow.setSkipTaskbar(true);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createTray</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> mainWindow = BrowserWindow.fromId(global.mainId);</span><br><span class="line">    tray = <span class="keyword">new</span> Tray(path.join(global.__dirname, <span class="string">'icon.ico'</span>));</span><br><span class="line">    <span class="keyword">const</span> contextMenu = Menu.buildFromTemplate([</span><br><span class="line">      &#123; <span class="attr">label</span>: <span class="string">'退出'</span>, <span class="attr">click</span>: <span class="function"><span class="params">()</span> =&gt;</span> &#123; mainWindow.destroy(); app.quit(); &#125; &#125;,</span><br><span class="line">    ])</span><br><span class="line">    tray.setToolTip(<span class="string">'我的客户端'</span>)</span><br><span class="line">    tray.setContextMenu(contextMenu)</span><br><span class="line">    tray.on(<span class="string">'click'</span>, () =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (mainWindow.isVisible()) &#123;</span><br><span class="line">        mainWindow.hide();</span><br><span class="line">        mainWindow.setSkipTaskbar(<span class="literal">false</span>);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        mainWindow.show();</span><br><span class="line">        mainWindow.setSkipTaskbar(<span class="literal">true</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <p>以上这些操作为我们的程序又增加了好几层的防护措施，我们的程序就不会那么轻而易举的挂掉啦！</p>
 
         </div>
@@ -223,7 +275,7 @@
 
 
 
-    <a data-url="https://www.lisq.xyz/2018/11/07/【electron】electron程序保护措施（崩溃监控，开机自启，托盘关闭）/" data-id="cjudyt8pp0006600danyizox9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://www.lisq.xyz/2018/11/07/【electron】electron程序保护措施（崩溃监控，开机自启，托盘关闭）/" data-id="cjuju23vf0009vo0d9po6wly7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -287,6 +339,7 @@
     </div>
 </article>
 
+
     <section id="comments">
     
         
@@ -299,6 +352,32 @@
 
 
 
+
+
+<div id="roott"></div>
+
+<button id="tocbtn">打开目录</button>
+
+
+<script>
+    var showToc = false;
+    document.getElementById('tocbtn').onclick = function () {
+        if (showToc) {
+            document.getElementById('roott').innerHTML = ''
+            document.getElementById('tocbtn').innerHTML = '打开目录'
+        } else {
+            document.getElementById('roott').innerHTML = `<aside id="article-toc" role="navigation" class="fixed">
+  <div id="article-toc-inner">
+    <strong class="sidebar-title">
+      目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-崩溃监控"><span class="toc-text">1.崩溃监控</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-托盘关闭"><span class="toc-text">3.托盘关闭</span></a></li></ol>
+  </div>
+</aside>`
+            document.getElementById('tocbtn').innerHTML = '关闭目录'
+        }
+        showToc = !showToc;
+    }
+</script>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
 <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <div id="vcomments" style="padding: 30px;"></div>
@@ -673,6 +752,6 @@
 <script src="/js/main.js"></script>
 
     </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 
 </html>

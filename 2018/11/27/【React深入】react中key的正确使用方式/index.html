@@ -21,7 +21,7 @@
 <meta property="og:description" content="在开发react程序时我们经常会遇到这样的警告，然后就会想到：哦！循环子组件忘记加key了～ 出于方便，有时候会不假思索的使用循环的索引作为key，但是这样真的好吗？什么样的值才是key的最佳选择？ 为了弄明白，本文将从三个方面来分析”key”： 1.为什么要使用key 2.使用index做key存在的问题 3.正确的选择key 1.为什么要使用keyreact官方文档是这样描述key的：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.lisq.xyz/img/5.jpg">
-<meta property="og:updated_time" content="2019-03-28T13:03:38.972Z">
+<meta property="og:updated_time" content="2019-04-16T11:42:43.649Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react中key的正确使用方式">
 <meta name="twitter:description" content="在开发react程序时我们经常会遇到这样的警告，然后就会想到：哦！循环子组件忘记加key了～ 出于方便，有时候会不假思索的使用循环的索引作为key，但是这样真的好吗？什么样的值才是key的最佳选择？ 为了弄明白，本文将从三个方面来分析”key”： 1.为什么要使用key 2.使用index做key存在的问题 3.正确的选择key 1.为什么要使用keyreact官方文档是这样描述key的：">
@@ -148,7 +148,59 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-【React深入】react中key的正确使用方式" class="article article-single article-type-post"
+                            <style>
+    #article-toc.fixed {
+        position: fixed;
+        top: 30px;
+        bottom: 30px;
+        left: 22px;
+        padding-top: 15px;
+        z-index: 9999;
+        background-color: antiquewhite;
+        width: 200px;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid rgb(122, 122, 122);
+        opacity: 0.8;
+    }
+
+    #article-toc-inner {
+        padding: 10px;
+        width: 200px;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .toc-level-3 {
+        margin-left: 20px;
+    }
+
+    #article-toc a {
+        text-decoration: none;
+        color: #333;
+        padding: 3px 0;
+        color: #000;
+        font-weight: normal;
+    }
+
+    .toc-item {
+        line-height: 30px;
+        list-style-type: initial;
+    }
+
+    #tocbtn {
+        position: fixed;
+        top: 30%;
+        left: 2px;
+        padding: 5px 2px;
+        width: 18px;
+        word-wrap: break-word;
+    }
+</style>
+
+<article id="post-【React深入】react中key的正确使用方式"
+    class="article article-single article-type-post"
     itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -207,40 +259,40 @@
 </ul>
 <h1 id="2-使用index做key存在的问题"><a href="#2-使用index做key存在的问题" class="headerlink" title="2.使用index做key存在的问题"></a>2.使用index做key存在的问题</h1><h2 id="2-1-受控组件"><a href="#2-1-受控组件" class="headerlink" title="2.1 受控组件"></a>2.1 受控组件</h2><p>单纯的展示组件比如span，这些组件是受控组件，意味着他们的值将是我们给定好的。</p>
 <p>如果子组件只是受控组件，使用index作为key，可能表面上不会有什么问题，实际上性能会受很大的影响。例如下面的代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// [&apos;张三&apos;,&apos;李四&apos;,&apos;王五&apos;]=&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li key=&quot;0&quot;&gt;张三&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;1&quot;&gt;李四&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;2&quot;&gt;王五&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">// 数组重排 -&gt; [&apos;王五&apos;,&apos;张三&apos;,&apos;李四&apos;] =&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li key=&quot;0&quot;&gt;王五&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;1&quot;&gt;张三&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;2&quot;&gt;李四&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">// ['张三','李四','王五']=&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"0"</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"1"</span>&gt;</span>李四<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span>王五<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">// 数组重排 -&gt; ['王五','张三','李四'] =&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"0"</span>&gt;</span>王五<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"1"</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span>李四<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>当元素数据源的顺序发生改变时，对应的：</p>
 <p>key为0，1，2的组件都发生了变化，三个子组件都会被重新渲染。（这里的重新渲染不是销毁，因为key还在）</p>
 <p>相反，我们使用唯一id作为key：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// [&apos;张三&apos;,&apos;李四&apos;,&apos;王五&apos;]=&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li key=&quot;000&quot;&gt;张三&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;111&quot;&gt;李四&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;222&quot;&gt;王五&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">// 数组重排 -&gt; [&apos;王五&apos;,&apos;张三&apos;,&apos;李四&apos;] =&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li key=&quot;222&quot;&gt;王五&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;000&quot;&gt;张三&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;111&quot;&gt;李四&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">// ['张三','李四','王五']=&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"000"</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"111"</span>&gt;</span>李四<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"222"</span>&gt;</span>王五<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">// 数组重排 -&gt; ['王五','张三','李四'] =&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"222"</span>&gt;</span>王五<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"000"</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"111"</span>&gt;</span>李四<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>根据上面的更新原则，子组件的值和key均未发生变化，只是顺序发生改变，因此react只是将他们做了移动，并未重新渲染。</p>
 <h2 id="2-2-非受控组件"><a href="#2-2-非受控组件" class="headerlink" title="2.2 非受控组件"></a>2.2 非受控组件</h2><p>像input这样可以由用户任意改变值，不受我们控制的组件，在使用了index作为key时可能会发生问题，看如下的栗子：</p>
 <p>子组件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;p &gt;值：&#123;this.props.value&#125;&lt;/p&gt;</span><br><span class="line">        &lt;input /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>父组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">this.state.data.map((element, index) =&gt; &#123;</span><br><span class="line">    return &lt;Child value=&#123;element&#125; key=&#123;index&#125; /&gt;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;p &gt;值：&#123;<span class="keyword">this</span>.props.value&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">        &lt;input /</span>&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>父组件<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="keyword">this</span>.state.data.map(<span class="function">(<span class="params">element, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Child</span> <span class="attr">value</span>=<span class="string">&#123;element&#125;</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="xml">    &#125;)</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure></p>
 <p>我们在前两个输入框分别输入对应的值：</p>
 <p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/key2.png" alt="image"></p>
 <p>然后在头部添加一个元素：</p>
 <p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/key3.png" alt="image"></p>
 <p>很明显，这个结果并不符合我们的预期，我们来分析一下发生了什么：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div key=&quot;0&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：0&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;1&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：1&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;2&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：2&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">"0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> &gt;</span>值：0<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> &gt;</span>值：1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> &gt;</span>值：2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>变化后：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div key=&quot;0&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：5&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;1&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：0&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;2&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：1&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;3&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：2&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">"0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> &gt;</span>值：5<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> &gt;</span>值：0<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> &gt;</span>值：1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">"3"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> &gt;</span>值：2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>可以发现：key 0，1，2并没有发生改变，根据规则，不会卸载组件，只会更新改变的属性。</p>
 <p>react只diff到了p标签内值的变化，而input框中的值并未发生改变，因此不会重新渲染，只更新的p标签的值。</p>
 <p>当使用唯一id作为key后：</p>
 <p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/key5.png" alt="image"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div key=&quot;000&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：0&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;111&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：1&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;222&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：2&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">"000"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> &gt;</span>值：0<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">"111"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> &gt;</span>值：1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">"222"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> &gt;</span>值：2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>变化后：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div key=&quot;555&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：5&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;000&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：0&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;111&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：1&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div key=&quot;222&quot;&gt;</span><br><span class="line">    &lt;p &gt;值：2&lt;/p&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">"555"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> &gt;</span>值：5<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">"000"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> &gt;</span>值：0<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">"111"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> &gt;</span>值：1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">"222"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> &gt;</span>值：2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>可以很明显的发现：key为 111，222，333的组件没有发生任何改变，react不会更新他们，只是新插入了子组件555，并改变了其他组件的位置。</p>
 <h1 id="3-正确的选择key"><a href="#3-正确的选择key" class="headerlink" title="3.正确的选择key"></a>3.正确的选择key</h1><h2 id="3-1-纯展示"><a href="#3-1-纯展示" class="headerlink" title="3.1 纯展示"></a>3.1 纯展示</h2><p>如果组件单纯的用于展示，不会发生其他变更，那么使用index或者其他任何不相同的值作为key是没有任何问题的，因为不会发生diff，就不会用到key。</p>
 <h2 id="3-2-推荐使用index的情况"><a href="#3-2-推荐使用index的情况" class="headerlink" title="3.2 推荐使用index的情况"></a>3.2 推荐使用index的情况</h2><p>并不是任何情况使用index作为key会有缺陷，比如如下情况：</p>
 <p>你要分页渲染一个列表，每次点击翻页会重新渲染：</p>
 <p>使用唯一id：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">第一页</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li key=&quot;000&quot;&gt;张三&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;111&quot;&gt;李四&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;222&quot;&gt;王五&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">第二页</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li key=&quot;333&quot;&gt;张三三&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;444&quot;&gt;李四四&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;555&quot;&gt;王五五&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">第一页</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"000"</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"111"</span>&gt;</span>李四<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"222"</span>&gt;</span>王五<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">第二页</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"333"</span>&gt;</span>张三三<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"444"</span>&gt;</span>李四四<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"555"</span>&gt;</span>王五五<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>翻页后，三条记录的key和组件都发生了改变，因此三个子组件都会被卸载然后重新渲染。</p>
 <p>使用index：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">第一页</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li key=&quot;0&quot;&gt;张三&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;1&quot;&gt;李四&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;2&quot;&gt;王五&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">第二页</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li key=&quot;0&quot;&gt;张三三&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;1&quot;&gt;李四四&lt;/li&gt;</span><br><span class="line">    &lt;li key=&quot;2&quot;&gt;王五五&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">第一页</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"0"</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"1"</span>&gt;</span>李四<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span>王五<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">第二页</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"0"</span>&gt;</span>张三三<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"1"</span>&gt;</span>李四四<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span>王五五<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>翻页后，key不变，子组件值发生改变，组件并不会被卸载，只发生更新。</p>
 <h2 id="3-3-子组件可能发生变更-使用了非受控组件"><a href="#3-3-子组件可能发生变更-使用了非受控组件" class="headerlink" title="3.3 子组件可能发生变更/使用了非受控组件"></a>3.3 子组件可能发生变更/使用了非受控组件</h2><p>大多数情况下，使用唯一id作为子组件的key是不会有任何问题的。</p>
 <p>这个id一定要是唯一，并且稳定的，意思是这条记录对应的id一定是独一无二的，并且永远不会发生改变。</p>
@@ -254,7 +306,7 @@
 
 
 
-    <a data-url="https://www.lisq.xyz/2018/11/27/【React深入】react中key的正确使用方式/" data-id="cjudyt8pe0002600dd6r47x7u" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://www.lisq.xyz/2018/11/27/【React深入】react中key的正确使用方式/" data-id="cjuju23vb0004vo0dpbo1z4d7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -318,6 +370,7 @@
     </div>
 </article>
 
+
     <section id="comments">
     
         
@@ -330,6 +383,32 @@
 
 
 
+
+
+<div id="roott"></div>
+
+<button id="tocbtn">打开目录</button>
+
+
+<script>
+    var showToc = false;
+    document.getElementById('tocbtn').onclick = function () {
+        if (showToc) {
+            document.getElementById('roott').innerHTML = ''
+            document.getElementById('tocbtn').innerHTML = '打开目录'
+        } else {
+            document.getElementById('roott').innerHTML = `<aside id="article-toc" role="navigation" class="fixed">
+  <div id="article-toc-inner">
+    <strong class="sidebar-title">
+      目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-为什么要使用key"><span class="toc-text">1.为什么要使用key</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-使用index做key存在的问题"><span class="toc-text">2.使用index做key存在的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-受控组件"><span class="toc-text">2.1 受控组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-非受控组件"><span class="toc-text">2.2 非受控组件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-正确的选择key"><span class="toc-text">3.正确的选择key</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-纯展示"><span class="toc-text">3.1 纯展示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-推荐使用index的情况"><span class="toc-text">3.2 推荐使用index的情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-子组件可能发生变更-使用了非受控组件"><span class="toc-text">3.3 子组件可能发生变更/使用了非受控组件</span></a></li></ol></li></ol>
+  </div>
+</aside>`
+            document.getElementById('tocbtn').innerHTML = '关闭目录'
+        }
+        showToc = !showToc;
+    }
+</script>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
 <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <div id="vcomments" style="padding: 30px;"></div>
@@ -704,6 +783,6 @@
 <script src="/js/main.js"></script>
 
     </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 
 </html>

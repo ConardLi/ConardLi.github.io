@@ -21,7 +21,7 @@
 <meta property="og:description" content="1.使用electron打印的理由很多情况下程序中使用的打印都是用户无感知的。并且想要灵活的控制打印内容，往往需要借助打印机给我们提供的api再进行开发，这种开发方式非常繁琐，并且开发难度较大。 electron提供的打印api可以非常灵活的控制打印设置的显示，并且可以通过html来书写打印内容。 2.apielectron提供了两种方式进行打印，一种是直接调用打印机打印，一种是打印到pdf。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.lisq.xyz/img/2.jpg">
-<meta property="og:updated_time" content="2019-04-06T05:27:56.036Z">
+<meta property="og:updated_time" content="2019-04-16T11:42:04.368Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用electron静默打印">
 <meta name="twitter:description" content="1.使用electron打印的理由很多情况下程序中使用的打印都是用户无感知的。并且想要灵活的控制打印内容，往往需要借助打印机给我们提供的api再进行开发，这种开发方式非常繁琐，并且开发难度较大。 electron提供的打印api可以非常灵活的控制打印设置的显示，并且可以通过html来书写打印内容。 2.apielectron提供了两种方式进行打印，一种是直接调用打印机打印，一种是打印到pdf。">
@@ -148,7 +148,59 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-【electron】使用electron静默打印" class="article article-single article-type-post"
+                            <style>
+    #article-toc.fixed {
+        position: fixed;
+        top: 30px;
+        bottom: 30px;
+        left: 22px;
+        padding-top: 15px;
+        z-index: 9999;
+        background-color: antiquewhite;
+        width: 200px;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid rgb(122, 122, 122);
+        opacity: 0.8;
+    }
+
+    #article-toc-inner {
+        padding: 10px;
+        width: 200px;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .toc-level-3 {
+        margin-left: 20px;
+    }
+
+    #article-toc a {
+        text-decoration: none;
+        color: #333;
+        padding: 3px 0;
+        color: #000;
+        font-weight: normal;
+    }
+
+    .toc-item {
+        line-height: 30px;
+        list-style-type: initial;
+    }
+
+    #tocbtn {
+        position: fixed;
+        top: 30%;
+        left: 2px;
+        padding: 5px 2px;
+        width: 18px;
+        word-wrap: break-word;
+    }
+</style>
+
+<article id="post-【electron】使用electron静默打印"
+    class="article article-single article-type-post"
     itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -195,7 +247,7 @@
 <p>另一种是使用页面的webview元素调用打印，可以将webview隐藏在调用的页面中，通信方式比较简单。</p>
 <p>两个对象调用打印方法的使用方式都一样。</p>
 <h2 id="2-1-print"><a href="#2-1-print" class="headerlink" title="2.1 print"></a>2.1 print</h2><p>官网api如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">contents.print([options], [callback])</span><br><span class="line">选项 Object (可选)</span><br><span class="line"></span><br><span class="line">silent Boolean (可选) - 不询问用户打印信息，默认为 false。</span><br><span class="line">printBackground Boolean (optional) - Also prints the background color and image of the web page. Default is false.</span><br><span class="line">deviceName String (optional) - Set the printer device name to use. Default is &apos;&apos;.</span><br><span class="line">callback Function (可选)</span><br><span class="line"></span><br><span class="line">success Boolean - Indicates success of the print call.</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">contents.print([options], [callback])</span><br><span class="line">选项 <span class="built_in">Object</span> (可选)</span><br><span class="line"></span><br><span class="line">silent <span class="built_in">Boolean</span> (可选) - 不询问用户打印信息，默认为 <span class="literal">false</span>。</span><br><span class="line">printBackground <span class="built_in">Boolean</span> (optional) - Also prints the background color and image <span class="keyword">of</span> the web page. Default is <span class="literal">false</span>.</span><br><span class="line">deviceName <span class="built_in">String</span> (optional) - <span class="built_in">Set</span> the printer device name to use. Default is <span class="string">''</span>.</span><br><span class="line">callback <span class="built_in">Function</span> (可选)</span><br><span class="line"></span><br><span class="line">success <span class="built_in">Boolean</span> - Indicates success <span class="keyword">of</span> the print call.</span><br></pre></td></tr></table></figure>
 <p>打印配置(options)中只有简单的三个配置：</p>
 <p>silent：打印时是否不展示打印配置（是否静默打印）</p>
 <p>printBackground：是否打印背景</p>
@@ -207,19 +259,19 @@
 <p>这里的status必须经历一次打印失败才能返回非0值，也就是说第一次获取打印机状态一定是0。但是这一次的打印虽然不能判断出错误，打印的任务已经预存在队列中了，当下一次打印机状态变为可用时，将会打印暂存的任务。</p>
 <p>当打印机纸张用完时也是这种情况，剩余任务会暂存起来，下次打印机可用时即可以打印了。</p>
 <p>print的第二个参数callback是用于判断打印任务是否发出的回调，而不是打印任务完成后的回调。所以一般打印任务发出，回调函数即会调用并返回参数true。这个回调并不能判断打印是否真的成功了。</p>
-<h2 id="2-2-printToPdf"><a href="#2-2-printToPdf" class="headerlink" title="2.2 printToPdf"></a>2.2 printToPdf</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">contents.printToPDF(options, callback)</span><br><span class="line">选项 Object</span><br><span class="line"></span><br><span class="line">marginsType Integer (optional) - Specifies the type of margins to use. Uses 0 for default margin, 1 for no margin, and 2 for minimum margin.</span><br><span class="line">pageSize String (optional) - Specify page size of the generated PDF. Can be A3, A4, A5, Legal, Letter, Tabloid or an Object containing height and width in microns.</span><br><span class="line">printBackground Boolean (optional) - Whether to print CSS backgrounds.</span><br><span class="line">printSelectionOnly Boolean (optional) - Whether to print selection only.</span><br><span class="line">landscape Boolean (optional) - true for landscape, false for portrait.</span><br><span class="line">callback Function - 回调函数</span><br><span class="line"></span><br><span class="line">error Error</span><br><span class="line">data Buffer</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-printToPdf"><a href="#2-2-printToPdf" class="headerlink" title="2.2 printToPdf"></a>2.2 printToPdf</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">contents.printToPDF(options, callback)</span><br><span class="line">选项 <span class="built_in">Object</span></span><br><span class="line"></span><br><span class="line">marginsType Integer (optional) - Specifies the type <span class="keyword">of</span> margins to use. Uses <span class="number">0</span> <span class="keyword">for</span> <span class="keyword">default</span> margin, <span class="number">1</span> <span class="keyword">for</span> no margin, and <span class="number">2</span> <span class="keyword">for</span> minimum margin.</span><br><span class="line">pageSize <span class="built_in">String</span> (optional) - Specify page size <span class="keyword">of</span> the generated PDF. Can be A3, A4, A5, Legal, Letter, Tabloid or an <span class="built_in">Object</span> containing height and width <span class="keyword">in</span> microns.</span><br><span class="line">printBackground <span class="built_in">Boolean</span> (optional) - Whether to print CSS backgrounds.</span><br><span class="line">printSelectionOnly <span class="built_in">Boolean</span> (optional) - Whether to print selection only.</span><br><span class="line">landscape <span class="built_in">Boolean</span> (optional) - <span class="literal">true</span> <span class="keyword">for</span> landscape, <span class="literal">false</span> <span class="keyword">for</span> portrait.</span><br><span class="line">callback <span class="built_in">Function</span> - 回调函数</span><br><span class="line"></span><br><span class="line">error <span class="built_in">Error</span></span><br><span class="line">data Buffer</span><br></pre></td></tr></table></figure>
 <p>printToPdf的用法基本和print相同，但是由于print是native code提供的方法，配置项非常少，而printToPdf则扩展了很多属性。</p>
 <p>包括可以对打印的margin，打印页眉页脚等进行配置。</p>
 <p>配置项很多，翻了一下源码发现还有很多没有被贴进api的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">const defaultPrintingSetting = &#123;</span><br><span class="line">  pageRage: [],</span><br><span class="line">  mediaSize: &#123;&#125;,</span><br><span class="line">  landscape: false,</span><br><span class="line">  color: 2,</span><br><span class="line">  headerFooterEnabled: false,</span><br><span class="line">  marginsType: 0,</span><br><span class="line">  isFirstRequest: false,</span><br><span class="line">  requestID: getNextId(),</span><br><span class="line">  previewModifiable: true,</span><br><span class="line">  printToPDF: true,</span><br><span class="line">  printWithCloudPrint: false,</span><br><span class="line">  printWithPrivet: false,</span><br><span class="line">  printWithExtension: false,</span><br><span class="line">  deviceName: &apos;Save as PDF&apos;,</span><br><span class="line">  generateDraftData: true,</span><br><span class="line">  fitToPageEnabled: false,</span><br><span class="line">  scaleFactor: 1,</span><br><span class="line">  dpiHorizontal: 72,</span><br><span class="line">  dpiVertical: 72,</span><br><span class="line">  rasterizePDF: false,</span><br><span class="line">  duplex: 0,</span><br><span class="line">  copies: 1,</span><br><span class="line">  collate: true,</span><br><span class="line">  shouldPrintBackgrounds: false,</span><br><span class="line">  shouldPrintSelectionOnly: false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> defaultPrintingSetting = &#123;</span><br><span class="line">  pageRage: [],</span><br><span class="line">  mediaSize: &#123;&#125;,</span><br><span class="line">  landscape: <span class="literal">false</span>,</span><br><span class="line">  color: <span class="number">2</span>,</span><br><span class="line">  headerFooterEnabled: <span class="literal">false</span>,</span><br><span class="line">  marginsType: <span class="number">0</span>,</span><br><span class="line">  isFirstRequest: <span class="literal">false</span>,</span><br><span class="line">  requestID: getNextId(),</span><br><span class="line">  previewModifiable: <span class="literal">true</span>,</span><br><span class="line">  printToPDF: <span class="literal">true</span>,</span><br><span class="line">  printWithCloudPrint: <span class="literal">false</span>,</span><br><span class="line">  printWithPrivet: <span class="literal">false</span>,</span><br><span class="line">  printWithExtension: <span class="literal">false</span>,</span><br><span class="line">  deviceName: <span class="string">'Save as PDF'</span>,</span><br><span class="line">  generateDraftData: <span class="literal">true</span>,</span><br><span class="line">  fitToPageEnabled: <span class="literal">false</span>,</span><br><span class="line">  scaleFactor: <span class="number">1</span>,</span><br><span class="line">  dpiHorizontal: <span class="number">72</span>,</span><br><span class="line">  dpiVertical: <span class="number">72</span>,</span><br><span class="line">  rasterizePDF: <span class="literal">false</span>,</span><br><span class="line">  duplex: <span class="number">0</span>,</span><br><span class="line">  copies: <span class="number">1</span>,</span><br><span class="line">  collate: <span class="literal">true</span>,</span><br><span class="line">  shouldPrintBackgrounds: <span class="literal">false</span>,</span><br><span class="line">  shouldPrintSelectionOnly: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="3-打印边距问题"><a href="#3-打印边距问题" class="headerlink" title="3.打印边距问题"></a>3.打印边距问题</h1><p>打印的时候打印机会给纸张留一个默认边距，如果是A4这样的纸张几乎可以忽略不计了，但是打印小规格纸张如50mm*50mm，这个边距就十分明显了，严重影响了整体布局。</p>
 <p>printToPdf方法提供了非常多的配置项，其中包括了配置打印边距的参数，但是print方法却没有该配置项。</p>
-<p>我们可以通过一项css配置来解决这个问题,即<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>我们可以通过一项css配置来解决这个问题,即<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
 <pre><code>@page {
   margin: 0px;
 }
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">通过此配置可灵活配置打印边距。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">还有一个css属性``` @media print &#123;&#125;```  此配置是只有在打印时才生效的css，控制的是打印边距以内的css，并不能控制打印边距。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 4.打印方案</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">使用webcontent打印，首先要有一个打印窗口，这个窗口不能随时打印随时创建，比较耗费性能。可以将它在程序运行时启动好，并做好事件监听。</span><br><span class="line"></span><br><span class="line">此过程需和调用打印的进行做好通信：大致过程如下：</span><br><span class="line"></span><br><span class="line">![image](http://on-img.com/chart_image/5badf135e4b0fe81b64ad7b9.png)</span><br><span class="line"></span><br><span class="line">可见通信非常繁琐</span><br><span class="line"></span><br><span class="line">使用webview进行打印可实现同样的效果但是通信方式会变得简单，因为渲染进程和webview通信不需要经过主进程，通过如下方式即可：</span><br></pre></td></tr></table></figure>
-<p>// In embedder page.<br>  const webview = document.querySelector(‘webview’)<br>  webview.addEventListener(‘ipc-message’, (event) =&gt; {<br>    console.log(event.channel)<br>    // Prints “pong”<br>  })<br>  webview.send(‘ping’)<br>Copy<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">// 在访客页。</span><br><span class="line">  const &#123;ipcRenderer&#125; = require(&apos;electron&apos;)</span><br><span class="line">  ipcRenderer.on(&apos;ping&apos;, () =&gt; &#123;</span><br><span class="line">    ipcRenderer.sendToHost(&apos;pong&apos;)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure></p>
+</code></pre><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">通过此配置可灵活配置打印边距。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">还有一个css属性``` @media print &#123;&#125;```  此配置是只有在打印时才生效的css，控制的是打印边距以内的css，并不能控制打印边距。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 4.打印方案</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">使用webcontent打印，首先要有一个打印窗口，这个窗口不能随时打印随时创建，比较耗费性能。可以将它在程序运行时启动好，并做好事件监听。</span><br><span class="line"></span><br><span class="line">此过程需和调用打印的进行做好通信：大致过程如下：</span><br><span class="line"></span><br><span class="line">![image](http://on-img.com/chart_image/5badf135e4b0fe81b64ad7b9.png)</span><br><span class="line"></span><br><span class="line">可见通信非常繁琐</span><br><span class="line"></span><br><span class="line">使用webview进行打印可实现同样的效果但是通信方式会变得简单，因为渲染进程和webview通信不需要经过主进程，通过如下方式即可：</span><br><span class="line"></span><br><span class="line">```js</span><br><span class="line">// In embedder page.</span><br><span class="line">  const webview = document.querySelector(&apos;webview&apos;)</span><br><span class="line">  webview.addEventListener(&apos;ipc-message&apos;, (event) =&gt; &#123;</span><br><span class="line">    console.log(event.channel)</span><br><span class="line">    // Prints &quot;pong&quot;</span><br><span class="line">  &#125;)</span><br><span class="line">  webview.send(&apos;ping&apos;)</span><br><span class="line">Copy</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 在访客页。</span></span><br><span class="line">  <span class="keyword">const</span> &#123;ipcRenderer&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br><span class="line">  ipcRenderer.on(<span class="string">'ping'</span>, () =&gt; &#123;</span><br><span class="line">    ipcRenderer.sendToHost(<span class="string">'pong'</span>)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
 <h1 id="5-示例程序"><a href="#5-示例程序" class="headerlink" title="5.示例程序"></a>5.示例程序</h1><p>示例demo：<a href="https://github.com/ConardLi/electron-print-demo" target="_blank" rel="noopener">https://github.com/ConardLi/electron-print-demo</a></p>
 
         </div>
@@ -228,7 +280,7 @@
 
 
 
-    <a data-url="https://www.lisq.xyz/2018/11/01/【electron】使用electron静默打印/" data-id="cjudyt8pt0009600df5xeu5fi" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://www.lisq.xyz/2018/11/01/【electron】使用electron静默打印/" data-id="cjuju23vg000avo0dv0eghqve" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -292,6 +344,7 @@
     </div>
 </article>
 
+
     <section id="comments">
     
         
@@ -304,6 +357,32 @@
 
 
 
+
+
+<div id="roott"></div>
+
+<button id="tocbtn">打开目录</button>
+
+
+<script>
+    var showToc = false;
+    document.getElementById('tocbtn').onclick = function () {
+        if (showToc) {
+            document.getElementById('roott').innerHTML = ''
+            document.getElementById('tocbtn').innerHTML = '打开目录'
+        } else {
+            document.getElementById('roott').innerHTML = `<aside id="article-toc" role="navigation" class="fixed">
+  <div id="article-toc-inner">
+    <strong class="sidebar-title">
+      目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-使用electron打印的理由"><span class="toc-text">1.使用electron打印的理由</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-api"><span class="toc-text">2.api</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-print"><span class="toc-text">2.1 print</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-printToPdf"><span class="toc-text">2.2 printToPdf</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-打印边距问题"><span class="toc-text">3.打印边距问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-示例程序"><span class="toc-text">5.示例程序</span></a></li></ol>
+  </div>
+</aside>`
+            document.getElementById('tocbtn').innerHTML = '关闭目录'
+        }
+        showToc = !showToc;
+    }
+</script>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
 <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <div id="vcomments" style="padding: 30px;"></div>
@@ -678,6 +757,6 @@
 <script src="/js/main.js"></script>
 
     </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 
 </html>

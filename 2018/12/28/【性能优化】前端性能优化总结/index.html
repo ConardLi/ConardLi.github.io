@@ -148,7 +148,59 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-【性能优化】前端性能优化总结" class="article article-single article-type-post"
+                            <style>
+    #article-toc.fixed {
+        position: fixed;
+        top: 30px;
+        bottom: 30px;
+        left: 22px;
+        padding-top: 15px;
+        z-index: 9999;
+        background-color: antiquewhite;
+        width: 200px;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid rgb(122, 122, 122);
+        opacity: 0.8;
+    }
+
+    #article-toc-inner {
+        padding: 10px;
+        width: 200px;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .toc-level-3 {
+        margin-left: 20px;
+    }
+
+    #article-toc a {
+        text-decoration: none;
+        color: #333;
+        padding: 3px 0;
+        color: #000;
+        font-weight: normal;
+    }
+
+    .toc-item {
+        line-height: 30px;
+        list-style-type: initial;
+    }
+
+    #tocbtn {
+        position: fixed;
+        top: 30%;
+        left: 2px;
+        padding: 5px 2px;
+        width: 18px;
+        word-wrap: break-word;
+    }
+</style>
+
+<article id="post-【性能优化】前端性能优化总结"
+    class="article article-single article-type-post"
     itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -199,22 +251,22 @@
 <p>减少DOM操作，多个操作尽量合并在一起执行</p>
 <p>事件节流</p>
 <p>尽早执行操作 DOMContentLoaded</p>
-<h1 id="4-示例"><a href="#4-示例" class="headerlink" title="4. 示例"></a>4. 示例</h1><h2 id="4-1-资源合并"><a href="#4-1-资源合并" class="headerlink" title="4.1 资源合并"></a>4.1 资源合并</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.js  b.js  c.js  ---  abc.js</span><br></pre></td></tr></table></figure>
+<h1 id="4-示例"><a href="#4-示例" class="headerlink" title="4. 示例"></a>4. 示例</h1><h2 id="4-1-资源合并"><a href="#4-1-资源合并" class="headerlink" title="4.1 资源合并"></a>4.1 资源合并</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">a.js  b.js  c.js  ---  abc.js</span><br></pre></td></tr></table></figure>
 <h2 id="4-2-缓存"><a href="#4-2-缓存" class="headerlink" title="4.2 缓存"></a>4.2 缓存</h2><p>通过连接名称控制缓存</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"abc_1.js"</span> &gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">"abc_1.js"</span> &gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p>只有改变内容的时候，链接名称才会改变。</p>
-<h2 id="4-3-懒加载"><a href="#4-3-懒加载" class="headerlink" title="4.3 懒加载"></a>4.3 懒加载</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"preview.png"</span> <span class="attr">realsrc</span>=<span class="string">"abc.png"</span> <span class="attr">id</span>=<span class="string">"img1"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> i = <span class="built_in">document</span>.getElementById(<span class="string">'img1'</span>);</span></span><br><span class="line"><span class="javascript">    i.src = i.getAttribute(<span class="string">'realsrc'</span>);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-4-缓存dom查询"><a href="#4-4-缓存dom查询" class="headerlink" title="4.4 缓存dom查询"></a>4.4 缓存dom查询</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//没有缓存dom</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="built_in">document</span>.getElementsByTagName(<span class="string">'p'</span>).length; i++) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//缓存dom</span></span><br><span class="line"><span class="keyword">var</span> p = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'p'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; p.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="4-5-合并dom插入"><a href="#4-5-合并dom插入" class="headerlink" title="4.5 合并dom插入"></a>4.5 合并dom插入</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> listNode = <span class="built_in">document</span>.getElementById(<span class="string">'list'</span>);</span><br><span class="line"><span class="keyword">var</span> flag = <span class="built_in">document</span>.createDocumentFragment();</span><br><span class="line"><span class="keyword">var</span> li;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    li = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>);</span><br><span class="line">    li.innerHTML = i;</span><br><span class="line">    flag.appendChild(li);</span><br><span class="line">&#125;</span><br><span class="line">listNode.appendChild(flag);</span><br></pre></td></tr></table></figure>
+<h2 id="4-3-懒加载"><a href="#4-3-懒加载" class="headerlink" title="4.3 懒加载"></a>4.3 懒加载</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"preview.png"</span> <span class="attr">realsrc</span>=<span class="string">"abc.png"</span> <span class="attr">id</span>=<span class="string">"img1"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> i = <span class="built_in">document</span>.getElementById(<span class="string">'img1'</span>);</span></span><br><span class="line"><span class="javascript">    i.src = i.getAttribute(<span class="string">'realsrc'</span>);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-4-缓存dom查询"><a href="#4-4-缓存dom查询" class="headerlink" title="4.4 缓存dom查询"></a>4.4 缓存dom查询</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//没有缓存dom</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="built_in">document</span>.getElementsByTagName(<span class="string">'p'</span>).length; i++) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//缓存dom</span></span><br><span class="line"><span class="keyword">var</span> p = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'p'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; p.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-5-合并dom插入"><a href="#4-5-合并dom插入" class="headerlink" title="4.5 合并dom插入"></a>4.5 合并dom插入</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> listNode = <span class="built_in">document</span>.getElementById(<span class="string">'list'</span>);</span><br><span class="line"><span class="keyword">var</span> flag = <span class="built_in">document</span>.createDocumentFragment();</span><br><span class="line"><span class="keyword">var</span> li;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    li = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>);</span><br><span class="line">    li.innerHTML = i;</span><br><span class="line">    flag.appendChild(li);</span><br><span class="line">&#125;</span><br><span class="line">listNode.appendChild(flag);</span><br></pre></td></tr></table></figure>
 <p>10次dom插入 —&gt; 1次dom插入</p>
-<h2 id="4-6-事件节流"><a href="#4-6-事件节流" class="headerlink" title="4.6 事件节流"></a>4.6 事件节流</h2><p>监听文字改变事件，无操作100毫秒后执行操作，不用每次触发。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> textarea = <span class="built_in">document</span>.getElementById(<span class="string">'ta'</span>);</span><br><span class="line"><span class="keyword">var</span> timeoutId;</span><br><span class="line">textarea.addEventListener(<span class="string">'keyup'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i)&#123;</span><br><span class="line">        clearTimeout(i);</span><br><span class="line">    &#125;</span><br><span class="line">    timeoutId = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">//操作</span></span><br><span class="line">    &#125;, <span class="number">100</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-6-事件节流"><a href="#4-6-事件节流" class="headerlink" title="4.6 事件节流"></a>4.6 事件节流</h2><p>监听文字改变事件，无操作100毫秒后执行操作，不用每次触发。<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> textarea = <span class="built_in">document</span>.getElementById(<span class="string">'ta'</span>);</span><br><span class="line"><span class="keyword">var</span> timeoutId;</span><br><span class="line">textarea.addEventListener(<span class="string">'keyup'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i)&#123;</span><br><span class="line">        clearTimeout(i);</span><br><span class="line">    &#125;</span><br><span class="line">    timeoutId = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">//操作</span></span><br><span class="line">    &#125;, <span class="number">100</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>事件节流主要用于触发频率较高的事件，设定一个缓冲触发事件。</p>
 <h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="异步加载"><a href="#异步加载" class="headerlink" title="异步加载"></a>异步加载</h2><p>非核心代码异步加载 –  异步加载的方式  – 区别</p>
 <p>1.动态脚本加载</p>
 <p>用js创建</p>
 <p>2.defer</p>
 <p>3.async</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"script.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">没有 defer 或 async，浏览器会立即加载并执行指定的脚本，“立即”指的是在渲染该 script 标签之下的文档元素之前，也就是说不等待后续载入的文档元素，读到就加载并执行。</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">"script.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">有 async，加载和渲染后续文档元素的过程将和 script.js 的加载与执行并行进行（异步）。</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">defer</span> <span class="attr">src</span>=<span class="string">"myscript.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">有 defer，加载后续文档元素的过程将和 script.js 的加载并行进行（异步），但是 script.js 的执行要在所有元素解析完成之后，DOMContentLoaded 事件触发之前完成。</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"script.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">没有 defer 或 async，浏览器会立即加载并执行指定的脚本，“立即”指的是在渲染该 script 标签之下的文档元素之前，也就是说不等待后续载入的文档元素，读到就加载并执行。</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">"script.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">有 async，加载和渲染后续文档元素的过程将和 script.js 的加载与执行并行进行（异步）。</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">defer</span> <span class="attr">src</span>=<span class="string">"myscript.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">有 defer，加载后续文档元素的过程将和 script.js 的加载并行进行（异步），但是 script.js 的执行要在所有元素解析完成之后，DOMContentLoaded 事件触发之前完成。</span><br></pre></td></tr></table></figure>
 <p>关于 defer，我们还要记住的是它是按照加载顺序执行脚本的</p>
 <p>标记为async的脚本并不保证按照指定它们的先后顺序执行。对它来说脚本的加载和执行是紧紧挨着的，所以不管你声明的顺序如何，只要它加载完了就会立刻执行。</p>
 <h2 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h2><p><a href="https://www.cnblogs.com/chenqf/p/6386163.html" target="_blank" rel="noopener">总结的非常好</a></p>
@@ -222,14 +274,14 @@
 <p>缓存就是html文件在本地存在的副本，</p>
 <p><strong>强缓存</strong></p>
 <p>发现有缓存直接用。<br><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/cache.png" alt="这里写图片描述"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Expires: 绝对时间，判断客户端日期是否超过这个时间</span><br><span class="line">Cache-Control：相对时间，判断访问间隔是否大于3600秒</span><br><span class="line"></span><br><span class="line">//在设定时间之前不会和服务端进行通信了</span><br><span class="line">//如果两个都下发以后者为准</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Expires: 绝对时间，判断客户端日期是否超过这个时间</span><br><span class="line">Cache-Control：相对时间，判断访问间隔是否大于3600秒</span><br><span class="line"></span><br><span class="line">//在设定时间之前不会和服务端进行通信了</span><br><span class="line">//如果两个都下发以后者为准</span><br></pre></td></tr></table></figure>
 <p><strong>协商缓存</strong></p>
 <p>询问服务器缓存是否可以用，在进行判断是否用。</p>
 <p>Last-Modified/If-Modified-Since</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">第一次请求，respone的header加上Last-Modified（最后修改时间）</span><br><span class="line"></span><br><span class="line">再次请求，在request的header上加上If-Modified-Since </span><br><span class="line"></span><br><span class="line">和服务端的最后修改时间对比，如果没有变化则返回304 Not Modified，但是不会返回资源内容；如果有变化，就正常返回资源内容。</span><br><span class="line"></span><br><span class="line">浏览器收到304的响应后，就会从缓存中加载资源</span><br><span class="line"></span><br><span class="line">如果协商缓存没有命中，浏览器直接从服务器加载资源时，Last-Modified的Header在重新加载的时候会被更新</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">第一次请求，respone的header加上Last-Modified（最后修改时间）</span><br><span class="line"></span><br><span class="line">再次请求，在request的header上加上If-Modified-Since </span><br><span class="line"></span><br><span class="line">和服务端的最后修改时间对比，如果没有变化则返回304 Not Modified，但是不会返回资源内容；如果有变化，就正常返回资源内容。</span><br><span class="line"></span><br><span class="line">浏览器收到304的响应后，就会从缓存中加载资源</span><br><span class="line"></span><br><span class="line">如果协商缓存没有命中，浏览器直接从服务器加载资源时，Last-Modified的Header在重新加载的时候会被更新</span><br></pre></td></tr></table></figure>
 <p>Etag/If-None-Match</p>
 <p>这两个值是由服务器生成的每个资源的唯一标识字符串，只要资源有变化就这个值就会改变；其判断过程与Last-Modified/If-Modified-Since类似，他可以精确到秒的更高级别。</p>
-<h2 id="DNS预解析"><a href="#DNS预解析" class="headerlink" title="DNS预解析"></a>DNS预解析</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"x-dns-prefetch-control"</span> <span class="attr">content</span>=<span class="string">"on"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"dns-prefetch"</span> <span class="attr">href</span>=<span class="string">"//www.zhix.net"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="DNS预解析"><a href="#DNS预解析" class="headerlink" title="DNS预解析"></a>DNS预解析</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"x-dns-prefetch-control"</span> <span class="attr">content</span>=<span class="string">"on"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"dns-prefetch"</span> <span class="attr">href</span>=<span class="string">"//www.zhix.net"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>在一些浏览器的a标签是默认打开dns预解析的，在https协议下dns预解析是关闭的，加入mate后会打开。</p>
 
         </div>
@@ -238,7 +290,7 @@
 
 
 
-    <a data-url="https://www.lisq.xyz/2018/12/28/【性能优化】前端性能优化总结/" data-id="cjudyt8q4000j600d4ri8dd07" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://www.lisq.xyz/2018/12/28/【性能优化】前端性能优化总结/" data-id="cjuju23vo000ivo0dwoo0m024" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -302,6 +354,7 @@
     </div>
 </article>
 
+
     <section id="comments">
     
         
@@ -314,6 +367,32 @@
 
 
 
+
+
+<div id="roott"></div>
+
+<button id="tocbtn">打开目录</button>
+
+
+<script>
+    var showToc = false;
+    document.getElementById('tocbtn').onclick = function () {
+        if (showToc) {
+            document.getElementById('roott').innerHTML = ''
+            document.getElementById('tocbtn').innerHTML = '打开目录'
+        } else {
+            document.getElementById('roott').innerHTML = `<aside id="article-toc" role="navigation" class="fixed">
+  <div id="article-toc-inner">
+    <strong class="sidebar-title">
+      目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-原则"><span class="toc-text">1.原则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-加载资源优化"><span class="toc-text">2.加载资源优化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-渲染优化"><span class="toc-text">3. 渲染优化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-示例"><span class="toc-text">4. 示例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-资源合并"><span class="toc-text">4.1 资源合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-缓存"><span class="toc-text">4.2 缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-懒加载"><span class="toc-text">4.3 懒加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-缓存dom查询"><span class="toc-text">4.4 缓存dom查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-合并dom插入"><span class="toc-text">4.5 合并dom插入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6-事件节流"><span class="toc-text">4.6 事件节流</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#补充"><span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#异步加载"><span class="toc-text">异步加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器缓存"><span class="toc-text">浏览器缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DNS预解析"><span class="toc-text">DNS预解析</span></a></li></ol></li></ol>
+  </div>
+</aside>`
+            document.getElementById('tocbtn').innerHTML = '关闭目录'
+        }
+        showToc = !showToc;
+    }
+</script>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
 <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <div id="vcomments" style="padding: 30px;"></div>
@@ -688,6 +767,6 @@
 <script src="/js/main.js"></script>
 
     </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 
 </html>

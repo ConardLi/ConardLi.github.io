@@ -3,7 +3,7 @@
 .article-meta,
 .archive-year {
   text-transform: uppercase;
-  color: #666;
+  color: #455a6f;
   line-height: 1em;
   text-shadow: 0 1px #fff;
 }
@@ -318,7 +318,7 @@ code {
   position: relative;
   padding: 18px 30px 17px;
   border-bottom: 1px solid #eee;
-  color: #666;
+  color: #455a6f;
   font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
@@ -924,7 +924,7 @@ code {
   list-style: none;
 }
 .article-single {
-  padding: 30px 30px 20px;
+  padding: 30px 10px 20px;
 }
 .article-inner {
   overflow: hidden;
@@ -1053,7 +1053,7 @@ code {
   text-decoration: none;
   font-size: 38px;
   letter-spacing: -1px;
-  color: #555;
+  color: #34495e;
   line-height: 1.3em;
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
@@ -1065,6 +1065,8 @@ a.article-title:hover {
   color: #62bbc3;
 }
 .article-meta {
+  margin-bottom: 8px;
+  padding: 0px 20px;
   line-height: 1.6em;
 }
 .article-meta:before,
@@ -1083,7 +1085,7 @@ a.article-title:hover {
   margin-right: 3px;
 }
 .article-meta a {
-  color: #555;
+  color: #34495e;
 }
 .article-meta a:hover {
   color: color-link;
@@ -1110,10 +1112,11 @@ a.article-title:hover {
   content: "#";
 }
 .article-entry {
-  color: #555;
+  color: #34495e;
   font-size: 18px;
   font-weight: 300;
   line-height: 1.6em;
+  padding: 20px;
 }
 .article-entry:before,
 .article-entry:after {
@@ -1126,6 +1129,10 @@ a.article-title:hover {
 .article-entry p,
 .article-entry table {
   margin: 1.6em 0;
+  margin: 2px 2px 10px;
+  font-size: 1.05rem;
+  line-height: 1.85rem;
+  font-weight: normal;
 }
 .article-entry h1,
 .article-entry h2,
@@ -1170,6 +1177,9 @@ a.article-title:hover {
   height: auto;
   display: block;
   margin: auto;
+  -webkit-box-shadow: 0 5px 25px 0 rgba(0,0,0,0.2), 0 10px 30px -11px rgba(0,0,0,0.6);
+  box-shadow: 0 5px 25px 0 rgba(0,0,0,0.2), 0 10px 30px -11px rgba(0,0,0,0.6);
+  margin: 25px auto 25px auto;
 }
 .article-entry iframe {
   border: none;
@@ -1189,23 +1199,14 @@ a.article-title:hover {
   padding: 10px 0;
 }
 .article-entry blockquote {
-  color: #777;
   quote: none;
   margin: 0 0 20px 0;
   position: relative;
-  font-style: italic;
   padding-left: 50px;
-}
-.article-entry blockquote:before {
-  top: 0;
-  left: 0;
-  color: #ccc;
-  font-size: 32px;
-  content: "\f10d";
-  position: absolute;
-  text-align: center;
-  font-style: normal;
-  font-family: 'FontAwesome';
+  border-left: 5px solid #42b983;
+  padding: 1rem 0.8rem 0.2rem 0.8rem;
+  color: #666;
+  background-color: rgba(66,185,131,0.1);
 }
 .article-entry blockquote footer {
   font-size: 14px;
@@ -1231,7 +1232,7 @@ a.article-title:hover {
 }
 .article-entry .caption {
   color: #aaa;
-  display: block;
+  display: none;
   font-size: 0.9em;
   margin-top: 0.5em;
   position: relative;
@@ -1288,7 +1289,7 @@ a.article-title:hover {
   text-decoration: none;
 }
 .article-footer a:hover {
-  color: #555;
+  color: #34495e;
 }
 .article-comment-link i,
 .article-share-link i {
@@ -1324,7 +1325,7 @@ a.article-title:hover {
   box-sizing: border-box;
   font: 14px "Titillium Web", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
   padding: 0 15px;
-  color: #555;
+  color: #34495e;
   outline: none;
   border: 1px solid #ddd;
   border-radius: 3px 3px 0 0;
@@ -1467,7 +1468,11 @@ a.article-title:hover {
 .article.rtl .article-title,
 .article.rtl .article-excerpt,
 .article.rtl .article-entry p {
+  font-weight: normal;
   direction: rtl;
+  margin: 2px 2px 10px;
+  font-size: 1.05rem;
+  line-height: 1.85rem;
 }
 .article.rtl .article-meta > div {
   float: right;
@@ -1506,7 +1511,7 @@ a.article-title:hover {
 .archive-year-wrap {
   padding: 18px 30px 17px;
   font-size: 16px;
-  color: #666;
+  color: #455a6f;
   border-bottom: 1px solid #eee;
 }
 .archive-year i {
@@ -1538,7 +1543,7 @@ a.article-title:hover {
 .archive-article-title {
   text-decoration: none;
   font-weight: bold;
-  color: #555;
+  color: #34495e;
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
   -ms-transition: color 0.2s;
@@ -2112,7 +2117,7 @@ i.icon:before {
   }
   #main .main-body-content .article-single,
   #main .main-body-content #comments {
-    padding: 15px;
+    padding: 0px;
   }
   #main .main-body-content #page-nav {
     padding-right: 15px;

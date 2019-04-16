@@ -21,7 +21,7 @@
 <meta property="og:description" content="关于React事件的疑问 1.为什么要手动绑定this  2.React事件和原生事件有什么区别  3.React事件和原生事件的执行顺序，可以混用吗  4.React事件如何解决跨浏览器兼容  5.什么是合成事件   下面是我阅读过源码后，将所有的执行流程总结出来的流程图，不会贴代码，如果你想阅读代码看看具体是如何实现的，可以根据流程图去源码里寻找。 事件注册  组件装载 / 更新。 通过la">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.lisq.xyz/img/reactevent.jpg">
-<meta property="og:updated_time" content="2019-04-06T05:13:09.693Z">
+<meta property="og:updated_time" content="2019-04-16T11:42:58.977Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【React深入】React事件机制">
 <meta name="twitter:description" content="关于React事件的疑问 1.为什么要手动绑定this  2.React事件和原生事件有什么区别  3.React事件和原生事件的执行顺序，可以混用吗  4.React事件如何解决跨浏览器兼容  5.什么是合成事件   下面是我阅读过源码后，将所有的执行流程总结出来的流程图，不会贴代码，如果你想阅读代码看看具体是如何实现的，可以根据流程图去源码里寻找。 事件注册  组件装载 / 更新。 通过la">
@@ -148,7 +148,59 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-【React深入】React事件机制" class="article article-single article-type-post"
+                            <style>
+    #article-toc.fixed {
+        position: fixed;
+        top: 30px;
+        bottom: 30px;
+        left: 22px;
+        padding-top: 15px;
+        z-index: 9999;
+        background-color: antiquewhite;
+        width: 200px;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid rgb(122, 122, 122);
+        opacity: 0.8;
+    }
+
+    #article-toc-inner {
+        padding: 10px;
+        width: 200px;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .toc-level-3 {
+        margin-left: 20px;
+    }
+
+    #article-toc a {
+        text-decoration: none;
+        color: #333;
+        padding: 3px 0;
+        color: #000;
+        font-weight: normal;
+    }
+
+    .toc-item {
+        line-height: 30px;
+        list-style-type: initial;
+    }
+
+    #tocbtn {
+        position: fixed;
+        top: 30%;
+        left: 2px;
+        padding: 5px 2px;
+        width: 18px;
+        word-wrap: break-word;
+    }
+</style>
+
+<article id="post-【React深入】React事件机制"
+    class="article article-single article-type-post"
     itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -219,7 +271,7 @@
 <li><code>listenerBank</code>的结构是：<code>listenerBank[registrationName][key]</code>。</li>
 </ul>
 <p>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    onClick:&#123;</span><br><span class="line">        nodeid1:()=&gt;&#123;...&#125;</span><br><span class="line">        nodeid2:()=&gt;&#123;...&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    onChange:&#123;</span><br><span class="line">        nodeid3:()=&gt;&#123;...&#125;</span><br><span class="line">        nodeid4:()=&gt;&#123;...&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    onClick:&#123;</span><br><span class="line">        nodeid1:()=&gt;&#123;...&#125;</span><br><span class="line">        nodeid2:()=&gt;&#123;...&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    onChange:&#123;</span><br><span class="line">        nodeid3:()=&gt;&#123;...&#125;</span><br><span class="line">        nodeid4:()=&gt;&#123;...&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="事件触发-执行"><a href="#事件触发-执行" class="headerlink" title="事件触发 / 执行"></a>事件触发 / 执行</h2><p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/事件触发.png" alt="image"></p>
 <p>这里的事件执行利用了<code>React</code>的批处理机制，在前一篇的【React深入】setState执行机制中已经分析过，这里不再多加分析。</p>
 <ul>
@@ -227,7 +279,7 @@
 <li>获取到触发这个事件最深一级的元素</li>
 </ul>
 <p>例如下面的代码：首先会获取到<code>this.child</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div onClick=&#123;this.parentClick&#125; ref=&#123;ref =&gt; this.parent = ref&#125;&gt;</span><br><span class="line">  &lt;div onClick=&#123;this.childClick&#125; ref=&#123;ref =&gt; this.child = ref&#125;&gt;</span><br><span class="line">    test</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div onClick=&#123;<span class="keyword">this</span>.parentClick&#125; ref=&#123;ref =&gt; <span class="keyword">this</span>.parent = ref&#125;&gt;</span><br><span class="line">  &lt;div onClick=&#123;<span class="keyword">this</span>.childClick&#125; ref=&#123;ref =&gt; <span class="keyword">this</span>.child = ref&#125;&gt;</span><br><span class="line">    test</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>遍历这个元素的所有父元素，依次对每一级元素进行处理。</li>
 <li>构造合成事件。</li>
@@ -250,7 +302,7 @@
 <h3 id="总流程"><a href="#总流程" class="headerlink" title="总流程"></a>总流程</h3><p>将上面的四个流程串联起来。</p>
 <p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/react事件机制.png" alt="image"></p>
 <h2 id="为什么要手动绑定this"><a href="#为什么要手动绑定this" class="headerlink" title="为什么要手动绑定this"></a>为什么要手动绑定this</h2><p>通过事件触发过程的分析，<code>dispatchEvent</code>调用了<code>invokeGuardedCallback</code>方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function invokeGuardedCallback(name, func, a) &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    func(a);</span><br><span class="line">  &#125; catch (x) &#123;</span><br><span class="line">    if (caughtError === null) &#123;</span><br><span class="line">      caughtError = x;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">invokeGuardedCallback</span>(<span class="params">name, func, a</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    func(a);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (x) &#123;</span><br><span class="line">    <span class="keyword">if</span> (caughtError === <span class="literal">null</span>) &#123;</span><br><span class="line">      caughtError = x;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>可见，回调函数是直接调用调用的，并没有指定调用的组件，所以不进行手动绑定的情况下直接获取到的<code>this</code>是<code>undefined</code>。</p>
 <p>这里可以使用实验性的<a href="https://babeljs.io/docs/en/babel-plugin-proposal-class-properties" target="_blank" rel="noopener">属性初始化语法</a> ，也就是直接在组件声明箭头函数。箭头函数不会创建自己的<code>this</code>，它只会从自己的作用域链的上一层继承<code>this</code>。因此这样我们在<code>React</code>事件中获取到的就是组件本身了。</p>
 <h2 id="和原生事件有什么区别"><a href="#和原生事件有什么区别" class="headerlink" title="和原生事件有什么区别"></a>和原生事件有什么区别</h2><ul>
@@ -259,11 +311,11 @@
 <li><p>通过 <code>JSX</code> , 你传递一个函数作为事件处理程序，而不是一个字符串。</p>
 </li>
 </ul>
-<p>例如，<code>HTML</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onclick=&quot;activateLasers()&quot;&gt;</span><br><span class="line">  Activate Lasers</span><br><span class="line">&lt;/button&gt;</span><br></pre></td></tr></table></figure></p>
-<p>在 <code>React</code> 中略有不同：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onClick=&#123;activateLasers&#125;&gt;</span><br><span class="line">  Activate Lasers</span><br><span class="line">&lt;/button&gt;</span><br></pre></td></tr></table></figure></p>
+<p>例如，<code>HTML</code>：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;button onclick=<span class="string">"activateLasers()"</span>&gt;</span><br><span class="line">  Activate Lasers</span><br><span class="line">&lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>在 <code>React</code> 中略有不同：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;button onClick=&#123;activateLasers&#125;&gt;</span><br><span class="line">  Activate Lasers</span><br><span class="line">&lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>另一个区别是，在 React 中你不能通过返回<code>false</code> 来阻止默认行为。必须明确调用 <code>preventDefault</code>。</p>
 <p>由上面执行机制我们可以得出：<code>React</code>自己实现了一套事件机制，自己模拟了事件冒泡和捕获的过程，采用了事件代理，批量更新等方法，并且抹平了各个浏览器的兼容性问题。</p>
-<h2 id="React事件和原生事件的执行顺序"><a href="#React事件和原生事件的执行顺序" class="headerlink" title="React事件和原生事件的执行顺序"></a><code>React</code>事件和原生事件的执行顺序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount() &#123;</span><br><span class="line">  this.parent.addEventListener(&apos;click&apos;, (e) =&gt; &#123;</span><br><span class="line">    console.log(&apos;dom parent&apos;);</span><br><span class="line">  &#125;)</span><br><span class="line">  this.child.addEventListener(&apos;click&apos;, (e) =&gt; &#123;</span><br><span class="line">    console.log(&apos;dom child&apos;);</span><br><span class="line">  &#125;)</span><br><span class="line">  document.addEventListener(&apos;click&apos;, (e) =&gt; &#123;</span><br><span class="line">    console.log(&apos;document&apos;);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">childClick = (e) =&gt; &#123;</span><br><span class="line">  console.log(&apos;react child&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">parentClick = (e) =&gt; &#123;</span><br><span class="line">  console.log(&apos;react parent&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">render() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div onClick=&#123;this.parentClick&#125; ref=&#123;ref =&gt; this.parent = ref&#125;&gt;</span><br><span class="line">      &lt;div onClick=&#123;this.childClick&#125; ref=&#123;ref =&gt; this.child = ref&#125;&gt;</span><br><span class="line">        test</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="React事件和原生事件的执行顺序"><a href="#React事件和原生事件的执行顺序" class="headerlink" title="React事件和原生事件的执行顺序"></a><code>React</code>事件和原生事件的执行顺序</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">componentDidMount() &#123;</span><br><span class="line">  <span class="keyword">this</span>.parent.addEventListener(<span class="string">'click'</span>, (e) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'dom parent'</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">this</span>.child.addEventListener(<span class="string">'click'</span>, (e) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'dom child'</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="built_in">document</span>.addEventListener(<span class="string">'click'</span>, (e) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'document'</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">childClick = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'react child'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">parentClick = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'react parent'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">render() &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div onClick=&#123;<span class="keyword">this</span>.parentClick&#125; ref=&#123;ref =&gt; <span class="keyword">this</span>.parent = ref&#125;&gt;</span><br><span class="line">      &lt;div onClick=&#123;<span class="keyword">this</span>.childClick&#125; ref=&#123;ref =&gt; <span class="keyword">this</span>.child = ref&#125;&gt;</span><br><span class="line">        test</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>执行结果：</p>
 <p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/reactEvent1.png" alt="image"></p>
 <p>由上面的流程我们可以理解：</p>
@@ -277,13 +329,13 @@
 <h1 id="react事件和原生事件可以混用吗？"><a href="#react事件和原生事件可以混用吗？" class="headerlink" title="react事件和原生事件可以混用吗？"></a>react事件和原生事件可以混用吗？</h1><p><code>react</code>事件和原生事件最好不要混用。</p>
 <p>原生事件中如果执行了<code>stopPropagation</code>方法，则会导致其他<code>react</code>事件失效。因为所有元素的事件将无法冒泡到<code>document</code>上。</p>
 <p>由上面的执行机制不难得出，所有的react事件都将无法被注册。</p>
-<h2 id="合成事件、浏览器兼容"><a href="#合成事件、浏览器兼容" class="headerlink" title="合成事件、浏览器兼容"></a>合成事件、浏览器兼容</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function handleClick(e) &#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  console.log(&apos;The link was clicked.&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="合成事件、浏览器兼容"><a href="#合成事件、浏览器兼容" class="headerlink" title="合成事件、浏览器兼容"></a>合成事件、浏览器兼容</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function handleClick(e) &#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  console.log(&apos;The link was clicked.&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>这里， <code>e</code> 是一个合成的事件。 <code>React</code> 根据<a href="https://www.w3.org/TR/DOM-Level-3-Events/" target="_blank" rel="noopener"> W3C </a>规范 定义了这个合成事件，所以你不需要担心跨浏览器的兼容性问题。</p>
 </blockquote>
 <p>事件处理程序将传递 <code>SyntheticEvent</code> 的实例，这是一个跨浏览器原生事件包装器。 它具有与浏览器原生事件相同的接口，包括<code>stopPropagation()</code> 和 <code>preventDefault()</code> ，在所有浏览器中他们工作方式都相同。</p>
 <p> 每个<code>SyntheticEvent</code>对象都具有以下属性：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">boolean bubbles</span><br><span class="line">boolean cancelable</span><br><span class="line">DOMEventTarget currentTarget</span><br><span class="line">boolean defaultPrevented</span><br><span class="line">number eventPhase</span><br><span class="line">boolean isTrusted</span><br><span class="line">DOMEvent nativeEvent</span><br><span class="line">void preventDefault()</span><br><span class="line">boolean isDefaultPrevented()</span><br><span class="line">void stopPropagation()</span><br><span class="line">boolean isPropagationStopped()</span><br><span class="line">DOMEventTarget target</span><br><span class="line">number timeStamp</span><br><span class="line">string type</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">boolean bubbles</span><br><span class="line">boolean cancelable</span><br><span class="line">DOMEventTarget currentTarget</span><br><span class="line">boolean defaultPrevented</span><br><span class="line">number eventPhase</span><br><span class="line">boolean isTrusted</span><br><span class="line">DOMEvent nativeEvent</span><br><span class="line"><span class="keyword">void</span> preventDefault()</span><br><span class="line">boolean isDefaultPrevented()</span><br><span class="line"><span class="keyword">void</span> stopPropagation()</span><br><span class="line">boolean isPropagationStopped()</span><br><span class="line">DOMEventTarget target</span><br><span class="line">number timeStamp</span><br><span class="line">string type</span><br></pre></td></tr></table></figure>
 <p><code>React</code>合成的<code>SyntheticEvent</code>采用了事件池，这样做可以大大节省内存，而不会频繁的创建和销毁事件对象。</p>
 <p>另外，不管在什么浏览器环境下，浏览器会将该事件类型统一创建为合成事件，从而达到了浏览器兼容的目的。</p>
 <h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p>【React深入】setState的执行机制</p>
@@ -294,7 +346,7 @@
 
 
 
-    <a data-url="https://www.lisq.xyz/2019/03/06/【React深入】React事件机制/" data-id="cjudyt8pj0004600d4p425knu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://www.lisq.xyz/2019/03/06/【React深入】React事件机制/" data-id="cjuju23v70002vo0d680vmd9h" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -358,6 +410,7 @@
     </div>
 </article>
 
+
     <section id="comments">
     
         
@@ -370,6 +423,32 @@
 
 
 
+
+
+<div id="roott"></div>
+
+<button id="tocbtn">打开目录</button>
+
+
+<script>
+    var showToc = false;
+    document.getElementById('tocbtn').onclick = function () {
+        if (showToc) {
+            document.getElementById('roott').innerHTML = ''
+            document.getElementById('tocbtn').innerHTML = '打开目录'
+        } else {
+            document.getElementById('roott').innerHTML = `<aside id="article-toc" role="navigation" class="fixed">
+  <div id="article-toc-inner">
+    <strong class="sidebar-title">
+      目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于React事件的疑问"><span class="toc-text">关于React事件的疑问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件注册"><span class="toc-text">事件注册</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件存储"><span class="toc-text">事件存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件触发-执行"><span class="toc-text">事件触发 / 执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#合成事件"><span class="toc-text">合成事件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总流程"><span class="toc-text">总流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要手动绑定this"><span class="toc-text">为什么要手动绑定this</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#和原生事件有什么区别"><span class="toc-text">和原生事件有什么区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React事件和原生事件的执行顺序"><span class="toc-text">React事件和原生事件的执行顺序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#react事件和原生事件可以混用吗？"><span class="toc-text">react事件和原生事件可以混用吗？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#合成事件、浏览器兼容"><span class="toc-text">合成事件、浏览器兼容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#推荐阅读"><span class="toc-text">推荐阅读</span></a></li></ol>
+  </div>
+</aside>`
+            document.getElementById('tocbtn').innerHTML = '关闭目录'
+        }
+        showToc = !showToc;
+    }
+</script>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
 <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <div id="vcomments" style="padding: 30px;"></div>
@@ -744,6 +823,6 @@
 <script src="/js/main.js"></script>
 
     </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 
 </html>

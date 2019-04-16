@@ -367,7 +367,7 @@ nginx现在几乎是众多大型网站的必用技术，大多数情况下，我
 
         <p class="article-excerpt">
             
-话不多说，先上代码12345678910111213141516171819202122232425262728function judgeFloat(n, m) &#123;  const binaryN = n.toString(2);  const binaryM = m.toString(2);  console.log(`$&#123;n&#125;的二进制是    $&#123;bi
+话不多说，先上代码function judgeFloat(n, m) &#123;  const binaryN = n.toString(2);  const binaryM = m.toString(2);  console.log(`$&#123;n&#125;的二进制是    $&#123;binaryN&#125;`);  console.log(`$&#123;m&#125;的二进制
         </p>
     </div>
 </article>
@@ -481,7 +481,7 @@ nginx现在几乎是众多大型网站的必用技术，大多数情况下，我
             
 一.几个开发中经常会遇到的问题以下几个问题是我们在实际开发中经常会遇到的场景，下面用几个简单的示例代码来还原一下。
 1.setState是同步还是异步的，为什么有的时候不能立即拿到更新结果而有的时候可以?1.1 钩子函数和React合成事件中的setState现在有两个组件
-123456789101112componentDidMount() &#123;  console.log('paren
+componentDidMount() &#123;  console.log('parent componentDidM
         </p>
     </div>
 </article>
@@ -713,8 +713,9 @@ dc代表直流电源
 在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。
 以下几种方式可以帮助我们做到这一点：
 1.崩溃监控electron为我们提供了监听程序崩溃的事件：
-123456Event: &apos;crashed&apos;返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发
-此事件是用来家庭渲染进程崩溃的，但是当主进程意外崩溃时也
+Event: 'crashed'返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发
+此事件是用来家庭渲染进程崩溃的，但是当主进程意外崩溃时也会触发该事件。
+在监测到程序崩溃
         </p>
     </div>
 </article>
@@ -1071,6 +1072,6 @@ dc代表直流电源
 <script src="/js/main.js"></script>
 
     </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 
 </html>

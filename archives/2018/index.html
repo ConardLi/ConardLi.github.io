@@ -366,8 +366,9 @@ dc代表直流电源
 在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。
 以下几种方式可以帮助我们做到这一点：
 1.崩溃监控electron为我们提供了监听程序崩溃的事件：
-123456Event: &apos;crashed&apos;返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发
-此事件是用来家庭渲染进程崩溃的，但是当主进程意外崩溃时也
+Event: 'crashed'返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发
+此事件是用来家庭渲染进程崩溃的，但是当主进程意外崩溃时也会触发该事件。
+在监测到程序崩溃
         </p>
     </div>
 </article>
@@ -469,13 +470,13 @@ electron提供的打印api可以非常灵活的控制打印设置的显示，并
 1.1.本地安装hexo首先保证你电脑上有node环境，这个不懂的可以自定百度。
 控制台输入node -v出现版本号说明安装成功。
 有了node就可以安装hexo了，控制台输入如下命令
-1npm i -g hexo
+npm i -g hexo
 同样控制台输入hexo -v出现版本号说明安装成功。
 然后开始初始化项目，控制台输入：
-1hexo init
+hexo init
 得到如下项目目录：
 
-12345678node_module
+node_modules：是依赖包publ
         </p>
     </div>
 </article>
@@ -827,6 +828,6 @@ electron提供的打印api可以非常灵活的控制打印设置的显示，并
 <script src="/js/main.js"></script>
 
     </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 
 </html>

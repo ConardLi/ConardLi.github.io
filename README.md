@@ -33,8 +33,9 @@
 - 2.[【React深入】React事件机制](https://www.lisq.xyz/2019/03/06/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91setState%E7%9A%84%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/)
 - 3.[【React深入】react中key的正确使用方式](https://www.lisq.xyz/2018/11/27/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91react%E4%B8%ADkey%E7%9A%84%E6%AD%A3%E7%A1%AE%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F/)
 - 4.[【React深入】从Mixin到HOC再到Hooks](https://www.lisq.xyz/2019/04/09/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91%E4%BB%8EMixin%E5%88%B0HOC%E5%86%8D%E5%88%B0Hook/)
-- 5.【React深入】diff算法详解
-- 6.【React深入】React Native是如何跑起来的
+- 5.[【React深入深入分析虚拟DOM的渲染原理和特性】]()
+- 6.【React深入】Diff算法详解及其性能优化
+- 7.【React深入】React Native运行原理
 
 ## CSS
 

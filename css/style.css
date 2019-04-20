@@ -593,7 +593,7 @@ code {
   padding: 3px 0;
 }
 #sidebar .sidebar-top .social-links {
-  float: right;
+  float: left;
   position: relative;
   padding-top: 2px;
 }
@@ -761,8 +761,7 @@ code {
 .widget-list ol li {
   margin: 10px 0;
   padding-bottom: 10px;
-  font-size: 15px;
-  border-bottom: 1px solid #e4e4e4;
+  font-size: 14px;
 }
 .widget-list ul li:last-child,
 .widget-list ol li:last-child {
@@ -971,8 +970,8 @@ code {
 }
 .article-summary .article-summary-inner {
   margin-right: 30px;
-  -webkit-box-shadow: 2px 2px 1px #888;
-  box-shadow: 2px 2px 1px #888;
+  -webkit-box-shadow: 2px 2px 1px #9a9a9a;
+  box-shadow: 2px 2px 1px #9a9a9a;
   -webkit-transition: box-shadow 0.3s ease-in;
   -moz-transition: box-shadow 0.3s ease-in;
   -ms-transition: box-shadow 0.3s ease-in;
@@ -988,6 +987,7 @@ code {
   position: relative;
   margin-bottom: 1em;
   padding-bottom: 47.11%;
+  padding-right: 1px;
 }
 .article-summary .article-summary-inner .thumbnail .comment-counter {
   right: 0;
@@ -1547,6 +1547,7 @@ a.article-title:hover {
   font-size: 16px;
   color: #455a6f;
   border-bottom: 1px solid #eee;
+  display: none;
 }
 .archive-year i {
   margin-right: 8px;

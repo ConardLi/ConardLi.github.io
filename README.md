@@ -19,43 +19,43 @@
 
 ## 博客导航
 
-- [【自检】前端知识清单](https://www.lisq.xyz/2019/04/26/%E3%80%90%E8%87%AA%E6%A3%80%E3%80%91%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%B8%85%E5%8D%95/)
+- [【自检】前端知识清单](http://www.conardli.top/2019/04/26/%E3%80%90%E8%87%AA%E6%A3%80%E3%80%91%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%B8%85%E5%8D%95/)
 
 ### JavaScript
 
-- 1.[深入分析前端小数计算问题](https://www.lisq.xyz/2019/03/06/%E3%80%90JavaScript%E3%80%91%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90%E5%89%8D%E7%AB%AF%E5%B0%8F%E6%95%B0%E8%AE%A1%E7%AE%97%E9%97%AE%E9%A2%98/)
+- 1.[深入分析前端小数计算问题](http://www.conardli.top/2019/03/06/%E3%80%90JavaScript%E3%80%91%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90%E5%89%8D%E7%AB%AF%E5%B0%8F%E6%95%B0%E8%AE%A1%E7%AE%97%E9%97%AE%E9%A2%98/)
 
 
 ### React
-- 1.[【React深入】setState的执行机制](https://www.lisq.xyz/2019/03/06/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91setState%E7%9A%84%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/)
-- 2.[【React深入】React事件机制](https://www.lisq.xyz/2019/03/06/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91setState%E7%9A%84%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/)
-- 3.[【React深入】react中key的正确使用方式](https://www.lisq.xyz/2018/11/27/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91react%E4%B8%ADkey%E7%9A%84%E6%AD%A3%E7%A1%AE%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F/)
-- 4.[【React深入】从Mixin到HOC再到Hooks](https://www.lisq.xyz/2019/04/09/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91%E4%BB%8EMixin%E5%88%B0HOC%E5%86%8D%E5%88%B0Hook/)
-- 5.[【React深入】深入分析虚拟DOM的渲染原理和特性](https://www.lisq.xyz/2019/04/17/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90%E8%99%9A%E6%8B%9FDOM%E7%9A%84%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86%E5%92%8C%E7%89%B9%E6%80%A7/)
+- 1.[【React深入】setState的执行机制](http://www.conardli.top/2019/03/06/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91setState%E7%9A%84%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/)
+- 2.[【React深入】React事件机制](http://www.conardli.top/2019/03/06/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91setState%E7%9A%84%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/)
+- 3.[【React深入】react中key的正确使用方式](http://www.conardli.top/2018/11/27/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91react%E4%B8%ADkey%E7%9A%84%E6%AD%A3%E7%A1%AE%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F/)
+- 4.[【React深入】从Mixin到HOC再到Hooks](http://www.conardli.top/2019/04/09/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91%E4%BB%8EMixin%E5%88%B0HOC%E5%86%8D%E5%88%B0Hook/)
+- 5.[【React深入】深入分析虚拟DOM的渲染原理和特性](http://www.conardli.top/2019/04/17/%E3%80%90React%E6%B7%B1%E5%85%A5%E3%80%91%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90%E8%99%9A%E6%8B%9FDOM%E7%9A%84%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86%E5%92%8C%E7%89%B9%E6%80%A7/)
 
 ### 浏览器和网络
 
-- 1.[全面分析前端的网络请求方式](https://www.lisq.xyz/2019/03/28/%E3%80%90%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8C%E7%BD%91%E7%BB%9C%E3%80%91%E5%85%A8%E9%9D%A2%E5%88%86%E6%9E%90%E5%89%8D%E7%AB%AF%E7%9A%84%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/)
+- 1.[全面分析前端的网络请求方式](http://www.conardli.top/2019/03/28/%E3%80%90%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8C%E7%BD%91%E7%BB%9C%E3%80%91%E5%85%A8%E9%9D%A2%E5%88%86%E6%9E%90%E5%89%8D%E7%AB%AF%E7%9A%84%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/)
 
 
 ### 前端工程
 
-- 1.[前端开发者必备的nginx知识](https://www.lisq.xyz/2019/03/12/%E3%80%90%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E3%80%91%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%80%85%E5%BF%85%E5%A4%87%E7%9A%84nginx%E7%9F%A5%E8%AF%86/)
+- 1.[前端开发者必备的nginx知识](http://www.conardli.top/2019/03/12/%E3%80%90%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E3%80%91%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%80%85%E5%BF%85%E5%A4%87%E7%9A%84nginx%E7%9F%A5%E8%AF%86/)
 
 ### 性能优化
 
-- 1.[前端性能优化总结](https://www.lisq.xyz/2018/12/28/%E3%80%90%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E3%80%91%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/)
+- 1.[前端性能优化总结](http://www.conardli.top/2018/12/28/%E3%80%90%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E3%80%91%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/)
 
 ### electron
 
-- 1.[【electron】程序保护措施（崩溃监控，开机自启，托盘关闭）](https://www.lisq.xyz/2018/11/07/%E3%80%90electron%E3%80%91electron%E7%A8%8B%E5%BA%8F%E4%BF%9D%E6%8A%A4%E6%8E%AA%E6%96%BD%EF%BC%88%E5%B4%A9%E6%BA%83%E7%9B%91%E6%8E%A7%EF%BC%8C%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%EF%BC%8C%E6%89%98%E7%9B%98%E5%85%B3%E9%97%AD%EF%BC%89/)
-- 2.[【electron】使用electron静默打印](https://www.lisq.xyz/2018/11/01/%E3%80%90electron%E3%80%91%E4%BD%BF%E7%94%A8electron%E9%9D%99%E9%BB%98%E6%89%93%E5%8D%B0/)
-- 3.[【electron】指令控制 windows 电源选项](https://www.lisq.xyz/2018/12/17/%E3%80%90electron%E3%80%91%E6%8C%87%E4%BB%A4%E6%8E%A7%E5%88%B6-windows-%E7%94%B5%E6%BA%90%E9%80%89%E9%A1%B9/)
+- 1.[【electron】程序保护措施（崩溃监控，开机自启，托盘关闭）](http://www.conardli.top/2018/11/07/%E3%80%90electron%E3%80%91electron%E7%A8%8B%E5%BA%8F%E4%BF%9D%E6%8A%A4%E6%8E%AA%E6%96%BD%EF%BC%88%E5%B4%A9%E6%BA%83%E7%9B%91%E6%8E%A7%EF%BC%8C%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%EF%BC%8C%E6%89%98%E7%9B%98%E5%85%B3%E9%97%AD%EF%BC%89/)
+- 2.[【electron】使用electron静默打印](http://www.conardli.top/2018/11/01/%E3%80%90electron%E3%80%91%E4%BD%BF%E7%94%A8electron%E9%9D%99%E9%BB%98%E6%89%93%E5%8D%B0/)
+- 3.[【electron】指令控制 windows 电源选项](http://www.conardli.top/2018/12/17/%E3%80%90electron%E3%80%91%E6%8C%87%E4%BB%A4%E6%8E%A7%E5%88%B6-windows-%E7%94%B5%E6%BA%90%E9%80%89%E9%A1%B9/)
 
 
 ### 博客搭建
 
-- [个人博客搭建及配置总结](https://www.lisq.xyz/2018/01/01/%E3%80%90%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E3%80%91%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE/)
+- [个人博客搭建及配置总结](http://www.conardli.top/2018/01/01/%E3%80%90%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E3%80%91%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE/)
 
 
 ### 算法和数据结构

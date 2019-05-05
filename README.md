@@ -52,6 +52,9 @@
 - 2.[【electron】使用electron静默打印](http://www.conardli.top/2018/11/01/%E3%80%90electron%E3%80%91%E4%BD%BF%E7%94%A8electron%E9%9D%99%E9%BB%98%E6%89%93%E5%8D%B0/)
 - 3.[【electron】指令控制 windows 电源选项](http://www.conardli.top/2018/12/17/%E3%80%90electron%E3%80%91%E6%8C%87%E4%BB%A4%E6%8E%A7%E5%88%B6-windows-%E7%94%B5%E6%BA%90%E9%80%89%E9%A1%B9/)
 
+### 特效
+
+[【特效】看完这篇，你也可以实现一个360度全景插件](http://www.conardli.top/2019/05/05/%E3%80%90%E7%89%B9%E6%95%88%E3%80%91%E7%9C%8B%E5%AE%8C%E8%BF%99%E7%AF%87%EF%BC%8C%E4%BD%A0%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA360%E5%BA%A6%E5%85%A8%E6%99%AF%E6%8F%92%E4%BB%B6/)
 
 ### 博客搭建
 

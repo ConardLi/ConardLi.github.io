@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>【JS进阶】你真的掌握变量和类型了吗 | 李世奇的技术专栏</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JavaScript" />
+    
+    <meta name="description" content="导读变量和类型是学习JavaScript最先接触到的东西，但是往往看起来最简单的东西往往还隐藏着很多你不了解、或者容易犯错的知识，比如下面几个问题：  JavaScript中的变量在内存中的具体存储形式是什么？ 0.1+0.2为什么不等于0.3?发生小数计算错误的具体原因是什么？ Symbol的特点，以及实际应用场景是什么？ [] == ![]、[undefined] == false为什么等于t">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【JS进阶】你真的掌握变量和类型了吗">
+<meta property="og:url" content="www.conardli.top/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/index.html">
+<meta property="og:site_name" content="李世奇的技术专栏">
+<meta property="og:description" content="导读变量和类型是学习JavaScript最先接触到的东西，但是往往看起来最简单的东西往往还隐藏着很多你不了解、或者容易犯错的知识，比如下面几个问题：  JavaScript中的变量在内存中的具体存储形式是什么？ 0.1+0.2为什么不等于0.3?发生小数计算错误的具体原因是什么？ Symbol的特点，以及实际应用场景是什么？ [] == ![]、[undefined] == false为什么等于t">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/5/28/16afa4daf89c565e?w=1482&amp;h=584&amp;f=png&amp;s=55263">
+<meta property="og:updated_time" content="2019-05-28T03:12:00.648Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【JS进阶】你真的掌握变量和类型了吗">
+<meta name="twitter:description" content="导读变量和类型是学习JavaScript最先接触到的东西，但是往往看起来最简单的东西往往还隐藏着很多你不了解、或者容易犯错的知识，比如下面几个问题：  JavaScript中的变量在内存中的具体存储形式是什么？ 0.1+0.2为什么不等于0.3?发生小数计算错误的具体原因是什么？ Symbol的特点，以及实际应用场景是什么？ [] == ![]、[undefined] == false为什么等于t">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/5/28/16afa4daf89c565e?w=1482&amp;h=584&amp;f=png&amp;s=55263">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://mp.weixin.qq.com/s/dYZEHTgqvxGV7mL99JuxRQ">关于</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://github.com/ConardLi/ConardLi.github.io">更新日志</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <style>
+    #article-toc.fixed {
+        position: fixed;
+        top: 30px;
+        bottom: 30px;
+        left: 32px;
+        padding-top: 15px;
+        z-index: 9999;
+        background-color: antiquewhite;
+        width: 200px;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid rgb(122, 122, 122);
+        opacity: 0.8;
+    }
+
+    #article-toc-inner {
+        padding: 10px;
+        width: 200px;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .toc-level-3 {
+        margin-left: 20px;
+    }
+
+    #article-toc a {
+        text-decoration: none;
+        color: #333;
+        padding: 3px 0;
+        color: #000;
+        font-weight: normal;
+    }
+
+    .toc-item {
+        line-height: 30px;
+        list-style-type: initial;
+    }
+
+    #tocbtn {
+        position: fixed;
+        top: 30%;
+        left: 0px;
+        padding: 5px 2px;
+        width: 18px;
+        word-wrap: break-word;
+        background-color: rgb(242, 245, 247);
+        box-shadow: rgba(118, 118, 118, 0.11) 2px 0px 5px 0px;
+        opacity: 1;
+        height: 94px;
+        line-height: 16px;
+        text-align: center;
+        top: 33%;
+        width: 30px;
+        z-index: 1000000001;
+        cursor: pointer;
+        border-radius: 0px 4px 4px 0px;
+        border-width: 1px 1px 1px;
+        border-style: solid solid solid none;
+        border-color: rgb(224, 228, 231) rgb(224, 228, 231) rgb(224, 228, 231);
+        border-image: initial;
+        border-left: none;
+        padding: 6px;
+        transition: right 0.4s ease-in 0.3s, opacity 0.5s ease-in 0.3s;
+    }
+</style>
+
+<article id="post-【JS进阶】你真的掌握变量和类型了吗"
+    class="article article-single article-type-post"
+    itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        <header class="article-header">
+            
+    
+        <h1 class="article-title" itemprop="name">
+        【JS进阶】你真的掌握变量和类型了吗
+        </h1>
+    
+
+        </header>
+        
+        
+        <div class="article-meta">
+            
+    <div class="article-date">
+        <a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="article-date">
+            <time datetime="2019-05-28T03:06:11.000Z" itemprop="datePublished">2019-05-28</time>
+        </a>
+    </div>
+
+            
+
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+    </div>
+
+            <span id="busuanzi_container_page_pv" style="position: relative;float: right;">
+                本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+            </span>
+        </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><p>变量和类型是学习<code>JavaScript</code>最先接触到的东西，但是往往看起来最简单的东西往往还隐藏着很多你不了解、或者容易犯错的知识，比如下面几个问题：</p>
+<ul>
+<li><code>JavaScript</code>中的变量在内存中的具体存储形式是什么？</li>
+<li><code>0.1+0.2</code>为什么不等于<code>0.3</code>?发生小数计算错误的具体原因是什么？</li>
+<li><code>Symbol</code>的特点，以及实际应用场景是什么？</li>
+<li><code>[] == ![]</code>、<code>[undefined] == false</code>为什么等于<code>true</code>?代码中何时会发生隐式类型转换？转换的规则是什么？</li>
+<li>如何精确的判断变量的类型？</li>
+</ul>
+<p>如果你还不能很好的解答上面的问题，那说明你还没有完全掌握这部分的知识，那么请好好阅读下面的文章吧。</p>
+<p>本文从底层原理到实际应用详细介绍了<code>JavaScript</code>中的变量和类型相关知识。</p>
+<h2 id="一、JavaScript数据类型"><a href="#一、JavaScript数据类型" class="headerlink" title="一、JavaScript数据类型"></a>一、JavaScript数据类型</h2><p><a href="http://www.ecma-international.org/ecma-262/9.0/index.html" target="_blank" rel="noopener">ECMAScript标准</a>规定了<code>7</code>种数据类型，其把这<code>7</code>种数据类型又分为两种：原始类型和对象类型。</p>
+<p><strong>原始类型</strong></p>
+<ul>
+<li><code>Null</code>：只包含一个值：<code>null</code></li>
+<li><code>Undefined</code>：只包含一个值：<code>undefined</code></li>
+<li><code>Boolean</code>：包含两个值：<code>true</code>和<code>false</code></li>
+<li><code>Number</code>：整数或浮点数，还有一些特殊值（<code>-Infinity</code>、<code>+Infinity</code>、<code>NaN</code>）</li>
+<li><code>String</code>：一串表示文本值的字符序列</li>
+<li><code>Symbol</code>：一种实例是唯一且不可改变的数据类型</li>
+</ul>
+<p>(在<code>es10</code>中加入了第七种原始类型<code>BigInt</code>，现已被最新<code>Chrome</code>支持)</p>
+<p><strong>对象类型</strong></p>
+<ul>
+<li><code>Object</code>：自己分一类丝毫不过分，除了常用的<code>Object</code>，<code>Array</code>、<code>Function</code>等都属于特殊的对象</li>
+</ul>
+<h2 id="二、为什么区分原始类型和对象类型"><a href="#二、为什么区分原始类型和对象类型" class="headerlink" title="二、为什么区分原始类型和对象类型"></a>二、为什么区分原始类型和对象类型</h2><h3 id="2-1-不可变性"><a href="#2-1-不可变性" class="headerlink" title="2.1 不可变性"></a>2.1 不可变性</h3><p>上面所提到的原始类型，在<code>ECMAScript</code>标准中，它们被定义为<code>primitive values</code>，即原始值，代表值本身是不可被改变的。</p>
+<p>以字符串为例，我们在调用操作字符串的方法时，没有任何方法是可以直接改变字符串的：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'ConardLi'</span>;</span><br><span class="line">str.slice(<span class="number">1</span>);</span><br><span class="line">str.substr(<span class="number">1</span>);</span><br><span class="line">str.trim(<span class="number">1</span>);</span><br><span class="line">str.toLowerCase(<span class="number">1</span>);</span><br><span class="line">str[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str);  <span class="comment">// ConardLi</span></span><br></pre></td></tr></table></figure>
+<p>在上面的代码中我们对<code>str</code>调用了几个方法，无一例外，这些方法都在原字符串的基础上产生了一个新字符串，而非直接去改变<code>str</code>，这就印证了字符串的不可变性。</p>
+<p>那么，当我们继续调用下面的代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">str += <span class="string">'6'</span></span><br><span class="line"><span class="built_in">console</span>.log(str);  <span class="comment">// ConardLi6</span></span><br></pre></td></tr></table></figure>
+<p>你会发现，<code>str</code>的值被改变了，这不就打脸了字符串的不可变性么？其实不然，我们从内存上来理解：</p>
+<p>在<code>JavaScript</code>中，每一个变量在内存中都需要一个空间来存储。</p>
+<p>内存空间又被分为两种，栈内存与堆内存。</p>
+<p>栈内存：</p>
+<ul>
+<li>存储的值大小固定</li>
+<li>空间较小</li>
+<li>可以直接操作其保存的变量，运行效率高</li>
+<li>由系统自动分配存储空间</li>
+</ul>
+<p><code>JavaScript</code>中的原始类型的值被直接存储在栈中，在变量定义时，栈就为其分配好了内存空间。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/5/28/16afa4daf89c565e?w=1482&amp;h=584&amp;f=png&amp;s=55263" alt=""></p>
+<p>由于栈中的内存空间的大小是固定的，那么注定了存储在栈中的变量就是不可变的。</p>
+<p>在上面的代码中，我们执行了<code>str += &#39;6&#39;</code>的操作，实际上是在栈中又开辟了一块内存空间用于存储<code>&#39;ConardLi6&#39;</code>，然后将变量<code>str</code>指向这块空间，所以这并不违背<code>不可变性的</code>特点。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/5/28/16afa4dd38de23b8?w=1572&amp;h=628&amp;f=png&amp;s=92989" alt=""></p>
+<h3 id="2-2-引用类型"><a href="#2-2-引用类型" class="headerlink" title="2.2 引用类型"></a>2.2 引用类型</h3><p>堆内存：</p>
+<ul>
+<li>存储的值大小不定，可动态调整</li>
+<li>空间较大，运行效率低</li>
+<li>无法直接操作其内部存储，使用引用地址读取</li>
+<li>通过代码进行分配空间</li>
+</ul>
+<p>相对于上面具有不可变性的原始类型，我习惯把对象称为引用类型，引用类型的值实际存储在堆内存中，它在栈中只存储了一个固定长度的地址，这个地址指向堆内存中的值。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;<span class="attr">name</span>:<span class="string">"ConardLi"</span>&#125;</span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;<span class="attr">age</span>:<span class="number">18</span>&#125;</span><br><span class="line"><span class="keyword">var</span> obj3 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;...&#125;</span><br><span class="line"><span class="keyword">var</span> obj4 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br></pre></td></tr></table></figure>
+<p><img src="https://user-gold-cdn.xitu.io/2019/5/28/16afa4df7faa4630?w=2318&amp;h=917&amp;f=png&amp;s=228804" alt=""></p>
+<blockquote>
+<p>由于内存是有限的，这些变量不可能一直在内存中占用资源，这里推荐下这篇文章<a href="https://juejin.im/post/5cb33660e51d456e811d2687" target="_blank" rel="noopener">JavaScript中的垃圾回收和内存泄漏</a>，这里告诉你<code>JavaScript</code>是如何进行垃圾回收以及可能会发生内存泄漏的一些场景。</p>
+</blockquote>
+<p>当然，引用类型就不再具有<code>不可变性</code>了，我们可以轻易的改变它们： </p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">obj1.name = <span class="string">"ConardLi6"</span>;</span><br><span class="line">obj2.age = <span class="number">19</span>;</span><br><span class="line">obj4.length = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj1); <span class="comment">//&#123;name:"ConardLi6"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(obj2); <span class="comment">// &#123;age:19&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(obj4); <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+<p>以数组为例，它的很多方法都可以改变它自身。</p>
+<ul>
+<li><code>pop()</code> 删除数组最后一个元素，如果数组为空，则不改变数组，返回undefined，改变原数组，返回被删除的元素</li>
+<li><code>push()</code>向数组末尾添加一个或多个元素，改变原数组，返回新数组的长度</li>
+<li><code>shift()</code>把数组的第一个元素删除，若空数组，不进行任何操作，返回undefined,改变原数组，返回第一个元素的值</li>
+<li><code>unshift()</code>向数组的开头添加一个或多个元素，改变原数组，返回新数组的长度</li>
+<li><code>reverse()</code>颠倒数组中元素的顺序，改变原数组，返回该数组</li>
+<li><code>sort()</code>对数组元素进行排序，改变原数组，返回该数组</li>
+<li><code>splice()</code>从数组中添加/删除项目，改变原数组，返回被删除的元素</li>
+</ul>
+<p>下面我们通过几个操作来对比一下原始类型和引用类型的区别：</p>
+<h3 id="2-3-复制"><a href="#2-3-复制" class="headerlink" title="2.3 复制"></a>2.3 复制</h3><p>当我们把一个变量的值复制到另一个变量上时，原始类型和引用类型的表现是不一样的，先来看看原始类型：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'ConardLi'</span>;</span><br><span class="line"><span class="keyword">var</span> name2 = name;</span><br><span class="line">name2 = <span class="string">'code秘密花园'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(name); <span class="comment">// ConardLi;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-gold-cdn.xitu.io/2019/5/28/16afa4e25a85befd?w=1962&amp;h=806&amp;f=png&amp;s=77398" alt=""></p>
+<p>内存中有一个变量<code>name</code>，值为<code>ConardLi</code>。我们从变量<code>name</code>复制出一个变量<code>name2</code>，此时在内存中创建了一个块新的空间用于存储<code>ConardLi</code>，虽然两者值是相同的，但是两者指向的内存空间完全不同，这两个变量参与任何操作都互不影响。</p>
+<p>复制一个引用类型：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">name</span>:<span class="string">'ConardLi'</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = obj;</span><br><span class="line">obj2.name = <span class="string">'code秘密花园'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.name); <span class="comment">// code秘密花园</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-gold-cdn.xitu.io/2019/5/28/16afa4e49b1e49fd?w=2177&amp;h=896&amp;f=png&amp;s=188391" alt=""></p>
+<p>当我们复制引用类型的变量时，实际上复制的是栈中存储的地址，所以复制出来的<code>obj2</code>实际上和<code>obj</code>指向的堆中同一个对象。因此，我们改变其中任何一个变量的值，另一个变量都会受到影响，这就是为什么会有深拷贝和浅拷贝的原因。</p>
+<h3 id="2-4-比较"><a href="#2-4-比较" class="headerlink" title="2.4 比较"></a>2.4 比较</h3><p>当我们在对两个变量进行比较时，不同类型的变量的表现是不同的：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/5/28/16afa4e66a7d03ad?w=2182&amp;h=948&amp;f=png&amp;s=197533" alt=""></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'ConardLi'</span>;</span><br><span class="line"><span class="keyword">var</span> name2 = <span class="string">'ConardLi'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(name === name2); <span class="comment">// true</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">name</span>:<span class="string">'ConardLi'</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;<span class="attr">name</span>:<span class="string">'ConardLi'</span>&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj === obj2); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>对于原始类型，比较时会直接比较它们的值，如果值相等，即返回<code>true</code>。</p>
+<p>对于引用类型，比较时会比较它们的引用地址，虽然两个变量在堆中存储的对象具有的属性值都是相等的，但是它们被存储在了不同的存储空间，因此比较值为<code>false</code>。</p>
+<h3 id="2-5-值传递和引用传递"><a href="#2-5-值传递和引用传递" class="headerlink" title="2.5 值传递和引用传递"></a>2.5 值传递和引用传递</h3><p>借助下面的例子，我们先来看一看什么是值传递，什么是引用传递：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">'ConardLi'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeValue</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">  name = <span class="string">'code秘密花园'</span>;</span><br><span class="line">&#125;</span><br><span class="line">changeValue(name);</span><br><span class="line"><span class="built_in">console</span>.log(name);</span><br></pre></td></tr></table></figure>
+<p>执行上面的代码，如果最终打印出来的<code>name</code>是<code>&#39;ConardLi&#39;</code>，没有改变，说明函数参数传递的是变量的值，即值传递。如果最终打印的是<code>&#39;code秘密花园&#39;</code>，函数内部的操作可以改变传入的变量，那么说明函数参数传递的是引用，即引用传递。</p>
+<p>很明显，上面的执行结果是<code>&#39;ConardLi&#39;</code>，即函数参数仅仅是被传入变量复制给了的一个局部变量，改变这个局部变量不会对外部变量产生影响。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;<span class="attr">name</span>:<span class="string">'ConardLi'</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeValue</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">  obj.name = <span class="string">'code秘密花园'</span>;</span><br><span class="line">&#125;</span><br><span class="line">changeValue(obj);</span><br><span class="line"><span class="built_in">console</span>.log(obj.name); <span class="comment">// code秘密花园</span></span><br></pre></td></tr></table></figure>
+<p>上面的代码可能让你产生疑惑，是不是参数是引用类型就是引用传递呢？</p>
+<p>首先明确一点，<code>ECMAScript</code>中所有的函数的参数都是按值传递的。</p>
+<p>同样的，当函数参数是引用类型时，我们同样将参数复制了一个副本到局部变量，只不过复制的这个副本是指向堆内存中的地址而已，我们在函数内部对对象的属性进行操作，实际上和外部变量指向堆内存中的值相同，但是这并不代表着引用传递，下面我们再按一个例子：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeValue</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">  obj.name = <span class="string">'ConardLi'</span>;</span><br><span class="line">  obj = &#123;<span class="attr">name</span>:<span class="string">'code秘密花园'</span>&#125;;</span><br><span class="line">&#125;</span><br><span class="line">changeValue(obj);</span><br><span class="line"><span class="built_in">console</span>.log(obj.name); <span class="comment">// ConardLi</span></span><br></pre></td></tr></table></figure>
+<p>可见，函数参数传递的并不是变量的<code>引用</code>，而是变量拷贝的副本，当变量是原始类型时，这个副本就是值本身，当变量是引用类型时，这个副本是指向堆内存的地址。所以，再次记住：</p>
+<blockquote>
+<p><code>ECMAScript</code>中所有的函数的参数都是按值传递的。</p>
+</blockquote>
+<h2 id="三、分不清的null和undefined"><a href="#三、分不清的null和undefined" class="headerlink" title="三、分不清的null和undefined"></a>三、分不清的null和undefined</h2><p><img src="https://user-gold-cdn.xitu.io/2019/5/28/16afa4e882db12a5?w=1182&amp;h=479&amp;f=png&amp;s=298855" alt=""></p>
+<p>在原始类型中，有两个类型<code>Null</code>和<code>Undefined</code>，他们都有且仅有一个值，<code>null</code>和<code>undefined</code>，并且他们都代表无和空，我一般这样区分它们：</p>
+<p><strong>null</strong></p>
+<p>表示被赋值过的对象，刻意把一个对象赋值为<code>null</code>，故意表示其为空，不应有值。</p>
+<p>所以对象的某个属性值为<code>null</code>是正常的，<code>null</code>转换为数值时值为<code>0</code>。</p>
+<p><strong>undefined</strong> </p>
+<p>表示“缺少值”，即此处应有一个值，但还没有定义，</p>
+<p>如果一个对象的某个属性值为<code>undefined</code>，这是不正常的，如<code>obj.name=undefined</code>，我们不应该这样写，应该直接<code>delete obj.name</code>。</p>
+<p><code>undefined</code>转为数值时为<code>NaN</code>(非数字值的特殊值)</p>
+<p><code>JavaScript</code>是一门动态类型语言，成员除了表示存在的空值外，还有可能根本就不存在（因为存不存在只在运行期才知道），这就是<code>undefined</code>的意义所在。对于<code>JAVA</code>这种强类型语言，如果有<code>&quot;undefined&quot;</code>这种情况，就会直接编译失败，所以在它不需要一个这样的类型。</p>
+<h2 id="四、不太熟的Symbol类型"><a href="#四、不太熟的Symbol类型" class="headerlink" title="四、不太熟的Symbol类型"></a>四、不太熟的Symbol类型</h2><p><code>Symbol</code>类型是<code>ES6</code>中新加入的一种原始类型。</p>
+<blockquote>
+<p>每个从Symbol()返回的symbol值都是唯一的。一个symbol值能作为对象属性的标识符；这是该数据类型仅有的目的。</p>
+</blockquote>
+<p>下面来看看<code>Symbol</code>类型具有哪些特性。</p>
+<h3 id="4-1-Symbol的特性"><a href="#4-1-Symbol的特性" class="headerlink" title="4.1 Symbol的特性"></a>4.1 Symbol的特性</h3><p><strong>1.独一无二</strong></p>
+<p>直接使用<code>Symbol()</code>创建新的<code>symbol</code>变量，可选用一个字符串用于描述。当参数为对象时，将调用对象的<code>toString()</code>方法。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> sym1 = <span class="built_in">Symbol</span>();  <span class="comment">// Symbol() </span></span><br><span class="line"><span class="keyword">var</span> sym2 = <span class="built_in">Symbol</span>(<span class="string">'ConardLi'</span>);  <span class="comment">// Symbol(ConardLi)</span></span><br><span class="line"><span class="keyword">var</span> sym3 = <span class="built_in">Symbol</span>(<span class="string">'ConardLi'</span>);  <span class="comment">// Symbol(ConardLi)</span></span><br><span class="line"><span class="keyword">var</span> sym4 = <span class="built_in">Symbol</span>(&#123;<span class="attr">name</span>:<span class="string">'ConardLi'</span>&#125;); <span class="comment">// Symbol([object Object])</span></span><br><span class="line"><span class="built_in">console</span>.log(sym2 === sym3);  <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>我们用两个相同的字符串创建两个<code>Symbol</code>变量，它们是不相等的，可见每个<code>Symbol</code>变量都是独一无二的。</p>
+<p>如果我们想创造两个相等的<code>Symbol</code>变量，可以使用<code>Symbol.for(key)</code>。</p>
+<blockquote>
+<p>使用给定的key搜索现有的symbol，如果找到则返回该symbol。否则将使用给定的key在全局symbol注册表中创建一个新的symbol。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> sym1 = <span class="built_in">Symbol</span>.for(<span class="string">'ConardLi'</span>);</span><br><span class="line"><span class="keyword">var</span> sym2 = <span class="built_in">Symbol</span>.for(<span class="string">'ConardLi'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(sym1 === sym2); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p><strong>2.原始类型</strong></p>
+<p>注意是使用<code>Symbol()</code>函数创建<code>symbol</code>变量，并非使用构造函数，使用<code>new</code>操作符会直接报错。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Symbol</span>(); <span class="comment">// Uncaught TypeError: Symbol is not a constructor</span></span><br></pre></td></tr></table></figure>
+<p>我们可以使用<code>typeof</code>运算符判断一个<code>Symbol</code>类型：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="built_in">Symbol</span>() === <span class="string">'symbol'</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">Symbol</span>(<span class="string">'ConardLi'</span>) === <span class="string">'symbol'</span></span><br></pre></td></tr></table></figure>
+<p><strong>3.不可枚举</strong></p>
+<p>当使用<code>Symbol</code>作为对象属性时，可以保证对象不会出现重名属性，调用<code>for...in</code>不能将其枚举出来，另外调用<code>Object.getOwnPropertyNames、Object.keys()</code>也不能获取<code>Symbol</code>属性。</p>
+<blockquote>
+<p>可以调用Object.getOwnPropertySymbols()用于专门获取Symbol属性。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  name:<span class="string">'ConardLi'</span>,</span><br><span class="line">  [<span class="built_in">Symbol</span>(<span class="string">'name2'</span>)]:<span class="string">'code秘密花园'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyNames(obj); <span class="comment">// ["name"]</span></span><br><span class="line"><span class="built_in">Object</span>.keys(obj); <span class="comment">// ["name"]</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> obj) &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(i); <span class="comment">// name</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertySymbols(obj) <span class="comment">// [Symbol(name)]</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-2-Symbol的应用场景"><a href="#4-2-Symbol的应用场景" class="headerlink" title="4.2 Symbol的应用场景"></a>4.2 Symbol的应用场景</h3><p>下面是几个<code>Symbol</code>在程序中的应用场景。</p>
+<p><strong>应用一：防止XSS</strong></p>
+<p>在<code>React</code>的<code>ReactElement</code>对象中，有一个<code>$$typeof</code>属性，它是一个<code>Symbol</code>类型的变量：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> REACT_ELEMENT_TYPE =</span><br><span class="line">  (<span class="keyword">typeof</span> <span class="built_in">Symbol</span> === <span class="string">'function'</span> &amp;&amp; <span class="built_in">Symbol</span>.for &amp;&amp; <span class="built_in">Symbol</span>.for(<span class="string">'react.element'</span>)) ||</span><br><span class="line">  <span class="number">0xeac7</span>;</span><br></pre></td></tr></table></figure>
+<p><code>ReactElement.isValidElement</code>函数用来判断一个React组件是否是有效的，下面是它的具体实现。<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">ReactElement.isValidElement = <span class="function"><span class="keyword">function</span> (<span class="params">object</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> object === <span class="string">'object'</span> &amp;&amp; object !== <span class="literal">null</span> &amp;&amp; object.$$<span class="keyword">typeof</span> === REACT_ELEMENT_TYPE;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>可见<code>React</code>渲染时会把没有<code>$$typeof</code>标识，以及规则校验不通过的组件过滤掉。</p>
+<p>如果你的服务器有一个漏洞，允许用户存储任意<code>JSON</code>对象， 而客户端代码需要一个字符串，这可能会成为一个问题：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// JSON</span></span><br><span class="line"><span class="keyword">let</span> expectedTextButGotJSON = &#123;</span><br><span class="line">  type: <span class="string">'div'</span>,</span><br><span class="line">  props: &#123;</span><br><span class="line">    dangerouslySetInnerHTML: &#123;</span><br><span class="line">      __html: <span class="string">'/* put your exploit here */'</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> message = &#123; <span class="attr">text</span>: expectedTextButGotJSON &#125;;</span><br><span class="line">&lt;p&gt;</span><br><span class="line">  &#123;message.text&#125;</span><br><span class="line">&lt;<span class="regexp">/p&gt;</span></span><br></pre></td></tr></table></figure>
+<p>而<code>JSON</code>中不能存储<code>Symbol</code>类型的变量，这就是防止<code>XSS</code>的一种手段。</p>
+<p><strong>应用二：私有属性</strong></p>
+<p>借助<code>Symbol</code>类型的不可枚举，我们可以在类中模拟私有属性，控制变量读写：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> privateField = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myClass</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>()&#123;</span><br><span class="line">    <span class="keyword">this</span>[privateField] = <span class="string">'ConardLi'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  getField()&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>[privateField];</span><br><span class="line">  &#125;</span><br><span class="line">  setField(val)&#123;</span><br><span class="line">    <span class="keyword">this</span>[privateField] = val;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>应用三：防止属性污染</strong></p>
+<p>在某些情况下，我们可能要为对象添加一个属性，此时就有可能造成属性覆盖，用<code>Symbol</code>作为对象属性可以保证永远不会出现同名属性。</p>
+<p>例如下面的场景，我们模拟实现一个<code>call</code>方法：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.myCall = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span> !== <span class="string">'function'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">undefined</span>; <span class="comment">// 用于防止 Function.prototype.myCall() 直接调用</span></span><br><span class="line">  &#125;</span><br><span class="line">  context = context || <span class="built_in">window</span>;</span><br><span class="line">  <span class="keyword">const</span> fn = <span class="built_in">Symbol</span>();</span><br><span class="line">  context[fn] = <span class="keyword">this</span>;</span><br><span class="line">  <span class="keyword">const</span> args = [...arguments].slice(<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">const</span> result = context[fn](...args);</span><br><span class="line">  <span class="keyword">delete</span> context[fn];</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们需要在某个对象上临时调用一个方法，又不能造成属性污染，<code>Symbol</code>是一个很好的选择。</p>
+<h2 id="五、不老实的Number类型"><a href="#五、不老实的Number类型" class="headerlink" title="五、不老实的Number类型"></a>五、不老实的Number类型</h2><p>为什么说<code>Number</code>类型不老实呢，相信大家都多多少少的在开发中遇到过小数计算不精确的问题，比如<code>0.1+0.2!==0.3</code>，下面我们来追本溯源，看看为什么会出现这种现象，以及该如何避免。</p>
+<p>下面是我实现的一个简单的函数，用于判断两个小数进行加法运算是否精确：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">judgeFloat</span>(<span class="params">n, m</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> binaryN = n.toString(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">const</span> binaryM = m.toString(<span class="number">2</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;n&#125;</span>的二进制是    <span class="subst">$&#123;binaryN&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;m&#125;</span>的二进制是    <span class="subst">$&#123;binaryM&#125;</span>`</span>);</span><br><span class="line">  <span class="keyword">const</span> MN = m + n;</span><br><span class="line">  <span class="keyword">const</span> accuracyMN = (m * <span class="number">100</span> + n * <span class="number">100</span>) / <span class="number">100</span>;</span><br><span class="line">  <span class="keyword">const</span> binaryMN = MN.toString(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">const</span> accuracyBinaryMN = accuracyMN.toString(<span class="number">2</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;n&#125;</span>+<span class="subst">$&#123;m&#125;</span>的二进制是<span class="subst">$&#123;binaryMN&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;accuracyMN&#125;</span>的二进制是    <span class="subst">$&#123;accuracyBinaryMN&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;n&#125;</span>+<span class="subst">$&#123;m&#125;</span>的二进制再转成十进制是<span class="subst">$&#123;to10(binaryMN)&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;accuracyMN&#125;</span>的二进制是再转成十进制是<span class="subst">$&#123;to10(accuracyBinaryMN)&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;n&#125;</span>+<span class="subst">$&#123;m&#125;</span>在js中计算是<span class="subst">$&#123;(to10(binaryMN) === to10(accuracyBinaryMN)) ? <span class="string">''</span> : <span class="string">'不'</span>&#125;</span>准确的`</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">to10</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> pre = (n.split(<span class="string">'.'</span>)[<span class="number">0</span>] - <span class="number">0</span>).toString(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">const</span> arr = n.split(<span class="string">'.'</span>)[<span class="number">1</span>].split(<span class="string">''</span>);</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (i &lt; arr.length) &#123;</span><br><span class="line">    result += arr[i] * <span class="built_in">Math</span>.pow(<span class="number">2</span>, -(i + <span class="number">1</span>));</span><br><span class="line">    i++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line">judgeFloat(<span class="number">0.1</span>, <span class="number">0.2</span>);</span><br><span class="line">judgeFloat(<span class="number">0.6</span>, <span class="number">0.7</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/二进制3.png" alt="image"></p>
+<h3 id="5-1-精度丢失"><a href="#5-1-精度丢失" class="headerlink" title="5.1 精度丢失"></a>5.1 精度丢失</h3><p>计算机中所有的数据都是以<code>二进制</code>存储的，所以在计算时计算机要把数据先转换成<code>二进制</code>进行计算，然后在把计算结果转换成<code>十进制</code>。</p>
+<p>由上面的代码不难看出，在计算<code>0.1+0.2</code>时，<code>二进制</code>计算发生了精度丢失，导致再转换成<code>十进制</code>后和预计的结果不符。</p>
+<h3 id="5-2-对结果的分析—更多的问题"><a href="#5-2-对结果的分析—更多的问题" class="headerlink" title="5.2 对结果的分析—更多的问题"></a>5.2 对结果的分析—更多的问题</h3><p><code>0.1</code>和<code>0.2</code>的二进制都是以1100无限循环的小数，下面逐个来看JS帮我们计算所得的结果：</p>
+<p><strong>0.1的二进制</strong>：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">0.0001100110011001100110011001100110011001100110011001101</span></span><br></pre></td></tr></table></figure>
+<p><strong>0.2的二进制</strong>：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">0.001100110011001100110011001100110011001100110011001101</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>理论上讲，由上面的结果相加应该：</strong>：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">0.0100110011001100110011001100110011001100110011001100111</span></span><br></pre></td></tr></table></figure>
+<p><strong>实际JS计算得到的0.1+0.2的二进制</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">0.0100110011001100110011001100110011001100110011001101</span></span><br></pre></td></tr></table></figure>
+<p>看到这里你可能会产生更多的问题：</p>
+<blockquote>
+<p>为什么 js计算出的 0.1的二进制 是这么多位而不是更多位？？？</p>
+</blockquote>
+<blockquote>
+<p>为什么 js计算的（0.1+0.2）的二进制和我们自己计算的（0.1+0.2）的二进制结果不一样呢？？？</p>
+</blockquote>
+<blockquote>
+<p>为什么 0.1的二进制 + 0.2的二进制 != 0.3的二进制？？？</p>
+</blockquote>
+<h3 id="5-3-js对二进制小数的存储方式"><a href="#5-3-js对二进制小数的存储方式" class="headerlink" title="5.3 js对二进制小数的存储方式"></a>5.3 js对二进制小数的存储方式</h3><p>小数的<code>二进制</code>大多数都是无限循环的，<code>JavaScript</code>是怎么来存储他们的呢？</p>
+<p>在<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.19" target="_blank" rel="noopener">ECMAScript®语言规范</a>中可以看到，<code>ECMAScript</code>中的<code>Number</code>类型遵循<code>IEEE 754</code>标准。使用64位固定长度来表示。</p>
+<p>事实上有很多语言的数字类型都遵循这个标准，例如<code>JAVA</code>,所以很多语言同样有着上面同样的问题。</p>
+<p>所以下次遇到这种问题不要上来就喷<code>JavaScript</code>…</p>
+<p>有兴趣可以看看下这个网站<a href="http://0.30000000000000004.com/" target="_blank" rel="noopener">http://0.30000000000000004.com/</a>，是的，你没看错，就是<a href="http://0.30000000000000004.com/" target="_blank" rel="noopener">http://0.30000000000000004.com/</a>！！！</p>
+<h3 id="5-4-IEEE-754"><a href="#5-4-IEEE-754" class="headerlink" title="5.4 IEEE 754"></a>5.4 IEEE 754</h3><p><code>IEEE754</code>标准包含一组实数的二进制表示法。它有三部分组成：</p>
+<ul>
+<li><p>符号位</p>
+</li>
+<li><p>指数位</p>
+</li>
+<li><p>尾数位</p>
+</li>
+</ul>
+<p>三种精度的浮点数各个部分位数如下：</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/二进制1.png" alt="image"></p>
+<p><code>JavaScript</code>使用的是64位双精度浮点数编码，所以它的<code>符号位</code>占<code>1</code>位，指数位占<code>11</code>位，尾数位占<code>52</code>位。</p>
+<p>下面我们在理解下什么是<code>符号位</code>、<code>指数位</code>、<code>尾数位</code>，以<code>0.1</code>为例：</p>
+<p>它的二进制为：<code>0.0001100110011001100...</code></p>
+<p>为了节省存储空间，在计算机中它是以科学计数法表示的，也就是</p>
+<p><code>1.100110011001100...</code> X 2<sup>-4</sup></p>
+<p>如果这里不好理解可以想一下十进制的数：</p>
+<p><code>1100</code>的科学计数法为<code>11</code> X 10<sup>2</sup></p>
+<p>所以：</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/二进制2.png" alt="image"></p>
+<p><code>符号位</code>就是标识正负的，<code>1</code>表示<code>负</code>，<code>0</code>表示<code>正</code>；</p>
+<p><code>指数位</code>存储科学计数法的指数；</p>
+<p><code>尾数位</code>存储科学计数法后的有效数字；</p>
+<p>所以我们通常看到的二进制，其实是计算机实际存储的尾数位。</p>
+<h3 id="5-5-js中的toString-2"><a href="#5-5-js中的toString-2" class="headerlink" title="5.5 js中的toString(2)"></a>5.5 js中的toString(2)</h3><p>由于尾数位只能存储<code>52</code>个数字，这就能解释<code>toString(2)</code>的执行结果了：</p>
+<p>如果计算机没有存储空间的限制，那么<code>0.1</code>的<code>二进制</code>应该是：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">0.00011001100110011001100110011001100110011001100110011001</span>...</span><br></pre></td></tr></table></figure></p>
+<p>科学计数法尾数位</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">1.1001100110011001100110011001100110011001100110011001</span>...</span><br></pre></td></tr></table></figure>
+<p>但是由于限制，有效数字第<code>53</code>位及以后的数字是不能存储的，它遵循，如果是<code>1</code>就向前一位进<code>1</code>，如果是<code>0</code>就舍弃的原则。</p>
+<p>0.1的二进制科学计数法第53位是1，所以就有了下面的结果：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">0.0001100110011001100110011001100110011001100110011001101</span></span><br></pre></td></tr></table></figure>
+<p><code>0.2</code>有着同样的问题，其实正是由于这样的存储，在这里有了精度丢失，导致了<code>0.1+0.2!=0.3</code>。</p>
+<p>事实上有着同样精度问题的计算还有很多，我们无法把他们都记下来，所以当程序中有数字计算时，我们最好用工具库来帮助我们解决，下面是两个推荐使用的开源库：</p>
+<ul>
+<li><a href="https://github.com/nefe/number-precision" target="_blank" rel="noopener">number-precision</a></li>
+<li><a href="https://github.com/josdejong/mathjs/" target="_blank" rel="noopener">mathjs/</a></li>
+</ul>
+<h3 id="5-6-JavaScript能表示的最大数字"><a href="#5-6-JavaScript能表示的最大数字" class="headerlink" title="5.6 JavaScript能表示的最大数字"></a>5.6 JavaScript能表示的最大数字</h3><p>由与<code>IEEE 754</code>双精度64位规范的限制：</p>
+<p><code>指数位</code>能表示的最大数字：<code>1023</code>(十进制)</p>
+<p><code>尾数位</code>能表达的最大数字即尾数位都位<code>1</code>的情况</p>
+<p>所以JavaScript能表示的最大数字即位</p>
+<p><code>1.111...</code>X 2<sup>1023</sup> 这个结果转换成十进制是<code>1.7976931348623157e+308</code>,这个结果即为<code>Number.MAX_VALUE</code>。</p>
+<h3 id="5-7-最大安全数字"><a href="#5-7-最大安全数字" class="headerlink" title="5.7 最大安全数字"></a>5.7 最大安全数字</h3><p>JavaScript中<code>Number.MAX_SAFE_INTEGER</code>表示最大安全数字,计算结果是<code>9007199254740991</code>，即在这个数范围内不会出现精度丢失（小数除外）,这个数实际上是<code>1.111...</code>X 2<sup>52</sup>。</p>
+<p>我们同样可以用一些开源库来处理大整数：</p>
+<ul>
+<li><a href="https://github.com/justmoon/node-bignum" target="_blank" rel="noopener">node-bignum</a></li>
+<li><a href="https://github.com/substack/node-bigint" target="_blank" rel="noopener">node-bigint</a></li>
+</ul>
+<p>其实官方也考虑到了这个问题，<code>bigInt</code>类型在<code>es10</code>中被提出，现在<code>Chrome</code>中已经可以使用，使用<code>bigInt</code>可以操作超过最大安全数字的数字。</p>
+<h2 id="六、还有哪些引用类型"><a href="#六、还有哪些引用类型" class="headerlink" title="六、还有哪些引用类型"></a>六、还有哪些引用类型</h2><blockquote>
+<p>在<code>ECMAScript</code>中，引用类型是一种数据结构，用于将数据和功能组织在一起。</p>
+</blockquote>
+<p>我们通常所说的对象，就是某个特定引用类型的实例。</p>
+<p>在<code>ECMAScript</code>关于类型的定义中，只给出了<code>Object</code>类型，实际上，我们平时使用的很多引用类型的变量，并不是由<code>Object</code>构造的，但是它们原型链的终点都是<code>Object</code>，这些类型都属于引用类型。</p>
+<ul>
+<li><code>Array</code> 数组</li>
+<li><code>Date</code> 日期</li>
+<li><code>RegExp</code> 正则</li>
+<li><code>Function</code> 函数</li>
+</ul>
+<h3 id="6-1-包装类型"><a href="#6-1-包装类型" class="headerlink" title="6.1 包装类型"></a>6.1 包装类型</h3><p>为了便于操作基本类型值，<code>ECMAScript</code>还提供了几个特殊的引用类型，他们是基本类型的包装类型：</p>
+<ul>
+<li><code>Boolean</code></li>
+<li><code>Number</code></li>
+<li><code>String</code></li>
+</ul>
+<p>注意包装类型和原始类型的区别：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="literal">true</span> === <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">true</span>); <span class="comment">// false</span></span><br><span class="line"><span class="number">123</span> === <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">123</span>); <span class="comment">// false</span></span><br><span class="line"><span class="string">'ConardLi'</span> === <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'ConardLi'</span>); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'ConardLi'</span>)); <span class="comment">// object</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="string">'ConardLi'</span>); <span class="comment">// string</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>引用类型和包装类型的主要区别就是对象的生存期，使用new操作符创建的引用类型的实例，在执行流离开当前作用域之前都一直保存在内存中，而自基本类型则只存在于一行代码的执行瞬间，然后立即被销毁，这意味着我们不能在运行时为基本类型添加属性和方法。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'ConardLi'</span></span><br><span class="line">name.color = <span class="string">'red'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(name.color); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-2-装箱和拆箱"><a href="#6-2-装箱和拆箱" class="headerlink" title="6.2 装箱和拆箱"></a>6.2 装箱和拆箱</h3><ul>
+<li><p>装箱转换：把基本类型转换为对应的包装类型</p>
+</li>
+<li><p>拆箱操作：把引用类型转换为基本类型</p>
+</li>
+</ul>
+<p>既然原始类型不能扩展属性和方法，那么我们是如何使用原始类型调用方法的呢？</p>
+<p>每当我们操作一个基础类型时，后台就会自动创建一个包装类型的对象，从而让我们能够调用一些方法和属性，例如下面的代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"ConardLi"</span>;</span><br><span class="line"><span class="keyword">var</span> name2 = name.substring(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<p>实际上发生了以下几个过程：</p>
+<ul>
+<li>创建一个<code>String</code>的包装类型实例</li>
+<li>在实例上调用<code>substring</code>方法</li>
+<li>销毁实例</li>
+</ul>
+<p>也就是说，我们使用基本类型调用方法，就会自动进行装箱和拆箱操作，相同的，我们使用<code>Number</code>和<code>Boolean</code>类型时，也会发生这个过程。</p>
+<p>从引用类型到基本类型的转换，也就是拆箱的过程中，会遵循<code>ECMAScript规范</code>规定的<code>toPrimitive</code>原则，一般会调用引用类型的<code>valueOf</code>和<code>toString</code>方法，你也可以直接重写<code>toPeimitive</code>方法。一般转换成不同类型的值遵循的原则不同，例如：</p>
+<ul>
+<li>引用类型转换为<code>Number</code>类型，先调用<code>valueOf</code>，再调用<code>toString</code></li>
+<li>引用类型转换为<code>String</code>类型，先调用<code>toString</code>，再调用<code>valueOf</code></li>
+</ul>
+<p>若<code>valueOf</code>和<code>toString</code>都不存在，或者没有返回基本类型，则抛出<code>TypeError</code>异常。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  valueOf: <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">'valueOf'</span>); <span class="keyword">return</span> <span class="number">123</span>; &#125;,</span><br><span class="line">  toString: <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">'toString'</span>); <span class="keyword">return</span> <span class="string">'ConardLi'</span>; &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj - <span class="number">1</span>);   <span class="comment">// valueOf   122</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;obj&#125;</span>ConardLi`</span>); <span class="comment">// toString  ConardLiConardLi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj2 = &#123;</span><br><span class="line">  [<span class="built_in">Symbol</span>.toPrimitive]: <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">'toPrimitive'</span>); <span class="keyword">return</span> <span class="number">123</span>; &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj2 - <span class="number">1</span>);   <span class="comment">// valueOf   122</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj3 = &#123;</span><br><span class="line">  valueOf: <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">'valueOf'</span>); <span class="keyword">return</span> &#123;&#125;; &#125;,</span><br><span class="line">  toString: <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">'toString'</span>); <span class="keyword">return</span> &#123;&#125;; &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj3 - <span class="number">1</span>);  </span><br><span class="line"><span class="comment">// valueOf  </span></span><br><span class="line"><span class="comment">// toString</span></span><br><span class="line"><span class="comment">// TypeError</span></span><br></pre></td></tr></table></figure>
+<p>除了程序中的自动拆箱和自动装箱，我们还可以手动进行拆箱和装箱操作。我们可以直接调用包装类型的<code>valueOf</code>或<code>toString</code>，实现拆箱操作：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> name =<span class="keyword">new</span> <span class="built_in">Number</span>(<span class="string">"123"</span>);  </span><br><span class="line"><span class="built_in">console</span>.log( <span class="keyword">typeof</span> name.valueOf() ); <span class="comment">//number</span></span><br><span class="line"><span class="built_in">console</span>.log( <span class="keyword">typeof</span> name.toString() ); <span class="comment">//string</span></span><br></pre></td></tr></table></figure>
+<h2 id="七、类型转换"><a href="#七、类型转换" class="headerlink" title="七、类型转换"></a>七、类型转换</h2><p>因为<code>JavaScript</code>是弱类型的语言，所以类型转换发生非常频繁，上面我们说的装箱和拆箱其实就是一种类型转换。</p>
+<p>类型转换分为两种，隐式转换即程序自动进行的类型转换，强制转换即我们手动进行的类型转换。</p>
+<p>强制转换这里就不再多提及了，下面我们来看看让人头疼的可能发生隐式类型转换的几个场景，以及如何转换：</p>
+<h3 id="7-1-类型转换规则"><a href="#7-1-类型转换规则" class="headerlink" title="7.1 类型转换规则"></a>7.1 类型转换规则</h3><p>如果发生了隐式转换，那么各种类型互转符合下面的规则：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/5/28/16afa4ead3f835d9?w=1270&amp;h=1096&amp;f=png&amp;s=174199" alt=""></p>
+<h3 id="7-2-if语句和逻辑语句"><a href="#7-2-if语句和逻辑语句" class="headerlink" title="7.2 if语句和逻辑语句"></a>7.2 if语句和逻辑语句</h3><p>在<code>if</code>语句和逻辑语句中，如果只有单个变量，会先将变量转换为<code>Boolean</code>值，只有下面几种情况会转换成<code>false</code>，其余被转换成<code>true</code>：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="literal">null</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line"><span class="string">''</span></span><br><span class="line"><span class="literal">NaN</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-3-各种运数学算符"><a href="#7-3-各种运数学算符" class="headerlink" title="7.3 各种运数学算符"></a>7.3 各种运数学算符</h3><p>我们在对各种非<code>Number</code>类型运用数学运算符(<code>- * /</code>)时，会先将非<code>Number</code>类型转换为<code>Number</code>类型;</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span> - <span class="literal">true</span> <span class="comment">// 0</span></span><br><span class="line"><span class="number">1</span> - <span class="literal">null</span> <span class="comment">//  1</span></span><br><span class="line"><span class="number">1</span> * <span class="literal">undefined</span> <span class="comment">//  NaN</span></span><br><span class="line"><span class="number">1</span> - &#123;&#125;  <span class="comment">//  1</span></span><br><span class="line"><span class="number">2</span> * [<span class="string">'5'</span>] <span class="comment">//  10</span></span><br></pre></td></tr></table></figure>
+<p>注意<code>+</code>是个例外，执行<code>+</code>操作符时：</p>
+<ul>
+<li>1.当一侧为<code>String</code>类型，被识别为字符串拼接，并会优先将另一侧转换为字符串类型。</li>
+<li>2.当一侧为<code>Number</code>类型，另一侧为原始类型，则将原始类型转换为<code>Number</code>类型。</li>
+<li>3.当一侧为<code>Number</code>类型，另一侧为引用类型，将引用类型和<code>Number</code>类型转换成字符串后拼接。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">123</span> + <span class="string">'123'</span> <span class="comment">// 123123   （规则1）</span></span><br><span class="line"><span class="number">123</span> + <span class="literal">null</span>  <span class="comment">// 123    （规则2）</span></span><br><span class="line"><span class="number">123</span> + <span class="literal">true</span> <span class="comment">// 124    （规则2）</span></span><br><span class="line"><span class="number">123</span> + &#123;&#125;  <span class="comment">// 123[object Object]    （规则3）</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-4"><a href="#7-4" class="headerlink" title="7.4 =="></a>7.4 ==</h3><p>使用<code>==</code>时，若两侧类型相同，则比较结果和<code>===</code>相同，否则会发生隐式转换，使用<code>==</code>时发生的转换可以分为几种不同的情况（只考虑两侧类型不同）：</p>
+<ul>
+<li><strong>1.NaN</strong></li>
+</ul>
+<p><code>NaN</code>和其他任何类型比较永远返回<code>false</code>(包括和他自己)。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="literal">NaN</span> == <span class="literal">NaN</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>2.Boolean</strong></li>
+</ul>
+<p><code>Boolean</code>和其他任何类型比较，<code>Boolean</code>首先被转换为<code>Number</code>类型。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="literal">true</span> == <span class="number">1</span>  <span class="comment">// true </span></span><br><span class="line"><span class="literal">true</span> == <span class="string">'2'</span>  <span class="comment">// false</span></span><br><span class="line"><span class="literal">true</span> == [<span class="string">'1'</span>]  <span class="comment">// true</span></span><br><span class="line"><span class="literal">true</span> == [<span class="string">'2'</span>]  <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里注意一个可能会弄混的点：<code>undefined、null</code>和<code>Boolean</code>比较，虽然<code>undefined、null</code>和<code>false</code>都很容易被想象成假值，但是他们比较结果是<code>false</code>，原因是<code>false</code>首先被转换成<code>0</code>：</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="literal">undefined</span> == <span class="literal">false</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">false</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>3.String和Number</strong></li>
+</ul>
+<p><code>String</code>和<code>Number</code>比较，先将<code>String</code>转换为<code>Number</code>类型。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">123</span> == <span class="string">'123'</span> <span class="comment">// true</span></span><br><span class="line"><span class="string">''</span> == <span class="number">0</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>4.null和undefined</strong></li>
+</ul>
+<p><code>null == undefined</code>比较结果是<code>true</code>，除此之外，<code>null、undefined</code>和其他任何结果的比较值都为<code>false</code>。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span> <span class="comment">// true</span></span><br><span class="line"><span class="literal">null</span> == <span class="string">''</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">null</span> == <span class="number">0</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">false</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="string">''</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="number">0</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="literal">false</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>5.原始类型和引用类型</strong></li>
+</ul>
+<p>当原始类型和引用类型做比较时，对象类型会依照<code>ToPrimitive</code>规则转换为原始类型:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="string">'[object Object]'</span> == &#123;&#125; <span class="comment">// true</span></span><br><span class="line"><span class="string">'1,2,3'</span> == [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>] <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>来看看下面这个比较：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">[] == ![] <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p><code>!</code>的优先级高于<code>==</code>，<code>![]</code>首先会被转换为<code>false</code>，然后根据上面第三点，<code>false</code>转换成<code>Number</code>类型<code>0</code>，左侧<code>[]</code>转换为<code>0</code>，两侧比较相等。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">[<span class="literal">null</span>] == <span class="literal">false</span> <span class="comment">// true</span></span><br><span class="line">[<span class="literal">undefined</span>] == <span class="literal">false</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>根据数组的<code>ToPrimitive</code>规则，数组元素为<code>null</code>或<code>undefined</code>时，该元素被当做空字符串处理，所以<code>[null]、[undefined]</code>都会被转换为<code>0</code>。</p>
+<p>所以，说了这么多，推荐使用<code>===</code>来判断两个值是否相等…</p>
+<h3 id="7-5-一道有意思的面试题"><a href="#7-5-一道有意思的面试题" class="headerlink" title="7.5 一道有意思的面试题"></a>7.5 一道有意思的面试题</h3><p>一道经典的面试题，如何让：<code>a == 1 &amp;&amp; a == 2 &amp;&amp; a == 3</code>。</p>
+<p>根据上面的拆箱转换，以及<code>==</code>的隐式转换，我们可以轻松写出答案：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> a = &#123;</span><br><span class="line">   value:[<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>],</span><br><span class="line">   valueOf: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="keyword">return</span> <span class="keyword">this</span>.value.pop(); &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="八、判断JavaScript数据类型的方式"><a href="#八、判断JavaScript数据类型的方式" class="headerlink" title="八、判断JavaScript数据类型的方式"></a>八、判断JavaScript数据类型的方式</h2><h3 id="8-1-typeof"><a href="#8-1-typeof" class="headerlink" title="8.1 typeof"></a>8.1 typeof</h3><p><strong>适用场景</strong></p>
+<p><code>typeof</code>操作符可以准确判断一个变量是否为下面几个原始类型：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="string">'ConardLi'</span>  <span class="comment">// string</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="number">123</span>  <span class="comment">// number</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">true</span>  <span class="comment">// boolean</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">Symbol</span>()  <span class="comment">// symbol</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">undefined</span>  <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>你还可以用它来判断函数类型：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;  <span class="comment">// function</span></span><br></pre></td></tr></table></figure>
+<p><strong>不适用场景</strong></p>
+<p>当你用<code>typeof</code>来判断引用类型时似乎显得有些乏力了：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typeof</span> [] <span class="comment">// object</span></span><br><span class="line"><span class="keyword">typeof</span> &#123;&#125; <span class="comment">// object</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="keyword">new</span> <span class="built_in">Date</span>() <span class="comment">// object</span></span><br><span class="line"><span class="keyword">typeof</span> /^\d*$/; <span class="comment">// object</span></span><br></pre></td></tr></table></figure>
+<p>除函数外所有的引用类型都会被判定为<code>object</code>。</p>
+<p>另外<code>typeof null === &#39;object&#39;</code>也会让人感到头痛，这是在<code>JavaScript</code>初版就流传下来的<code>bug</code>，后面由于修改会造成大量的兼容问题就一直没有被修复…</p>
+<h3 id="8-2-instanceof"><a href="#8-2-instanceof" class="headerlink" title="8.2 instanceof"></a>8.2 instanceof</h3><p><code>instanceof</code>操作符可以帮助我们判断引用类型具体是什么类型的对象：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">[] <span class="keyword">instanceof</span> <span class="built_in">Array</span> <span class="comment">// true</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>() <span class="keyword">instanceof</span> <span class="built_in">Date</span> <span class="comment">// true</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">RegExp</span>() <span class="keyword">instanceof</span> <span class="built_in">RegExp</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>我们先来回顾下原型链的几条规则：</p>
+<ul>
+<li>1.所有引用类型都具有对象特性，即可以自由扩展属性</li>
+<li>2.所有引用类型都具有一个<code>__proto__</code>（隐式原型）属性，是一个普通对象</li>
+<li>3.所有的函数都具有<code>prototype</code>（显式原型）属性，也是一个普通对象</li>
+<li>4.所有引用类型<code>__proto__</code>值指向它构造函数的<code>prototype</code></li>
+<li>5.当试图得到一个对象的属性时，如果变量本身没有这个属性，则会去他的<code>__proto__</code>中去找</li>
+</ul>
+<p><code>[] instanceof Array</code>实际上是判断<code>Foo.prototype</code>是否在<code>[]</code>的原型链上。</p>
+<p>所以，使用<code>instanceof</code>来检测数据类型，不会很准确，这不是它设计的初衷：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">[] <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">// true</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;  <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>另外，使用<code>instanceof</code>也不能检测基本数据类型，所以<code>instanceof</code>并不是一个很好的选择。</p>
+<h3 id="8-3-toString"><a href="#8-3-toString" class="headerlink" title="8.3 toString"></a>8.3 toString</h3><p>上面我们在拆箱操作中提到了<code>toString</code>函数，我们可以调用它实现从引用类型的转换。</p>
+<blockquote>
+<p>每一个引用类型都有<code>toString</code>方法，默认情况下，<code>toString()</code>方法被每个<code>Object</code>对象继承。如果此方法在自定义对象中未被覆盖，<code>toString()</code> 返回 <code>&quot;[object type]&quot;</code>，其中<code>type</code>是对象的类型。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line">obj.toString() <span class="comment">// [object Object]</span></span><br></pre></td></tr></table></figure>
+<p>注意，上面提到了<code>如果此方法在自定义对象中未被覆盖</code>，<code>toString</code>才会达到预想的效果，事实上，大部分引用类型比如<code>Array、Date、RegExp</code>等都重写了<code>toString</code>方法。</p>
+<p>我们可以直接调用<code>Object</code>原型上未被覆盖的<code>toString()</code>方法，使用<code>call</code>来改变<code>this</code>指向来达到我们想要的效果。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/5/28/16afa4ee855cfa98?w=1038&amp;h=936&amp;f=png&amp;s=223768" alt=""></p>
+<h3 id="8-4-jquery"><a href="#8-4-jquery" class="headerlink" title="8.4 jquery"></a>8.4 jquery</h3><p>我们来看看<code>jquery</code>源码中如何进行类型判断：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> class2type = &#123;&#125;;</span><br><span class="line">jQuery.each( <span class="string">"Boolean Number String Function Array Date RegExp Object Error Symbol"</span>.split( <span class="string">" "</span> ),</span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"> i, name </span>) </span>&#123;</span><br><span class="line">	class2type[ <span class="string">"[object "</span> + name + <span class="string">"]"</span> ] = name.toLowerCase();</span><br><span class="line">&#125; );</span><br><span class="line"></span><br><span class="line">type: <span class="function"><span class="keyword">function</span>(<span class="params"> obj </span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> ( obj == <span class="literal">null</span> ) &#123;</span><br><span class="line">		<span class="keyword">return</span> obj + <span class="string">""</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">typeof</span> obj === <span class="string">"object"</span> || <span class="keyword">typeof</span> obj === <span class="string">"function"</span> ?</span><br><span class="line">		class2type[<span class="built_in">Object</span>.prototype.toString.call(obj) ] || <span class="string">"object"</span> :</span><br><span class="line">		<span class="keyword">typeof</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">isFunction: <span class="function"><span class="keyword">function</span>(<span class="params"> obj </span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> jQuery.type(obj) === <span class="string">"function"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>原始类型直接使用<code>typeof</code>，引用类型使用<code>Object.prototype.toString.call</code>取得类型，借助一个<code>class2type</code>对象将字符串多余的代码过滤掉，例如<code>[object function]</code>将得到<code>array</code>，然后在后面的类型判断，如<code>isFunction</code>直接可以使用<code>jQuery.type(obj) === &quot;function&quot;</code>这样的判断。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="http://www.ecma-international.org/ecma-262/9.0/index.html" target="_blank" rel="noopener">http://www.ecma-international.org/ecma-262/9.0/index.html</a></li>
+<li><a href="https://while.dev/articles/explaining-truthy-falsy-null-0-and-undefined-in-typescript/" target="_blank" rel="noopener">https://while.dev/articles/explaining-truthy-falsy-null-0-and-undefined-in-typescript/</a></li>
+<li><a href="https://github.com/mqyqingfeng/Blog/issues/28" target="_blank" rel="noopener">https://github.com/mqyqingfeng/Blog/issues/28</a></li>
+<li><a href="https://juejin.im/post/5bc5c752f265da0a9a399a62" target="_blank" rel="noopener">https://juejin.im/post/5bc5c752f265da0a9a399a62</a></li>
+<li><a href="https://juejin.im/post/5bbda2b36fb9a05cfd27f55e" target="_blank" rel="noopener">https://juejin.im/post/5bbda2b36fb9a05cfd27f55e</a></li>
+<li>《JS高级程序设计》</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>希望你阅读本篇文章后可以达到以下几点：</p>
+<ul>
+<li>了解<code>JavaScript</code>中的变量在内存中的具体存储形式，可对应实际场景</li>
+<li>搞懂小数计算不精确的底层原因</li>
+<li>了解可能发生隐式类型转换的场景以及转换原则</li>
+<li>掌握判断<code>JavaScript</code>数据类型的方式和底层原理</li>
+</ul>
+<p>文中如有错误，欢迎在评论区指正，如果这篇文章帮助到了你，欢迎点赞和关注。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="www.conardli.top/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" data-id="cjw78g3vp0000fs0dyi2v2v3q" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+
+
+<div id="roott"></div>
+
+<button id="tocbtn">打开目录</button>
+
+
+<script>
+    var showToc = false;
+    document.getElementById('tocbtn').onclick = function () {
+        if (showToc) {
+            document.getElementById('roott').innerHTML = ''
+            document.getElementById('tocbtn').innerHTML = '打开目录'
+        } else {
+            document.getElementById('roott').innerHTML = `<aside id="article-toc" role="navigation" class="fixed">
+  <div id="article-toc-inner">
+    <strong class="sidebar-title">
+      目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#导读"><span class="toc-text">导读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、JavaScript数据类型"><span class="toc-text">一、JavaScript数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、为什么区分原始类型和对象类型"><span class="toc-text">二、为什么区分原始类型和对象类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-不可变性"><span class="toc-text">2.1 不可变性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-引用类型"><span class="toc-text">2.2 引用类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-复制"><span class="toc-text">2.3 复制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-比较"><span class="toc-text">2.4 比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-值传递和引用传递"><span class="toc-text">2.5 值传递和引用传递</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、分不清的null和undefined"><span class="toc-text">三、分不清的null和undefined</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、不太熟的Symbol类型"><span class="toc-text">四、不太熟的Symbol类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Symbol的特性"><span class="toc-text">4.1 Symbol的特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Symbol的应用场景"><span class="toc-text">4.2 Symbol的应用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、不老实的Number类型"><span class="toc-text">五、不老实的Number类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-精度丢失"><span class="toc-text">5.1 精度丢失</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-对结果的分析—更多的问题"><span class="toc-text">5.2 对结果的分析—更多的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-js对二进制小数的存储方式"><span class="toc-text">5.3 js对二进制小数的存储方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-IEEE-754"><span class="toc-text">5.4 IEEE 754</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-js中的toString-2"><span class="toc-text">5.5 js中的toString(2)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6-JavaScript能表示的最大数字"><span class="toc-text">5.6 JavaScript能表示的最大数字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-7-最大安全数字"><span class="toc-text">5.7 最大安全数字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、还有哪些引用类型"><span class="toc-text">六、还有哪些引用类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-包装类型"><span class="toc-text">6.1 包装类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-装箱和拆箱"><span class="toc-text">6.2 装箱和拆箱</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、类型转换"><span class="toc-text">七、类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-类型转换规则"><span class="toc-text">7.1 类型转换规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-if语句和逻辑语句"><span class="toc-text">7.2 if语句和逻辑语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-各种运数学算符"><span class="toc-text">7.3 各种运数学算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4"><span class="toc-text">7.4 ==</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-一道有意思的面试题"><span class="toc-text">7.5 一道有意思的面试题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#八、判断JavaScript数据类型的方式"><span class="toc-text">八、判断JavaScript数据类型的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-typeof"><span class="toc-text">8.1 typeof</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-instanceof"><span class="toc-text">8.2 instanceof</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-toString"><span class="toc-text">8.3 toString</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-jquery"><span class="toc-text">8.4 jquery</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li></ol>
+  </div>
+</aside>`
+            document.getElementById('tocbtn').innerHTML = '关闭目录'
+        }
+        showToc = !showToc;
+    }
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments" style="padding: 30px;"></div>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 's1xL54gwvPRsIy3ciItiPhyD-gzGzoHsz',
+        appKey: 'CmP8stKpHUHtp5abbTxpqc4H'
+    })
+</script>
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>
+            关注我 :</p>
+        <ul class="social-links">
+            
+            
+            <li>
+                <a class="social-tooltip" title="github" href="https://github.com/ConardLi"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-github"></i>
+                </a>
+            </li>
+            
+            
+        </ul>
+    </div>
+    
+    
+<nav id="article-nav">
+    
+    
+        <a href="/2019/05/17/【多端开发】移动端适配总结/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">【多端开发】移动端适配总结</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container" style="background-color: #fff; border-right: 1px solid #e2e2e2;">
+        
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">
+        微信公众号
+    </h3>
+    <div class="widget">
+        <img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/gzh/qrcode.jpg" alt="">
+    </div>
+</div>
+
+        
+        
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://user-gold-cdn.xitu.io/2019/5/28/16afa4daf89c565e?w=1482&amp;h=584&amp;f=png&amp;s=55263)" alt="【JS进阶】你真的掌握变量和类型了吗" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="title">【JS进阶】你真的掌握变量和类型了吗</a></p>
+                            <p class="item-date"><time datetime="2019-05-28T03:06:11.000Z" itemprop="datePublished">2019-05-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/17/【多端开发】移动端适配总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.loli.net/2019/05/17/5cddefa632f3247082.png)" alt="【多端开发】移动端适配总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/17/【多端开发】移动端适配总结/" class="title">【多端开发】移动端适配总结</a></p>
+                            <p class="item-date"><time datetime="2019-05-17T02:39:42.000Z" itemprop="datePublished">2019-05-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://user-gold-cdn.xitu.io/2019/5/4/16a83669b12c799b?w=797&amp;h=556&amp;f=gif&amp;s=3341344)" alt="【特效】看完这篇，你也可以实现一个360度全景插件" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" class="title">【特效】看完这篇，你也可以实现一个360度全景插件</a></p>
+                            <p class="item-date"><time datetime="2019-05-05T01:17:16.000Z" itemprop="datePublished">2019-05-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/26/【自检】前端知识清单/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://lsqimg-1257917459.cos.ap-beijing.myqcloud.com/blog/知识体系.png)" alt="【自检】前端知识清单" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/26/【自检】前端知识清单/" class="title">【自检】前端知识清单</a></p>
+                            <p class="item-date"><time datetime="2019-04-26T01:11:22.000Z" itemprop="datePublished">2019-04-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/17/【React深入】深入分析虚拟DOM的渲染原理和特性/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/react11.png)" alt="【React深入】深入分析虚拟DOM的渲染原理和特性" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/17/【React深入】深入分析虚拟DOM的渲染原理和特性/" class="title">【React深入】深入分析虚拟DOM的渲染原理和特性</a></p>
+                            <p class="item-date"><time datetime="2019-04-17T03:15:27.000Z" itemprop="datePublished">2019-04-17</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <div class="">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget widget-wrap-inn">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/electron/">electron</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多端开发/">多端开发</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习提升/">学习提升</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器和网络/">浏览器和网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特效/">特效</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .widget-wrap-inn {
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+</style>
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget  widget-wrap-inn">
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+</div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget  widget-wrap-inn">
+        <ul>
+            
+            <li>
+                <a href="https://juejin.im/user/5bea27965188250edf4ad8b7">掘金</a>
+            </li>
+            
+            <li>
+                <a href="https://segmentfault.com/u/conardli">segmentfault</a>
+            </li>
+            
+            <li>
+                <a href="https://github.com/ConardLi">github</a>
+            </li>
+            
+            <li>
+                <a href="https://github.com/ConardLi/tpanorama">tpanorama</a>
+            </li>
+            
+            <li>
+                <a href="http://chuangzaoshi.com/">创造狮导航</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <!-- <h3 class="widget-title">
+        腾讯云专属福利
+    </h3> -->
+    <div class="widget">
+        <a target="_blank"
+            href="https://cloud.tencent.com/redirect.php?redirect=1025&cps_key=1a3e7b07487819e129852ba7a4543262&from=console">
+            <img src="/img/txy.jpg" id="txy" alt="">
+        </a>
+    </div>
+</div>
+
+
+
+<style>
+    #txy {
+        width: 280px;
+        border: 5px;
+    }
+</style>
+        
+        
+<div class="widget-wrap widget-list">
+    <div class="widget">
+        <a target="_blank" href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=y3kv7eoj">
+            <img src="/img/aly.png" id="txy" alt="">
+        </a>
+    </div>
+</div>
+
+
+
+<style>
+    #txy {
+        width: 280px;
+        border: 5px;
+    }
+</style>
+        
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy;
+                    2019
+                    ConardLi
+                </p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice"
+                        target="_blank">ConardLi</a></p>
+                <script type="text/javascript">
+                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1275088352'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1275088352%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+                <span id="busuanzi_container_site_pv" style="margin-left:50px;">
+                    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+                </span>
+                <span id="busuanzi_container_site_uv" style="margin-left:50px;">
+                    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+                </span>
+            </div>
+            <div class="footer-plugins">
+                
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'www.conardli.top/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+
+</html>

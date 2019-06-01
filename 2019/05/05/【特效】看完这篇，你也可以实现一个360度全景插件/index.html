@@ -20,12 +20,12 @@
 <meta property="og:site_name" content="李世奇的技术专栏">
 <meta property="og:description" content="导读本文从绘图基础开始讲起，详细介绍了如何使用Three.js开发一个功能齐全的全景插件。 我们先来看一下插件的效果：   如果你对Three.js已经很熟悉了，或者你想跳过基础理论，那么你可以直接从全景预览开始看起。 本项目的github地址：https://github.com/ConardLi/tpanorama  一、理清关系1.1 OpenGL OpenGL是用于渲染2D、3D量图形的跨">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/5/4/16a83669b12c799b?w=797&amp;h=556&amp;f=gif&amp;s=3341344">
-<meta property="og:updated_time" content="2019-05-05T01:19:18.688Z">
+<meta property="og:image" content="http://conardli.top/img/qj/qj_15_qj.gif">
+<meta property="og:updated_time" content="2019-06-01T10:53:33.997Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【特效】看完这篇，你也可以实现一个360度全景插件">
 <meta name="twitter:description" content="导读本文从绘图基础开始讲起，详细介绍了如何使用Three.js开发一个功能齐全的全景插件。 我们先来看一下插件的效果：   如果你对Three.js已经很熟悉了，或者你想跳过基础理论，那么你可以直接从全景预览开始看起。 本项目的github地址：https://github.com/ConardLi/tpanorama  一、理清关系1.1 OpenGL OpenGL是用于渲染2D、3D量图形的跨">
-<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/5/4/16a83669b12c799b?w=797&amp;h=556&amp;f=gif&amp;s=3341344">
+<meta name="twitter:image" content="http://conardli.top/img/qj/qj_15_qj.gif">
     
 
     
@@ -252,12 +252,12 @@
         <div class="article-entry" itemprop="articleBody">
             <h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><p>本文从绘图基础开始讲起，详细介绍了如何使用<code>Three.js</code>开发一个功能齐全的全景插件。</p>
 <p>我们先来看一下插件的效果：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a83669b12c799b?w=797&amp;h=556&amp;f=gif&amp;s=3341344" alt=""></p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a83673fb64ade6?w=974&amp;h=627&amp;f=gif&amp;s=2378059" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_15_qj.gif" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_17_qj.gif" alt=""></p>
 <p>如果你对<code>Three.js</code>已经很熟悉了，或者你想跳过基础理论，那么你可以直接从<a href="#全景预览">全景预览</a>开始看起。</p>
 <p>本项目的<code>github</code>地址：<a href="https://github.com/ConardLi/tpanorama" target="_blank" rel="noopener">https://github.com/ConardLi/tpanorama</a></p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a8367f8518893a?w=2104&amp;h=1603&amp;f=png&amp;s=299836" alt=""></p>
-<h2 id="一、理清关系"><a href="#一、理清关系" class="headerlink" title="一、理清关系"></a>一、理清关系</h2><h3 id="1-1-OpenGL"><a href="#1-1-OpenGL" class="headerlink" title="1.1 OpenGL"></a>1.1 OpenGL</h3><p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a8368a487f7ec0?w=694&amp;h=441&amp;f=png&amp;s=319251" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_0_%E6%96%87%E7%AB%A0%E5%AF%BC%E8%AF%BB.png" alt=""></p>
+<h2 id="一、理清关系"><a href="#一、理清关系" class="headerlink" title="一、理清关系"></a>一、理清关系</h2><h3 id="1-1-OpenGL"><a href="#1-1-OpenGL" class="headerlink" title="1.1 OpenGL"></a>1.1 OpenGL</h3><p><img src="http://conardli.top/img/qj/WebGl.png" alt=""></p>
 <p><code>OpenGL</code>是用于渲染<code>2D、3D</code>量图形的跨语言、跨平台的应用程序编程接口<code>（API）</code>。</p>
 <p>这个接口由近<code>350</code>个不同的函数调用组成，用来从简单的图形比特绘制复杂的三维景象。</p>
 <p><code>OpenGL ES</code> 是<code>OpenGL</code>三维图形<code>API</code>的子集，针对手机、<code>PDA</code>和游戏主机等嵌入式设备而设计。</p>
@@ -267,7 +267,7 @@
 <h3 id="1-3-Canvas"><a href="#1-3-Canvas" class="headerlink" title="1.3 Canvas"></a>1.3 Canvas</h3><p><code>Canvas</code>是一个可以自由制定大小的矩形区域，可以通过<code>JavaScript</code>可以对矩形区域进行操作，可以自由的绘制图形，文字等。</p>
 <p>一般使用<code>Canvas</code>都是使用它的<code>2d</code>的<code>context</code>功能，进行<code>2d</code>绘图，这是其本身的能力。</p>
 <p>和这个相对的，<code>WebGL</code>是三维，可以描画<code>3D</code>图形，<code>WebGL</code>，想要在浏览器上进行呈现，它必须需要一个载体，这个载体就是<code>Canvas</code>，区别于之前的<code>2dcontext</code>，还可以从<code>Canvas</code>中获取<code>webglcontext</code>。</p>
-<h3 id="1-4-Three-js"><a href="#1-4-Three-js" class="headerlink" title="1.4 Three.js"></a>1.4 Three.js</h3><p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a8369190c72cbd?w=946&amp;h=537&amp;f=png&amp;s=1131043" alt=""></p>
+<h3 id="1-4-Three-js"><a href="#1-4-Three-js" class="headerlink" title="1.4 Three.js"></a>1.4 Three.js</h3><p><img src="http://conardli.top/img/qj/three.png" alt=""></p>
 <p>我们先来从字面意思理解下：<code>Three</code>代表<code>3D</code>，<code>js</code>代表<code>JavaScript</code>，即使用<code>JavaScript</code>来开发<code>3D</code>效果。</p>
 <p><code>Three.js</code>是使用<code>JavaScript</code>对 <code>WebGL</code>接口进行封装与简化而形成的一个易用的<code>3D</code>库。</p>
 <p>直接使用<code>WebGL</code>进行开发对于开发者来说成本相对来说是比较高的，它需要你掌握较多的计算机图形学知识。</p>
@@ -290,17 +290,17 @@
 <p>很简单，直接创建一个<code>Scene</code>的实例即可。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_scene = <span class="keyword">new</span> Scene();</span><br></pre></td></tr></table></figure>
 <h3 id="2-2-元素"><a href="#2-2-元素" class="headerlink" title="2.2 元素"></a>2.2 元素</h3><p>有了场景，我们接下来就需要场景里应该展示哪些东西。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a83684ac2a3d14?w=825&amp;h=510&amp;f=jpeg&amp;s=31688" alt=""></p>
+<p><img src="http://conardli.top/img/qj/mesh.jpg" alt=""></p>
 <p>一个复杂的三维场景往往就是由非常多的元素搭建起来的，这些元素可能是一些自定义的几何体（<code>Geometry</code>），或者外部导入的复杂模型。</p>
 <p><code>Three.js</code> 为我们提供了非常多的<code>Geometry</code>，例如<code>SphereGeometry</code>（球体）、    <code>TetrahedronGeometry</code>（四面体）、<code>TorusGeometry</code>（圆环体）等等。</p>
 <p>在<code>Three.js</code>中，材质（<code>Material</code>）决定了几何图形具体是以什么形式展现的。它包括了一个几何体如何形状以外的其他属性，例如色彩、纹理、透明度等等，<code>Material</code>和<code>Geometry</code>是相辅相成的，必须结合使用。</p>
 <p>下面的代码我们创建了一个长方体体，赋予它基础网孔材料（<code>MeshBasicMaterial</code>）</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> geometry = <span class="keyword">new</span> THREE.BoxGeometry(<span class="number">200</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"><span class="keyword">var</span> material = <span class="keyword">new</span> THREE.MeshBasicMaterial(&#123; <span class="attr">color</span>: <span class="number">0x645d50</span> &#125;);</span><br><span class="line"><span class="keyword">var</span> mesh = <span class="keyword">new</span> THREE.Mesh(geometry, material);</span><br><span class="line">        _scene.add(mesh);</span><br></pre></td></tr></table></figure>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a836975dfc07eb?w=1608&amp;h=1122&amp;f=png&amp;s=85122" alt=""></p>
+<p><img src="http://conardli.top/img/qj/pno1.png" alt=""></p>
 <p>能以这个角度看到几何体实际上是相机的功劳，这个我们<a href="#相机">下面的章节</a>再介绍，这让我们看到一个几何体的轮廓，但是感觉怪怪的，这并不像一个几何体，实际上我们还需要为它添加光照和阴影，这会让几何体看起来更真实。</p>
 <p>基础网孔材料（<code>MeshBasicMaterial</code>）不受光照影响的，它不会产生阴影，下面我们为几何体换一种受光照影响的材料：网格标准材质(<code>Standard Material</code>)，并为它添加一些光照：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> geometry = <span class="keyword">new</span> THREE.BoxGeometry(<span class="number">200</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"><span class="keyword">var</span> material = <span class="keyword">new</span> THREE.MeshStandardMaterial(&#123; <span class="attr">color</span>: <span class="number">0x645d50</span> &#125;);</span><br><span class="line"><span class="keyword">var</span> mesh = <span class="keyword">new</span> THREE.Mesh(geometry, material);</span><br><span class="line">_scene.add(mesh);</span><br><span class="line"><span class="comment">// 创建平行光-照亮几何体</span></span><br><span class="line"><span class="keyword">var</span> directionalLight = <span class="keyword">new</span> THREE.DirectionalLight(<span class="number">0xffffff</span>, <span class="number">1</span>);</span><br><span class="line"> directionalLight.position.set(<span class="number">-4</span>, <span class="number">8</span>, <span class="number">12</span>);</span><br><span class="line">_scene.add(directionalLight);</span><br><span class="line"><span class="comment">// 创建环境光</span></span><br><span class="line"><span class="keyword">var</span> ambientLight = <span class="keyword">new</span> THREE.AmbientLight(<span class="number">0xffffff</span>);</span><br><span class="line">_scene.add(ambientLight);</span><br></pre></td></tr></table></figure>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a8369a379a72a3?w=1608&amp;h=1122&amp;f=png&amp;s=87365" alt=""></p>
+<p><img src="http://conardli.top/img/qj/pno2.png" alt=""></p>
 <p>有了光线的渲染，让几何体看起来更具有<code>3D</code>效果，<code>Three.js</code>中光源有很多种，我们上面使用了环境光(<code>AmbientLight</code>)和平行光(<code>DirectionalLight</code>)。</p>
 <p>环境光会对场景中的所有物品进行颜色渲染。</p>
 <p>平行光你可以认为像太阳光一样，从极远处射向场景中的光。它具有方向性，也可以启动物体对光的反射效果。</p>
@@ -310,26 +310,26 @@
 <p>最常用的，我们使用距离原点的三个长度（距离<code>x</code>轴、距离<code>y</code>轴、距离<code>z</code>轴）来定义一个位置，这就是直角坐标系。</p>
 <p>在判定坐标系时，我们通常使用大拇指、食指和中指，并互为<code>90</code>度。大拇指代表<code>X</code>轴，食指代表<code>Y</code>轴，中指代表<code>Z</code>轴。</p>
 <p>这就产生了两种坐标系：左手坐标系和右手坐标系。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a8369f55b3053a?w=1284&amp;h=774&amp;f=png&amp;s=868693" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_4_zbx.png" alt=""></p>
 <p><code>Three.js</code>中使用的坐标系即右手坐标系。</p>
 <p>我们可以在我们的场景中添加一个坐标系，这样我们可以清楚的看到元素处于什么位置：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> axisHelper = <span class="keyword">new</span> THREE.AxisHelper(<span class="number">600</span>);</span><br><span class="line">_scene.add(axisHelper);</span><br></pre></td></tr></table></figure>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a836a2491e3167?w=1608&amp;h=1150&amp;f=png&amp;s=102957" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_5_zbx.png" alt=""></p>
 <p>其中红色代表<code>X</code>轴，绿色代表<code>Y</code>轴，蓝色代表<code>Z</code>轴。</p>
 <h3 id="2-4-相机"><a href="#2-4-相机" class="headerlink" title="2.4 相机"></a>2.4 相机</h3><p>上面看到的几何体的效果，如果不创建一个相机(<code>Camera</code>)，是什么也看不到的，因为默认的观察点在坐标轴原点，它处于几何体的内部。</p>
 <p>相机(<code>Camera</code>)指定了我们在什么位置观察这个三维场景，以及以什么样的角度进行观察。</p>
 <h4 id="2-4-1-两种相机的区别"><a href="#2-4-1-两种相机的区别" class="headerlink" title="2.4.1 两种相机的区别"></a>2.4.1 两种相机的区别</h4><p>目前<code>Three.js</code>提供了几种不同的相机，最常用的，也是下面插件中使用的两种相机是：<code>PerspectiveCamera</code>（透视相机）、 <code>OrthographicCamera</code>（正交投影相机）。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a836a67a13fd7c?w=2128&amp;h=1032&amp;f=png&amp;s=629937" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_1_camera.png" alt=""></p>
 <p>上面的图很清楚的解释了两种相机的区别：</p>
 <p>右侧是 <code>OrthographicCamera</code>（正交投影相机）他不具有透视效果，即物体的大小不受远近距离的影响，对应的是投影中的正交投影。我们数学课本上所画的几何体大多数都采用这种投影。</p>
 <p>左侧是<code>PerspectiveCamera</code>（透视相机），这符合我们正常人的视野，近大远小，对应的是投影中的透视投影。</p>
 <p>如果你想让场景看起来更真实，更具有立体感，那么采用透视相机最合适，如果场景中有一些元素你不想让他随着远近放大缩小，那么采用正交投影相机最合适。</p>
 <h4 id="2-4-2-构造参数"><a href="#2-4-2-构造参数" class="headerlink" title="2.4.2 构造参数"></a>2.4.2 构造参数</h4><p>我们再分别来看看两个创建两个相机需要什么参数：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_camera = <span class="keyword">new</span> OrthographicCamera(left, right, top, bottom, near, far);</span><br></pre></td></tr></table></figure>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a836a8fb90171f?w=660&amp;h=356&amp;f=png&amp;s=46506" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_2_camera.jpg" alt=""></p>
 <p><code>OrthographicCamera</code>接收六个参数，<code>left, right, top, bottom</code>分别对应上、下、左、右、远、近的一个距离，超过这些距离的元素将不会出现在视野范围内，也不会被浏览器绘制。实际上，这六个距离就构成了一个立方体，所以<code>OrthographicCamera</code>的可视范围永远在这个立方体内。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_camera = <span class="keyword">new</span> PerspectiveCamera(fov, aspect, near, far);</span><br></pre></td></tr></table></figure>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a836ac10f9ada9?w=1648&amp;h=1158&amp;f=png&amp;s=259821" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_3_camera.png" alt=""></p>
 <p><code>PerspectiveCamera</code>接收四个参数，<code>near</code>、<code>far</code>和上面的相同，分别对应相机可观测的最远和最近距离；<code>fov</code>代表水平范围可观测的角度，<code>fov</code>越大，水平范围能观测到的范围越广；<code>aspect</code>代表水平方向和竖直方向可观测距离的比值，所以<code>fov</code>和<code>aspect</code>就可以确定垂直范围内能观测到的范围。</p>
 <h4 id="2-4-3-position、lookAt"><a href="#2-4-3-position、lookAt" class="headerlink" title="2.4.3 position、lookAt"></a>2.4.3 position、lookAt</h4><p>关于相机还有两个必须要知道的点，一个是<code>position</code>属性，一个是<code>lookAt</code>函数：</p>
 <p><code>position</code>属性指定了相机所处的位置。</p>
@@ -337,20 +337,20 @@
 <p>实际上<code>position</code>的值和<code>lookAt</code>接收的参数都是一个类型为<code>Vector3</code>的对象，这个对象用来表示三维空间中的坐标，它有三个属性：<code>x、y、z</code>分别代表距离<code>x</code>轴、距离<code>y</code>轴、距离<code>z</code>轴的距离。</p>
 <p>下面，我们让相机观察的方向指向原点，另外分别让<code>x、y、z</code>为0，另外两个参数不为0，看一下视野会发生什么变化：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_camera = <span class="keyword">new</span> OrthographicCamera(-<span class="built_in">window</span>.innerWidth / <span class="number">2</span>, <span class="built_in">window</span>.innerWidth / <span class="number">2</span>, <span class="built_in">window</span>.innerHeight / <span class="number">2</span>, -<span class="built_in">window</span>.innerHeight / <span class="number">2</span>, <span class="number">0.1</span>, <span class="number">1000</span>);</span><br><span class="line"> _camera.lookAt(<span class="keyword">new</span> THREE.Vector3(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line"> _camera.position.set(<span class="number">0</span>, <span class="number">300</span>, <span class="number">600</span>); <span class="comment">// 1 - x为0</span></span><br><span class="line"></span><br><span class="line"> _camera.position.set(<span class="number">500</span>, <span class="number">0</span>, <span class="number">600</span>); <span class="comment">// 2 - y为0</span></span><br><span class="line"></span><br><span class="line"> _camera.position.set(<span class="number">500</span>, <span class="number">300</span>, <span class="number">0</span>); <span class="comment">// 3 - z为0</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a836aeeb1e1ce0?w=2412&amp;h=862&amp;f=png&amp;s=139779" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_6_xj.png" alt=""></p>
 <p>很清楚的看到<code>position</code>决定了我们视野的出发点，但是镜头指向的方向是不变的。</p>
 <p>下面我们将<code>position</code>固定，改变相机观察的方向：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_camera = <span class="keyword">new</span> OrthographicCamera(-<span class="built_in">window</span>.innerWidth / <span class="number">2</span>, <span class="built_in">window</span>.innerWidth / <span class="number">2</span>, <span class="built_in">window</span>.innerHeight / <span class="number">2</span>, -<span class="built_in">window</span>.innerHeight / <span class="number">2</span>, <span class="number">0.1</span>, <span class="number">1000</span>);</span><br><span class="line">_camera.position.set(<span class="number">500</span>, <span class="number">300</span>, <span class="number">600</span>); </span><br><span class="line"></span><br><span class="line">_camera.lookAt(<span class="keyword">new</span> THREE.Vector3(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)) <span class="comment">// 1 - 视野指向原点</span></span><br><span class="line"></span><br><span class="line">_camera.lookAt(<span class="keyword">new</span> THREE.Vector3(<span class="number">200</span>, <span class="number">0</span>, <span class="number">0</span>)) <span class="comment">// 2 - 视野偏向x轴</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a836b1dd3dd08d?w=2428&amp;h=1078&amp;f=png&amp;s=232222" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_7_xj.png" alt=""></p>
 <p>可见：我们视野的出发点是相同的，但是视野看向的方向发生了改变。</p>
 <h4 id="2-4-4-两种相机对比"><a href="#2-4-4-两种相机对比" class="headerlink" title="2.4.4 两种相机对比"></a>2.4.4 两种相机对比</h4><p>好，有了上面的基础，我们再来写两个例子看一看两个相机的视角对比，为了方便观看，我们创建两个位置不同的几何体：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> geometry = <span class="keyword">new</span> THREE.BoxGeometry(<span class="number">200</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"><span class="keyword">var</span> material = <span class="keyword">new</span> THREE.MeshStandardMaterial(&#123; <span class="attr">color</span>: <span class="number">0x645d50</span> &#125;);</span><br><span class="line"><span class="keyword">var</span> mesh = <span class="keyword">new</span> THREE.Mesh(geometry, material);</span><br><span class="line">_scene.add(mesh);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> geometry = <span class="keyword">new</span> THREE.SphereGeometry(<span class="number">50</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"><span class="keyword">var</span> ball = <span class="keyword">new</span> THREE.Mesh(geometry, material);</span><br><span class="line">ball.position.set(<span class="number">200</span>, <span class="number">0</span>, <span class="number">-200</span>);</span><br><span class="line">_scene.add(ball);</span><br></pre></td></tr></table></figure>
 <p>正交投影相机视野：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_camera = <span class="keyword">new</span> OrthographicCamera(-<span class="built_in">window</span>.innerWidth / <span class="number">2</span>, <span class="built_in">window</span>.innerWidth / <span class="number">2</span>, <span class="built_in">window</span>.innerHeight / <span class="number">2</span>, -<span class="built_in">window</span>.innerHeight / <span class="number">2</span>, <span class="number">0.1</span>, <span class="number">1000</span>);</span><br><span class="line">_camera.position.set(<span class="number">0</span>, <span class="number">300</span>, <span class="number">600</span>);</span><br><span class="line">_camera.lookAt(<span class="keyword">new</span> THREE.Vector3(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br></pre></td></tr></table></figure>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a836b53b0008f0?w=1608&amp;h=1150&amp;f=png&amp;s=124501" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_8_xj.png" alt=""></p>
 <p>透视相机视野：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_camera = <span class="keyword">new</span> PerspectiveCamera(<span class="number">75</span>, <span class="built_in">window</span>.innerWidth / <span class="built_in">window</span>.innerHeight, <span class="number">0.1</span>, <span class="number">1100</span>);</span><br><span class="line">_camera.position.set(<span class="number">0</span>, <span class="number">300</span>, <span class="number">600</span>);</span><br><span class="line">_camera.lookAt(<span class="keyword">new</span> THREE.Vector3(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br></pre></td></tr></table></figure>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a836b74e23018a?w=1608&amp;h=1150&amp;f=png&amp;s=94192" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_9_xj.png" alt=""></p>
 <p>可见，这印证了我们上面<a href="#两种相机的区别">关于两种相机的理论</a></p>
 <h3 id="2-5-渲染器"><a href="#2-5-渲染器" class="headerlink" title="2.5 渲染器"></a>2.5 渲染器</h3><p>上面我们创建了场景、元素和相机，下面我们要告诉浏览器将这些东西渲染到浏览器上。</p>
 <p><code>Three.js</code>也为我们提供了几种不同的渲染器，这里我们主要看<code>WebGL</code>渲染器(<code>WebGLRenderer</code>)。顾名思义：<code>WebGL</code>渲染器使用<code>WebGL</code>来绘制场景，其够利用<code>GPU</code>硬件加速从而提高渲染性能。</p>
@@ -373,19 +373,19 @@
 <p>来看一个简单的例子：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> animateName;</span><br><span class="line">animate();</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    animateName = requestAnimationFrame(animate);</span><br><span class="line">    <span class="built_in">console</span>.log(i++);</span><br><span class="line">    <span class="keyword">if</span> (i &gt; <span class="number">100</span>) &#123;</span><br><span class="line">        cancelAnimationFrame(animateName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>来看一下执行效果：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a8372c7276f810?w=657&amp;h=662&amp;f=gif&amp;s=227651" alt=""></p>
+<p><img src="http://conardli.top/img/qj/requestAnimationFrame.gif" alt=""></p>
 <p>我们使用<code>requestAnimationFrame</code>和<code>Three.js</code>的渲染器结合使用，这样就能实时绘制三维动画了：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    requestAnimationFrame(animate);</span><br><span class="line">    _renderer.render(_scene, _camera);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>借助上面的代码，我们可以简单实现一些动画效果：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> y = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">var</span> option = <span class="string">'down'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animateIn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    animateName = requestAnimationFrame(animateIn);</span><br><span class="line">    mesh.rotateX(<span class="built_in">Math</span>.PI / <span class="number">40</span>);</span><br><span class="line">    <span class="keyword">if</span> (option == <span class="string">'up'</span>) &#123;</span><br><span class="line">        ball.position.set(<span class="number">200</span>, y += <span class="number">8</span>, <span class="number">0</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ball.position.set(<span class="number">200</span>, y -= <span class="number">8</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (y &lt; <span class="number">1</span>) &#123; option = <span class="string">'up'</span>; &#125;</span><br><span class="line">    <span class="keyword">if</span> (y &gt; <span class="number">100</span>) &#123; option = <span class="string">'down'</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a836bc5deeafa3?w=717&amp;h=489&amp;f=gif&amp;s=430417" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_10_animate.gif" alt=""></p>
 <h3 id="2-7-总结"><a href="#2-7-总结" class="headerlink" title="2.7 总结"></a>2.7 总结</h3><p>上面的知识是<code>Three.js</code>中最基础的知识，也是最重要的和最主干的。</p>
 <p>这些知识能够让你在看到一个复杂的三维效果时有一定的思路，当然，要实现还需要非常多的细节。这些细节你可以去<a href="https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene" target="_blank" rel="noopener">官方文档</a>中查阅。</p>
 <p>下面的章节即告诉你如何使用<code>Three.js</code>进行实战 — 实现一个360度全景插件。</p>
 <p>这个插件包括两部分，第一部分是对全景图进行预览。</p>
 <p>第二部分是对全景图的标记进行配置，并关联预览的坐标。</p>
 <p>我们首先来看看全景预览部分：</p>
-<h2 id="三、全景预览"><a href="#三、全景预览" class="headerlink" title="三、全景预览"></a>三、全景预览</h2><p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a836cd0f7c13d8?w=799&amp;h=558&amp;f=gif&amp;s=5070748" alt=""></p>
+<h2 id="三、全景预览"><a href="#三、全景预览" class="headerlink" title="三、全景预览"></a>三、全景预览</h2><p><img src="http://conardli.top/img/qj/qj_11_qj.gif" alt=""></p>
 <h3 id="3-1-基本逻辑"><a href="#3-1-基本逻辑" class="headerlink" title="3.1 基本逻辑"></a>3.1 基本逻辑</h3><ul>
 <li><p>将一张全景图包裹在球体的内壁</p>
 </li>
@@ -404,14 +404,14 @@
 <p>下面我们在场景内添加一个球体，并把全景图作为材料包裹在球体上面：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> mesh = <span class="keyword">new</span> THREE.Mesh(<span class="keyword">new</span> THREE.SphereGeometry(<span class="number">1000</span>, <span class="number">100</span>, <span class="number">100</span>),</span><br><span class="line"><span class="keyword">new</span> THREE.MeshBasicMaterial(</span><br><span class="line">        &#123; <span class="attr">map</span>: ImageUtils.loadTexture(<span class="string">'img/p3.png'</span>) &#125;</span><br><span class="line">    ));</span><br><span class="line">_scene.add(mesh);</span><br></pre></td></tr></table></figure>
 <p>然后我们看到的场景应该是这样的：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a836d35a4833c9?w=1766&amp;h=1284&amp;f=png&amp;s=354089" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_12_qj.png" alt=""></p>
 <p>这不是我们想要的效果，我们想要的是从球的内部观察全景，并且全景图是附着外球的内壁的，而不是铺在外面：</p>
 <p>我们只要需将<code>Material</code>的<code>scale</code>的一个属性设置为负值，材料即可附着在几何体的内部：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">mesh.scale.x = <span class="number">-1</span>;</span><br></pre></td></tr></table></figure>
 <p>然后我们将相机的中心点移动到球的中心：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_camera.position.set(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
 <p>现在我们已经在全景球的内部啦：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a836db58b605ae?w=1766&amp;h=1284&amp;f=png&amp;s=1950638" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_13_qj.png" alt=""></p>
 <h3 id="3-3-事件处理"><a href="#3-3-事件处理" class="headerlink" title="3.3 事件处理"></a>3.3 事件处理</h3><p>全景图已经可以浏览了，但是你只能看到你眼前的这一块，并不能拖动它看到其他部分，为了精确的控制拖动的速度和缩放、放大等场景，我们手动为它增加一些事件：</p>
 <p>监听鼠标的<code>mousedown</code>事件，在此时将开始拖动标记<code>_isUserInteracting</code>设置为<code>true</code>，并且记录起始的屏幕坐标，以及起始的相机<code>lookAt</code>的坐标。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_container.addEventListener(<span class="string">'mousedown'</span>, (event)=&gt;&#123;</span><br><span class="line">  event.preventDefault();</span><br><span class="line">  _isUserInteracting = <span class="literal">true</span>;</span><br><span class="line">  _onPointerDownPointerX = event.clientX;</span><br><span class="line">  _onPointerDownPointerY = event.clientY;</span><br><span class="line">  _onPointerDownLon = _lon;</span><br><span class="line">  _onPointerDownLat = _lat;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -424,7 +424,7 @@
 <p>监听<code>mousewheel</code>事件，对全景图进行放大和缩小，注意这里指定了最大缩放范围<code>maxFocalLength</code>和最小缩放范围<code>minFocalLength</code>。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_container.addEventListener(<span class="string">'mousewheel'</span>, (event)=&gt;&#123;</span><br><span class="line">  <span class="keyword">var</span> ev = ev || <span class="built_in">window</span>.event;</span><br><span class="line">  <span class="keyword">var</span> down = <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">var</span> m = _camera.getFocalLength();</span><br><span class="line">  down = ev.wheelDelta ? ev.wheelDelta &lt; <span class="number">0</span> : ev.detail &gt; <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> (down) &#123;</span><br><span class="line">    <span class="keyword">if</span> (m &gt; minFocalLength) &#123;</span><br><span class="line">      m -= m * <span class="number">0.05</span></span><br><span class="line">      _camera.setFocalLength(m);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (m &lt; maxFocalLength) &#123;</span><br><span class="line">      m += m * <span class="number">0.05</span></span><br><span class="line">      _camera.setFocalLength(m);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>来看一下效果吧：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a836eb1c7dbbe5?w=797&amp;h=556&amp;f=gif&amp;s=4800318" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_16_qj.gif" alt=""></p>
 <h3 id="3-4-增加标记"><a href="#3-4-增加标记" class="headerlink" title="3.4 增加标记"></a>3.4 增加标记</h3><p>在浏览全景图的时候，我们往往需要对某些特殊的位置进行一些标记，并且这些标记可能附带一些事件，比如你需要点击一个标记才能到达下一张全景图。</p>
 <p>下面我们来看看如何在全景中增加标记，以及如何为这些标记添加事件。</p>
 <p>我们可能不需要让这些标记随着视野的变化而放大和缩小，基于此，我们使用正交投影相机来展现标记，只需给它一个固定的观察高度：</p>
@@ -441,7 +441,7 @@
 <p>所以我们需要借助上面的标准化坐标，将标记的三维空间坐标转换为真实的屏幕坐标，这个过程是<code>worldPostion2Screen</code>函数来实现的。</p>
 <p>关于<code>geoPosition2World</code>和<code>worldPostion2Screen</code>两个函数的实现，大家有兴趣可以去我的<code>github</code>源码中查看，这里就不多做解释了，因为这又要牵扯到一大堆专业知识啦。😅</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> wp = geoPosition2World(_sprites.lon, _sprites.lat);</span><br><span class="line"><span class="keyword">var</span> sp = worldPostion2Screen(wp, _camera);</span><br><span class="line"><span class="keyword">var</span> test = wp.clone();</span><br><span class="line">test.project(_camera);</span><br><span class="line"><span class="keyword">if</span> (test.x &gt; <span class="number">-1</span> &amp;&amp; test.x &lt; <span class="number">1</span> &amp;&amp; test.y &gt; <span class="number">-1</span> &amp;&amp; test.y &lt; <span class="number">1</span> &amp;&amp; test.z &gt; <span class="number">-1</span> &amp;&amp; test.z &lt; <span class="number">1</span>) &#123;</span><br><span class="line">    _sprites[i].sprite.scale.set(<span class="number">32</span>, <span class="number">32</span>, <span class="number">32</span>);</span><br><span class="line">    _sprites[i].sprite.position.set(sp.x, sp.y, <span class="number">1</span>);</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    _sprites[i].sprite.scale.set(<span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>);</span><br><span class="line">    _sprites[i].sprite.position.set(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a836f55784d0be?w=1766&amp;h=1284&amp;f=png&amp;s=1839700" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_14_qj.png" alt=""></p>
 <p>现在，标记已经添加到全景上面了，我们来为它添加一个点击事件：</p>
 <p><code>Three.js</code>并没有单独提供为<code>Sprite</code>添加事件的方法，我们可以借助光线投射器（<code>Raycaster</code>）来实现。</p>
 <p><code>Raycaster</code>提供了鼠标拾取的能力：</p>
@@ -450,9 +450,9 @@
 <p>这样，我们就可以获取到点击的对象，并基于它做一些处理：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_container.addEventListener(<span class="string">'click'</span>, (event)=&gt;&#123;</span><br><span class="line">  _mouse.x = (event.clientX / <span class="built_in">window</span>.innerWidth) * <span class="number">2</span> - <span class="number">1</span>;</span><br><span class="line">  _mouse.y = -(event.clientY / <span class="built_in">window</span>.innerHeight) * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">  _raycaster.setFromCamera(_mouse, _cameraOrtho);</span><br><span class="line">  <span class="keyword">var</span> intersects = _raycaster.intersectObjects(_clickableObjects);</span><br><span class="line">  intersects.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">element</span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">"点击到了: "</span> + element.object.name);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>点击到一个标记，进入到下一张全景图：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a8370006cc7b03?w=797&amp;h=556&amp;f=gif&amp;s=3341344" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_15_qj.gif" alt=""></p>
 <h2 id="四、全景标记"><a href="#四、全景标记" class="headerlink" title="四、全景标记"></a>四、全景标记</h2><p>为了让全景图知道，我要把标记标注在什么地方，我需要一个工具来把原图和全景图上的位置关联起来：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a837094deca180?w=974&amp;h=627&amp;f=gif&amp;s=2378059" alt=""><br>由于这部分代码和<code>Three.js</code>关系不大，这里我只说一下基本的实现逻辑，有兴趣可以去我的<code>github</code>仓库查看。</p>
+<p><img src="http://conardli.top/img/qj/qj_17_qj.gif" alt=""><br>由于这部分代码和<code>Three.js</code>关系不大，这里我只说一下基本的实现逻辑，有兴趣可以去我的<code>github</code>仓库查看。</p>
 <h3 id="4-1-要求"><a href="#4-1-要求" class="headerlink" title="4.1 要求"></a>4.1 要求</h3><ul>
 <li><p>建立坐标和全景的映射关系，为全景赋予一套虚拟坐标</p>
 </li>
@@ -466,15 +466,15 @@
 <p>但是，我们可以借助一种中间坐标来转换，可以把它称之为“经纬度”。</p>
 <p>在这之前，我们先来看看我们常说的经纬度到底是什么。</p>
 <h3 id="4-3-经纬度"><a href="#4-3-经纬度" class="headerlink" title="4.3 经纬度"></a>4.3 经纬度</h3><p>使用经纬度，可以精确的定位到地球上任意一个点，它的计算规则是这样的：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a83714f0875913?w=2514&amp;h=1422&amp;f=png&amp;s=2404729" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_18_jwd.png" alt=""></p>
 <p>通常把连接南极到北极的线叫做子午线也叫经线，其所对应的面叫做子午面，规定英国伦敦格林尼治天文台原址的那条经线称为0°经线，也叫本初子午线其对应的面即本初子午面。</p>
 <p>经度：球面上某店对应的子午面与本初子午面间的夹角。东正西负。</p>
 <p>纬度 ：球面上某点的法线（以该店作为切点与球面相切的面的法线）与赤道平面的夹角。北正南负。</p>
 <p>由此，地球上每一个点都能被对应到一个经度和纬度，想对应的，也能对应到某条经线和纬线上。</p>
 <p>这样，即使把球面展开称平面，我们仍然能用经纬度表示某店点的位置：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a8371a08c11ba5?w=534&amp;h=287&amp;f=gif&amp;s=12200" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_19_map.gif" alt=""></p>
 <h3 id="4-4-坐标转换"><a href="#4-4-坐标转换" class="headerlink" title="4.4 坐标转换"></a>4.4 坐标转换</h3><p>基于上面的分析，我们完全可以给平面的全景图赋予一个虚拟的“经纬度”。我们使用<code>Canvas</code>为它绘制一张”经纬网”：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/4/16a83725d6ac6e7b?w=2170&amp;h=1329&amp;f=png&amp;s=3593289" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_20_jwd.png" alt=""></p>
 <p>将鼠标坐标转换为”经纬度”：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calLonLat</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> h = _setContainer.style.height.split(<span class="string">"px"</span>)[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">var</span> w = _setContainer.style.width.split(<span class="string">"px"</span>)[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">var</span> ix = _setContainer.offsetLeft;</span><br><span class="line">  <span class="keyword">var</span> iy = _setContainer.offsetTop;</span><br><span class="line">  iy = iy + h;</span><br><span class="line">  <span class="keyword">var</span> x = e.clientX;</span><br><span class="line">  <span class="keyword">var</span> y = e.clientY;</span><br><span class="line">  <span class="keyword">var</span> lonS = (x - ix) / w;</span><br><span class="line">  <span class="keyword">var</span> lon = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> (lonS &gt; <span class="number">0.5</span>) &#123;</span><br><span class="line">    lon = -(<span class="number">1</span> - lonS) * <span class="number">360</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    lon = <span class="number">1</span> * <span class="number">360</span> * lonS;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> latS = (iy - y) / h;</span><br><span class="line">  <span class="keyword">var</span> lat = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> (latS &gt; <span class="number">0.5</span>) &#123;</span><br><span class="line">    lat = (latS - <span class="number">0.5</span>) * <span class="number">180</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    lat = (<span class="number">0.5</span> - latS) * <span class="number">180</span> * <span class="number">-1</span></span><br><span class="line">  &#125;</span><br><span class="line">  lon = lon.toFixed(<span class="number">2</span>);</span><br><span class="line">  lat = lat.toFixed(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">lon</span>: lon, <span class="attr">lat</span>: lat &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这样平面地图上的某点就可以和三维坐标关联起来了，当然，这还需要一定的转换，有兴趣可以去源码研究下<code>geoPosition2World</code>和<code>worldPostion2Screen</code>两个函数。</p>
@@ -534,7 +534,7 @@
 
 
 
-    <a data-url="www.conardli.top/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" data-id="cjw78g3wa000pfs0d487ruxkg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="www.conardli.top/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" data-id="cjwdeflnu000npw88hfmp4mja" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -720,7 +720,7 @@
                             <a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="thumbnail">
     
     
-        <span style="background-image:url(https://user-gold-cdn.xitu.io/2019/5/28/16afa4daf89c565e?w=1482&amp;h=584&amp;f=png&amp;s=55263)" alt="【JS进阶】你真的掌握变量和类型了吗" class="thumbnail-image"></span>
+        <span style="background-image:url(http://www.conardli.top/img/bl/bl_1_stack.png)" alt="【JS进阶】你真的掌握变量和类型了吗" class="thumbnail-image"></span>
     
     
 </a>
@@ -760,7 +760,7 @@
                             <a href="/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" class="thumbnail">
     
     
-        <span style="background-image:url(https://user-gold-cdn.xitu.io/2019/5/4/16a83669b12c799b?w=797&amp;h=556&amp;f=gif&amp;s=3341344)" alt="【特效】看完这篇，你也可以实现一个360度全景插件" class="thumbnail-image"></span>
+        <span style="background-image:url(http://conardli.top/img/qj/qj_15_qj.gif)" alt="【特效】看完这篇，你也可以实现一个360度全景插件" class="thumbnail-image"></span>
     
     
 </a>

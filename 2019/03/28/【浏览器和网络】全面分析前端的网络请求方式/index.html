@@ -21,7 +21,7 @@
 <meta property="og:description" content="一、前端进行网络请求的关注点大多数情况下，在前端发起一个网络请求我们只需关注下面几点：  传入基本参数（url，请求方式） 请求参数、请求参数类型 设置请求头 获取响应的方式 获取响应头、响应状态、响应结果 异常处理 携带cookie设置 跨域请求  二、前端进行网络请求的方式 form表单、ifream、刷新页面 Ajax - 异步网络请求的开山鼻祖 jQuery - 一个时代 fetch -">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="/img/network.jpg">
-<meta property="og:updated_time" content="2019-04-06T05:14:21.095Z">
+<meta property="og:updated_time" content="2019-06-01T10:32:37.982Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="全面分析前端的网络请求方式">
 <meta name="twitter:description" content="一、前端进行网络请求的关注点大多数情况下，在前端发起一个网络请求我们只需关注下面几点：  传入基本参数（url，请求方式） 请求参数、请求参数类型 设置请求头 获取响应的方式 获取响应头、响应状态、响应结果 异常处理 携带cookie设置 跨域请求  二、前端进行网络请求的方式 form表单、ifream、刷新页面 Ajax - 异步网络请求的开山鼻祖 jQuery - 一个时代 fetch -">
@@ -279,7 +279,7 @@
 </ul>
 <p>带着以上这些问题、关注点我们对几种网络请求进行一次全面的分析。</p>
 <h2 id="四、Ajax的出现解决了什么问题"><a href="#四、Ajax的出现解决了什么问题" class="headerlink" title="四、Ajax的出现解决了什么问题"></a>四、Ajax的出现解决了什么问题</h2><p>在<code>Ajax</code>出现之前，<code>web</code>程序是这样工作的：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/3/27/169bc95733e5eca8?w=865&amp;h=311&amp;f=png&amp;s=22000" alt="image"></p>
+<p><img src="http://www.conardli.top/img/wl/wlqq_1.png" alt="image"></p>
 <p>这种交互的的缺陷是显而易见的，任何和服务器的交互都需要刷新页面，用户体验非常差，<code>Ajax</code>的出现解决了这个问题。<code>Ajax</code>全称<code>Asynchronous JavaScript + XML</code>（异步<code>JavaScript</code>和<code>XML</code>）</p>
 <p>使用<code>Ajax</code>，网页应用能够快速地将增量更新呈现在用户界面上，而不需要重载（刷新）整个页面。</p>
 <p><code>Ajax</code>本身不是一种新技术，而是用来描述一种使用现有技术集合实现的一个技术方案，浏览器的<code>XMLHttpRequest</code>是实现<code>Ajax</code>最重要的对象（<code>IE6</code>以下使用<code>ActiveXObject</code>）。</p>
@@ -287,7 +287,7 @@
 <h2 id="五、原生Ajax的用法"><a href="#五、原生Ajax的用法" class="headerlink" title="五、原生Ajax的用法"></a>五、原生Ajax的用法</h2><p>这里主要分析<code>XMLHttpRequest</code>对象，下面是它的一段基础使用：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.open(<span class="string">'post'</span>,<span class="string">'www.xxx.com'</span>,<span class="literal">true</span>)</span><br><span class="line"><span class="comment">// 接收返回值</span></span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(xhr.readyState === <span class="number">4</span> )&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.status &gt;= <span class="number">200</span> &amp;&amp; xhr.status &lt; <span class="number">300</span>) || xhr.status == <span class="number">304</span>)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(xhr.responseText);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 处理请求参数</span></span><br><span class="line">postData = &#123;<span class="string">"name1"</span>:<span class="string">"value1"</span>,<span class="string">"name2"</span>:<span class="string">"value2"</span>&#125;;</span><br><span class="line">postData = (<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> dataString = <span class="string">""</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> value)&#123;</span><br><span class="line">     dataString += key+<span class="string">"="</span>+value[key]+<span class="string">"&amp;"</span>;</span><br><span class="line">&#125;;</span><br><span class="line">  <span class="keyword">return</span> dataString;</span><br><span class="line">&#125;(postData));</span><br><span class="line"><span class="comment">// 设置请求头</span></span><br><span class="line">xhr.setRequestHeader(<span class="string">"Content-type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line"><span class="comment">// 异常处理</span></span><br><span class="line">xhr.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'Network request failed'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 跨域携带cookie</span></span><br><span class="line">xhr.withCredentials = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">// 发出请求</span></span><br><span class="line">xhr.send(postData);</span><br></pre></td></tr></table></figure>
 <p>下面分别对<code>XMLHttpRequest</code>对象常用的的函数、属性、事件进行分析。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/3/27/169bc95733923d9c?w=1678&amp;h=875&amp;f=png&amp;s=185508" alt="image"></p>
+<p><img src="http://www.conardli.top/img/wl/wlqq_2.png" alt="image"></p>
 <h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p><strong>open</strong></p>
 <p>用于初始化一个请求，用法：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">xhr.open(method, url, <span class="keyword">async</span>);</span><br></pre></td></tr></table></figure>
@@ -412,7 +412,7 @@
 <h2 id="六、jQuery对Ajax的封装"><a href="#六、jQuery对Ajax的封装" class="headerlink" title="六、jQuery对Ajax的封装"></a>六、jQuery对Ajax的封装</h2><p>在很长一段时间里，人们使用<code>jQuery</code>提供的<code>ajax</code>封装进行网络请求，包括<code>$.ajax、$.get、$.post</code>等，这几个方法放到现在，我依然觉得很实用。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    dataType: <span class="string">'json'</span>, <span class="comment">// 设置返回值类型</span></span><br><span class="line">    contentType: <span class="string">'application/json'</span>, <span class="comment">// 设置参数类型</span></span><br><span class="line">    headers: &#123;<span class="string">'Content-Type'</span>,<span class="string">'application/json'</span>&#125;,<span class="comment">// 设置请求头</span></span><br><span class="line">    xhrFields: &#123; <span class="attr">withCredentials</span>: <span class="literal">true</span> &#125;, <span class="comment">// 跨域携带cookie</span></span><br><span class="line">    data: <span class="built_in">JSON</span>.stringify(&#123;<span class="attr">a</span>: [&#123;<span class="attr">b</span>:<span class="number">1</span>, <span class="attr">a</span>:<span class="number">1</span>&#125;]&#125;), <span class="comment">// 传递参数</span></span><br><span class="line">    error:<span class="function"><span class="keyword">function</span>(<span class="params">xhr,status</span>)</span>&#123;  <span class="comment">// 错误处理</span></span><br><span class="line">       <span class="built_in">console</span>.log(xhr,status);</span><br><span class="line">    &#125;,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">data,status</span>) </span>&#123;  <span class="comment">// 获取结果</span></span><br><span class="line">       <span class="built_in">console</span>.log(data,status);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p><code>$.ajax</code>只接收一个参数，这个参数接收一系列配置，其自己封装了一个<code>jqXHR</code>对象，有兴趣可以阅读一下<a href="https://github.com/jquery/jquery/blob/master/src/ajax.js" target="_blank" rel="noopener">jQuary-ajax 源码</a></p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/3/27/169bc957333ae9b0?w=1732&amp;h=803&amp;f=png&amp;s=174852" alt="image"></p>
+<p><img src="http://www.conardli.top/img/wl/wlqq_3.png" alt="image"></p>
 <p>常用配置：</p>
 <p><strong>url</strong> </p>
 <p>当前页地址。发送请求的地址。</p>
@@ -456,7 +456,7 @@
 <h2 id="八、fetch的使用"><a href="#八、fetch的使用" class="headerlink" title="八、fetch的使用"></a>八、fetch的使用</h2><p>一个基本的 fetch请求：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> options = &#123;</span><br><span class="line">    method: <span class="string">"POST"</span>, <span class="comment">// 请求参数</span></span><br><span class="line">    headers: &#123; <span class="string">"Content-Type"</span>: <span class="string">"application/json"</span>&#125;, <span class="comment">// 设置请求头</span></span><br><span class="line">    body: <span class="built_in">JSON</span>.stringify(&#123;<span class="attr">name</span>:<span class="string">'123'</span>&#125;), <span class="comment">// 请求参数</span></span><br><span class="line">    credentials: <span class="string">"same-origin"</span>, <span class="comment">// cookie设置</span></span><br><span class="line">    mode: <span class="string">"cors"</span>, <span class="comment">// 跨域</span></span><br><span class="line">&#125;</span><br><span class="line">fetch(<span class="string">'http://www.xxx.com'</span>)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> response.json();</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params">myJson</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(myJson); <span class="comment">// 响应数据</span></span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err); <span class="comment">// 异常处理</span></span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
 <p><code>Fetch API</code>提供了一个全局的<code>fetch()</code>方法，以及几个辅助对象来发起一个网络请求。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/3/27/169bc95734434502?w=1327&amp;h=660&amp;f=png&amp;s=122126" alt="image"></p>
+<p><img src="/img/wl/wlqq_4.png" alt="image"></p>
 <ul>
 <li><code>fetch()</code></li>
 </ul>
@@ -474,9 +474,9 @@
 </ul>
 <p>在<code>fetch()</code>处理完<code>promises</code>之后返回一个<code>Response</code>实例，也可以手动创建一个<code>Response</code>实例。</p>
 <h2 id="九、fetch-polyfill源码分析"><a href="#九、fetch-polyfill源码分析" class="headerlink" title="九、fetch polyfill源码分析"></a>九、fetch polyfill源码分析</h2><p>由于<code>fetch</code>是一个非常底层的<code>API</code>，所以我们无法进一步的探究它的底层，但是我们可以借助它的<code>polyfill</code>探究它的基本原理，并找出其中的坑点。</p>
-<h3 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h3><p><img src="https://user-gold-cdn.xitu.io/2019/3/27/169bc95734bd87f1?w=663&amp;h=436&amp;f=png&amp;s=46401" alt="image"></p>
+<h3 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h3><p><img src="/img/wl/wlqq_5.png" alt="image"></p>
 <p>由代码可见，<code>polyfill</code>主要对<code>Fetch</code> API提供的四大对象进行了封装：</p>
-<h3 id="fetch-封装"><a href="#fetch-封装" class="headerlink" title="fetch 封装"></a>fetch 封装</h3><p><img src="https://user-gold-cdn.xitu.io/2019/3/27/169bc9573518a4f0?w=817&amp;h=537&amp;f=png&amp;s=85376" alt="image"></p>
+<h3 id="fetch-封装"><a href="#fetch-封装" class="headerlink" title="fetch 封装"></a>fetch 封装</h3><p><img src="/img/wl/wlqq_6.png" alt="image"></p>
 <p>代码非常清晰：</p>
 <ul>
 <li>构造一个<code>Promise</code>对象并返回</li>
@@ -485,7 +485,7 @@
 <li>取出<code>Request</code>对象中的请求<code>url</code>，请求方发，<code>open</code>一个<code>xhr</code>请求，并将<code>Request</code>对象中存储的<code>headers</code>取出赋给xhr</li>
 <li><code>xhr onload</code>后取出<code>response</code>的<code>status</code>、<code>headers</code>、<code>body</code>封装<code>Response</code>对象，调用<code>resolve</code>。</li>
 </ul>
-<h3 id="异常处理-1"><a href="#异常处理-1" class="headerlink" title="异常处理"></a>异常处理</h3><p><img src="https://user-gold-cdn.xitu.io/2019/3/27/169bc95762d99f52?w=694&amp;h=516&amp;f=png&amp;s=74576" alt="image"></p>
+<h3 id="异常处理-1"><a href="#异常处理-1" class="headerlink" title="异常处理"></a>异常处理</h3><p><img src="/img/wl/wlqq_7.png" alt="image"></p>
 <p>可以发现，调用<code>reject</code>有三种可能：</p>
 <ul>
 <li><p>1.请求超时</p>
@@ -503,13 +503,13 @@
 <blockquote>
 <p>这是一个实验中的功能，此功能某些浏览器尚在开发中</p>
 </blockquote>
-<h3 id="Headers封装"><a href="#Headers封装" class="headerlink" title="Headers封装"></a>Headers封装</h3><p><img src="https://user-gold-cdn.xitu.io/2019/3/27/169bc957671e85ed?w=637&amp;h=307&amp;f=png&amp;s=58907" alt="image"></p>
+<h3 id="Headers封装"><a href="#Headers封装" class="headerlink" title="Headers封装"></a>Headers封装</h3><p><img src="/img/wl/wlqq_8.png" alt="image"></p>
 <p>在header对象中维护了一个<code>map</code>对象，构造函数中可以传入<code>Header</code>对象、数组、普通对象类型的<code>header</code>，并将所有的值维护到<code>map</code>中。</p>
 <p>之前在<code>fetch</code>函数中看到调用了<code>header</code>的<code>forEach</code>方法，下面是它的实现：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/3/27/169bc9576b463008?w=467&amp;h=139&amp;f=png&amp;s=24552" alt="image"></p>
+<p><img src="/img/wl/wlqq_9.png" alt="image"></p>
 <p>可见<code>header</code>的遍历即其内部<code>map</code>的遍历。</p>
 <p>另外<code>Header</code>还提供了<code>append、delete、get、set</code>等方法，都是对其内部的<code>map</code>对象进行操作。</p>
-<h3 id="Request对象"><a href="#Request对象" class="headerlink" title="Request对象"></a>Request对象</h3><p><img src="https://user-gold-cdn.xitu.io/2019/3/27/169bc9576cd7afde?w=752&amp;h=405&amp;f=png&amp;s=75439" alt="image"></p>
+<h3 id="Request对象"><a href="#Request对象" class="headerlink" title="Request对象"></a>Request对象</h3><p><img src="/img/wl/wlqq_10.png" alt="image"></p>
 <p><code>Request</code>对象接收的两个参数即<code>fetch</code>函数接收的两个参数，第一个参数可以直接传递<code>url</code>，也可以传递一个构造好的<code>request</code>对象。第二个参数即控制不同配置的<code>option</code>对象。</p>
 <p>可以传入<code>credentials、headers、method、mode、signal、referrer</code>等属性。</p>
 <p>这里注意：</p>
@@ -524,19 +524,19 @@
 <p>mdn: 默认情况下，fetch 不会从服务端发送或接收任何 cookies </p>
 </blockquote>
 <p>于是我分别实验了下使用<code>polyfill</code>和使用原生<code>fetch</code>携带cookie的情况，发现在不设置<code>credentials</code>的情况下居然都是默认携带同源<code>cookie</code>的，这和文档的说明说不一致的，查阅了许多资料后都是说<code>fetch</code>默认不会携带cookie，下面是使用原生<code>fetch</code>在浏览器进行请求的情况：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/3/27/169bc9576d4d713b?w=1020&amp;h=550&amp;f=jpeg&amp;s=92239" alt="image"></p>
+<p><img src="/img/wl/wlqq_11.jpeg" alt="image"></p>
 <p>然后我发现在<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Request/credentials" target="_blank" rel="noopener">MDN-Fetch-Request</a>已经指出新版浏览器<code>credentials</code>默认值已更改为<code>same-origin</code>，旧版依然是<code>omit</code>。</p>
 <p>确实<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch" target="_blank" rel="noopener">MDN-使用Fetch</a>这里的文档更新的有些不及时，误人子弟了…</p>
 <h3 id="Response对象"><a href="#Response对象" class="headerlink" title="Response对象"></a>Response对象</h3><p><code>Response</code>对象是<code>fetch</code>调用成功后的返回值：</p>
 <p>回顾下<code>f</code>etch<code>中对</code>Response`的操作：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">xhr.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> options = &#123;</span><br><span class="line">    status: xhr.status,</span><br><span class="line">    statusText: xhr.statusText,</span><br><span class="line">    headers: parseHeaders(xhr.getAllResponseHeaders() || <span class="string">''</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  options.url = <span class="string">'responseURL'</span> <span class="keyword">in</span> xhr ? xhr.responseURL : options.headers.get(<span class="string">'X-Request-URL'</span>)</span><br><span class="line">  <span class="keyword">var</span> body = <span class="string">'response'</span> <span class="keyword">in</span> xhr ? xhr.response : xhr.responseText</span><br><span class="line">  resolve(<span class="keyword">new</span> Response(body, options))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>Response</code>构造函数：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/3/27/169bc9577052ac36?w=564&amp;h=317&amp;f=png&amp;s=52870" alt="image"></p>
+<p><img src="/img/wl/wlqq_12.png" alt="image"></p>
 <p>可见在构造函数中主要对<code>options</code>中的<code>status、statusText、headers、url</code>等分别做了处理并挂载到<code>Response</code>对象上。</p>
 <p>构造函数里面并没有对<code>responseText</code>的明确处理，最后交给了<code>_initBody</code>函数处理，而<code>Response</code>并没有主动声明<code>_initBody</code>属性，代码最后使用<code>Response</code>调用了<code>Body</code>函数，实际上<code>_initBody</code>函数是通过<code>Body</code>函数挂载到<code>Response</code>身上的，先来看看<code>_initBody</code>函数：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/3/27/169bc95787de7f1c?w=634&amp;h=288&amp;f=png&amp;s=55188" alt="image"></p>
+<p><img src="/img/wl/wlqq_13.png" alt="image"></p>
 <p>可见，<code>_initBody</code>函数根据<code>xhr.response</code>的类型（<code>Blob、FormData、String...</code>），为不同的参数进行赋值，这些参数在<code>Body</code>方法中得到不同的应用，下面具体看看<code>Body</code>函数还做了哪些其他的操作：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/3/27/169bc9578dea2673?w=671&amp;h=551&amp;f=png&amp;s=51968" alt="image"></p>
+<p><img src="/img/wl/wlqq_14.png" alt="image"></p>
 <p><code>Body</code>函数中还为<code>Response</code>对象挂载了四个函数，<code>text、json、blob、formData</code>，这些函数中的操作就是将_initBody中得到的不同类型的返回值返回。</p>
 <p>这也说明了，在<code>fetch</code>执行完毕后，不能直接在<code>response</code>中获取到返回值而必须调用<code>text()、json()</code>等函数才能获取到返回值。</p>
 <p>这里还有一点需要说明：几个函数中都有类似下面的逻辑：</p>
@@ -599,7 +599,7 @@
 
 
 
-    <a data-url="www.conardli.top/2019/03/28/【浏览器和网络】全面分析前端的网络请求方式/" data-id="cjw78g3wb000rfs0dg9fyw61x" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="www.conardli.top/2019/03/28/【浏览器和网络】全面分析前端的网络请求方式/" data-id="cjwdeflns000mpw8823hru9km" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -785,7 +785,7 @@
                             <a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="thumbnail">
     
     
-        <span style="background-image:url(https://user-gold-cdn.xitu.io/2019/5/28/16afa4daf89c565e?w=1482&amp;h=584&amp;f=png&amp;s=55263)" alt="【JS进阶】你真的掌握变量和类型了吗" class="thumbnail-image"></span>
+        <span style="background-image:url(http://www.conardli.top/img/bl/bl_1_stack.png)" alt="【JS进阶】你真的掌握变量和类型了吗" class="thumbnail-image"></span>
     
     
 </a>
@@ -825,7 +825,7 @@
                             <a href="/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" class="thumbnail">
     
     
-        <span style="background-image:url(https://user-gold-cdn.xitu.io/2019/5/4/16a83669b12c799b?w=797&amp;h=556&amp;f=gif&amp;s=3341344)" alt="【特效】看完这篇，你也可以实现一个360度全景插件" class="thumbnail-image"></span>
+        <span style="background-image:url(http://conardli.top/img/qj/qj_15_qj.gif)" alt="【特效】看完这篇，你也可以实现一个360度全景插件" class="thumbnail-image"></span>
     
     
 </a>

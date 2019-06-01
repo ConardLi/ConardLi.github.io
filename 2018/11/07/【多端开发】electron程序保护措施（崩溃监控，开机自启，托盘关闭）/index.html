@@ -12,19 +12,19 @@
     
         <meta name="keywords" content="electron,多端开发" />
     
-    <meta name="description" content="在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。 以下几种方式可以帮助我们做到这一点： 1.崩溃监控electron为我们提供了监听程序崩溃的事件： Event: &apos;crashed&apos;返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发 此事件是用来家庭渲染进程崩溃的，但是当主进程意外崩溃时也会触发该事件。 在监测到程序崩溃">
+    <meta name="description" content="在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。 以下几种方式可以帮助我们做到这一点： 1.崩溃监控electron为我们提供了监听程序崩溃的事件： Event: &apos;crashed&apos;返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发 此事件是用来监听渲染进程崩溃的，但是当主进程意外崩溃时也会触发该事件。 在监测到程序崩溃">
 <meta name="keywords" content="electron,多端开发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="electron程序保护措施（崩溃监控，开机自启，托盘关闭）">
 <meta property="og:url" content="www.conardli.top/2018/11/07/【多端开发】electron程序保护措施（崩溃监控，开机自启，托盘关闭）/index.html">
 <meta property="og:site_name" content="李世奇的技术专栏">
-<meta property="og:description" content="在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。 以下几种方式可以帮助我们做到这一点： 1.崩溃监控electron为我们提供了监听程序崩溃的事件： Event: &apos;crashed&apos;返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发 此事件是用来家庭渲染进程崩溃的，但是当主进程意外崩溃时也会触发该事件。 在监测到程序崩溃">
+<meta property="og:description" content="在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。 以下几种方式可以帮助我们做到这一点： 1.崩溃监控electron为我们提供了监听程序崩溃的事件： Event: &apos;crashed&apos;返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发 此事件是用来监听渲染进程崩溃的，但是当主进程意外崩溃时也会触发该事件。 在监测到程序崩溃">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="/img/1.jpg">
-<meta property="og:updated_time" content="2019-05-18T04:37:32.429Z">
+<meta property="og:updated_time" content="2019-05-30T06:43:37.277Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="electron程序保护措施（崩溃监控，开机自启，托盘关闭）">
-<meta name="twitter:description" content="在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。 以下几种方式可以帮助我们做到这一点： 1.崩溃监控electron为我们提供了监听程序崩溃的事件： Event: &apos;crashed&apos;返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发 此事件是用来家庭渲染进程崩溃的，但是当主进程意外崩溃时也会触发该事件。 在监测到程序崩溃">
+<meta name="twitter:description" content="在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。 以下几种方式可以帮助我们做到这一点： 1.崩溃监控electron为我们提供了监听程序崩溃的事件： Event: &apos;crashed&apos;返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发 此事件是用来监听渲染进程崩溃的，但是当主进程意外崩溃时也会触发该事件。 在监测到程序崩溃">
 <meta name="twitter:image" content="/img/1.jpg">
     
 
@@ -255,7 +255,7 @@
 <p>以下几种方式可以帮助我们做到这一点：</p>
 <h1 id="1-崩溃监控"><a href="#1-崩溃监控" class="headerlink" title="1.崩溃监控"></a>1.崩溃监控</h1><p>electron为我们提供了监听程序崩溃的事件：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Event: <span class="string">'crashed'</span></span><br><span class="line">返回:</span><br><span class="line"></span><br><span class="line">event Event</span><br><span class="line">killed <span class="built_in">Boolean</span></span><br><span class="line">当渲染进程崩溃或被结束时触发</span><br></pre></td></tr></table></figure>
-<p>此事件是用来家庭渲染进程崩溃的，但是当主进程意外崩溃时也会触发该事件。</p>
+<p>此事件是用来监听渲染进程崩溃的，但是当主进程意外崩溃时也会触发该事件。</p>
 <p>在监测到程序崩溃后，我们要让程序重新启动，此时我们要首先判断window对象是否被销毁，也就是主进程是否被杀死，还是渲染进程崩溃，同时作出不同的处理。</p>
 <p>当mainWin被销毁时我们直接重启整个应用，使用如下api：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.relaunch([options])</span><br><span class="line">options <span class="built_in">Object</span> (可选)</span><br><span class="line"></span><br><span class="line">args <span class="built_in">String</span></span><br><span class="line">execPath <span class="built_in">String</span> (可选)</span><br><span class="line">从当前实例退出，重启应用。</span><br><span class="line"></span><br><span class="line">默认情况下，新的实例会和当前实例使用相同的工作目录以及命令行参数。 当设置了 args 参数时， args 将作为命令行参数传递。 当设置了 execPath ，execPath 将被执行以重新启动，而不是当前的应用程序。</span><br><span class="line"></span><br><span class="line">请注意, 此方法在执行时不会退出当前的应用程序, 你需要在调用 app.relaunch 方法后再执行 app. quit 或者 app.exit 来让应用重启。</span><br></pre></td></tr></table></figure>
@@ -281,7 +281,7 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">mainWindow.on(<span class="string">'close'</span>, (event) =&gt; &#123;</span><br><span class="line">  mainWindow.hide();</span><br><span class="line">  event.preventDefault();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>然而这时你发现，这只是最小化了程序，任务栏里程序依然存在，我们需要让程序在任务栏里也消失：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">mainWindow.on(<span class="string">'close'</span>, (event) =&gt; &#123;</span><br><span class="line">  mainWindow.hide();</span><br><span class="line">  mainWindow.setSkipTaskbar(<span class="literal">true</span>);</span><br><span class="line">  event.preventDefault();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>这时程序就再也找不到了，任务托盘中也没有我们的程序，所以我们要先创建好任务托盘，并做好事件监听：</p>
+<p>这时程序就再也找不到了，任务托盘中也没有我们的程序，所以我们要先创建好任务托盘，并做好事件监听</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createTray</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> mainWindow = BrowserWindow.fromId(global.mainId);</span><br><span class="line">    tray = <span class="keyword">new</span> Tray(path.join(global.__dirname, <span class="string">'icon.ico'</span>));</span><br><span class="line">    <span class="keyword">const</span> contextMenu = Menu.buildFromTemplate([</span><br><span class="line">      &#123; <span class="attr">label</span>: <span class="string">'退出'</span>, <span class="attr">click</span>: <span class="function"><span class="params">()</span> =&gt;</span> &#123; mainWindow.destroy(); app.quit(); &#125; &#125;,</span><br><span class="line">    ])</span><br><span class="line">    tray.setToolTip(<span class="string">'我的客户端'</span>)</span><br><span class="line">    tray.setContextMenu(contextMenu)</span><br><span class="line">    tray.on(<span class="string">'click'</span>, () =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (mainWindow.isVisible()) &#123;</span><br><span class="line">        mainWindow.hide();</span><br><span class="line">        mainWindow.setSkipTaskbar(<span class="literal">false</span>);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        mainWindow.show();</span><br><span class="line">        mainWindow.setSkipTaskbar(<span class="literal">true</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <p>以上这些操作为我们的程序又增加了好几层的防护措施，我们的程序就不会那么轻而易举的挂掉啦！</p>
 
@@ -291,7 +291,7 @@
 
 
 
-    <a data-url="www.conardli.top/2018/11/07/【多端开发】electron程序保护措施（崩溃监控，开机自启，托盘关闭）/" data-id="cjw78g3wc000tfs0d3qppjlzv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="www.conardli.top/2018/11/07/【多端开发】electron程序保护措施（崩溃监控，开机自启，托盘关闭）/" data-id="cjwdeflnc0005pw881v2ct231" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -477,7 +477,7 @@
                             <a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="thumbnail">
     
     
-        <span style="background-image:url(https://user-gold-cdn.xitu.io/2019/5/28/16afa4daf89c565e?w=1482&amp;h=584&amp;f=png&amp;s=55263)" alt="【JS进阶】你真的掌握变量和类型了吗" class="thumbnail-image"></span>
+        <span style="background-image:url(http://www.conardli.top/img/bl/bl_1_stack.png)" alt="【JS进阶】你真的掌握变量和类型了吗" class="thumbnail-image"></span>
     
     
 </a>
@@ -517,7 +517,7 @@
                             <a href="/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" class="thumbnail">
     
     
-        <span style="background-image:url(https://user-gold-cdn.xitu.io/2019/5/4/16a83669b12c799b?w=797&amp;h=556&amp;f=gif&amp;s=3341344)" alt="【特效】看完这篇，你也可以实现一个360度全景插件" class="thumbnail-image"></span>
+        <span style="background-image:url(http://conardli.top/img/qj/qj_15_qj.gif)" alt="【特效】看完这篇，你也可以实现一个360度全景插件" class="thumbnail-image"></span>
     
     
 </a>

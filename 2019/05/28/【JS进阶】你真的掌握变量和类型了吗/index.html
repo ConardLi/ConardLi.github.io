@@ -20,12 +20,12 @@
 <meta property="og:site_name" content="李世奇的技术专栏">
 <meta property="og:description" content="导读变量和类型是学习JavaScript最先接触到的东西，但是往往看起来最简单的东西往往还隐藏着很多你不了解、或者容易犯错的知识，比如下面几个问题：  JavaScript中的变量在内存中的具体存储形式是什么？ 0.1+0.2为什么不等于0.3?发生小数计算错误的具体原因是什么？ Symbol的特点，以及实际应用场景是什么？ [] == ![]、[undefined] == false为什么等于t">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/5/28/16afa4daf89c565e?w=1482&amp;h=584&amp;f=png&amp;s=55263">
-<meta property="og:updated_time" content="2019-05-28T03:12:00.648Z">
+<meta property="og:image" content="http://www.conardli.top/img/bl/bl_1_stack.png">
+<meta property="og:updated_time" content="2019-06-01T10:23:39.856Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【JS进阶】你真的掌握变量和类型了吗">
 <meta name="twitter:description" content="导读变量和类型是学习JavaScript最先接触到的东西，但是往往看起来最简单的东西往往还隐藏着很多你不了解、或者容易犯错的知识，比如下面几个问题：  JavaScript中的变量在内存中的具体存储形式是什么？ 0.1+0.2为什么不等于0.3?发生小数计算错误的具体原因是什么？ Symbol的特点，以及实际应用场景是什么？ [] == ![]、[undefined] == false为什么等于t">
-<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/5/28/16afa4daf89c565e?w=1482&amp;h=584&amp;f=png&amp;s=55263">
+<meta name="twitter:image" content="http://www.conardli.top/img/bl/bl_1_stack.png">
     
 
     
@@ -292,10 +292,10 @@
 <li>由系统自动分配存储空间</li>
 </ul>
 <p><code>JavaScript</code>中的原始类型的值被直接存储在栈中，在变量定义时，栈就为其分配好了内存空间。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/28/16afa4daf89c565e?w=1482&amp;h=584&amp;f=png&amp;s=55263" alt=""></p>
+<p><img src="http://www.conardli.top/img/bl/bl_1_stack.png" alt=""></p>
 <p>由于栈中的内存空间的大小是固定的，那么注定了存储在栈中的变量就是不可变的。</p>
 <p>在上面的代码中，我们执行了<code>str += &#39;6&#39;</code>的操作，实际上是在栈中又开辟了一块内存空间用于存储<code>&#39;ConardLi6&#39;</code>，然后将变量<code>str</code>指向这块空间，所以这并不违背<code>不可变性的</code>特点。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/28/16afa4dd38de23b8?w=1572&amp;h=628&amp;f=png&amp;s=92989" alt=""></p>
+<p><img src="http://www.conardli.top/img/bl/bl_2_stack.png" alt=""></p>
 <h3 id="2-2-引用类型"><a href="#2-2-引用类型" class="headerlink" title="2.2 引用类型"></a>2.2 引用类型</h3><p>堆内存：</p>
 <ul>
 <li>存储的值大小不定，可动态调整</li>
@@ -305,7 +305,7 @@
 </ul>
 <p>相对于上面具有不可变性的原始类型，我习惯把对象称为引用类型，引用类型的值实际存储在堆内存中，它在栈中只存储了一个固定长度的地址，这个地址指向堆内存中的值。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;<span class="attr">name</span>:<span class="string">"ConardLi"</span>&#125;</span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;<span class="attr">age</span>:<span class="number">18</span>&#125;</span><br><span class="line"><span class="keyword">var</span> obj3 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;...&#125;</span><br><span class="line"><span class="keyword">var</span> obj4 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br></pre></td></tr></table></figure>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/28/16afa4df7faa4630?w=2318&amp;h=917&amp;f=png&amp;s=228804" alt=""></p>
+<p><img src="http://www.conardli.top/img/bl/bl_3_heap.png" alt=""></p>
 <blockquote>
 <p>由于内存是有限的，这些变量不可能一直在内存中占用资源，这里推荐下这篇文章<a href="https://juejin.im/post/5cb33660e51d456e811d2687" target="_blank" rel="noopener">JavaScript中的垃圾回收和内存泄漏</a>，这里告诉你<code>JavaScript</code>是如何进行垃圾回收以及可能会发生内存泄漏的一些场景。</p>
 </blockquote>
@@ -324,14 +324,14 @@
 <p>下面我们通过几个操作来对比一下原始类型和引用类型的区别：</p>
 <h3 id="2-3-复制"><a href="#2-3-复制" class="headerlink" title="2.3 复制"></a>2.3 复制</h3><p>当我们把一个变量的值复制到另一个变量上时，原始类型和引用类型的表现是不一样的，先来看看原始类型：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'ConardLi'</span>;</span><br><span class="line"><span class="keyword">var</span> name2 = name;</span><br><span class="line">name2 = <span class="string">'code秘密花园'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(name); <span class="comment">// ConardLi;</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/28/16afa4e25a85befd?w=1962&amp;h=806&amp;f=png&amp;s=77398" alt=""></p>
+<p><img src="http://www.conardli.top/img/bl/bl_4_copy.png" alt=""></p>
 <p>内存中有一个变量<code>name</code>，值为<code>ConardLi</code>。我们从变量<code>name</code>复制出一个变量<code>name2</code>，此时在内存中创建了一个块新的空间用于存储<code>ConardLi</code>，虽然两者值是相同的，但是两者指向的内存空间完全不同，这两个变量参与任何操作都互不影响。</p>
 <p>复制一个引用类型：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">name</span>:<span class="string">'ConardLi'</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = obj;</span><br><span class="line">obj2.name = <span class="string">'code秘密花园'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.name); <span class="comment">// code秘密花园</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/28/16afa4e49b1e49fd?w=2177&amp;h=896&amp;f=png&amp;s=188391" alt=""></p>
+<p><img src="http://www.conardli.top/img/bl/bl_5_copy.png" alt=""></p>
 <p>当我们复制引用类型的变量时，实际上复制的是栈中存储的地址，所以复制出来的<code>obj2</code>实际上和<code>obj</code>指向的堆中同一个对象。因此，我们改变其中任何一个变量的值，另一个变量都会受到影响，这就是为什么会有深拷贝和浅拷贝的原因。</p>
 <h3 id="2-4-比较"><a href="#2-4-比较" class="headerlink" title="2.4 比较"></a>2.4 比较</h3><p>当我们在对两个变量进行比较时，不同类型的变量的表现是不同的：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/28/16afa4e66a7d03ad?w=2182&amp;h=948&amp;f=png&amp;s=197533" alt=""></p>
+<p><img src="http://www.conardli.top/img/bl/bl_6_compare.png" alt=""></p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'ConardLi'</span>;</span><br><span class="line"><span class="keyword">var</span> name2 = <span class="string">'ConardLi'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(name === name2); <span class="comment">// true</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">name</span>:<span class="string">'ConardLi'</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;<span class="attr">name</span>:<span class="string">'ConardLi'</span>&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj === obj2); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
 <p>对于原始类型，比较时会直接比较它们的值，如果值相等，即返回<code>true</code>。</p>
 <p>对于引用类型，比较时会比较它们的引用地址，虽然两个变量在堆中存储的对象具有的属性值都是相等的，但是它们被存储在了不同的存储空间，因此比较值为<code>false</code>。</p>
@@ -348,7 +348,7 @@
 <blockquote>
 <p><code>ECMAScript</code>中所有的函数的参数都是按值传递的。</p>
 </blockquote>
-<h2 id="三、分不清的null和undefined"><a href="#三、分不清的null和undefined" class="headerlink" title="三、分不清的null和undefined"></a>三、分不清的null和undefined</h2><p><img src="https://user-gold-cdn.xitu.io/2019/5/28/16afa4e882db12a5?w=1182&amp;h=479&amp;f=png&amp;s=298855" alt=""></p>
+<h2 id="三、分不清的null和undefined"><a href="#三、分不清的null和undefined" class="headerlink" title="三、分不清的null和undefined"></a>三、分不清的null和undefined</h2><p><img src="http://www.conardli.top/img/bl/bl_7_null.png" alt=""></p>
 <p>在原始类型中，有两个类型<code>Null</code>和<code>Undefined</code>，他们都有且仅有一个值，<code>null</code>和<code>undefined</code>，并且他们都代表无和空，我一般这样区分它们：</p>
 <p><strong>null</strong></p>
 <p>表示被赋值过的对象，刻意把一个对象赋值为<code>null</code>，故意表示其为空，不应有值。</p>
@@ -525,16 +525,16 @@
 <p>若<code>valueOf</code>和<code>toString</code>都不存在，或者没有返回基本类型，则抛出<code>TypeError</code>异常。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  valueOf: <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">'valueOf'</span>); <span class="keyword">return</span> <span class="number">123</span>; &#125;,</span><br><span class="line">  toString: <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">'toString'</span>); <span class="keyword">return</span> <span class="string">'ConardLi'</span>; &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj - <span class="number">1</span>);   <span class="comment">// valueOf   122</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;obj&#125;</span>ConardLi`</span>); <span class="comment">// toString  ConardLiConardLi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj2 = &#123;</span><br><span class="line">  [<span class="built_in">Symbol</span>.toPrimitive]: <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">'toPrimitive'</span>); <span class="keyword">return</span> <span class="number">123</span>; &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj2 - <span class="number">1</span>);   <span class="comment">// valueOf   122</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj3 = &#123;</span><br><span class="line">  valueOf: <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">'valueOf'</span>); <span class="keyword">return</span> &#123;&#125;; &#125;,</span><br><span class="line">  toString: <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">'toString'</span>); <span class="keyword">return</span> &#123;&#125;; &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj3 - <span class="number">1</span>);  </span><br><span class="line"><span class="comment">// valueOf  </span></span><br><span class="line"><span class="comment">// toString</span></span><br><span class="line"><span class="comment">// TypeError</span></span><br></pre></td></tr></table></figure>
 <p>除了程序中的自动拆箱和自动装箱，我们还可以手动进行拆箱和装箱操作。我们可以直接调用包装类型的<code>valueOf</code>或<code>toString</code>，实现拆箱操作：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> name =<span class="keyword">new</span> <span class="built_in">Number</span>(<span class="string">"123"</span>);  </span><br><span class="line"><span class="built_in">console</span>.log( <span class="keyword">typeof</span> name.valueOf() ); <span class="comment">//number</span></span><br><span class="line"><span class="built_in">console</span>.log( <span class="keyword">typeof</span> name.toString() ); <span class="comment">//string</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> num =<span class="keyword">new</span> <span class="built_in">Number</span>(<span class="string">"123"</span>);  </span><br><span class="line"><span class="built_in">console</span>.log( <span class="keyword">typeof</span> num.valueOf() ); <span class="comment">//number</span></span><br><span class="line"><span class="built_in">console</span>.log( <span class="keyword">typeof</span> num.toString() ); <span class="comment">//string</span></span><br></pre></td></tr></table></figure>
 <h2 id="七、类型转换"><a href="#七、类型转换" class="headerlink" title="七、类型转换"></a>七、类型转换</h2><p>因为<code>JavaScript</code>是弱类型的语言，所以类型转换发生非常频繁，上面我们说的装箱和拆箱其实就是一种类型转换。</p>
 <p>类型转换分为两种，隐式转换即程序自动进行的类型转换，强制转换即我们手动进行的类型转换。</p>
 <p>强制转换这里就不再多提及了，下面我们来看看让人头疼的可能发生隐式类型转换的几个场景，以及如何转换：</p>
 <h3 id="7-1-类型转换规则"><a href="#7-1-类型转换规则" class="headerlink" title="7.1 类型转换规则"></a>7.1 类型转换规则</h3><p>如果发生了隐式转换，那么各种类型互转符合下面的规则：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/28/16afa4ead3f835d9?w=1270&amp;h=1096&amp;f=png&amp;s=174199" alt=""></p>
+<p><img src="http://www.conardli.top/img/bl/bl_8_convert.png" alt=""></p>
 <h3 id="7-2-if语句和逻辑语句"><a href="#7-2-if语句和逻辑语句" class="headerlink" title="7.2 if语句和逻辑语句"></a>7.2 if语句和逻辑语句</h3><p>在<code>if</code>语句和逻辑语句中，如果只有单个变量，会先将变量转换为<code>Boolean</code>值，只有下面几种情况会转换成<code>false</code>，其余被转换成<code>true</code>：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="literal">null</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line"><span class="string">''</span></span><br><span class="line"><span class="literal">NaN</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
 <h3 id="7-3-各种运数学算符"><a href="#7-3-各种运数学算符" class="headerlink" title="7.3 各种运数学算符"></a>7.3 各种运数学算符</h3><p>我们在对各种非<code>Number</code>类型运用数学运算符(<code>- * /</code>)时，会先将非<code>Number</code>类型转换为<code>Number</code>类型;</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span> - <span class="literal">true</span> <span class="comment">// 0</span></span><br><span class="line"><span class="number">1</span> - <span class="literal">null</span> <span class="comment">//  1</span></span><br><span class="line"><span class="number">1</span> * <span class="literal">undefined</span> <span class="comment">//  NaN</span></span><br><span class="line"><span class="number">1</span> - &#123;&#125;  <span class="comment">//  1</span></span><br><span class="line"><span class="number">2</span> * [<span class="string">'5'</span>] <span class="comment">//  10</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span> - <span class="literal">true</span> <span class="comment">// 0</span></span><br><span class="line"><span class="number">1</span> - <span class="literal">null</span> <span class="comment">//  1</span></span><br><span class="line"><span class="number">1</span> * <span class="literal">undefined</span> <span class="comment">//  NaN</span></span><br><span class="line"><span class="number">2</span> * [<span class="string">'5'</span>] <span class="comment">//  10</span></span><br></pre></td></tr></table></figure>
 <p>注意<code>+</code>是个例外，执行<code>+</code>操作符时：</p>
 <ul>
 <li>1.当一侧为<code>String</code>类型，被识别为字符串拼接，并会优先将另一侧转换为字符串类型。</li>
@@ -601,7 +601,7 @@
 <li>4.所有引用类型<code>__proto__</code>值指向它构造函数的<code>prototype</code></li>
 <li>5.当试图得到一个对象的属性时，如果变量本身没有这个属性，则会去他的<code>__proto__</code>中去找</li>
 </ul>
-<p><code>[] instanceof Array</code>实际上是判断<code>Foo.prototype</code>是否在<code>[]</code>的原型链上。</p>
+<p><code>[] instanceof Array</code>实际上是判断<code>Array.prototype</code>是否在<code>[]</code>的原型链上。</p>
 <p>所以，使用<code>instanceof</code>来检测数据类型，不会很准确，这不是它设计的初衷：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">[] <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">// true</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;  <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <p>另外，使用<code>instanceof</code>也不能检测基本数据类型，所以<code>instanceof</code>并不是一个很好的选择。</p>
@@ -612,7 +612,7 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line">obj.toString() <span class="comment">// [object Object]</span></span><br></pre></td></tr></table></figure>
 <p>注意，上面提到了<code>如果此方法在自定义对象中未被覆盖</code>，<code>toString</code>才会达到预想的效果，事实上，大部分引用类型比如<code>Array、Date、RegExp</code>等都重写了<code>toString</code>方法。</p>
 <p>我们可以直接调用<code>Object</code>原型上未被覆盖的<code>toString()</code>方法，使用<code>call</code>来改变<code>this</code>指向来达到我们想要的效果。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/28/16afa4ee855cfa98?w=1038&amp;h=936&amp;f=png&amp;s=223768" alt=""></p>
+<p><img src="http://www.conardli.top/img/bl/bl_9_jc.png" alt=""></p>
 <h3 id="8-4-jquery"><a href="#8-4-jquery" class="headerlink" title="8.4 jquery"></a>8.4 jquery</h3><p>我们来看看<code>jquery</code>源码中如何进行类型判断：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> class2type = &#123;&#125;;</span><br><span class="line">jQuery.each( <span class="string">"Boolean Number String Function Array Date RegExp Object Error Symbol"</span>.split( <span class="string">" "</span> ),</span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"> i, name </span>) </span>&#123;</span><br><span class="line">	class2type[ <span class="string">"[object "</span> + name + <span class="string">"]"</span> ] = name.toLowerCase();</span><br><span class="line">&#125; );</span><br><span class="line"></span><br><span class="line">type: <span class="function"><span class="keyword">function</span>(<span class="params"> obj </span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> ( obj == <span class="literal">null</span> ) &#123;</span><br><span class="line">		<span class="keyword">return</span> obj + <span class="string">""</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">typeof</span> obj === <span class="string">"object"</span> || <span class="keyword">typeof</span> obj === <span class="string">"function"</span> ?</span><br><span class="line">		class2type[<span class="built_in">Object</span>.prototype.toString.call(obj) ] || <span class="string">"object"</span> :</span><br><span class="line">		<span class="keyword">typeof</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">isFunction: <span class="function"><span class="keyword">function</span>(<span class="params"> obj </span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> jQuery.type(obj) === <span class="string">"function"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>原始类型直接使用<code>typeof</code>，引用类型使用<code>Object.prototype.toString.call</code>取得类型，借助一个<code>class2type</code>对象将字符串多余的代码过滤掉，例如<code>[object function]</code>将得到<code>array</code>，然后在后面的类型判断，如<code>isFunction</code>直接可以使用<code>jQuery.type(obj) === &quot;function&quot;</code>这样的判断。</p>
@@ -639,7 +639,7 @@
 
 
 
-    <a data-url="www.conardli.top/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" data-id="cjw78g3vp0000fs0dyi2v2v3q" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="www.conardli.top/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" data-id="cjwdefln70001pw88iybclbrf" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -815,7 +815,7 @@
                             <a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="thumbnail">
     
     
-        <span style="background-image:url(https://user-gold-cdn.xitu.io/2019/5/28/16afa4daf89c565e?w=1482&amp;h=584&amp;f=png&amp;s=55263)" alt="【JS进阶】你真的掌握变量和类型了吗" class="thumbnail-image"></span>
+        <span style="background-image:url(http://www.conardli.top/img/bl/bl_1_stack.png)" alt="【JS进阶】你真的掌握变量和类型了吗" class="thumbnail-image"></span>
     
     
 </a>
@@ -855,7 +855,7 @@
                             <a href="/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" class="thumbnail">
     
     
-        <span style="background-image:url(https://user-gold-cdn.xitu.io/2019/5/4/16a83669b12c799b?w=797&amp;h=556&amp;f=gif&amp;s=3341344)" alt="【特效】看完这篇，你也可以实现一个360度全景插件" class="thumbnail-image"></span>
+        <span style="background-image:url(http://conardli.top/img/qj/qj_15_qj.gif)" alt="【特效】看完这篇，你也可以实现一个360度全景插件" class="thumbnail-image"></span>
     
     
 </a>

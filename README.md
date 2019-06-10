@@ -22,6 +22,7 @@
 ### 多端开发
 
 - [【多端开发】移动端适配总结](http://www.conardli.top/2019/05/17/%E3%80%90%E5%A4%9A%E7%AB%AF%E5%BC%80%E5%8F%91%E3%80%91%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%80%BB%E7%BB%93/)
+- [【多端开发】用JS开发跨平台桌面应用，从原理到实践](http://www.conardli.top/2019/06/10/%E3%80%90%E5%A4%9A%E7%AB%AF%E5%BC%80%E5%8F%91%E3%80%91%E7%94%A8JS%E5%BC%80%E5%8F%91%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%EF%BC%8C%E4%BB%8E%E5%8E%9F%E7%90%86%E5%88%B0%E5%AE%9E%E8%B7%B5/)
 - [【多端开发】程序保护措施（崩溃监控，开机自启，托盘关闭）](http://www.conardli.top/2018/11/07/%E3%80%90electron%E3%80%91electron%E7%A8%8B%E5%BA%8F%E4%BF%9D%E6%8A%A4%E6%8E%AA%E6%96%BD%EF%BC%88%E5%B4%A9%E6%BA%83%E7%9B%91%E6%8E%A7%EF%BC%8C%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%EF%BC%8C%E6%89%98%E7%9B%98%E5%85%B3%E9%97%AD%EF%BC%89/)
 - [【多端开发】使用electron静默打印](http://www.conardli.top/2018/11/01/%E3%80%90electron%E3%80%91%E4%BD%BF%E7%94%A8electron%E9%9D%99%E9%BB%98%E6%89%93%E5%8D%B0/)
 - [【多端开发】指令控制 windows 电源选项](http://www.conardli.top/2018/12/17/%E3%80%90electron%E3%80%91%E6%8C%87%E4%BB%A4%E6%8E%A7%E5%88%B6-windows-%E7%94%B5%E6%BA%90%E9%80%89%E9%A1%B9/)

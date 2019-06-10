@@ -21,7 +21,7 @@
 <meta property="og:description" content="1.使用electron打印的理由很多情况下程序中使用的打印都是用户无感知的。并且想要灵活的控制打印内容，往往需要借助打印机给我们提供的api再进行开发，这种开发方式非常繁琐，并且开发难度较大。 electron提供的打印api可以非常灵活的控制打印设置的显示，并且可以通过html来书写打印内容。 2.apielectron提供了两种方式进行打印，一种是直接调用打印机打印，一种是打印到pdf。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="/img/2.jpg">
-<meta property="og:updated_time" content="2019-06-03T14:46:46.740Z">
+<meta property="og:updated_time" content="2019-06-10T12:46:20.434Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用electron静默打印">
 <meta name="twitter:description" content="1.使用electron打印的理由很多情况下程序中使用的打印都是用户无感知的。并且想要灵活的控制打印内容，往往需要借助打印机给我们提供的api再进行开发，这种开发方式非常繁琐，并且开发难度较大。 electron提供的打印api可以非常灵活的控制打印设置的显示，并且可以通过html来书写打印内容。 2.apielectron提供了两种方式进行打印，一种是直接调用打印机打印，一种是打印到pdf。">
@@ -281,7 +281,13 @@
 <p>我们可以通过一项css配置来解决这个问题,即<code>@page</code>:</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line">@<span class="keyword">page</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>通过此配置可灵活配置打印边距。</p>
-<p>还有一个css属性<figure class="highlight plain"><figcaption><span>print &#123;&#125;```  此配置是只有在打印时才生效的css，控制的是打印边距以内的css，并不能控制打印边距。</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"># 4.打印方案</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">使用webcontent打印，首先要有一个打印窗口，这个窗口不能随时打印随时创建，比较耗费性能。可以将它在程序运行时启动好，并做好事件监听。</span><br><span class="line"></span><br><span class="line">此过程需和调用打印的进行做好通信：大致过程如下：</span><br><span class="line"></span><br><span class="line">![image](http://on-img.com/chart_image/5badf135e4b0fe81b64ad7b9.png)</span><br><span class="line"></span><br><span class="line">可见通信非常繁琐</span><br><span class="line"></span><br><span class="line">使用webview进行打印可实现同样的效果但是通信方式会变得简单，因为渲染进程和webview通信不需要经过主进程，通过如下方式即可：</span><br><span class="line"></span><br><span class="line">```js</span><br><span class="line">// In embedder page.</span><br><span class="line">  const webview = document.querySelector(&apos;webview&apos;)</span><br><span class="line">  webview.addEventListener(&apos;ipc-message&apos;, (event) =&gt; &#123;</span><br><span class="line">    console.log(event.channel)</span><br><span class="line">    // Prints &quot;pong&quot;</span><br><span class="line">  &#125;)</span><br><span class="line">  webview.send(&apos;ping&apos;)</span><br><span class="line">Copy</span><br></pre></td></tr></table></figure></p>
+<p>还有一个css属性<code>@media print {}</code>  此配置是只有在打印时才生效的css，控制的是打印边距以内的css，并不能控制打印边距。</p>
+<h1 id="4-打印方案"><a href="#4-打印方案" class="headerlink" title="4.打印方案"></a>4.打印方案</h1><p>使用webcontent打印，首先要有一个打印窗口，这个窗口不能随时打印随时创建，比较耗费性能。可以将它在程序运行时启动好，并做好事件监听。</p>
+<p>此过程需和调用打印的进行做好通信：大致过程如下：</p>
+<p><img src="http://on-img.com/chart_image/5badf135e4b0fe81b64ad7b9.png" alt="image"></p>
+<p>可见通信非常繁琐</p>
+<p>使用webview进行打印可实现同样的效果但是通信方式会变得简单，因为渲染进程和webview通信不需要经过主进程，通过如下方式即可：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// In embedder page.</span></span><br><span class="line">  <span class="keyword">const</span> webview = <span class="built_in">document</span>.querySelector(<span class="string">'webview'</span>)</span><br><span class="line">  webview.addEventListener(<span class="string">'ipc-message'</span>, (event) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(event.channel)</span><br><span class="line">    <span class="comment">// Prints "pong"</span></span><br><span class="line">  &#125;)</span><br><span class="line">  webview.send(<span class="string">'ping'</span>)</span><br><span class="line">Copy</span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 在访客页。</span></span><br><span class="line">  <span class="keyword">const</span> &#123;ipcRenderer&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br><span class="line">  ipcRenderer.on(<span class="string">'ping'</span>, () =&gt; &#123;</span><br><span class="line">    ipcRenderer.sendToHost(<span class="string">'pong'</span>)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
 <h1 id="5-示例程序"><a href="#5-示例程序" class="headerlink" title="5.示例程序"></a>5.示例程序</h1><p>示例demo：<a href="https://github.com/ConardLi/electron-print-demo" target="_blank" rel="noopener">https://github.com/ConardLi/electron-print-demo</a></p>
 
@@ -291,7 +297,7 @@
 
 
 
-    <a data-url="www.conardli.top/2018/11/01/【多端开发】使用electron静默打印/" data-id="cjwnmdk1a000gts0df00eazp4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="www.conardli.top/2018/11/01/【多端开发】使用electron静默打印/" data-id="cjwqdftqt000n6q0dycsj6b3q" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -386,7 +392,7 @@
   <div id="article-toc-inner">
     <strong class="sidebar-title">
       目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-使用electron打印的理由"><span class="toc-text">1.使用electron打印的理由</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-api"><span class="toc-text">2.api</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-print"><span class="toc-text">2.1 print</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-printToPdf"><span class="toc-text">2.2 printToPdf</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-打印边距问题"><span class="toc-text">3.打印边距问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-示例程序"><span class="toc-text">5.示例程序</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-使用electron打印的理由"><span class="toc-text">1.使用electron打印的理由</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-api"><span class="toc-text">2.api</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-print"><span class="toc-text">2.1 print</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-printToPdf"><span class="toc-text">2.2 printToPdf</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-打印边距问题"><span class="toc-text">3.打印边距问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-打印方案"><span class="toc-text">4.打印方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-示例程序"><span class="toc-text">5.示例程序</span></a></li></ol>
   </div>
 </aside>`
             document.getElementById('tocbtn').innerHTML = '关闭目录'
@@ -474,6 +480,26 @@
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/" class="thumbnail">
+    
+    
+        <span style="background-image:url(./img/electron/el_1_app.jpg)" alt="【多端开发】用JS开发跨平台桌面应用，从原理到实践" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/" class="title">【多端开发】用JS开发跨平台桌面应用，从原理到实践</a></p>
+                            <p class="item-date"><time datetime="2019-06-10T12:45:35.000Z" itemprop="datePublished">2019-06-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="thumbnail">
     
     
@@ -551,26 +577,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2019/04/17/【React深入】深入分析虚拟DOM的渲染原理和特性/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/react11.png)" alt="【React深入】深入分析虚拟DOM的渲染原理和特性" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2019/04/17/【React深入】深入分析虚拟DOM的渲染原理和特性/" class="title">【React深入】深入分析虚拟DOM的渲染原理和特性</a></p>
-                            <p class="item-date"><time datetime="2019-04-17T03:15:27.000Z" itemprop="datePublished">2019-04-17</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -581,7 +587,7 @@
     <div class="">
         <h3 class="widget-title">标签</h3>
         <div class="widget widget-wrap-inn">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/electron/">electron</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多端开发/">多端开发</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习提升/">学习提升</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器和网络/">浏览器和网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特效/">特效</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/electron/">electron</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多端开发/">多端开发</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习提升/">学习提升</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器和网络/">浏览器和网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特效/">特效</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 </div>
@@ -600,7 +606,7 @@
 <div class="widget-wrap widget-list">
     <h3 class="widget-title">归档</h3>
     <div class="widget  widget-wrap-inn">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
 </div>
 

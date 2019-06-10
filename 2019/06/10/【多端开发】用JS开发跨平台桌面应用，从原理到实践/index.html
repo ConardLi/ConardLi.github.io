@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>【多端开发】用JS开发跨平台桌面应用，从原理到实践 | 李世奇的技术专栏</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="electron,多端开发" />
+    
+    <meta name="description" content="导读使用Electron开发客户端程序已经有一段时间了，整体感觉还是非常不错的，其中也遇到了一些坑点，本文旨在从【运行原理】到【实际应用】对Electron进行一次系统性的总结。【多图，长文预警～】 本文所有实例代码均在我的github electron-react上，结合代码阅读文章效果更佳。另外electron-react还可作为使用Electron + React  + Mobx + Web">
+<meta name="keywords" content="electron,多端开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【多端开发】用JS开发跨平台桌面应用，从原理到实践">
+<meta property="og:url" content="www.conardli.top/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/index.html">
+<meta property="og:site_name" content="李世奇的技术专栏">
+<meta property="og:description" content="导读使用Electron开发客户端程序已经有一段时间了，整体感觉还是非常不错的，其中也遇到了一些坑点，本文旨在从【运行原理】到【实际应用】对Electron进行一次系统性的总结。【多图，长文预警～】 本文所有实例代码均在我的github electron-react上，结合代码阅读文章效果更佳。另外electron-react还可作为使用Electron + React  + Mobx + Web">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="www.conardli.top/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/img/electron/el_1_app.jpg">
+<meta property="og:updated_time" content="2019-06-10T12:47:13.673Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【多端开发】用JS开发跨平台桌面应用，从原理到实践">
+<meta name="twitter:description" content="导读使用Electron开发客户端程序已经有一段时间了，整体感觉还是非常不错的，其中也遇到了一些坑点，本文旨在从【运行原理】到【实际应用】对Electron进行一次系统性的总结。【多图，长文预警～】 本文所有实例代码均在我的github electron-react上，结合代码阅读文章效果更佳。另外electron-react还可作为使用Electron + React  + Mobx + Web">
+<meta name="twitter:image" content="www.conardli.top/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/img/electron/el_1_app.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://mp.weixin.qq.com/s/dYZEHTgqvxGV7mL99JuxRQ">关于</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://github.com/ConardLi/ConardLi.github.io">更新日志</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <style>
+    #article-toc.fixed {
+        position: fixed;
+        top: 30px;
+        bottom: 30px;
+        left: 32px;
+        padding-top: 15px;
+        z-index: 9999;
+        background-color: antiquewhite;
+        width: 200px;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid rgb(122, 122, 122);
+        opacity: 0.8;
+    }
+
+    #article-toc-inner {
+        padding: 10px;
+        width: 200px;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .toc-level-3 {
+        margin-left: 20px;
+    }
+
+    #article-toc a {
+        text-decoration: none;
+        color: #333;
+        padding: 3px 0;
+        color: #000;
+        font-weight: normal;
+    }
+
+    .toc-item {
+        line-height: 30px;
+        list-style-type: initial;
+    }
+
+    #tocbtn {
+        position: fixed;
+        top: 30%;
+        left: 0px;
+        padding: 5px 2px;
+        width: 18px;
+        word-wrap: break-word;
+        background-color: rgb(242, 245, 247);
+        box-shadow: rgba(118, 118, 118, 0.11) 2px 0px 5px 0px;
+        opacity: 1;
+        height: 94px;
+        line-height: 16px;
+        text-align: center;
+        top: 33%;
+        width: 30px;
+        z-index: 1000000001;
+        cursor: pointer;
+        border-radius: 0px 4px 4px 0px;
+        border-width: 1px 1px 1px;
+        border-style: solid solid solid none;
+        border-color: rgb(224, 228, 231) rgb(224, 228, 231) rgb(224, 228, 231);
+        border-image: initial;
+        border-left: none;
+        padding: 6px;
+        transition: right 0.4s ease-in 0.3s, opacity 0.5s ease-in 0.3s;
+    }
+</style>
+
+<article id="post-【多端开发】用JS开发跨平台桌面应用，从原理到实践"
+    class="article article-single article-type-post"
+    itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        <header class="article-header">
+            
+    
+        <h1 class="article-title" itemprop="name">
+        【多端开发】用JS开发跨平台桌面应用，从原理到实践
+        </h1>
+    
+
+        </header>
+        
+        
+        <div class="article-meta">
+            
+    <div class="article-date">
+        <a href="/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/" class="article-date">
+            <time datetime="2019-06-10T12:45:35.000Z" itemprop="datePublished">2019-06-10</time>
+        </a>
+    </div>
+
+            
+
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/electron/">electron</a>, <a class="tag-link" href="/tags/多端开发/">多端开发</a>
+    </div>
+
+            <span id="busuanzi_container_page_pv" style="position: relative;float: right;">
+                本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+            </span>
+        </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><p>使用<code>Electron</code>开发客户端程序已经有一段时间了，整体感觉还是非常不错的，其中也遇到了一些坑点，本文旨在从【运行原理】到【实际应用】对<code>Electron</code>进行一次系统性的总结。【多图，长文预警～】</p>
+<p>本文所有实例代码均在我的<a href="https://github.com/ConardLi/electron-react" target="_blank" rel="noopener">github electron-react</a>上，结合代码阅读文章效果更佳。另外<code>electron-react</code>还可作为使用<code>Electron + React  + Mobx + Webpack</code>技术栈的脚手架工程。</p>
+<h2 id="一、桌面应用程序"><a href="#一、桌面应用程序" class="headerlink" title="一、桌面应用程序"></a>一、桌面应用程序</h2><p><img src="./img/electron/el_1_app.jpg" alt=""></p>
+<blockquote>
+<p>桌面应用程序，又称为 GUI 程序（Graphical User Interface），但是和 GUI 程序也有一些区别。桌面应用程序 将 GUI 程序从GUI 具体为“桌面”，使冷冰冰的像块木头一样的电脑概念更具有 人性化，更生动和富有活力。</p>
+</blockquote>
+<p>我们电脑上使用的各种客户端程序都属于桌面应用程序，近年来<code>WEB</code>和移动端的兴起让桌面程序渐渐暗淡，但是在某些日常功能或者行业应用中桌面应用程序仍然是必不可少的。</p>
+<p>传统的桌面应用开发方式，一般是下面两种：</p>
+<h3 id="1-1-原生开发"><a href="#1-1-原生开发" class="headerlink" title="1.1 原生开发"></a>1.1 原生开发</h3><p>直接将语言编译成可执行文件，直接调用系统<code>API</code>，完成UI绘制等。这类开发技术，有着较高的运行效率，但一般来说，开发速度较慢，技术要求较高，例如：</p>
+<ul>
+<li>使用<code>C++ / MFC</code>开发<code>Windows</code>应用</li>
+<li>使用<code>Objective-C</code>开发<code>MAC</code>应用</li>
+</ul>
+<h3 id="1-2-托管平台"><a href="#1-2-托管平台" class="headerlink" title="1.2 托管平台"></a>1.2 托管平台</h3><p>一开始就有本地开发和UI开发。一次编译后，得到中间文件，通过平台或虚机完成二次加载编译或解释运行。运行效率低于原生编译，但平台优化后，其效率也是比较可观的。就开发速度方面，比原生编译技术要快一些。例如：</p>
+<ul>
+<li>使用<code>C# / .NET Framework</code>(只能开发<code>Windows应用</code>)</li>
+<li><code>Java / Swing</code></li>
+</ul>
+<p>不过，上面两种对前端开发人员太不友好了，基本是前端人员不会设计的领域，但是在这个【大前端😅】的时代，前端开发者正在想方设法涉足各个领域，使用<code>WEB</code>技术开发客户端的方式横空出世。</p>
+<h3 id="1-3-WEB开发"><a href="#1-3-WEB开发" class="headerlink" title="1.3 WEB开发"></a>1.3 WEB开发</h3><p>使用<code>WEB</code>技术进行开发，利用浏览器引擎完成<code>UI</code>渲染，利用<code>Node.js</code>实现服务器端<code>JS</code>编程并可以调用系统<code>API</code>，可以把它想像成一个套了一个客户端外壳的<code>WEB</code>应用。</p>
+<p>在界面上，<code>WEB</code>的强大生态为<code>UI</code>带来了无限可能，并且开发、维护成本相对较低，有<code>WEB</code>开发经验的前端开发者很容易上手进行开发。</p>
+<p>本文就来着重介绍使用<code>WEB</code>技术开发客户端程序的技术之一【<code>electron</code>】</p>
+<h2 id="二、Electron"><a href="#二、Electron" class="headerlink" title="二、Electron"></a>二、Electron</h2><p><img src="./img/electron/el_2_electron.jpg" alt=""></p>
+<p><code>Electron</code>是由<code>Github</code>开发，用<code>HTML，CSS</code>和<code>JavaScript</code>来构建跨平台桌面应用程序的一个开源库。 <code>Electron</code>通过将<code>Chromium</code>和<code>Node.js</code>合并到同一个运行时环境中，并将其打包为<code>Mac，Windows</code>和<code>Linux</code>系统下的应用来实现这一目的。</p>
+<p><a href="https://electronjs.org/docs" target="_blank" rel="noopener">https://electronjs.org/docs</a></p>
+<p><a href="https://juejin.im/post/5c67619351882562276c3162#heading-5" target="_blank" rel="noopener">https://juejin.im/post/5c67619351882562276c3162#heading-5</a></p>
+<h3 id="2-1-使用Electron开发的理由："><a href="#2-1-使用Electron开发的理由：" class="headerlink" title="2.1 使用Electron开发的理由："></a>2.1 使用Electron开发的理由：</h3><ul>
+<li>1.使用具有强大生态的<code>Web</code>技术进行开发，开发成本低，可扩展性强，更炫酷的<code>UI</code></li>
+<li>2.跨平台，一套代码可打包为<code>Windows、Linux、Mac</code>三套软件，且编译快速</li>
+<li>3.可直接在现有<code>Web</code>应用上进行扩展，提供浏览器不具备的能力</li>
+<li>4.你是一个前端👨‍💻～</li>
+</ul>
+<p>当然，我们也要认清它的缺点：性能比原生桌面应用要低，最终打包后的安装包和其他文件都比较大。</p>
+<h3 id="2-2-开发体验"><a href="#2-2-开发体验" class="headerlink" title="2.2 开发体验"></a>2.2 开发体验</h3><p><strong>兼容性</strong></p>
+<p>虽然你还在用<code>WEB</code>技术进行开发，但是你不用再考虑兼容性问题了，你只需要关心你当前使用<code>Electron</code>的版本对应<code>Chrome</code>的版本，一般情况下它已经足够新来让你使用最新的<code>API</code>和语法了，你还可以手动升级<code>Chrome</code>版本。同样的，你也不用考虑不同浏览器带了的样式和代码兼容问题。</p>
+<p><strong>Node环境</strong></p>
+<p>这可能是很多前端开发者曾经梦想过的功能，在<code>WEB</code>界面中使用<code>Node.js</code>提供的强大<code>API</code>，这意味着你在<code>WEB</code>页面直接可以操作文件，调用系统<code>API</code>，甚至操作数据库。当然，除了完整的<code>Node API</code>，你还可以使用额外的几十万个<code>npm</code>模块。</p>
+<p><strong>跨域</strong></p>
+<p>你可以直接使用<code>Node</code>提供的<code>request</code>模块进行网络请求，这意味着你无需再被跨域所困扰。</p>
+<p><strong>强大的扩展性</strong></p>
+<p>借助<code>node-ffi</code>，为应用程序提供强大的扩展性（后面的章节会详细介绍）。</p>
+<h3 id="2-3-谁在用Electron"><a href="#2-3-谁在用Electron" class="headerlink" title="2.3 谁在用Electron"></a>2.3 谁在用Electron</h3><p><img src="./img/electron/el_6_apps.png" alt=""></p>
+<p>现在市面上已经有非常多的应用在使用<code>electron</code>进行开发了，包括我们熟悉的<code>VS Code</code>客户端、<code>GitHub</code>客户端、<code>Atom</code>客户端等等。印象很深的，去年迅雷在发布迅雷X<code>10.1</code>时的文案：</p>
+<blockquote>
+<p>从迅雷X 10.1版本开始，我们采用Electron软件框架完全重写了迅雷主界面。使用新框架的迅雷X可以完美支持2K、4K等高清显示屏，界面中的文字渲染也更加清晰锐利。从技术层面来说，新框架的界面绘制、事件处理等方面比老框架更加灵活高效，因此界面的流畅度也显著优于老框架的迅雷。至于具体提升有多大？您一试便知。</p>
+</blockquote>
+<p>你可以打开<code>VS Code</code>，点击【帮助】【切换开发人员工具】来<code>VS Code</code>客户端的界面。</p>
+<p><img src="./img/electron/el_5_vscode.png" alt=""></p>
+<h2 id="三、Electron运行原理"><a href="#三、Electron运行原理" class="headerlink" title="三、Electron运行原理"></a>三、Electron运行原理</h2><p><img src="./img/electron/el_3_composition.png" alt=""></p>
+<p><code>Electron</code> 结合了 <code>Chromium</code>、<code>Node.js</code> 和用于调用操作系统本地功能的<code>API</code>。</p>
+<h3 id="3-1-Chromium"><a href="#3-1-Chromium" class="headerlink" title="3.1 Chromium"></a>3.1 Chromium</h3><p><code>Chromium</code>是<code>Google</code>为发展<code>Chrome</code>浏览器而启动的开源项目，<code>Chromium</code>相当于<code>Chrome</code>的工程版或称实验版，新功能会率先在<code>Chromium</code>上实现，待验证后才会应用在<code>Chrome</code>上，故<code>Chrome</code>的功能会相对落后但较稳定。</p>
+<p><code>Chromium</code>为<code>Electron</code>提供强大的<code>UI</code>能力，可以在不考虑兼容性的情况下开发界面。</p>
+<h3 id="3-2-Node-js"><a href="#3-2-Node-js" class="headerlink" title="3.2 Node.js"></a>3.2 Node.js</h3><p><code>Node.js</code>是一个让<code>JavaScript</code>运行在服务端的开发平台，<code>Node</code>使用事件驱动，非阻塞<code>I/O</code>模型而得以轻量和高效。</p>
+<p>单单靠<code>Chromium</code>是不能具备直接操作原生<code>GUI</code>能力的，<code>Electron</code>内集成了<code>Nodejs</code>，这让其在开发界面的同时也有了操作系统底层<code>API</code>的能力，<code>Nodejs</code> 中常用的 <code>Path、fs、Crypto</code> 等模块在 <code>Electron</code> 可以直接使用。</p>
+<h3 id="3-3-系统API"><a href="#3-3-系统API" class="headerlink" title="3.3 系统API"></a>3.3 系统API</h3><p>为了提供原生系统的<code>GUI</code>支持，<code>Electron</code>内置了原生应用程序接口，对调用一些系统功能，如调用系统通知、打开系统文件夹提供支持。</p>
+<p>在开发模式上，<code>Electron</code>在调用系统<code>API</code>和绘制界面上是分离开发的，下面我们来看看<code>Electron</code>关于进程如何划分。</p>
+<h3 id="3-4-主进程"><a href="#3-4-主进程" class="headerlink" title="3.4 主进程"></a>3.4 主进程</h3><p><code>Electron</code>区分了两种进程：主进程和渲染进程，两者各自负责自己的职能。</p>
+<p><img src="./img/electron/el_7_process.png" alt=""></p>
+<p><code>Electron</code> 运行<code>package.json</code>的 <code>main</code> 脚本的进程被称为主进程。一个 <code>Electron</code> 应用总是有且只有一个主进程。</p>
+<p><strong>职责:</strong></p>
+<ul>
+<li>创建渲染进程（可多个）</li>
+<li>控制了应用生命周期（启动、退出<code>APP</code>以及对<code>APP</code>做一些事件监听）</li>
+<li>调用系统底层功能、调用原生资源</li>
+</ul>
+<p><strong>可调用的API:</strong></p>
+<ul>
+<li><code>Node.js API</code></li>
+<li><code>Electron</code>提供的主进程<code>API</code>（包括一些系统功能和<code>Electron</code>附加功能）</li>
+</ul>
+<h3 id="3-5-渲染进程"><a href="#3-5-渲染进程" class="headerlink" title="3.5 渲染进程"></a>3.5 渲染进程</h3><p>由于 <code>Electron</code> 使用了 <code>Chromium</code> 来展示 <code>web</code> 页面，所以 <code>Chromium</code> 的多进程架构也被使用到。 每个<code>Electron</code> 中的 <code>web</code>页面运行在它自己的渲染进程中。</p>
+<blockquote>
+<p>主进程使用 BrowserWindow 实例创建页面。 每个 BrowserWindow 实例都在自己的渲染进程里运行页面。 当一个 BrowserWindow 实例被销毁后，相应的渲染进程也会被终止。</p>
+</blockquote>
+<p>你可以把渲染进程想像成一个浏览器窗口，它能存在多个并且相互独立，不过和浏览器不同的是，它能调用<code>Node API</code>。</p>
+<p><strong>职责:</strong></p>
+<ul>
+<li>用<code>HTML</code>和<code>CSS</code>渲染界面</li>
+<li>用<code>JavaScript</code>做一些界面交互</li>
+</ul>
+<p><strong>可调用的API:</strong></p>
+<ul>
+<li><code>DOM API</code></li>
+<li><code>Node.js API</code></li>
+<li><code>Electron</code>提供的渲染进程<code>API</code></li>
+</ul>
+<h2 id="四、Electron基础"><a href="#四、Electron基础" class="headerlink" title="四、Electron基础"></a>四、Electron基础</h2><h3 id="4-1-Electron-API"><a href="#4-1-Electron-API" class="headerlink" title="4.1 Electron API"></a>4.1 Electron API</h3><p>在上面的章节我们提到，渲染进和主进程分别可调用的<code>Electron API</code>。所有<code>Electron</code>的<code>API</code>都被指派给一种进程类型。 许多<code>API</code>只能被用于主进程中，有些<code>API</code>又只能被用于渲染进程，又有一些主进程和渲染进程中都可以使用。</p>
+<p>你可以通过如下方式获取<code>Electron API</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; BrowserWindow, ... &#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br></pre></td></tr></table></figure>
+<p>下面是一些常用的<code>Electron API</code>：</p>
+<p><img src="./img/electron/el_8_api.png" alt=""></p>
+<p>在后面的章节我们会选择其中常用的模块进行详细介绍。</p>
+<h3 id="4-2-使用-Node-js-的-API"><a href="#4-2-使用-Node-js-的-API" class="headerlink" title="4.2 使用 Node.js 的 API"></a>4.2 使用 Node.js 的 API</h3><p><img src="./img/electron/el_9_node.png" alt=""></p>
+<p>你可以同时在<code>Electron</code>的主进程和渲染进程使用<code>Node.js API</code>，)所有在<code>Node.js</code>可以使用的<code>API</code>，在<code>Electron</code>中同样可以使用。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;shell&#125; <span class="keyword">from</span> <span class="string">'electron'</span>;</span><br><span class="line"><span class="keyword">import</span> os <span class="keyword">from</span> <span class="string">'os'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>).addEventListener(<span class="string">'click'</span>, () =&gt; &#123; </span><br><span class="line">  shell.showItemInFolder(os.homedir());</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>有一个非常重要的提示: 原生Node.js模块 (即指，需要编译源码过后才能被使用的模块) 需要在编译后才能和Electron一起使用。</p>
+</blockquote>
+<h3 id="4-3-进程通信"><a href="#4-3-进程通信" class="headerlink" title="4.3 进程通信"></a>4.3 进程通信</h3><p>主进程和渲染进程虽然拥有不同的职责，然是他们也需要相互协作，互相通讯。</p>
+<blockquote>
+<p>例如：在<code>web</code>页面管理原生<code>GUI</code>资源是很危险的，会很容易泄露资源。所以在<code>web</code>页面，不允许直接调用原生<code>GUI</code>相关的<code>API</code>。渲染进程如果想要进行原生的<code>GUI</code>操作，就必须和主进程通讯，请求主进程来完成这些操作。</p>
+</blockquote>
+<p><img src="./img/electron/el_10_ipc.gif" alt=""></p>
+<h3 id="4-4-渲染进程向主进程通信"><a href="#4-4-渲染进程向主进程通信" class="headerlink" title="4.4 渲染进程向主进程通信"></a>4.4 渲染进程向主进程通信</h3><p><code>ipcRenderer</code> 是一个 <code>EventEmitter</code> 的实例。 你可以使用它提供的一些方法从渲染进程发送同步或异步的消息到主进程。 也可以接收主进程回复的消息。</p>
+<p>在渲染进程引入<code>ipcRenderer</code>：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ipcRenderer &#125; <span class="keyword">from</span> <span class="string">'electron'</span>;</span><br></pre></td></tr></table></figure>
+<p>异步发送：</p>
+<p>通过 <code>channel</code> 发送同步消息到主进程，可以携带任意参数。 </p>
+<blockquote>
+<p>在内部，参数会被序列化为 <code>JSON</code>，因此参数对象上的函数和原型链不会被发送。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">ipcRenderer.send(<span class="string">'sync-render'</span>, <span class="string">'我是来自渲染进程的异步消息'</span>);</span><br></pre></td></tr></table></figure>
+<p>同步发送：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> msg = ipcRenderer.sendSync(<span class="string">'async-render'</span>, <span class="string">'我是来自渲染进程的同步消息'</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意: 发送同步消息将会阻塞整个渲染进程，直到收到主进程的响应。</p>
+</blockquote>
+<p>主进程监听消息：</p>
+<p><code>ipcMain</code>模块是<code>EventEmitter</code>类的一个实例。 当在主进程中使用时，它处理从渲染器进程（网页）发送出来的异步和同步信息。 从渲染器进程发送的消息将被发送到该模块。</p>
+<p><code>ipcMain.on</code>：监听 <code>channel</code>，当接收到新的消息时 <code>listener</code> 会以 <code>listener(event, args...)</code> 的形式被调用。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">ipcMain.on(<span class="string">'sync-render'</span>, (event, data) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="4-5-主进程向渲染进程通信"><a href="#4-5-主进程向渲染进程通信" class="headerlink" title="4.5 主进程向渲染进程通信"></a>4.5 主进程向渲染进程通信</h3><p><a href="https://imweb.io/topic/5b13a663d4c96b9b1b4c4e9c" target="_blank" rel="noopener">https://imweb.io/topic/5b13a663d4c96b9b1b4c4e9c</a></p>
+<p>在主进程中可以通过<code>BrowserWindow</code>的<code>webContents</code>向渲染进程发送消息，所以，在发送消息前你必须先找到对应渲染进程的<code>BrowserWindow</code>对象。：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> mainWindow = BrowserWindow.fromId(global.mainId);</span><br><span class="line"> mainWindow.webContents.send(<span class="string">'main-msg'</span>, <span class="string">`ConardLi]`</span>)</span><br></pre></td></tr></table></figure>
+<p>根据消息来源发送：</p>
+<p>在<code>ipcMain</code>接受消息的回调函数中，通过第一个参数<code>event</code>的属性<code>sender</code>可以拿到消息来源渲染进程的<code>webContents</code>对象，我们可以直接用此对象回应消息。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">ipcMain.on(<span class="string">'sync-render'</span>, (event, data) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data);</span><br><span class="line">  event.sender.send(<span class="string">'main-msg'</span>, <span class="string">'主进程收到了渲染进程的【异步】消息！'</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>渲染进程监听：</p>
+<p><code>ipcRenderer.on</code>:监听 <code>channel</code>, 当新消息到达，将通过<code>listener(event, args...)</code>调用 <code>listener</code>。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">ipcRenderer.on(<span class="string">'main-msg'</span>, (event, msg) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(msg);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="4-6-通信原理"><a href="#4-6-通信原理" class="headerlink" title="4.6 通信原理"></a>4.6 通信原理</h3><p><code>ipcMain</code> 和 <code>ipcRenderer</code> 都是 <code>EventEmitter</code> 类的一个实例。<code>EventEmitter</code> 类是 <code>NodeJS</code> 事件的基础，它由 <code>NodeJS</code> 中的 <code>events</code> 模块导出。</p>
+<p><code>EventEmitter</code> 的核心就是事件触发与事件监听器功能的封装。它实现了事件模型需要的接口， 包括 <code>addListener，removeListener</code>, <code>emit</code> 及其它工具方法. 同原生 <code>JavaScript</code> 事件类似， 采用了发布/订阅(观察者)的方式， 使用内部 <code>_events</code> 列表来记录注册的事件处理器。</p>
+<p>我们通过 <code>ipcMain</code>和<code>ipcRenderer</code> 的 <code>on、send</code> 进行监听和发送消息都是 <code>EventEmitter</code> 定义的相关接口。</p>
+<h3 id="4-7-remote"><a href="#4-7-remote" class="headerlink" title="4.7 remote"></a>4.7 remote</h3><p><code>remote</code> 模块为渲染进程（web页面）和主进程通信（<code>IPC</code>）提供了一种简单方法。 使用 <code>remote</code> 模块, 你可以调用 <code>main</code> 进程对象的方法, 而不必显式发送进程间消息, 类似于 <code>Java</code> 的 <code>RMI</code> 。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; remote &#125; <span class="keyword">from</span> <span class="string">'electron'</span>;</span><br><span class="line"></span><br><span class="line">remote.dialog.showErrorBox(<span class="string">'主进程才有的dialog模块'</span>, <span class="string">'我是使用remote调用的'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="./img/electron/el_11_remote.gif" alt=""></p>
+<p>但实际上，我们在调用远程对象的方法、函数或者通过远程构造函数创建一个新的对象，实际上都是在发送一个同步的进程间消息。</p>
+<p>在上面通过 <code>remote</code> 模块调用 <code>dialog</code> 的例子里。我们在渲染进程中创建的 <code>dialog</code> 对象其实并不在我们的渲染进程中，它只是让主进程创建了一个 <code>dialog</code> 对象，并返回了这个相对应的远程对象给了渲染进程。</p>
+<h3 id="4-8-渲染进程间通信"><a href="#4-8-渲染进程间通信" class="headerlink" title="4.8 渲染进程间通信"></a>4.8 渲染进程间通信</h3><p><code>Electron</code>并没有提供渲染进程之间相互通信的方式，我们可以在主进程中建立一个消息中转站。</p>
+<p>渲染进程之间通信首先发送消息到主进程，主进程的中转站接受到消息后根据条件进行分发。</p>
+<h3 id="4-9-渲染进程数据共享"><a href="#4-9-渲染进程数据共享" class="headerlink" title="4.9 渲染进程数据共享"></a>4.9 渲染进程数据共享</h3><p>在两个渲染进程间共享数据最简单的方法是使用浏览器中已经实现的<code>HTML5 API</code>。 其中比较好的方案是用<code>Storage API</code>， <code>localStorage，sessionStorage</code> 或者 <code>IndexedDB。</code></p>
+<p>就像在浏览器中使用一样，这种存储相当于在应用程序中永久存储了一部分数据。有时你并不需要这样的存储，只需要在当前应用程序的生命周期内进行一些数据的共享。这时你可以用 <code>Electron</code> 内的 <code>IPC</code> 机制实现。</p>
+<p>将数据存在主进程的某个全局变量中，然后在多个渲染进程中使用 <code>remote</code> 模块来访问它。</p>
+<p><img src="./img/electron/el_12_global.gif" alt=""></p>
+<p>在主进程中初始化全局变量：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">global.mainId = ...;</span><br><span class="line">global.device = &#123;...&#125;;</span><br><span class="line">global.__dirname = __dirname;</span><br><span class="line">global.myField = &#123; <span class="attr">name</span>: <span class="string">'ConardLi'</span> &#125;;</span><br></pre></td></tr></table></figure>
+<p>在渲染进程中读取：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ipcRenderer, remote &#125; <span class="keyword">from</span> <span class="string">'electron'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; getGlobal &#125; = remote;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mainId = getGlobal(<span class="string">'mainId'</span>)</span><br><span class="line"><span class="keyword">const</span> dirname = getGlobal(<span class="string">'__dirname'</span>)</span><br><span class="line"><span class="keyword">const</span> deviecMac = getGlobal(<span class="string">'device'</span>).mac;</span><br></pre></td></tr></table></figure>
+<p>在渲染进程中改变：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">getGlobal(<span class="string">'myField'</span>).name = <span class="string">'code秘密花园'</span>;</span><br></pre></td></tr></table></figure>
+<p>多个渲染进程共享同一个主进程的全局变量，这样即可达到渲染进程数据共享和传递的效果。</p>
+<h2 id="五、窗口"><a href="#五、窗口" class="headerlink" title="五、窗口"></a>五、窗口</h2><h3 id="5-1-BrowserWindow"><a href="#5-1-BrowserWindow" class="headerlink" title="5.1 BrowserWindow"></a>5.1 BrowserWindow</h3><p>主进程模块<code>BrowserWindow</code>用于创建和控制浏览器窗口。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">mainWindow = <span class="keyword">new</span> BrowserWindow(&#123;</span><br><span class="line">  width: <span class="number">1000</span>,</span><br><span class="line">  height: <span class="number">800</span>,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br><span class="line">mainWindow.loadURL(<span class="string">'http://www.conardli.top/'</span>);</span><br></pre></td></tr></table></figure>
+<p>你可以在<a href="https://electronjs.org/docs/api/browser-window#new-browserwindowoptions" target="_blank" rel="noopener">这里</a>查看它所有的构造参数。</p>
+<p><img src="./img/electron/el_13_window.gif" alt=""></p>
+<h3 id="5-2-无框窗口"><a href="#5-2-无框窗口" class="headerlink" title="5.2 无框窗口"></a>5.2 无框窗口</h3><blockquote>
+<p>无框窗口是没有镶边的窗口，窗口的部分（如工具栏）不属于网页的一部分。</p>
+</blockquote>
+<p>在<code>BrowserWindow</code>的构造参数中，将<code>frame</code>设置为<code>false</code>可以指定窗口为无边框窗口，将工具栏隐藏后，就会产生两个问题：</p>
+<ul>
+<li>1.窗口控制按钮（最小化、全屏、关闭按钮）会被隐藏</li>
+<li>2.无法拖拽移动窗口</li>
+</ul>
+<p>可以通过指定<code>titleBarStyle</code>选项来再将工具栏按钮显示出来，将其设置为<code>hidden</code>表示返回一个隐藏标题栏的全尺寸内容窗口，在左上角仍然有标准的窗口控制按钮。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> BrowserWindow(&#123;</span><br><span class="line">    width: <span class="number">200</span>,</span><br><span class="line">    height: <span class="number">200</span>,</span><br><span class="line">    titleBarStyle: <span class="string">'hidden'</span>,</span><br><span class="line">    frame: <span class="literal">false</span></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="5-3-窗口拖拽"><a href="#5-3-窗口拖拽" class="headerlink" title="5.3 窗口拖拽"></a>5.3 窗口拖拽</h3><p>默认情况下, 无边框窗口是不可拖拽的。我们可以在界面中通过<code>CSS</code>属性<code>-webkit-app-region: drag</code>手动制定拖拽区域。</p>
+<p>在无框窗口中, 拖动行为可能与选择文本冲突，可以通过设定<code>-webkit-user-select: none;</code>禁用文本选择：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.header</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-user-select</span>: none;</span><br><span class="line">  <span class="attribute">-webkit-app-region</span>: drag;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>相反的，在可拖拽区域内部设置 <code>-webkit-app-region: no-drag</code>则可以指定特定不可拖拽区域。</p>
+</blockquote>
+<h3 id="5-4-透明窗口"><a href="#5-4-透明窗口" class="headerlink" title="5.4 透明窗口"></a>5.4 透明窗口</h3><p>通过将<code>transparent</code>选项设置为<code>true</code>, 还可以使无框窗口透明:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> BrowserWindow(&#123;</span><br><span class="line">    transparent: <span class="literal">true</span>,</span><br><span class="line">    frame: <span class="literal">false</span></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="5-5-Webview"><a href="#5-5-Webview" class="headerlink" title="5.5 Webview"></a>5.5 Webview</h3><p>使用 <code>webview</code> 标签在<code>Electron</code> 应用中嵌入 “外来” 内容。外来内容包含在 <code>webview</code> 容器中。 应用中的嵌入页面可以控制外来内容的布局和重绘。</p>
+<p>与 <code>iframe</code> 不同, <code>webview</code> 在与应用程序不同的进程中运行。它与您的网页没有相同的权限, 应用程序和嵌入内容之间的所有交互都将是异步的。</p>
+<h2 id="六、对话框"><a href="#六、对话框" class="headerlink" title="六、对话框"></a>六、对话框</h2><p><code>dialog</code> 模块提供了<code>api</code>来展示原生的系统对话框，例如打开文件框，<code>alert</code>框，所以<code>web</code>应用可以给用户带来跟系统应用相同的体验。</p>
+<blockquote>
+<p>注意：dialog是主进程模块，想要在渲染进程调用可以使用remote</p>
+</blockquote>
+<p><img src="./img/electron/el_16_dialog.gif" alt=""></p>
+<h3 id="6-1-错误提示"><a href="#6-1-错误提示" class="headerlink" title="6.1 错误提示"></a>6.1 错误提示</h3><p><code>dialog.showErrorBox</code>用于显示一个显示错误消息的模态对话框。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">remote.dialog.showErrorBox(<span class="string">'错误'</span>, <span class="string">'这是一个错误弹框！'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="6-2-对话框"><a href="#6-2-对话框" class="headerlink" title="6.2 对话框"></a>6.2 对话框</h3><p><code>dialog.showErrorBox</code>用于调用系统对话框，可以为指定几种不同的类型： “<code>none</code>“, “<code>info</code>“, “<code>error</code>“, “<code>question</code>“ 或者 “<code>warning</code>“。</p>
+<blockquote>
+<p>在 Windows 上, “question” 与”info”显示相同的图标, 除非你使用了 “icon” 选项设置图标。 在 macOS 上, “warning” 和 “error” 显示相同的警告图标</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">remote.dialog.showMessageBox(&#123;</span><br><span class="line">  type: <span class="string">'info'</span>,</span><br><span class="line">  title: <span class="string">'提示信息'</span>,</span><br><span class="line">  message: <span class="string">'这是一个对话弹框！'</span>,</span><br><span class="line">  buttons: [<span class="string">'确定'</span>, <span class="string">'取消'</span>]</span><br><span class="line">&#125;, (index) =&gt; &#123;</span><br><span class="line">  <span class="keyword">this</span>.setState(&#123; <span class="attr">dialogMessage</span>: <span class="string">`【你点击了<span class="subst">$&#123;index ? <span class="string">'取消'</span> : <span class="string">'确定'</span>&#125;</span>！！】`</span> &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="6-3-文件框"><a href="#6-3-文件框" class="headerlink" title="6.3 文件框"></a>6.3 文件框</h3><p><code>dialog.showOpenDialog</code>用于打开或选择系统目录。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">remote.dialog.showOpenDialog(&#123;</span><br><span class="line">  properties: [<span class="string">'openDirectory'</span>, <span class="string">'openFile'</span>]</span><br><span class="line">&#125;, (data) =&gt; &#123;</span><br><span class="line">  <span class="keyword">this</span>.setState(&#123; <span class="attr">filePath</span>: <span class="string">`【选择路径：<span class="subst">$&#123;data[<span class="number">0</span>]&#125;</span>】 `</span> &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="6-4-信息框"><a href="#6-4-信息框" class="headerlink" title="6.4 信息框"></a>6.4 信息框</h3><p>这里推荐直接使用<code>HTML5 API</code>，它只能在渲染器进程中使用。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> options = &#123;</span><br><span class="line">  title: <span class="string">'信息框标题'</span>,</span><br><span class="line">  body: <span class="string">'我是一条信息～～～'</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> myNotification = <span class="keyword">new</span> <span class="built_in">window</span>.Notification(options.title, options)</span><br><span class="line">myNotification.onclick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">this</span>.setState(&#123; <span class="attr">message</span>: <span class="string">'【你点击了信息框！！】'</span> &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="七、系统"><a href="#七、系统" class="headerlink" title="七、系统"></a>七、系统</h2><h3 id="7-1-获取系统信息"><a href="#7-1-获取系统信息" class="headerlink" title="7.1 获取系统信息"></a>7.1 获取系统信息</h3><p><img src="./img/electron/el_17_sys.png" alt=""></p>
+<p>通过<code>remote</code>获取到主进程的<code>process</code>对象，可以获取到当前应用的各个版本信息：</p>
+<ul>
+<li><code>process.versions.electron</code>：<code>electron</code>版本信息</li>
+<li><code>process.versions.chrome</code>：<code>chrome</code>版本信息</li>
+<li><code>process.versions.node</code>：<code>node</code>版本信息</li>
+<li><code>process.versions.v8</code>：<code>v8</code>版本信息</li>
+</ul>
+<p>获取当前应用根目录：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">remote.app.getAppPath()</span><br></pre></td></tr></table></figure>
+<p>使用<code>node</code>的<code>os</code>模块获取当前系统根目录：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">os.homedir();</span><br></pre></td></tr></table></figure>
+<h3 id="7-2-复制粘贴"><a href="#7-2-复制粘贴" class="headerlink" title="7.2 复制粘贴"></a>7.2 复制粘贴</h3><p><img src="./img/electron/el_18_clipboard.gif" alt=""></p>
+<p><code>Electron</code>提供的<code>clipboard</code>在渲染进程和主进程都可使用，用于在系统剪贴板上执行复制和粘贴操作。</p>
+<p>以纯文本的形式写入剪贴板：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">clipboard.writeText(text[, type])</span><br></pre></td></tr></table></figure>
+<p>以纯文本的形式获取剪贴板的内容：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">clipboard.readText([type])</span><br></pre></td></tr></table></figure>
+<h3 id="7-3-截图"><a href="#7-3-截图" class="headerlink" title="7.3 截图"></a>7.3 截图</h3><p><code>desktopCapturer</code>用于从桌面捕获音频和视频的媒体源的信息。它只能在渲染进程中被调用。</p>
+<p><img src="./img/electron/el_19_cap.gif" alt=""></p>
+<p>下面的代码是一个获取屏幕截图并保存的实例：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">getImg = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">this</span>.setState(&#123; <span class="attr">imgMsg</span>: <span class="string">'正在截取屏幕...'</span> &#125;)</span><br><span class="line">  <span class="keyword">const</span> thumbSize = <span class="keyword">this</span>.determineScreenShotSize()</span><br><span class="line">  <span class="keyword">let</span> options = &#123; <span class="attr">types</span>: [<span class="string">'screen'</span>], <span class="attr">thumbnailSize</span>: thumbSize &#125;</span><br><span class="line">  desktopCapturer.getSources(options, (error, sources) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (error) <span class="keyword">return</span> <span class="built_in">console</span>.log(error)</span><br><span class="line">    sources.forEach(<span class="function">(<span class="params">source</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (source.name === <span class="string">'Entire screen'</span> || source.name === <span class="string">'Screen 1'</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> screenshotPath = path.join(os.tmpdir(), <span class="string">'screenshot.png'</span>)</span><br><span class="line">        fs.writeFile(screenshotPath, source.thumbnail.toPNG(), (error) =&gt; &#123;</span><br><span class="line">          <span class="keyword">if</span> (error) <span class="keyword">return</span> <span class="built_in">console</span>.log(error)</span><br><span class="line">          shell.openExternal(<span class="string">`file://<span class="subst">$&#123;screenshotPath&#125;</span>`</span>)</span><br><span class="line">          <span class="keyword">this</span>.setState(&#123; <span class="attr">imgMsg</span>: <span class="string">`截图保存到: <span class="subst">$&#123;screenshotPath&#125;</span>`</span> &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">determineScreenShotSize = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> screenSize = screen.getPrimaryDisplay().workAreaSize</span><br><span class="line">  <span class="keyword">const</span> maxDimension = <span class="built_in">Math</span>.max(screenSize.width, screenSize.height)</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    width: maxDimension * <span class="built_in">window</span>.devicePixelRatio,</span><br><span class="line">    height: maxDimension * <span class="built_in">window</span>.devicePixelRatio</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="八、菜单"><a href="#八、菜单" class="headerlink" title="八、菜单"></a>八、菜单</h2><p>应用程序的菜单可以帮助我们快捷的到达某一功能，而不借助客户端的界面资源，一般菜单分为两种：</p>
+<ul>
+<li>应用程序菜单：位于应用程序顶部，在全局范围内都能使用</li>
+<li>上下文菜单：可自定义任意页面显示，自定义调用，如右键菜单</li>
+</ul>
+<p><code>Electron</code>为我们提供了<code>Menu</code>模块用于创建本机应用程序菜单和上下文菜单，它是一个主进程模块。</p>
+<p>你可以通过<code>Menu</code>的静态方法<code>buildFromTemplate(template)</code>，使用自定义菜单模版来构造一个菜单对象。</p>
+<p><code>template</code>是一个<code>MenuItem</code>的数组，我们来看看<code>MenuItem</code>的几个重要参数：</p>
+<ul>
+<li><code>label</code>：菜单显示的文字</li>
+<li><code>click</code>：点击菜单后的事件处理函数</li>
+<li><code>role</code>：系统预定义的菜单，例如<code>copy</code>(复制)、<code>paste</code>(粘贴)、<code>minimize</code>(最小化)…</li>
+<li><code>enabled</code>：指示是否启用该项目，此属性可以动态更改</li>
+<li><code>submenu</code>：子菜单，也是一个<code>MenuItem</code>的数组</li>
+</ul>
+<blockquote>
+<p>推荐：最好指定role与标准角色相匹配的任何菜单项，而不是尝试手动实现click函数中的行为。内置role行为将提供最佳的本地体验。</p>
+</blockquote>
+<p>下面的实例是一个简单的额菜单<code>template</code>。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> template = [</span><br><span class="line">  &#123;</span><br><span class="line">    label: <span class="string">'文件'</span>,</span><br><span class="line">    submenu: [</span><br><span class="line">      &#123;</span><br><span class="line">        label: <span class="string">'新建文件'</span>,</span><br><span class="line">        click: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">          dialog.showMessageBox(&#123;</span><br><span class="line">            type: <span class="string">'info'</span>,</span><br><span class="line">            message: <span class="string">'嘿!'</span>,</span><br><span class="line">            detail: <span class="string">'你点击了新建文件！'</span>,</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    label: <span class="string">'编辑'</span>,</span><br><span class="line">    submenu: [&#123;</span><br><span class="line">      label: <span class="string">'剪切'</span>,</span><br><span class="line">      role: <span class="string">'cut'</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      label: <span class="string">'复制'</span>,</span><br><span class="line">      role: <span class="string">'copy'</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      label: <span class="string">'粘贴'</span>,</span><br><span class="line">      role: <span class="string">'paste'</span></span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    label: <span class="string">'最小化'</span>,</span><br><span class="line">    role: <span class="string">'minimize'</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="8-1-应用程序菜单"><a href="#8-1-应用程序菜单" class="headerlink" title="8.1 应用程序菜单"></a>8.1 应用程序菜单</h3><p>使用<code>Menu</code>的静态方法<code>setApplicationMenu</code>，可创建一个应用程序菜单，在 <code>Windows</code> 和 <code>Linux</code> 上，<code>menu</code>将被设置为每个窗口的顶层菜单。</p>
+<blockquote>
+<p>注意：必须在模块ready事件后调用此 API app。</p>
+</blockquote>
+<p>我们可以根据应用程序不同的的生命周期，不同的系统对菜单做不同的处理。</p>
+<p><img src="./img/electron/el_20_menu.png" alt=""></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.on(<span class="string">'ready'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> menu = Menu.buildFromTemplate(template)</span><br><span class="line">  Menu.setApplicationMenu(menu)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.on(<span class="string">'browser-window-created'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> reopenMenuItem = findReopenMenuItem()</span><br><span class="line">  <span class="keyword">if</span> (reopenMenuItem) reopenMenuItem.enabled = <span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.on(<span class="string">'window-all-closed'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> reopenMenuItem = findReopenMenuItem()</span><br><span class="line">  <span class="keyword">if</span> (reopenMenuItem) reopenMenuItem.enabled = <span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (process.platform === <span class="string">'win32'</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> helpMenu = template[template.length - <span class="number">1</span>].submenu</span><br><span class="line">  addUpdateMenuItems(helpMenu, <span class="number">0</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-2-上下文菜单"><a href="#8-2-上下文菜单" class="headerlink" title="8.2 上下文菜单"></a>8.2 上下文菜单</h3><p>使用<code>Menu</code>的实例方法<code>menu.popup</code>可自定义弹出上下文菜单。</p>
+<p><img src="./img/electron/el_21_memu.gif" alt=""></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> m = Menu.buildFromTemplate(template)</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'menuDemoContainer'</span>).addEventListener(<span class="string">'contextmenu'</span>, (e) =&gt; &#123;</span><br><span class="line">  e.preventDefault()</span><br><span class="line">  m.popup(&#123; <span class="attr">window</span>: remote.getCurrentWindow() &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="8-3-快捷键"><a href="#8-3-快捷键" class="headerlink" title="8.3 快捷键"></a>8.3 快捷键</h3><p>在菜单选项中，我们可以指定一个<code>accelerator</code>属性来指定操作的快捷键：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  label: <span class="string">'最小化'</span>,</span><br><span class="line">  accelerator: <span class="string">'CmdOrCtrl+M'</span>,</span><br><span class="line">  role: <span class="string">'minimize'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外，我们还可以使用<code>globalShortcut</code>来注册全局快捷键。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">globalShortcut.register(<span class="string">'CommandOrControl+N'</span>, () =&gt; &#123;</span><br><span class="line">  dialog.showMessageBox(&#123;</span><br><span class="line">    type: <span class="string">'info'</span>,</span><br><span class="line">    message: <span class="string">'嘿!'</span>,</span><br><span class="line">    detail: <span class="string">'你触发了手动注册的快捷键.'</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>CommandOrControl代表在macOS上为Command键，以及在Linux和Windows上为Control键。</p>
+</blockquote>
+<h2 id="九、打印"><a href="#九、打印" class="headerlink" title="九、打印"></a>九、打印</h2><p>很多情况下程序中使用的打印都是用户无感知的。并且想要灵活的控制打印内容，往往需要借助打印机给我们提供的<code>api</code>再进行开发，这种开发方式非常繁琐，并且开发难度较大。第一次在业务中用到<code>Electron</code>其实就是用到它的打印功能，这里就多介绍一些。</p>
+<p><code>Electron</code>提供的打印api可以非常灵活的控制打印设置的显示，并且可以通过html来书写打印内容。<code>Electron</code>提供了两种方式进行打印，一种是直接调用打印机打印，一种是打印到<code>pdf</code>。</p>
+<p>并且有两种对象可以调用打印：</p>
+<ul>
+<li>通过<code>window</code>的<code>webcontent</code>对象，使用此种方式需要单独开出一个打印的窗口，可以将该窗口隐藏，但是通信调用相对复杂。</li>
+<li>使用页面的<code>webview</code>元素调用打印，可以将<code>webview</code>隐藏在调用的页面中，通信方式比较简单。</li>
+</ul>
+<p>上面两种方式同时拥有<code>print</code>和<code>printToPdf</code>方法。</p>
+<p><img src="./img/electron/el_23_print.gif" alt=""></p>
+<h3 id="9-1-调用系统打印"><a href="#9-1-调用系统打印" class="headerlink" title="9.1 调用系统打印"></a>9.1 调用系统打印</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">contents.print([options], [callback])；</span><br></pre></td></tr></table></figure>
+<p>打印配置(options)中只有简单的三个配置：</p>
+<ul>
+<li><code>silent</code>：打印时是否不展示打印配置（是否静默打印）</li>
+<li><code>printBackground</code>：是否打印背景</li>
+<li><code>deviceName</code>：打印机设备名称</li>
+</ul>
+<p>首先要将我们使用的打印机名称配置好，并且要在调用打印前首先要判断打印机是否可用。</p>
+<p>使用<code>webContents</code>的<code>getPrinters</code>方法可获取当前设备已经配置的打印机列表，注意配置过不是可用，只是在此设备上安装过驱动。</p>
+<p>通过<code>getPrinters</code>获取到的打印机对象：<a href="https://electronjs.org/docs/api/structures/printer-info" target="_blank" rel="noopener">https://electronjs.org/docs/api/structures/printer-info</a></p>
+<p>我们这里只管关心两个，<code>name</code>和<code>status</code>，<code>status</code>为<code>0</code>时表示打印机可用。</p>
+<p><code>print</code>的第二个参数<code>callback</code>是用于判断打印任务是否发出的回调，而不是打印任务完成后的回调。所以一般打印任务发出，回调函数即会调用并返回参数<code>true</code>。这个回调并不能判断打印是否真的成功了。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.state.curretnPrinter) &#123;</span><br><span class="line">  mainWindow.webContents.print(&#123;</span><br><span class="line">    silent: silent, <span class="attr">printBackground</span>: <span class="literal">true</span>, <span class="attr">deviceName</span>: <span class="keyword">this</span>.state.curretnPrinter</span><br><span class="line">  &#125;, () =&gt; &#123; &#125;)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  remote.dialog.showErrorBox(<span class="string">'错误'</span>, <span class="string">'请先选择一个打印机！'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="9-2-打印到PDF"><a href="#9-2-打印到PDF" class="headerlink" title="9.2 打印到PDF"></a>9.2 打印到PDF</h3><p><code>printToPdf</code>的用法基本和<code>print</code>相同，但是<code>print</code>的配置项非常少，而<code>printToPdf</code>则扩展了很多属性。这里翻了一下源码发现还有很多没有被贴进api的，大概有三十几个包括可以对打印的margin，打印页眉页脚等进行配置。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">contents.printToPDF(options, callback)</span><br></pre></td></tr></table></figure>
+<p><code>callback</code>函数在打印失败或打印成功后调用，可获取打印失败信息或包含<code>PDF</code>数据的缓冲区。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> pdfPath = path.join(os.tmpdir(), <span class="string">'webviewPrint.pdf'</span>);</span><br><span class="line"><span class="keyword">const</span> webview = <span class="built_in">document</span>.getElementById(<span class="string">'printWebview'</span>);</span><br><span class="line"><span class="keyword">const</span> renderHtml = <span class="string">'我是被临时插入webview的内容...'</span>;</span><br><span class="line">webview.executeJavaScript(<span class="string">'document.documentElement.innerHTML =`'</span> + renderHtml + <span class="string">'`;'</span>);</span><br><span class="line">webview.printToPDF(&#123;&#125;, (err, data) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err, data);</span><br><span class="line">  fs.writeFile(pdfPath, data, (error) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (error) <span class="keyword">throw</span> error</span><br><span class="line">    shell.openExternal(<span class="string">`file://<span class="subst">$&#123;pdfPath&#125;</span>`</span>)</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123; <span class="attr">webviewPdfPath</span>: pdfPath &#125;)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这个例子中的打印是使用<code>webview</code>完成的，通过调用<code>executeJavaScript</code>方法可动态向<code>webview</code>插入打印内容。</p>
+</blockquote>
+<h3 id="9-3-两种打印方案的选择"><a href="#9-3-两种打印方案的选择" class="headerlink" title="9.3 两种打印方案的选择"></a>9.3 两种打印方案的选择</h3><p>上面提到，使用<code>webview</code>和<code>webcontent</code>都可以调用打印功能，使用<code>webcontent</code>打印，首先要有一个打印窗口，这个窗口不能随时打印随时创建，比较耗费性能。可以将它在程序运行时启动好，并做好事件监听。</p>
+<p>此过程需和调用打印的进行做好通信，大致过程如下：</p>
+<p><img src="./img/electron/el_24_print.png" alt=""></p>
+<p>可见通信非常繁琐，使用<code>webview</code>进行打印可实现同样的效果但是通信方式会变得简单，因为渲染进程和<code>webview</code>通信不需要经过主进程，通过如下方式即可：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> webview = <span class="built_in">document</span>.querySelector(<span class="string">'webview'</span>)</span><br><span class="line">webview.addEventListener(<span class="string">'ipc-message'</span>, (event) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(event.channel)</span><br><span class="line">&#125;)</span><br><span class="line">webview.send(<span class="string">'ping'</span>)；</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123;ipcRenderer&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br><span class="line">ipcRenderer.on(<span class="string">'ping'</span>, () =&gt; &#123;</span><br><span class="line">  ipcRenderer.sendToHost(<span class="string">'pong'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>之前专门为<code>ELectron</code>打印写过一个<code>DEMO</code>：<a href="https://github.com/ConardLi/electron-print-demo" target="_blank" rel="noopener">electron-print-demo</a>有兴趣可以<code>clone</code>下来看一下。</p>
+<h3 id="9-4-打印功能封装"><a href="#9-4-打印功能封装" class="headerlink" title="9.4 打印功能封装"></a>9.4 打印功能封装</h3><p>下面是几个针对常用打印功能的工具函数封装。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取系统打印机列表</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getPrinters</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> printers = [];</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> contents = remote.getCurrentWindow().webContents;</span><br><span class="line">    printers = contents.getPrinters();</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(<span class="string">'getPrintersError'</span>, e);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> printers;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取系统默认打印机</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getDefaultPrinter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> getPrinters().find(<span class="function"><span class="params">element</span> =&gt;</span> element.isDefault);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 检测是否安装了某个打印驱动</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">checkDriver</span>(<span class="params">driverMame</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> getPrinters().find(<span class="function"><span class="params">element</span> =&gt;</span> (element.options[<span class="string">"printer-make-and-model"</span>] || <span class="string">''</span>).includes(driverMame));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 根据打印机名称获取打印机对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getPrinterByName</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> getPrinters().find(<span class="function"><span class="params">element</span> =&gt;</span> element.name === name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="十、程序保护"><a href="#十、程序保护" class="headerlink" title="十、程序保护"></a>十、程序保护</h2><p><a href="https://segmentfault.com/a/1190000007503495" target="_blank" rel="noopener">https://segmentfault.com/a/1190000007503495</a></p>
+<p><img src="./img/electron/el_22_protect.gif" alt=""></p>
+<h3 id="10-1-崩溃"><a href="#10-1-崩溃" class="headerlink" title="10.1 崩溃"></a>10.1 崩溃</h3><p>崩溃监控是每个客户端程序必备的保护功能，当程序崩溃时我们一般期望做到两件事：</p>
+<ul>
+<li>1.上传崩溃日志，及时报警</li>
+<li>2.监控程序崩溃，提示用户重启程序</li>
+</ul>
+<p><code>electron</code>为我们提供给了<code>crashReporter</code>来帮助我们记录崩溃日志，我们可以通过<code>crashReporter.start</code>来创建一个崩溃报告器：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; crashReporter &#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br><span class="line">crashReporter.start(&#123;</span><br><span class="line">  productName: <span class="string">'YourName'</span>,</span><br><span class="line">  companyName: <span class="string">'YourCompany'</span>,</span><br><span class="line">  submitURL: <span class="string">'https://your-domain.com/url-to-submit'</span>,</span><br><span class="line">  uploadToServer: <span class="literal">true</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>当程序发生崩溃时，崩溃报日志将被储存在临时文件夹中名为<code>YourName Crashes</code>的文件文件夹中。<code>submitURL</code>用于指定你的崩溃日志上传服务器。 在启动崩溃报告器之前，您可以通过调用<code>app.setPath(&#39;temp&#39;, &#39;my/custom/temp&#39;)</code>API来自定义这些临时文件的保存路径。你还可以通过<code>crashReporter.getLastCrashReport()</code>来获取上次崩溃报告的日期和<code>ID</code>。</p>
+<p>我们可以通过<code>webContents</code>的<code>crashed</code>来监听渲染进程的崩溃，另外经测试有些主进程的崩溃也会触发该事件。所以我们可以根据主<code>window</code>是否被销毁来判断进行不同的重启逻辑，下面使整个崩溃监控的逻辑：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; BrowserWindow, crashReporter, dialog &#125; <span class="keyword">from</span> <span class="string">'electron'</span>;</span><br><span class="line"><span class="comment">// 开启进程崩溃记录</span></span><br><span class="line">crashReporter.start(&#123;</span><br><span class="line">  productName: <span class="string">'electron-react'</span>,</span><br><span class="line">  companyName: <span class="string">'ConardLi'</span>,</span><br><span class="line">  submitURL: <span class="string">'http://xxx.com'</span>,  <span class="comment">// 上传崩溃日志的接口</span></span><br><span class="line">  uploadToServer: <span class="literal">false</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reloadWindow</span>(<span class="params">mainWin</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (mainWin.isDestroyed()) &#123;</span><br><span class="line">    app.relaunch();</span><br><span class="line">    app.exit(<span class="number">0</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 销毁其他窗口</span></span><br><span class="line">    BrowserWindow.getAllWindows().forEach(<span class="function">(<span class="params">w</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (w.id !== mainWin.id) w.destroy();</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">const</span> options = &#123;</span><br><span class="line">      type: <span class="string">'info'</span>,</span><br><span class="line">      title: <span class="string">'渲染器进程崩溃'</span>,</span><br><span class="line">      message: <span class="string">'这个进程已经崩溃.'</span>,</span><br><span class="line">      buttons: [<span class="string">'重载'</span>, <span class="string">'关闭'</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    dialog.showMessageBox(options, (index) =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (index === <span class="number">0</span>) mainWin.reload();</span><br><span class="line">      <span class="keyword">else</span> mainWin.close();</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> mainWindow = BrowserWindow.fromId(global.mainId);</span><br><span class="line">  mainWindow.webContents.on(<span class="string">'crashed'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> errorMessage = crashReporter.getLastCrashReport();</span><br><span class="line">    <span class="built_in">console</span>.error(<span class="string">'程序崩溃了！'</span>, errorMessage); <span class="comment">// 可单独上传日志</span></span><br><span class="line">    reloadWindow(mainWindow);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="10-2-最小化到托盘"><a href="#10-2-最小化到托盘" class="headerlink" title="10.2 最小化到托盘"></a>10.2 最小化到托盘</h3><p>有的时候我们并不想让用户通过点关闭按钮的时候就关闭程序，而是把程序最小化到托盘，在托盘上做真正的退出操作。</p>
+<p>首先要监听窗口的关闭事件，阻止用户关闭操作的默认行为，将窗口隐藏。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkQuit</span>(<span class="params">mainWindow, event</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> options = &#123;</span><br><span class="line">    type: <span class="string">'info'</span>,</span><br><span class="line">    title: <span class="string">'关闭确认'</span>,</span><br><span class="line">    message: <span class="string">'确认要最小化程序到托盘吗？'</span>,</span><br><span class="line">    buttons: [<span class="string">'确认'</span>, <span class="string">'关闭程序'</span>]</span><br><span class="line">  &#125;;</span><br><span class="line">  dialog.showMessageBox(options, index =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (index === <span class="number">0</span>) &#123;</span><br><span class="line">      event.preventDefault();</span><br><span class="line">      mainWindow.hide();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      mainWindow = <span class="literal">null</span>;</span><br><span class="line">      app.exit(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleQuit</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> mainWindow = BrowserWindow.fromId(global.mainId);</span><br><span class="line">  mainWindow.on(<span class="string">'close'</span>, event =&gt; &#123;</span><br><span class="line">    event.preventDefault();</span><br><span class="line">    checkQuit(mainWindow, event);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这时程序就再也找不到了，任务托盘中也没有我们的程序，所以我们要先创建好任务托盘，并做好事件监听。</p>
+<blockquote>
+<p>windows平台使用<code>ico</code>文件可以达到更好的效果</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">createTray</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> mainWindow = BrowserWindow.fromId(global.mainId);</span><br><span class="line">  <span class="keyword">const</span> iconName = process.platform === <span class="string">'win32'</span> ? <span class="string">'icon.ico'</span> : <span class="string">'icon.png'</span></span><br><span class="line">  tray = <span class="keyword">new</span> Tray(path.join(global.__dirname, iconName));</span><br><span class="line">  <span class="keyword">const</span> contextMenu = Menu.buildFromTemplate([</span><br><span class="line">    &#123;</span><br><span class="line">      label: <span class="string">'显示主界面'</span>, <span class="attr">click</span>: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        mainWindow.show();</span><br><span class="line">        mainWindow.setSkipTaskbar(<span class="literal">false</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      label: <span class="string">'退出'</span>, <span class="attr">click</span>: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        mainWindow.destroy();</span><br><span class="line">        app.quit();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  ])</span><br><span class="line">  tray.setToolTip(<span class="string">'electron-react'</span>);</span><br><span class="line">  tray.setContextMenu(contextMenu);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="十一、扩展能力"><a href="#十一、扩展能力" class="headerlink" title="十一、扩展能力"></a>十一、扩展能力</h2><p><img src="./img/electron/el_4_iot.jpg" alt=""></p>
+<p>在很多情况下，你的应用程序要和外部设备进行交互，一般情况下厂商会为你提供硬件设备的开发包，这些开发包基本上都是通过<code>C++</code> 编写，在使用<code>electron</code>开发的情况下，我们并不具备直接调用<code>C++</code>代码的能力，我们可以利用<code>node-ffi</code>来实现这一功能。</p>
+<p><code>node-ffi</code>提供了一组强大的工具，用于在<code>Node.js</code>环境中使用纯<code>JavaScript</code>调用动态链接库接口。它可以用来为库构建接口绑定，而不需要使用任何<code>C++</code>代码。</p>
+<blockquote>
+<p>注意<code>node-ffi</code>并不能直接调用<code>C++</code>代码，你需要将<code>C++</code>代码编译为动态链接库：在 <code>Windows</code>下是 <code>Dll</code> ，在 <code>Mac OS</code>下是 <code>dylib</code> <code>，Linux</code> 是 <code>so</code> 。</p>
+</blockquote>
+<blockquote>
+<p><code>node-ffi</code> 加载 <code>Library</code>是有限制的，只能处理 <code>C</code>风格的 <code>Library</code>。 </p>
+</blockquote>
+<p>下面是一个简单的实例：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> ffi = <span class="built_in">require</span>(<span class="string">'ffi'</span>);</span><br><span class="line"><span class="keyword">const</span> ref = <span class="built_in">require</span>(<span class="string">'ref'</span>);</span><br><span class="line"><span class="keyword">const</span> SHORT_CODE = ref.refType(<span class="string">'short'</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> DLL = <span class="keyword">new</span> ffi.Library(<span class="string">'test.dll'</span>, &#123;</span><br><span class="line">    Test_CPP_Method: [<span class="string">'int'</span>, [<span class="string">'string'</span>,SHORT_CODE]], </span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">testCppMethod(str: <span class="built_in">String</span>, <span class="attr">num</span>: number): <span class="keyword">void</span> &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> result: any = DLL.Test_CPP_Method(str, num);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'调用失败～'</span>,error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.testCppMethod(<span class="string">'ConardLi'</span>,<span class="number">123</span>);</span><br></pre></td></tr></table></figure>
+<p>上面的代码中，我们用<code>ffi</code>包装<code>C++</code>接口生成的动态链接库<code>test.dll</code>，并使用<code>ref</code>进行一些类型映射。</p>
+<p>使用<code>JavaScript</code>调用这些映射方法时，推荐使用<code>TypeScript</code>来约定参数类型，因为弱类型的<code>JavaScript</code>在调用强类型语言的接口时可能会带来意想不到的风险。</p>
+<p>借助这一能力，前端开发工程师也可以在<code>IOT</code>领域一展身手了😎～</p>
+<h2 id="十二、环境选择"><a href="#十二、环境选择" class="headerlink" title="十二、环境选择"></a>十二、环境选择</h2><p>一般情况下，我们的应用程序可能运行在多套环境下（<code>production</code>、<code>beta</code>、<code>uat</code>、<code>moke</code>、<code>development</code>…），不同的开发环境可能对应不同的后端接口或者其他配置，我们可以在客户端程序中内置一个简单的环境选择功能来帮助我们更高效的开发。</p>
+<p><img src="./img/electron/el_14_env.png" alt=""></p>
+<p>具体策略如下：</p>
+<p><img src="./img/electron/el_15_env.png" alt=""></p>
+<ul>
+<li>在开发环境中，我们直接进入环境选择页面，读取到选择的环境后进行响应的重定向操作</li>
+<li>在菜单保留环境选择入口，以便在开发过程中切换</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> envList = [<span class="string">"moke"</span>, <span class="string">"beta"</span>, <span class="string">"development"</span>, <span class="string">"production"</span>];</span><br><span class="line">exports.envList = envList;</span><br><span class="line"><span class="keyword">const</span> urlBeta = <span class="string">'https://wwww.xxx-beta.com'</span>;</span><br><span class="line"><span class="keyword">const</span> urlDev = <span class="string">'https://wwww.xxx-dev.com'</span>;</span><br><span class="line"><span class="keyword">const</span> urlProp = <span class="string">'https://wwww.xxx-prop.com'</span>;</span><br><span class="line"><span class="keyword">const</span> urlMoke = <span class="string">'https://wwww.xxx-moke.com'</span>;</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> pkg = <span class="built_in">require</span>(path.resolve(global.__dirname, <span class="string">'package.json'</span>));</span><br><span class="line"><span class="keyword">const</span> build = pkg[<span class="string">'build-config'</span>];</span><br><span class="line">exports.handleEnv = &#123;</span><br><span class="line">  build,</span><br><span class="line">  currentEnv: <span class="string">'moke'</span>,</span><br><span class="line">  setEnv: <span class="function"><span class="keyword">function</span> (<span class="params">env</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.currentEnv = env</span><br><span class="line">  &#125;,</span><br><span class="line">  getUrl: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'env:'</span>, build.env);</span><br><span class="line">    <span class="keyword">if</span> (build.env === <span class="string">'production'</span> || <span class="keyword">this</span>.currentEnv === <span class="string">'production'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> urlProp;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.currentEnv === <span class="string">'moke'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> urlMoke;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.currentEnv === <span class="string">'development'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> urlDev;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.currentEnv === <span class="string">"beta"</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> urlBeta;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  isDebugger: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> build.env === <span class="string">'development'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="十三、打包"><a href="#十三、打包" class="headerlink" title="十三、打包"></a>十三、打包</h2><p>最后也是最重要的一步，将写好的代码打包成可运行的<code>.app</code>或<code>.exe</code>可执行文件。</p>
+<p>这里我把打包氛围两部分来做，渲染进程打包和主进程打包。</p>
+<h3 id="13-1-渲染进程打包和升级"><a href="#13-1-渲染进程打包和升级" class="headerlink" title="13.1 渲染进程打包和升级"></a>13.1 渲染进程打包和升级</h3><p>一般情况下，我们的大部分业务逻辑代码是在渲染进程完成的，在大部分情况下我们仅仅需要对渲染进程进行更新和升级而不需要改动主进程代码，我们渲染进程的打包实际上和一般的<code>web</code>项目打包没有太大差别，使用<code>webpack</code>打包即可。</p>
+<p>这里我说说渲染进程单独打包的好处：</p>
+<p>打包完成的<code>html</code>和<code>js</code>文件，我们一般要上传到我们的前端静态资源服务器下，然后告知服务端我们的渲染进程有代码更新，这里可以说成渲染进程单独的升级。</p>
+<p>注意，和壳的升级不同，渲染进程的升级仅仅是静态资源服务器上<code>html</code>和<code>js</code>文件的更新，而不需要重新下载更新客户端，这样我们每次启动程序的时候检测到离线包有更新，即可直接刷新读取最新版本的静态资源文件，即使在程序运行过程中要强制更新，我们的程序只需要强制刷新页面读取最新的静态资源即可，这样的升级对用户是非常友好的。</p>
+<p>这里注意，一旦我们这样配置，就意味着渲染进程和主进程打包升级的完全分离，我们在启动主窗口时读取的文件就不应该再是本地文件，而是打包完成后放在静态资源服务器的文件。</p>
+<p>为了方便开发，这里我们可以区分本地和线上加载不同的文件：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getVersion</span> (<span class="params">mac,current</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 根据设备mac和当前版本获取最新版本</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (build.env === <span class="string">'production'</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> version = getVersion (mac,current);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'https://www.xxxserver.html/electron-react/index_'</span>+version+<span class="string">'.html'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> url.format(&#123;</span><br><span class="line">    protocol: <span class="string">'file:'</span>,</span><br><span class="line">    pathname: path.join(__dirname, <span class="string">'env/environment.html'</span>),</span><br><span class="line">    slashes: <span class="literal">true</span>,</span><br><span class="line">    query: &#123; <span class="attr">debugger</span>: build.env === <span class="string">"development"</span> &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>具体的<code>webpack</code>配置这里就不再贴出，可以到我的<a href="https://github.com/ConardLi/electron-react/tree/master/scripts" target="_blank" rel="noopener"><code>github</code> <code>electron-react</code></a>的<code>/scripts</code>目录下查看。</p>
+<p>这里需要注意，在开发环境下我们可以结合<code>webpack</code>的<code>devServer</code>和<code>electron</code>命令来启动<code>app</code>：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">  contentBase: <span class="string">'./assets/'</span>,</span><br><span class="line">  historyApiFallback: <span class="literal">true</span>,</span><br><span class="line">  hot: <span class="literal">true</span>,</span><br><span class="line">  port: PORT,</span><br><span class="line">  noInfo: <span class="literal">false</span>,</span><br><span class="line">  stats: &#123;</span><br><span class="line">    colors: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  setup() &#123;</span><br><span class="line">    spawn(</span><br><span class="line">      <span class="string">'electron'</span>,</span><br><span class="line">      [<span class="string">'.'</span>],</span><br><span class="line">      &#123;</span><br><span class="line">        shell: <span class="literal">true</span>,</span><br><span class="line">        stdio: <span class="string">'inherit'</span>,</span><br><span class="line">      &#125;</span><br><span class="line">    )</span><br><span class="line">      .on(<span class="string">'close'</span>, () =&gt; process.exit(<span class="number">0</span>))</span><br><span class="line">      .on(<span class="string">'error'</span>, e =&gt; <span class="built_in">console</span>.error(e));</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,<span class="comment">//...</span></span><br></pre></td></tr></table></figure>
+<h3 id="13-2-主进程打包"><a href="#13-2-主进程打包" class="headerlink" title="13.2 主进程打包"></a>13.2 主进程打包</h3><p> 主进程，即将整个程序打包成可运行的客户端程序，常用的打包方案一般有两种，<code>electron-packager</code>和<code>electron-builder</code>。</p>
+<p> <code>electron-packager</code>在打包配置上我觉得有些繁琐，而且它只能将应用直接打包为可执行程序。</p>
+<p> 这里我推荐使用<code>electron-builder</code>，它不仅拥有方便的配置 <code>protocol</code> 的功能、内置的 <code>Auto Update</code>、简单的配置 <code>package.json</code> 便能完成整个打包工作，用户体验非常不错。而且<code>electron-builder</code>不仅能直接将应用打包成<code>exe app</code>等可执行程序，还能打包成<code>msi dmg</code>等安装包格式。</p>
+<p> 你可以在<code>package.json</code>方便的进行各种配置：</p>
+ <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="string">"build"</span>: &#123;</span><br><span class="line">  <span class="string">"productName"</span>: <span class="string">"electron-react"</span>, <span class="comment">// app中文名称</span></span><br><span class="line">  <span class="string">"appId"</span>: <span class="string">"electron-react"</span>,<span class="comment">// app标识</span></span><br><span class="line">  <span class="string">"directories"</span>: &#123; <span class="comment">// 打包后输出的文件夹</span></span><br><span class="line">    <span class="string">"buildResources"</span>: <span class="string">"resources"</span>,</span><br><span class="line">    <span class="string">"output"</span>: <span class="string">"dist/"</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="string">"files"</span>: [ <span class="comment">// 打包后依然保留的源文件</span></span><br><span class="line">    <span class="string">"main_process/"</span>,</span><br><span class="line">    <span class="string">"render_process/"</span>,</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"mac"</span>: &#123; <span class="comment">// mac打包配置</span></span><br><span class="line">    <span class="string">"target"</span>: <span class="string">"dmg"</span>,</span><br><span class="line">    <span class="string">"icon"</span>: <span class="string">"icon.ico"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"win"</span>: &#123; <span class="comment">// windows打包配置</span></span><br><span class="line">    <span class="string">"target"</span>: <span class="string">"nsis"</span>,</span><br><span class="line">    <span class="string">"icon"</span>: <span class="string">"icon.ico"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"dmg"</span>: &#123; <span class="comment">// dmg文件打包配置</span></span><br><span class="line">    <span class="string">"artifactName"</span>: <span class="string">"electron_react.dmg"</span>,</span><br><span class="line">    <span class="string">"contents"</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="string">"type"</span>: <span class="string">"link"</span>,</span><br><span class="line">        <span class="string">"path"</span>: <span class="string">"/Applications"</span>,</span><br><span class="line">        <span class="string">"x"</span>: <span class="number">410</span>,</span><br><span class="line">        <span class="string">"y"</span>: <span class="number">150</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="string">"type"</span>: <span class="string">"file"</span>,</span><br><span class="line">        <span class="string">"x"</span>: <span class="number">130</span>,</span><br><span class="line">        <span class="string">"y"</span>: <span class="number">150</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"nsis"</span>: &#123; <span class="comment">// nsis文件打包配置</span></span><br><span class="line">    <span class="string">"oneClick"</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="string">"allowToChangeInstallationDirectory"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"shortcutName"</span>: <span class="string">"electron-react"</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 执行<code>electron-builder</code>打包命令时，可指定参数进行打包。</p>
+ <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">--mac, -m, -o, --macos   macOS打包</span><br><span class="line">--linux, -l              Linux打包</span><br><span class="line">--win, -w, --windows     Windows打包</span><br><span class="line">--mwl                    同时为macOS，Windows和Linux打包</span><br><span class="line">--x64                    x64 (<span class="number">64</span>位安装包)</span><br><span class="line">--ia32                   ia32(<span class="number">32</span>位安装包)</span><br></pre></td></tr></table></figure>
+<p> 关于主进程的更新你可以使用<code>electron-builder</code>自带的<code>Auto Update</code>模块，在<code>electron-react</code>也实现了手动更新的模块，由于篇幅原因这里就不再赘述，如果有兴趣可以到我的<a href="https://github.com/ConardLi/electron-react/tree/master/scripts" target="_blank" rel="noopener"><code>github</code></a>查看<code>main</code>下的<code>update</code>模块。</p>
+<h3 id="13-3-打包优化"><a href="#13-3-打包优化" class="headerlink" title="13.3 打包优化"></a>13.3 打包优化</h3><p><code>electron-builder</code>打包出来的<code>App</code>要比相同功能的原生客户端应用体积大很多，即使是空的应用，体积也要在<code>100mb</code>以上。原因有很多：</p>
+<p>第一点；为了达到跨平台的效果，每个<code>Electron</code>应用都包含了整个<code>V8</code>引擎和<code>Chromium</code>内核。</p>
+<p>第二点：打包时会将整个<code>node_modules</code>打包进去，大家都知道一个应用的<code>node_module</code>体积是非常庞大的，这也是使得<code>Electron</code>应用打包后的体积较大的原因。</p>
+<p>第一点我们无法改变，我们可以从第二点对应用体积进行优化：<code>Electron</code>在打包时只会将<code>denpendencies</code>的依赖打包进去，而不会将 <code>devDependencies</code> 中的依赖进行打包。所以我们应尽可能的减少<code>denpendencies</code>中的依赖。在上面的进程中，我们使用<code>webpack</code>对渲染进程进行打包，所以渲染进程的依赖全部都可以移入<code>devDependencies</code>。</p>
+<p>另外，我们还可以使用双<code>packajson.json</code>的方式来进行优化，把只在开发环境中使用到的依赖放在整个项目的根目录的<code>package.json</code>下，将与平台相关的或者运行时需要的依赖装在<code>app</code>目录下。具体详见<a href="https://www.electron.build/tutorials/two-package-structure" target="_blank" rel="noopener">two-package-structure</a>。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://electronjs.org/docs" target="_blank" rel="noopener">https://electronjs.org/docs</a></li>
+<li><a href="http://jlord.us/essential-electron/" target="_blank" rel="noopener">http://jlord.us/essential-electron/</a></li>
+<li><a href="https://imweb.io/topic/5b9f500cc2ec8e6772f34d79" target="_blank" rel="noopener">https://imweb.io/topic/5b9f500cc2ec8e6772f34d79</a></li>
+<li><a href="https://www.jianshu.com/p/1ece6fd7a80c" target="_blank" rel="noopener">https://www.jianshu.com/p/1ece6fd7a80c</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/52991793" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/52991793</a></li>
+</ul>
+<blockquote>
+<p>本项目源码地址：<a href="https://github.com/ConardLi/electron-react" target="_blank" rel="noopener">https://github.com/ConardLi/electron-react</a></p>
+</blockquote>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>希望你阅读本篇文章后可以达到以下几点：</p>
+<ul>
+<li>了解<code>Electron</code>的基本运行原理</li>
+<li>掌握<code>Electron</code>开发的核心基础知识</li>
+<li>了解<code>Electron</code>关于弹框、打印、保护、打包等功能的基本使用</li>
+</ul>
+<p>文中如有错误，欢迎在评论区指正，如果这篇文章帮助到了你，欢迎点赞和关注。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="www.conardli.top/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/" data-id="cjwqdftpx000f6q0d53o0uwn9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+
+
+<div id="roott"></div>
+
+<button id="tocbtn">打开目录</button>
+
+
+<script>
+    var showToc = false;
+    document.getElementById('tocbtn').onclick = function () {
+        if (showToc) {
+            document.getElementById('roott').innerHTML = ''
+            document.getElementById('tocbtn').innerHTML = '打开目录'
+        } else {
+            document.getElementById('roott').innerHTML = `<aside id="article-toc" role="navigation" class="fixed">
+  <div id="article-toc-inner">
+    <strong class="sidebar-title">
+      目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#导读"><span class="toc-text">导读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、桌面应用程序"><span class="toc-text">一、桌面应用程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-原生开发"><span class="toc-text">1.1 原生开发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-托管平台"><span class="toc-text">1.2 托管平台</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-WEB开发"><span class="toc-text">1.3 WEB开发</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、Electron"><span class="toc-text">二、Electron</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-使用Electron开发的理由："><span class="toc-text">2.1 使用Electron开发的理由：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-开发体验"><span class="toc-text">2.2 开发体验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-谁在用Electron"><span class="toc-text">2.3 谁在用Electron</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、Electron运行原理"><span class="toc-text">三、Electron运行原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Chromium"><span class="toc-text">3.1 Chromium</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Node-js"><span class="toc-text">3.2 Node.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-系统API"><span class="toc-text">3.3 系统API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-主进程"><span class="toc-text">3.4 主进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-渲染进程"><span class="toc-text">3.5 渲染进程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、Electron基础"><span class="toc-text">四、Electron基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Electron-API"><span class="toc-text">4.1 Electron API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-使用-Node-js-的-API"><span class="toc-text">4.2 使用 Node.js 的 API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-进程通信"><span class="toc-text">4.3 进程通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-渲染进程向主进程通信"><span class="toc-text">4.4 渲染进程向主进程通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-主进程向渲染进程通信"><span class="toc-text">4.5 主进程向渲染进程通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-通信原理"><span class="toc-text">4.6 通信原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-remote"><span class="toc-text">4.7 remote</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8-渲染进程间通信"><span class="toc-text">4.8 渲染进程间通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-9-渲染进程数据共享"><span class="toc-text">4.9 渲染进程数据共享</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、窗口"><span class="toc-text">五、窗口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-BrowserWindow"><span class="toc-text">5.1 BrowserWindow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-无框窗口"><span class="toc-text">5.2 无框窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-窗口拖拽"><span class="toc-text">5.3 窗口拖拽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-透明窗口"><span class="toc-text">5.4 透明窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-Webview"><span class="toc-text">5.5 Webview</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、对话框"><span class="toc-text">六、对话框</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-错误提示"><span class="toc-text">6.1 错误提示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-对话框"><span class="toc-text">6.2 对话框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-文件框"><span class="toc-text">6.3 文件框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-信息框"><span class="toc-text">6.4 信息框</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、系统"><span class="toc-text">七、系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-获取系统信息"><span class="toc-text">7.1 获取系统信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-复制粘贴"><span class="toc-text">7.2 复制粘贴</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-截图"><span class="toc-text">7.3 截图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#八、菜单"><span class="toc-text">八、菜单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-应用程序菜单"><span class="toc-text">8.1 应用程序菜单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-上下文菜单"><span class="toc-text">8.2 上下文菜单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-快捷键"><span class="toc-text">8.3 快捷键</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#九、打印"><span class="toc-text">九、打印</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-1-调用系统打印"><span class="toc-text">9.1 调用系统打印</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-打印到PDF"><span class="toc-text">9.2 打印到PDF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-3-两种打印方案的选择"><span class="toc-text">9.3 两种打印方案的选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-4-打印功能封装"><span class="toc-text">9.4 打印功能封装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#十、程序保护"><span class="toc-text">十、程序保护</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-崩溃"><span class="toc-text">10.1 崩溃</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-最小化到托盘"><span class="toc-text">10.2 最小化到托盘</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#十一、扩展能力"><span class="toc-text">十一、扩展能力</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#十二、环境选择"><span class="toc-text">十二、环境选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#十三、打包"><span class="toc-text">十三、打包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-1-渲染进程打包和升级"><span class="toc-text">13.1 渲染进程打包和升级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-2-主进程打包"><span class="toc-text">13.2 主进程打包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-3-打包优化"><span class="toc-text">13.3 打包优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li></ol>
+  </div>
+</aside>`
+            document.getElementById('tocbtn').innerHTML = '关闭目录'
+        }
+        showToc = !showToc;
+    }
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments" style="padding: 30px;"></div>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 's1xL54gwvPRsIy3ciItiPhyD-gzGzoHsz',
+        appKey: 'CmP8stKpHUHtp5abbTxpqc4H'
+    })
+</script>
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>
+            关注我 :</p>
+        <ul class="social-links">
+            
+            
+            <li>
+                <a class="social-tooltip" title="github" href="https://github.com/ConardLi"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-github"></i>
+                </a>
+            </li>
+            
+            
+        </ul>
+    </div>
+    
+    
+<nav id="article-nav">
+    
+    
+        <a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">【JS进阶】你真的掌握变量和类型了吗</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container" style="background-color: #fff; border-right: 1px solid #e2e2e2;">
+        
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">
+        微信公众号
+    </h3>
+    <div class="widget">
+        <img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/gzh/qrcode.jpg" alt="">
+    </div>
+</div>
+
+        
+        
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/" class="thumbnail">
+    
+    
+        <span style="background-image:url(./img/electron/el_1_app.jpg)" alt="【多端开发】用JS开发跨平台桌面应用，从原理到实践" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/" class="title">【多端开发】用JS开发跨平台桌面应用，从原理到实践</a></p>
+                            <p class="item-date"><time datetime="2019-06-10T12:45:35.000Z" itemprop="datePublished">2019-06-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://www.conardli.top/img/bl/bl_1_stack.png)" alt="【JS进阶】你真的掌握变量和类型了吗" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="title">【JS进阶】你真的掌握变量和类型了吗</a></p>
+                            <p class="item-date"><time datetime="2019-05-28T03:06:11.000Z" itemprop="datePublished">2019-05-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/17/【多端开发】移动端适配总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.loli.net/2019/05/17/5cddefa632f3247082.png)" alt="【多端开发】移动端适配总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/17/【多端开发】移动端适配总结/" class="title">【多端开发】移动端适配总结</a></p>
+                            <p class="item-date"><time datetime="2019-05-17T02:39:42.000Z" itemprop="datePublished">2019-05-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://conardli.top/img/qj/qj_15_qj.gif)" alt="【特效】看完这篇，你也可以实现一个360度全景插件" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" class="title">【特效】看完这篇，你也可以实现一个360度全景插件</a></p>
+                            <p class="item-date"><time datetime="2019-05-05T01:17:16.000Z" itemprop="datePublished">2019-05-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/26/【自检】前端知识清单/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://lsqimg-1257917459.cos.ap-beijing.myqcloud.com/blog/知识体系.png)" alt="【自检】前端知识清单" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/26/【自检】前端知识清单/" class="title">【自检】前端知识清单</a></p>
+                            <p class="item-date"><time datetime="2019-04-26T01:11:22.000Z" itemprop="datePublished">2019-04-26</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <div class="">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget widget-wrap-inn">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/electron/">electron</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多端开发/">多端开发</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习提升/">学习提升</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器和网络/">浏览器和网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特效/">特效</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .widget-wrap-inn {
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+</style>
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget  widget-wrap-inn">
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+</div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget  widget-wrap-inn">
+        <ul>
+            
+            <li>
+                <a href="https://juejin.im/user/5bea27965188250edf4ad8b7">掘金</a>
+            </li>
+            
+            <li>
+                <a href="https://segmentfault.com/u/conardli">segmentfault</a>
+            </li>
+            
+            <li>
+                <a href="https://github.com/ConardLi">github</a>
+            </li>
+            
+            <li>
+                <a href="https://github.com/ConardLi/tpanorama">tpanorama</a>
+            </li>
+            
+            <li>
+                <a href="http://chuangzaoshi.com/">创造狮导航</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <!-- <h3 class="widget-title">
+        腾讯云专属福利
+    </h3> -->
+    <div class="widget">
+        <a target="_blank"
+            href="https://cloud.tencent.com/redirect.php?redirect=1025&cps_key=1a3e7b07487819e129852ba7a4543262&from=console">
+            <img src="/img/txy.jpg" id="txy" alt="">
+        </a>
+    </div>
+</div>
+
+
+
+<style>
+    #txy {
+        width: 280px;
+        border: 5px;
+    }
+</style>
+        
+        
+<div class="widget-wrap widget-list">
+    <div class="widget">
+        <a target="_blank" href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=y3kv7eoj">
+            <img src="/img/aly.png" id="txy" alt="">
+        </a>
+    </div>
+</div>
+
+
+
+<style>
+    #txy {
+        width: 280px;
+        border: 5px;
+    }
+</style>
+        
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy;
+                    2019
+                    ConardLi
+                </p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice"
+                        target="_blank">ConardLi</a></p>
+                <script type="text/javascript">
+                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1275088352'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1275088352%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+                <span id="busuanzi_container_site_pv" style="margin-left:50px;">
+                    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+                </span>
+                <span id="busuanzi_container_site_uv" style="margin-left:50px;">
+                    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+                </span>
+            </div>
+            <div class="footer-plugins">
+                
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'www.conardli.top/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+
+</html>

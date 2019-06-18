@@ -55,12 +55,11 @@
 
 ## 更新计划(顺序不定)
 
-- 【JS进阶】变量和类型计算
 - 【JS进阶】原型和原型链
 - 【JS进阶】作用域和闭包
 - 【JS进阶】代码执行机制
 - 【CSS系列】
-- 【React深入】Diff算法详解及其性能优化
+- 【React深入】Diff和Fiber
 - 【React深入】React Native运行原理
 - Chrome使用技巧
 - JavaScript实用技巧

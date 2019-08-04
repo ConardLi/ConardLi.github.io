@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>【特效】看完这篇，你也可以实现一个360度全景插件 | 李世奇的技术专栏</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="特效" />
+    
+    <meta name="description" content="导读本文从绘图基础开始讲起，详细介绍了如何使用Three.js开发一个功能齐全的全景插件。 我们先来看一下插件的效果：   如果你对Three.js已经很熟悉了，或者你想跳过基础理论，那么你可以直接从全景预览开始看起。 本项目的github地址：https://github.com/ConardLi/tpanorama  一、理清关系1.1 OpenGL OpenGL是用于渲染2D、3D量图形的跨">
+<meta name="keywords" content="特效">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【特效】看完这篇，你也可以实现一个360度全景插件">
+<meta property="og:url" content="www.conardli.top/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/index.html">
+<meta property="og:site_name" content="李世奇的技术专栏">
+<meta property="og:description" content="导读本文从绘图基础开始讲起，详细介绍了如何使用Three.js开发一个功能齐全的全景插件。 我们先来看一下插件的效果：   如果你对Three.js已经很熟悉了，或者你想跳过基础理论，那么你可以直接从全景预览开始看起。 本项目的github地址：https://github.com/ConardLi/tpanorama  一、理清关系1.1 OpenGL OpenGL是用于渲染2D、3D量图形的跨">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://conardli.top/img/qj/qj_15_qj.gif">
+<meta property="og:updated_time" content="2019-06-01T10:53:33.997Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【特效】看完这篇，你也可以实现一个360度全景插件">
+<meta name="twitter:description" content="导读本文从绘图基础开始讲起，详细介绍了如何使用Three.js开发一个功能齐全的全景插件。 我们先来看一下插件的效果：   如果你对Three.js已经很熟悉了，或者你想跳过基础理论，那么你可以直接从全景预览开始看起。 本项目的github地址：https://github.com/ConardLi/tpanorama  一、理清关系1.1 OpenGL OpenGL是用于渲染2D、3D量图形的跨">
+<meta name="twitter:image" content="http://conardli.top/img/qj/qj_15_qj.gif">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://mp.weixin.qq.com/s/dYZEHTgqvxGV7mL99JuxRQ">关于</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://github.com/ConardLi/ConardLi.github.io">更新日志</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <style>
+    #article-toc.fixed {
+        position: fixed;
+        top: 30px;
+        bottom: 30px;
+        left: 32px;
+        padding-top: 15px;
+        z-index: 9999;
+        background-color: antiquewhite;
+        width: 200px;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid rgb(122, 122, 122);
+        opacity: 0.8;
+    }
+
+    #article-toc-inner {
+        padding: 10px;
+        width: 200px;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .toc-level-3 {
+        margin-left: 20px;
+    }
+
+    #article-toc a {
+        text-decoration: none;
+        color: #333;
+        padding: 3px 0;
+        color: #000;
+        font-weight: normal;
+    }
+
+    .toc-item {
+        line-height: 30px;
+        list-style-type: initial;
+    }
+
+    #tocbtn {
+        position: fixed;
+        top: 30%;
+        left: 0px;
+        padding: 5px 2px;
+        width: 18px;
+        word-wrap: break-word;
+        background-color: rgb(242, 245, 247);
+        box-shadow: rgba(118, 118, 118, 0.11) 2px 0px 5px 0px;
+        opacity: 1;
+        height: 94px;
+        line-height: 16px;
+        text-align: center;
+        top: 33%;
+        width: 30px;
+        z-index: 1000000001;
+        cursor: pointer;
+        border-radius: 0px 4px 4px 0px;
+        border-width: 1px 1px 1px;
+        border-style: solid solid solid none;
+        border-color: rgb(224, 228, 231) rgb(224, 228, 231) rgb(224, 228, 231);
+        border-image: initial;
+        border-left: none;
+        padding: 6px;
+        transition: right 0.4s ease-in 0.3s, opacity 0.5s ease-in 0.3s;
+    }
+</style>
+
+<article id="post-【特效】看完这篇，你也可以实现一个360度全景插件"
+    class="article article-single article-type-post"
+    itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        <header class="article-header">
+            
+    
+        <h1 class="article-title" itemprop="name">
+        【特效】看完这篇，你也可以实现一个360度全景插件
+        </h1>
+    
+
+        </header>
+        
+        
+        <div class="article-meta">
+            
+    <div class="article-date">
+        <a href="/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" class="article-date">
+            <time datetime="2019-05-05T01:17:16.000Z" itemprop="datePublished">2019-05-05</time>
+        </a>
+    </div>
+
+            
+
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/特效/">特效</a>
+    </div>
+
+            <span id="busuanzi_container_page_pv" style="position: relative;float: right;">
+                本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+            </span>
+        </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><p>本文从绘图基础开始讲起，详细介绍了如何使用<code>Three.js</code>开发一个功能齐全的全景插件。</p>
+<p>我们先来看一下插件的效果：</p>
+<p><img src="http://conardli.top/img/qj/qj_15_qj.gif" alt=""></p>
+<p><img src="http://conardli.top/img/qj/qj_17_qj.gif" alt=""></p>
+<p>如果你对<code>Three.js</code>已经很熟悉了，或者你想跳过基础理论，那么你可以直接从<a href="#全景预览">全景预览</a>开始看起。</p>
+<p>本项目的<code>github</code>地址：<a href="https://github.com/ConardLi/tpanorama" target="_blank" rel="noopener">https://github.com/ConardLi/tpanorama</a></p>
+<p><img src="http://conardli.top/img/qj/qj_0_%E6%96%87%E7%AB%A0%E5%AF%BC%E8%AF%BB.png" alt=""></p>
+<h2 id="一、理清关系"><a href="#一、理清关系" class="headerlink" title="一、理清关系"></a>一、理清关系</h2><h3 id="1-1-OpenGL"><a href="#1-1-OpenGL" class="headerlink" title="1.1 OpenGL"></a>1.1 OpenGL</h3><p><img src="http://conardli.top/img/qj/WebGl.png" alt=""></p>
+<p><code>OpenGL</code>是用于渲染<code>2D、3D</code>量图形的跨语言、跨平台的应用程序编程接口<code>（API）</code>。</p>
+<p>这个接口由近<code>350</code>个不同的函数调用组成，用来从简单的图形比特绘制复杂的三维景象。</p>
+<p><code>OpenGL ES</code> 是<code>OpenGL</code>三维图形<code>API</code>的子集，针对手机、<code>PDA</code>和游戏主机等嵌入式设备而设计。</p>
+<p>基于<code>OpenGL</code>，一般使用<code>C</code>或<code>Cpp</code>开发，对前端开发者来说不是很友好。</p>
+<h3 id="1-2-WebGL"><a href="#1-2-WebGL" class="headerlink" title="1.2 WebGL"></a>1.2 WebGL</h3><p><code>WebGL</code>把<code>JavaScript</code>和<code>OpenGL ES 2.0</code>结合在一起，从而为前端开发者提供了使用<code>JavaScript</code>编写<code>3D</code>效果的能力。</p>
+<p><code>WebGL</code>为<code>HTML5 Canvas</code>提供硬件<code>3D</code>加速渲染，这样<code>Web</code>开发人员就可以借助系统显卡来在浏览器里更流畅地展示<code>3D</code>场景和模型了，还能创建复杂的导航和数据视觉化。</p>
+<h3 id="1-3-Canvas"><a href="#1-3-Canvas" class="headerlink" title="1.3 Canvas"></a>1.3 Canvas</h3><p><code>Canvas</code>是一个可以自由制定大小的矩形区域，可以通过<code>JavaScript</code>可以对矩形区域进行操作，可以自由的绘制图形，文字等。</p>
+<p>一般使用<code>Canvas</code>都是使用它的<code>2d</code>的<code>context</code>功能，进行<code>2d</code>绘图，这是其本身的能力。</p>
+<p>和这个相对的，<code>WebGL</code>是三维，可以描画<code>3D</code>图形，<code>WebGL</code>，想要在浏览器上进行呈现，它必须需要一个载体，这个载体就是<code>Canvas</code>，区别于之前的<code>2dcontext</code>，还可以从<code>Canvas</code>中获取<code>webglcontext</code>。</p>
+<h3 id="1-4-Three-js"><a href="#1-4-Three-js" class="headerlink" title="1.4 Three.js"></a>1.4 Three.js</h3><p><img src="http://conardli.top/img/qj/three.png" alt=""></p>
+<p>我们先来从字面意思理解下：<code>Three</code>代表<code>3D</code>，<code>js</code>代表<code>JavaScript</code>，即使用<code>JavaScript</code>来开发<code>3D</code>效果。</p>
+<p><code>Three.js</code>是使用<code>JavaScript</code>对 <code>WebGL</code>接口进行封装与简化而形成的一个易用的<code>3D</code>库。</p>
+<p>直接使用<code>WebGL</code>进行开发对于开发者来说成本相对来说是比较高的，它需要你掌握较多的计算机图形学知识。</p>
+<p><code>Three.js</code>在一定程度上简化了一些规范和难以理解的概念，对很多<code>API</code>进行了简化，这大大降低了学习和开发三维效果成本。</p>
+<p>下面我们来具体看一下使用<code>Three.js</code>必须要知道的知识。</p>
+<h2 id="二、Three-js基础知识"><a href="#二、Three-js基础知识" class="headerlink" title="二、Three.js基础知识"></a>二、Three.js基础知识</h2><p>使用<code>Three.js</code>绘制一个三维效果，至少需要以下几个步骤：</p>
+<ul>
+<li><p>创建一个容纳三维空间的场景 — <code>Sence</code></p>
+</li>
+<li><p>将需要绘制的元素加入到场景中，对元素的形状、材料、阴影等进行设置</p>
+</li>
+<li><p>给定一个观察场景的位置，以及观察角度，我们用相机对象（<code>Camera</code>）来控制</p>
+</li>
+<li><p>将绘制好的元素使用渲染器（<code>Renderer</code>）进行渲染，最终呈现在浏览器上</p>
+</li>
+</ul>
+<p>拿电影来类比的话，场景对应于整个布景空间，相机是拍摄镜头，渲染器用来把拍摄好的场景转换成胶卷。</p>
+<h3 id="2-1-场景"><a href="#2-1-场景" class="headerlink" title="2.1 场景"></a>2.1 场景</h3><p>场景允许你设置哪些对象被<code>three.js</code>渲染以及渲染在哪里。</p>
+<p>我们在场景中放置对象、灯光和相机。</p>
+<p>很简单，直接创建一个<code>Scene</code>的实例即可。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_scene = <span class="keyword">new</span> Scene();</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-元素"><a href="#2-2-元素" class="headerlink" title="2.2 元素"></a>2.2 元素</h3><p>有了场景，我们接下来就需要场景里应该展示哪些东西。</p>
+<p><img src="http://conardli.top/img/qj/mesh.jpg" alt=""></p>
+<p>一个复杂的三维场景往往就是由非常多的元素搭建起来的，这些元素可能是一些自定义的几何体（<code>Geometry</code>），或者外部导入的复杂模型。</p>
+<p><code>Three.js</code> 为我们提供了非常多的<code>Geometry</code>，例如<code>SphereGeometry</code>（球体）、    <code>TetrahedronGeometry</code>（四面体）、<code>TorusGeometry</code>（圆环体）等等。</p>
+<p>在<code>Three.js</code>中，材质（<code>Material</code>）决定了几何图形具体是以什么形式展现的。它包括了一个几何体如何形状以外的其他属性，例如色彩、纹理、透明度等等，<code>Material</code>和<code>Geometry</code>是相辅相成的，必须结合使用。</p>
+<p>下面的代码我们创建了一个长方体体，赋予它基础网孔材料（<code>MeshBasicMaterial</code>）</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> geometry = <span class="keyword">new</span> THREE.BoxGeometry(<span class="number">200</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"><span class="keyword">var</span> material = <span class="keyword">new</span> THREE.MeshBasicMaterial(&#123; <span class="attr">color</span>: <span class="number">0x645d50</span> &#125;);</span><br><span class="line"><span class="keyword">var</span> mesh = <span class="keyword">new</span> THREE.Mesh(geometry, material);</span><br><span class="line">        _scene.add(mesh);</span><br></pre></td></tr></table></figure>
+<p><img src="http://conardli.top/img/qj/pno1.png" alt=""></p>
+<p>能以这个角度看到几何体实际上是相机的功劳，这个我们<a href="#相机">下面的章节</a>再介绍，这让我们看到一个几何体的轮廓，但是感觉怪怪的，这并不像一个几何体，实际上我们还需要为它添加光照和阴影，这会让几何体看起来更真实。</p>
+<p>基础网孔材料（<code>MeshBasicMaterial</code>）不受光照影响的，它不会产生阴影，下面我们为几何体换一种受光照影响的材料：网格标准材质(<code>Standard Material</code>)，并为它添加一些光照：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> geometry = <span class="keyword">new</span> THREE.BoxGeometry(<span class="number">200</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"><span class="keyword">var</span> material = <span class="keyword">new</span> THREE.MeshStandardMaterial(&#123; <span class="attr">color</span>: <span class="number">0x645d50</span> &#125;);</span><br><span class="line"><span class="keyword">var</span> mesh = <span class="keyword">new</span> THREE.Mesh(geometry, material);</span><br><span class="line">_scene.add(mesh);</span><br><span class="line"><span class="comment">// 创建平行光-照亮几何体</span></span><br><span class="line"><span class="keyword">var</span> directionalLight = <span class="keyword">new</span> THREE.DirectionalLight(<span class="number">0xffffff</span>, <span class="number">1</span>);</span><br><span class="line"> directionalLight.position.set(<span class="number">-4</span>, <span class="number">8</span>, <span class="number">12</span>);</span><br><span class="line">_scene.add(directionalLight);</span><br><span class="line"><span class="comment">// 创建环境光</span></span><br><span class="line"><span class="keyword">var</span> ambientLight = <span class="keyword">new</span> THREE.AmbientLight(<span class="number">0xffffff</span>);</span><br><span class="line">_scene.add(ambientLight);</span><br></pre></td></tr></table></figure>
+<p><img src="http://conardli.top/img/qj/pno2.png" alt=""></p>
+<p>有了光线的渲染，让几何体看起来更具有<code>3D</code>效果，<code>Three.js</code>中光源有很多种，我们上面使用了环境光(<code>AmbientLight</code>)和平行光(<code>DirectionalLight</code>)。</p>
+<p>环境光会对场景中的所有物品进行颜色渲染。</p>
+<p>平行光你可以认为像太阳光一样，从极远处射向场景中的光。它具有方向性，也可以启动物体对光的反射效果。</p>
+<p>除了这两种光，<code>Three.js</code>还提供了其他几种光源，它们适用于不同情况下对不同材质的渲染，可以根据实际情况选择。</p>
+<h3 id="2-3-坐标系"><a href="#2-3-坐标系" class="headerlink" title="2.3 坐标系"></a>2.3 坐标系</h3><p>在说相机之前，我们还是先来了解一下坐标系的概念：</p>
+<p>在三维世界中，坐标定义了一个元素所处于三维空间的位置，坐标系的原点即坐标的基准点。</p>
+<p>最常用的，我们使用距离原点的三个长度（距离<code>x</code>轴、距离<code>y</code>轴、距离<code>z</code>轴）来定义一个位置，这就是直角坐标系。</p>
+<p>在判定坐标系时，我们通常使用大拇指、食指和中指，并互为<code>90</code>度。大拇指代表<code>X</code>轴，食指代表<code>Y</code>轴，中指代表<code>Z</code>轴。</p>
+<p>这就产生了两种坐标系：左手坐标系和右手坐标系。</p>
+<p><img src="http://conardli.top/img/qj/qj_4_zbx.png" alt=""></p>
+<p><code>Three.js</code>中使用的坐标系即右手坐标系。</p>
+<p>我们可以在我们的场景中添加一个坐标系，这样我们可以清楚的看到元素处于什么位置：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> axisHelper = <span class="keyword">new</span> THREE.AxisHelper(<span class="number">600</span>);</span><br><span class="line">_scene.add(axisHelper);</span><br></pre></td></tr></table></figure>
+<p><img src="http://conardli.top/img/qj/qj_5_zbx.png" alt=""></p>
+<p>其中红色代表<code>X</code>轴，绿色代表<code>Y</code>轴，蓝色代表<code>Z</code>轴。</p>
+<h3 id="2-4-相机"><a href="#2-4-相机" class="headerlink" title="2.4 相机"></a>2.4 相机</h3><p>上面看到的几何体的效果，如果不创建一个相机(<code>Camera</code>)，是什么也看不到的，因为默认的观察点在坐标轴原点，它处于几何体的内部。</p>
+<p>相机(<code>Camera</code>)指定了我们在什么位置观察这个三维场景，以及以什么样的角度进行观察。</p>
+<h4 id="2-4-1-两种相机的区别"><a href="#2-4-1-两种相机的区别" class="headerlink" title="2.4.1 两种相机的区别"></a>2.4.1 两种相机的区别</h4><p>目前<code>Three.js</code>提供了几种不同的相机，最常用的，也是下面插件中使用的两种相机是：<code>PerspectiveCamera</code>（透视相机）、 <code>OrthographicCamera</code>（正交投影相机）。</p>
+<p><img src="http://conardli.top/img/qj/qj_1_camera.png" alt=""></p>
+<p>上面的图很清楚的解释了两种相机的区别：</p>
+<p>右侧是 <code>OrthographicCamera</code>（正交投影相机）他不具有透视效果，即物体的大小不受远近距离的影响，对应的是投影中的正交投影。我们数学课本上所画的几何体大多数都采用这种投影。</p>
+<p>左侧是<code>PerspectiveCamera</code>（透视相机），这符合我们正常人的视野，近大远小，对应的是投影中的透视投影。</p>
+<p>如果你想让场景看起来更真实，更具有立体感，那么采用透视相机最合适，如果场景中有一些元素你不想让他随着远近放大缩小，那么采用正交投影相机最合适。</p>
+<h4 id="2-4-2-构造参数"><a href="#2-4-2-构造参数" class="headerlink" title="2.4.2 构造参数"></a>2.4.2 构造参数</h4><p>我们再分别来看看两个创建两个相机需要什么参数：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_camera = <span class="keyword">new</span> OrthographicCamera(left, right, top, bottom, near, far);</span><br></pre></td></tr></table></figure>
+<p><img src="http://conardli.top/img/qj/qj_2_camera.jpg" alt=""></p>
+<p><code>OrthographicCamera</code>接收六个参数，<code>left, right, top, bottom</code>分别对应上、下、左、右、远、近的一个距离，超过这些距离的元素将不会出现在视野范围内，也不会被浏览器绘制。实际上，这六个距离就构成了一个立方体，所以<code>OrthographicCamera</code>的可视范围永远在这个立方体内。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_camera = <span class="keyword">new</span> PerspectiveCamera(fov, aspect, near, far);</span><br></pre></td></tr></table></figure>
+<p><img src="http://conardli.top/img/qj/qj_3_camera.png" alt=""></p>
+<p><code>PerspectiveCamera</code>接收四个参数，<code>near</code>、<code>far</code>和上面的相同，分别对应相机可观测的最远和最近距离；<code>fov</code>代表水平范围可观测的角度，<code>fov</code>越大，水平范围能观测到的范围越广；<code>aspect</code>代表水平方向和竖直方向可观测距离的比值，所以<code>fov</code>和<code>aspect</code>就可以确定垂直范围内能观测到的范围。</p>
+<h4 id="2-4-3-position、lookAt"><a href="#2-4-3-position、lookAt" class="headerlink" title="2.4.3 position、lookAt"></a>2.4.3 position、lookAt</h4><p>关于相机还有两个必须要知道的点，一个是<code>position</code>属性，一个是<code>lookAt</code>函数：</p>
+<p><code>position</code>属性指定了相机所处的位置。</p>
+<p><code>lookAt</code>函数指定相机观察的方向。</p>
+<p>实际上<code>position</code>的值和<code>lookAt</code>接收的参数都是一个类型为<code>Vector3</code>的对象，这个对象用来表示三维空间中的坐标，它有三个属性：<code>x、y、z</code>分别代表距离<code>x</code>轴、距离<code>y</code>轴、距离<code>z</code>轴的距离。</p>
+<p>下面，我们让相机观察的方向指向原点，另外分别让<code>x、y、z</code>为0，另外两个参数不为0，看一下视野会发生什么变化：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_camera = <span class="keyword">new</span> OrthographicCamera(-<span class="built_in">window</span>.innerWidth / <span class="number">2</span>, <span class="built_in">window</span>.innerWidth / <span class="number">2</span>, <span class="built_in">window</span>.innerHeight / <span class="number">2</span>, -<span class="built_in">window</span>.innerHeight / <span class="number">2</span>, <span class="number">0.1</span>, <span class="number">1000</span>);</span><br><span class="line"> _camera.lookAt(<span class="keyword">new</span> THREE.Vector3(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line"> _camera.position.set(<span class="number">0</span>, <span class="number">300</span>, <span class="number">600</span>); <span class="comment">// 1 - x为0</span></span><br><span class="line"></span><br><span class="line"> _camera.position.set(<span class="number">500</span>, <span class="number">0</span>, <span class="number">600</span>); <span class="comment">// 2 - y为0</span></span><br><span class="line"></span><br><span class="line"> _camera.position.set(<span class="number">500</span>, <span class="number">300</span>, <span class="number">0</span>); <span class="comment">// 3 - z为0</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://conardli.top/img/qj/qj_6_xj.png" alt=""></p>
+<p>很清楚的看到<code>position</code>决定了我们视野的出发点，但是镜头指向的方向是不变的。</p>
+<p>下面我们将<code>position</code>固定，改变相机观察的方向：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_camera = <span class="keyword">new</span> OrthographicCamera(-<span class="built_in">window</span>.innerWidth / <span class="number">2</span>, <span class="built_in">window</span>.innerWidth / <span class="number">2</span>, <span class="built_in">window</span>.innerHeight / <span class="number">2</span>, -<span class="built_in">window</span>.innerHeight / <span class="number">2</span>, <span class="number">0.1</span>, <span class="number">1000</span>);</span><br><span class="line">_camera.position.set(<span class="number">500</span>, <span class="number">300</span>, <span class="number">600</span>); </span><br><span class="line"></span><br><span class="line">_camera.lookAt(<span class="keyword">new</span> THREE.Vector3(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)) <span class="comment">// 1 - 视野指向原点</span></span><br><span class="line"></span><br><span class="line">_camera.lookAt(<span class="keyword">new</span> THREE.Vector3(<span class="number">200</span>, <span class="number">0</span>, <span class="number">0</span>)) <span class="comment">// 2 - 视野偏向x轴</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://conardli.top/img/qj/qj_7_xj.png" alt=""></p>
+<p>可见：我们视野的出发点是相同的，但是视野看向的方向发生了改变。</p>
+<h4 id="2-4-4-两种相机对比"><a href="#2-4-4-两种相机对比" class="headerlink" title="2.4.4 两种相机对比"></a>2.4.4 两种相机对比</h4><p>好，有了上面的基础，我们再来写两个例子看一看两个相机的视角对比，为了方便观看，我们创建两个位置不同的几何体：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> geometry = <span class="keyword">new</span> THREE.BoxGeometry(<span class="number">200</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"><span class="keyword">var</span> material = <span class="keyword">new</span> THREE.MeshStandardMaterial(&#123; <span class="attr">color</span>: <span class="number">0x645d50</span> &#125;);</span><br><span class="line"><span class="keyword">var</span> mesh = <span class="keyword">new</span> THREE.Mesh(geometry, material);</span><br><span class="line">_scene.add(mesh);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> geometry = <span class="keyword">new</span> THREE.SphereGeometry(<span class="number">50</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"><span class="keyword">var</span> ball = <span class="keyword">new</span> THREE.Mesh(geometry, material);</span><br><span class="line">ball.position.set(<span class="number">200</span>, <span class="number">0</span>, <span class="number">-200</span>);</span><br><span class="line">_scene.add(ball);</span><br></pre></td></tr></table></figure>
+<p>正交投影相机视野：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_camera = <span class="keyword">new</span> OrthographicCamera(-<span class="built_in">window</span>.innerWidth / <span class="number">2</span>, <span class="built_in">window</span>.innerWidth / <span class="number">2</span>, <span class="built_in">window</span>.innerHeight / <span class="number">2</span>, -<span class="built_in">window</span>.innerHeight / <span class="number">2</span>, <span class="number">0.1</span>, <span class="number">1000</span>);</span><br><span class="line">_camera.position.set(<span class="number">0</span>, <span class="number">300</span>, <span class="number">600</span>);</span><br><span class="line">_camera.lookAt(<span class="keyword">new</span> THREE.Vector3(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="http://conardli.top/img/qj/qj_8_xj.png" alt=""></p>
+<p>透视相机视野：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_camera = <span class="keyword">new</span> PerspectiveCamera(<span class="number">75</span>, <span class="built_in">window</span>.innerWidth / <span class="built_in">window</span>.innerHeight, <span class="number">0.1</span>, <span class="number">1100</span>);</span><br><span class="line">_camera.position.set(<span class="number">0</span>, <span class="number">300</span>, <span class="number">600</span>);</span><br><span class="line">_camera.lookAt(<span class="keyword">new</span> THREE.Vector3(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="http://conardli.top/img/qj/qj_9_xj.png" alt=""></p>
+<p>可见，这印证了我们上面<a href="#两种相机的区别">关于两种相机的理论</a></p>
+<h3 id="2-5-渲染器"><a href="#2-5-渲染器" class="headerlink" title="2.5 渲染器"></a>2.5 渲染器</h3><p>上面我们创建了场景、元素和相机，下面我们要告诉浏览器将这些东西渲染到浏览器上。</p>
+<p><code>Three.js</code>也为我们提供了几种不同的渲染器，这里我们主要看<code>WebGL</code>渲染器(<code>WebGLRenderer</code>)。顾名思义：<code>WebGL</code>渲染器使用<code>WebGL</code>来绘制场景，其够利用<code>GPU</code>硬件加速从而提高渲染性能。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_renderer = <span class="keyword">new</span> THREE.WebGLRenderer();</span><br></pre></td></tr></table></figure>
+<p>你需要将你使用<code>Three.js</code>绘制的元素添加到浏览器上，这个过程需要一个载体，上面我们介绍，这个载体就是<code>Canvas</code>，你可以通过<code>_renderer.domElement</code>获取到这个<code>Canvas</code>，并将它给定到真实<code>DOM</code>中。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_container = <span class="built_in">document</span>.getElementById(<span class="string">'conianer'</span>);</span><br><span class="line">_container.appendChild(_renderer.domElement);</span><br></pre></td></tr></table></figure>
+<p>使用<code>setSize</code>函数设定你要渲染的范围，实际上它改变的就是上面<code>Canvas</code>的范围：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_renderer.setSize(<span class="built_in">window</span>.innerWidth, <span class="built_in">window</span>.innerHeight);</span><br></pre></td></tr></table></figure>
+<p>现在，你已经指定了一个渲染的载体和载体的范围，你可以通过<code>render</code>函数渲染上面指定的场景和相机：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_renderer.render(_scene, _camera);</span><br></pre></td></tr></table></figure>
+<p>实际上，你如果依次执行上面的代码，可能屏幕上还是黑漆漆的一片，并没有任何元素渲染出来。</p>
+<p>这是因为上面你要渲染的元素可能并未被加载完，你就执行了渲染，并且只执行了一次，这时我们需要一种方法，让场景和相机进行实时渲染，我们需要用到下面的方法：</p>
+<h3 id="2-6-requestAnimationFrame"><a href="#2-6-requestAnimationFrame" class="headerlink" title="2.6 requestAnimationFrame"></a>2.6 requestAnimationFrame</h3><p><code>window.requestAnimationFrame()</code>告诉浏览器——你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。</p>
+<p>该方法需要传入一个回调函数作为参数，该回调函数会在浏览器下一次重绘之前执行。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.requestAnimationFrame(callback);</span><br></pre></td></tr></table></figure>
+<p>若你想在浏览器下次重绘之前继续更新下一帧动画，那么回调函数自身必须再次调用<code>window.requestAnimationFrame()</code>。</p>
+<p>使用者韩函数就意味着，你可以在<code>requestAnimationFrame</code>不停的执行绘制操作，浏览器就实时的知道它需要渲染的内容。</p>
+<p>当然，某些时候你已经不需要实时绘制了，你也可以使用<code>cancelAnimationFrame</code>立即停止这个绘制：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.cancelAnimationFrame(myReq);</span><br></pre></td></tr></table></figure>
+<p>来看一个简单的例子：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> animateName;</span><br><span class="line">animate();</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    animateName = requestAnimationFrame(animate);</span><br><span class="line">    <span class="built_in">console</span>.log(i++);</span><br><span class="line">    <span class="keyword">if</span> (i &gt; <span class="number">100</span>) &#123;</span><br><span class="line">        cancelAnimationFrame(animateName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>来看一下执行效果：</p>
+<p><img src="http://conardli.top/img/qj/requestAnimationFrame.gif" alt=""></p>
+<p>我们使用<code>requestAnimationFrame</code>和<code>Three.js</code>的渲染器结合使用，这样就能实时绘制三维动画了：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    requestAnimationFrame(animate);</span><br><span class="line">    _renderer.render(_scene, _camera);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>借助上面的代码，我们可以简单实现一些动画效果：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> y = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">var</span> option = <span class="string">'down'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animateIn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    animateName = requestAnimationFrame(animateIn);</span><br><span class="line">    mesh.rotateX(<span class="built_in">Math</span>.PI / <span class="number">40</span>);</span><br><span class="line">    <span class="keyword">if</span> (option == <span class="string">'up'</span>) &#123;</span><br><span class="line">        ball.position.set(<span class="number">200</span>, y += <span class="number">8</span>, <span class="number">0</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ball.position.set(<span class="number">200</span>, y -= <span class="number">8</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (y &lt; <span class="number">1</span>) &#123; option = <span class="string">'up'</span>; &#125;</span><br><span class="line">    <span class="keyword">if</span> (y &gt; <span class="number">100</span>) &#123; option = <span class="string">'down'</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://conardli.top/img/qj/qj_10_animate.gif" alt=""></p>
+<h3 id="2-7-总结"><a href="#2-7-总结" class="headerlink" title="2.7 总结"></a>2.7 总结</h3><p>上面的知识是<code>Three.js</code>中最基础的知识，也是最重要的和最主干的。</p>
+<p>这些知识能够让你在看到一个复杂的三维效果时有一定的思路，当然，要实现还需要非常多的细节。这些细节你可以去<a href="https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene" target="_blank" rel="noopener">官方文档</a>中查阅。</p>
+<p>下面的章节即告诉你如何使用<code>Three.js</code>进行实战 — 实现一个360度全景插件。</p>
+<p>这个插件包括两部分，第一部分是对全景图进行预览。</p>
+<p>第二部分是对全景图的标记进行配置，并关联预览的坐标。</p>
+<p>我们首先来看看全景预览部分：</p>
+<h2 id="三、全景预览"><a href="#三、全景预览" class="headerlink" title="三、全景预览"></a>三、全景预览</h2><p><img src="http://conardli.top/img/qj/qj_11_qj.gif" alt=""></p>
+<h3 id="3-1-基本逻辑"><a href="#3-1-基本逻辑" class="headerlink" title="3.1 基本逻辑"></a>3.1 基本逻辑</h3><ul>
+<li><p>将一张全景图包裹在球体的内壁</p>
+</li>
+<li><p>设定一个观察点，在球的圆心</p>
+</li>
+<li><p>使用鼠标可以拖动球体，从而改变我们看到全景的视野</p>
+</li>
+<li><p>鼠标滚轮可以缩放，和放大，改变观察全景的远近</p>
+</li>
+<li><p>根据坐标在全景图上挂载一些标记，如文字、图标等，并且可以增加事件，如点击事件</p>
+</li>
+</ul>
+<h3 id="3-2-初始化"><a href="#3-2-初始化" class="headerlink" title="3.2 初始化"></a>3.2 初始化</h3><p>我们先把必要的基础设施搭建起来：</p>
+<p>场景、相机（选择远景相机，这样可以让全景看起来更真实）、渲染器：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">_scene = <span class="keyword">new</span> THREE.Scene();</span><br><span class="line">initCamera();</span><br><span class="line">initRenderer();</span><br><span class="line">animate();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化相机</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initCamera</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    _camera = <span class="keyword">new</span> THREE.PerspectiveCamera(<span class="number">75</span>, <span class="built_in">window</span>.innerWidth / <span class="built_in">window</span>.innerHeight, <span class="number">0.1</span>, <span class="number">1100</span>);</span><br><span class="line">    _camera.position.set(<span class="number">0</span>, <span class="number">0</span>, <span class="number">2000</span>);</span><br><span class="line">    _camera.lookAt(<span class="keyword">new</span> THREE.Vector3(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化渲染器</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initRenderer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    _renderer = <span class="keyword">new</span> THREE.WebGLRenderer();</span><br><span class="line">    _renderer.setSize(<span class="built_in">window</span>.innerWidth, <span class="built_in">window</span>.innerHeight);</span><br><span class="line">    _container = <span class="built_in">document</span>.getElementById(<span class="string">'panoramaConianer'</span>);</span><br><span class="line">    _container.appendChild(_renderer.domElement);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实时渲染</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    requestAnimationFrame(animate);</span><br><span class="line">    _renderer.render(_scene, _camera);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面我们在场景内添加一个球体，并把全景图作为材料包裹在球体上面：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> mesh = <span class="keyword">new</span> THREE.Mesh(<span class="keyword">new</span> THREE.SphereGeometry(<span class="number">1000</span>, <span class="number">100</span>, <span class="number">100</span>),</span><br><span class="line"><span class="keyword">new</span> THREE.MeshBasicMaterial(</span><br><span class="line">        &#123; <span class="attr">map</span>: ImageUtils.loadTexture(<span class="string">'img/p3.png'</span>) &#125;</span><br><span class="line">    ));</span><br><span class="line">_scene.add(mesh);</span><br></pre></td></tr></table></figure>
+<p>然后我们看到的场景应该是这样的：</p>
+<p><img src="http://conardli.top/img/qj/qj_12_qj.png" alt=""></p>
+<p>这不是我们想要的效果，我们想要的是从球的内部观察全景，并且全景图是附着外球的内壁的，而不是铺在外面：</p>
+<p>我们只要需将<code>Material</code>的<code>scale</code>的一个属性设置为负值，材料即可附着在几何体的内部：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">mesh.scale.x = <span class="number">-1</span>;</span><br></pre></td></tr></table></figure>
+<p>然后我们将相机的中心点移动到球的中心：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_camera.position.set(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>现在我们已经在全景球的内部啦：</p>
+<p><img src="http://conardli.top/img/qj/qj_13_qj.png" alt=""></p>
+<h3 id="3-3-事件处理"><a href="#3-3-事件处理" class="headerlink" title="3.3 事件处理"></a>3.3 事件处理</h3><p>全景图已经可以浏览了，但是你只能看到你眼前的这一块，并不能拖动它看到其他部分，为了精确的控制拖动的速度和缩放、放大等场景，我们手动为它增加一些事件：</p>
+<p>监听鼠标的<code>mousedown</code>事件，在此时将开始拖动标记<code>_isUserInteracting</code>设置为<code>true</code>，并且记录起始的屏幕坐标，以及起始的相机<code>lookAt</code>的坐标。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_container.addEventListener(<span class="string">'mousedown'</span>, (event)=&gt;&#123;</span><br><span class="line">  event.preventDefault();</span><br><span class="line">  _isUserInteracting = <span class="literal">true</span>;</span><br><span class="line">  _onPointerDownPointerX = event.clientX;</span><br><span class="line">  _onPointerDownPointerY = event.clientY;</span><br><span class="line">  _onPointerDownLon = _lon;</span><br><span class="line">  _onPointerDownLat = _lat;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>监听鼠标的<code>mousemove</code>事件，当<code>_isUserInteracting</code>为<code>true</code>时，实时计算当前相机<code>lookAt</code>的真实坐标。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_container.addEventListener(<span class="string">'mousemove'</span>, (event)=&gt;&#123;</span><br><span class="line">  <span class="keyword">if</span> (_isUserInteracting) &#123;</span><br><span class="line">    _lon = (_onPointerDownPointerX - event.clientX) * <span class="number">0.1</span> + _onPointerDownLon;</span><br><span class="line">    _lat = (event.clientY - _onPointerDownPointerY) * <span class="number">0.1</span> + _onPointerDownLat;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>监听鼠标的<code>mouseup</code>事件，将<code>_isUserInteracting</code>设置为<code>false</code>。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_container.addEventListener(<span class="string">'mouseup'</span>, (event)=&gt;&#123;</span><br><span class="line"> _isUserInteracting = <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>当然，上面我们只是改变了坐标，并没有告诉相机它改变了，我们在<code>animate</code>函数中来做这件事：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  requestAnimationFrame(animate);</span><br><span class="line">  calPosition();</span><br><span class="line">  _renderer.render(_scene, _camera);</span><br><span class="line">  _renderer.render(_sceneOrtho, _cameraOrtho);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calPosition</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  _lat = <span class="built_in">Math</span>.max(<span class="number">-85</span>, <span class="built_in">Math</span>.min(<span class="number">85</span>, _lat));</span><br><span class="line">  <span class="keyword">var</span> phi = tMath.degToRad(<span class="number">90</span> - _lat);</span><br><span class="line">  <span class="keyword">var</span> theta = tMath.degToRad(_lon);</span><br><span class="line">  _camera.target.x = _pRadius * <span class="built_in">Math</span>.sin(phi) * <span class="built_in">Math</span>.cos(theta);</span><br><span class="line">  _camera.target.y = _pRadius * <span class="built_in">Math</span>.cos(phi);</span><br><span class="line">  _camera.target.z = _pRadius * <span class="built_in">Math</span>.sin(phi) * <span class="built_in">Math</span>.sin(theta);</span><br><span class="line">  _camera.lookAt(_camera.target);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>监听<code>mousewheel</code>事件，对全景图进行放大和缩小，注意这里指定了最大缩放范围<code>maxFocalLength</code>和最小缩放范围<code>minFocalLength</code>。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_container.addEventListener(<span class="string">'mousewheel'</span>, (event)=&gt;&#123;</span><br><span class="line">  <span class="keyword">var</span> ev = ev || <span class="built_in">window</span>.event;</span><br><span class="line">  <span class="keyword">var</span> down = <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">var</span> m = _camera.getFocalLength();</span><br><span class="line">  down = ev.wheelDelta ? ev.wheelDelta &lt; <span class="number">0</span> : ev.detail &gt; <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> (down) &#123;</span><br><span class="line">    <span class="keyword">if</span> (m &gt; minFocalLength) &#123;</span><br><span class="line">      m -= m * <span class="number">0.05</span></span><br><span class="line">      _camera.setFocalLength(m);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (m &lt; maxFocalLength) &#123;</span><br><span class="line">      m += m * <span class="number">0.05</span></span><br><span class="line">      _camera.setFocalLength(m);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>来看一下效果吧：</p>
+<p><img src="http://conardli.top/img/qj/qj_16_qj.gif" alt=""></p>
+<h3 id="3-4-增加标记"><a href="#3-4-增加标记" class="headerlink" title="3.4 增加标记"></a>3.4 增加标记</h3><p>在浏览全景图的时候，我们往往需要对某些特殊的位置进行一些标记，并且这些标记可能附带一些事件，比如你需要点击一个标记才能到达下一张全景图。</p>
+<p>下面我们来看看如何在全景中增加标记，以及如何为这些标记添加事件。</p>
+<p>我们可能不需要让这些标记随着视野的变化而放大和缩小，基于此，我们使用正交投影相机来展现标记，只需给它一个固定的观察高度：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_cameraOrtho = <span class="keyword">new</span> THREE.OrthographicCamera(-<span class="built_in">window</span>.innerWidth / <span class="number">2</span>, <span class="built_in">window</span>.innerWidth / <span class="number">2</span>, <span class="built_in">window</span>.innerHeight / <span class="number">2</span>, -<span class="built_in">window</span>.innerHeight / <span class="number">2</span>, <span class="number">1</span>, <span class="number">10</span>);</span><br><span class="line">_cameraOrtho.position.z = <span class="number">10</span>;</span><br><span class="line">_sceneOrtho = <span class="keyword">new</span> Scene();</span><br></pre></td></tr></table></figure>
+<p>利用精灵材料(<code>SpriteMaterial</code>)来实现文字标记，或者图片标记：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建文字标记</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createLableSprite</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">'canvas'</span>);</span><br><span class="line">  <span class="keyword">const</span> context = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line">  <span class="keyword">const</span> metrics = context.measureText(name);</span><br><span class="line">  <span class="keyword">const</span> width = metrics.width * <span class="number">1.5</span>;</span><br><span class="line">  context.font = <span class="string">"10px 宋体"</span>;</span><br><span class="line">  context.fillStyle = <span class="string">"rgba(0,0,0,0.95)"</span>;</span><br><span class="line">  context.fillRect(<span class="number">2</span>, <span class="number">2</span>, width + <span class="number">4</span>, <span class="number">20</span> + <span class="number">4</span>);</span><br><span class="line">  context.fillText(name, <span class="number">4</span>, <span class="number">20</span>);</span><br><span class="line">  <span class="keyword">const</span> texture = <span class="keyword">new</span> Texture(canvas);</span><br><span class="line">  <span class="keyword">const</span> spriteMaterial = <span class="keyword">new</span> SpriteMaterial(&#123; <span class="attr">map</span>: texture &#125;);</span><br><span class="line">  <span class="keyword">const</span> sprite = <span class="keyword">new</span> Sprite(spriteMaterial);</span><br><span class="line">  sprite.name = name;</span><br><span class="line">  <span class="keyword">const</span> lable = &#123;</span><br><span class="line">    name: name,</span><br><span class="line">    canvas: canvas,</span><br><span class="line">    context: context,</span><br><span class="line">    texture: texture,</span><br><span class="line">    sprite: sprite</span><br><span class="line">  &#125;;</span><br><span class="line">  _sceneOrtho.add(lable.sprite);</span><br><span class="line">  <span class="keyword">return</span> lable;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 创建图片标记</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createSprite</span>(<span class="params">position, url, name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> textureLoader = <span class="keyword">new</span> TextureLoader();</span><br><span class="line">  <span class="keyword">const</span> ballMaterial = <span class="keyword">new</span> SpriteMaterial(&#123;</span><br><span class="line">    map: textureLoader.load(url)</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">const</span> sp = &#123;</span><br><span class="line">    pos: position,</span><br><span class="line">    name: name,</span><br><span class="line">    sprite: <span class="keyword">new</span> Sprite(ballMaterial)</span><br><span class="line">  &#125;;</span><br><span class="line">  sp.sprite.scale.set(<span class="number">32</span>, <span class="number">32</span>, <span class="number">1.0</span>);</span><br><span class="line">  sp.sprite.name = name;</span><br><span class="line">  _sceneOrtho.add(sp.sprite);</span><br><span class="line">  <span class="keyword">return</span> sp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建好这些标记，我们把它渲染到场景中。</p>
+<p>我们必须告诉场景这些标记的位置，为了直观的理解，我们需要给这些标记赋予一种坐标，这种坐标很类似于经纬度，我们叫它<code>lon</code>和<code>lat</code>，具体是如何给定的我们在下面的章节：<a href="#全景标记">全景标记</a>中会详细介绍。</p>
+<p>在这个过程中，一共经历了两次坐标转换：</p>
+<p>第一次转换：将“经纬度”转换为三维空间坐标，即我们上面讲的那种<code>x、y、z</code>形式的坐标。</p>
+<p>使用<code>geoPosition2World</code>函数进行转换，得到一个<code>Vector3</code>对象，我们可以将当前相机<code>_camera</code>作为参数传入这个对象的<code>project</code>方法，这会得到一个标准化后的坐标，基于这个坐标可以帮我们判断标记是否在视野范围内，如下面的代码，若标准化坐标在<code>-1</code>和<code>1</code>的范围内，则它会出现在我们的视野中，我们将它进行准确渲染。</p>
+<p>第二次转换：将三维空间坐标转换为屏幕坐标。</p>
+<p>如果我们直接讲上面的三维空间坐标坐标应用到标记中，我们会发现无论视野如何移动，标记的位置是不会有任何变化的，因为这样算出来的坐标永远是一个常量。</p>
+<p>所以我们需要借助上面的标准化坐标，将标记的三维空间坐标转换为真实的屏幕坐标，这个过程是<code>worldPostion2Screen</code>函数来实现的。</p>
+<p>关于<code>geoPosition2World</code>和<code>worldPostion2Screen</code>两个函数的实现，大家有兴趣可以去我的<code>github</code>源码中查看，这里就不多做解释了，因为这又要牵扯到一大堆专业知识啦。😅</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> wp = geoPosition2World(_sprites.lon, _sprites.lat);</span><br><span class="line"><span class="keyword">var</span> sp = worldPostion2Screen(wp, _camera);</span><br><span class="line"><span class="keyword">var</span> test = wp.clone();</span><br><span class="line">test.project(_camera);</span><br><span class="line"><span class="keyword">if</span> (test.x &gt; <span class="number">-1</span> &amp;&amp; test.x &lt; <span class="number">1</span> &amp;&amp; test.y &gt; <span class="number">-1</span> &amp;&amp; test.y &lt; <span class="number">1</span> &amp;&amp; test.z &gt; <span class="number">-1</span> &amp;&amp; test.z &lt; <span class="number">1</span>) &#123;</span><br><span class="line">    _sprites[i].sprite.scale.set(<span class="number">32</span>, <span class="number">32</span>, <span class="number">32</span>);</span><br><span class="line">    _sprites[i].sprite.position.set(sp.x, sp.y, <span class="number">1</span>);</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    _sprites[i].sprite.scale.set(<span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>);</span><br><span class="line">    _sprites[i].sprite.position.set(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://conardli.top/img/qj/qj_14_qj.png" alt=""></p>
+<p>现在，标记已经添加到全景上面了，我们来为它添加一个点击事件：</p>
+<p><code>Three.js</code>并没有单独提供为<code>Sprite</code>添加事件的方法，我们可以借助光线投射器（<code>Raycaster</code>）来实现。</p>
+<p><code>Raycaster</code>提供了鼠标拾取的能力：</p>
+<p>通过<code>setFromCamera</code>函数来建立当前点击的坐标（经过归一化处理）和相机的绑定关系。</p>
+<p>通过<code>intersectObjects</code>来判定一组对象中有哪些被命中（点击），得到被命中的对象数组。</p>
+<p>这样，我们就可以获取到点击的对象，并基于它做一些处理：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_container.addEventListener(<span class="string">'click'</span>, (event)=&gt;&#123;</span><br><span class="line">  _mouse.x = (event.clientX / <span class="built_in">window</span>.innerWidth) * <span class="number">2</span> - <span class="number">1</span>;</span><br><span class="line">  _mouse.y = -(event.clientY / <span class="built_in">window</span>.innerHeight) * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">  _raycaster.setFromCamera(_mouse, _cameraOrtho);</span><br><span class="line">  <span class="keyword">var</span> intersects = _raycaster.intersectObjects(_clickableObjects);</span><br><span class="line">  intersects.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">element</span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">"点击到了: "</span> + element.object.name);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>点击到一个标记，进入到下一张全景图：</p>
+<p><img src="http://conardli.top/img/qj/qj_15_qj.gif" alt=""></p>
+<h2 id="四、全景标记"><a href="#四、全景标记" class="headerlink" title="四、全景标记"></a>四、全景标记</h2><p>为了让全景图知道，我要把标记标注在什么地方，我需要一个工具来把原图和全景图上的位置关联起来：</p>
+<p><img src="http://conardli.top/img/qj/qj_17_qj.gif" alt=""><br>由于这部分代码和<code>Three.js</code>关系不大，这里我只说一下基本的实现逻辑，有兴趣可以去我的<code>github</code>仓库查看。</p>
+<h3 id="4-1-要求"><a href="#4-1-要求" class="headerlink" title="4.1 要求"></a>4.1 要求</h3><ul>
+<li><p>建立坐标和全景的映射关系，为全景赋予一套虚拟坐标</p>
+</li>
+<li><p>在一张平铺的全景图上，可以在任意位置增加标记，并获取标记的坐标</p>
+</li>
+<li><p>使用坐标在预览全景增加标记，看到的标记位置和平铺全景中的位置相同</p>
+</li>
+</ul>
+<h3 id="4-2-坐标"><a href="#4-2-坐标" class="headerlink" title="4.2 坐标"></a>4.2 坐标</h3><p>在<code>2D</code>平面上，我们能监听屏幕的鼠标事件，我们可以获取的也只是当前的鼠标坐标，我们要做的是将鼠标坐标转换成三维空间坐标。</p>
+<p>看起来好像是不可能的，二维坐标怎么能转换成三维坐标呢？</p>
+<p>但是，我们可以借助一种中间坐标来转换，可以把它称之为“经纬度”。</p>
+<p>在这之前，我们先来看看我们常说的经纬度到底是什么。</p>
+<h3 id="4-3-经纬度"><a href="#4-3-经纬度" class="headerlink" title="4.3 经纬度"></a>4.3 经纬度</h3><p>使用经纬度，可以精确的定位到地球上任意一个点，它的计算规则是这样的：</p>
+<p><img src="http://conardli.top/img/qj/qj_18_jwd.png" alt=""></p>
+<p>通常把连接南极到北极的线叫做子午线也叫经线，其所对应的面叫做子午面，规定英国伦敦格林尼治天文台原址的那条经线称为0°经线，也叫本初子午线其对应的面即本初子午面。</p>
+<p>经度：球面上某店对应的子午面与本初子午面间的夹角。东正西负。</p>
+<p>纬度 ：球面上某点的法线（以该店作为切点与球面相切的面的法线）与赤道平面的夹角。北正南负。</p>
+<p>由此，地球上每一个点都能被对应到一个经度和纬度，想对应的，也能对应到某条经线和纬线上。</p>
+<p>这样，即使把球面展开称平面，我们仍然能用经纬度表示某店点的位置：</p>
+<p><img src="http://conardli.top/img/qj/qj_19_map.gif" alt=""></p>
+<h3 id="4-4-坐标转换"><a href="#4-4-坐标转换" class="headerlink" title="4.4 坐标转换"></a>4.4 坐标转换</h3><p>基于上面的分析，我们完全可以给平面的全景图赋予一个虚拟的“经纬度”。我们使用<code>Canvas</code>为它绘制一张”经纬网”：</p>
+<p><img src="http://conardli.top/img/qj/qj_20_jwd.png" alt=""></p>
+<p>将鼠标坐标转换为”经纬度”：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calLonLat</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> h = _setContainer.style.height.split(<span class="string">"px"</span>)[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">var</span> w = _setContainer.style.width.split(<span class="string">"px"</span>)[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">var</span> ix = _setContainer.offsetLeft;</span><br><span class="line">  <span class="keyword">var</span> iy = _setContainer.offsetTop;</span><br><span class="line">  iy = iy + h;</span><br><span class="line">  <span class="keyword">var</span> x = e.clientX;</span><br><span class="line">  <span class="keyword">var</span> y = e.clientY;</span><br><span class="line">  <span class="keyword">var</span> lonS = (x - ix) / w;</span><br><span class="line">  <span class="keyword">var</span> lon = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> (lonS &gt; <span class="number">0.5</span>) &#123;</span><br><span class="line">    lon = -(<span class="number">1</span> - lonS) * <span class="number">360</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    lon = <span class="number">1</span> * <span class="number">360</span> * lonS;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> latS = (iy - y) / h;</span><br><span class="line">  <span class="keyword">var</span> lat = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> (latS &gt; <span class="number">0.5</span>) &#123;</span><br><span class="line">    lat = (latS - <span class="number">0.5</span>) * <span class="number">180</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    lat = (<span class="number">0.5</span> - latS) * <span class="number">180</span> * <span class="number">-1</span></span><br><span class="line">  &#125;</span><br><span class="line">  lon = lon.toFixed(<span class="number">2</span>);</span><br><span class="line">  lat = lat.toFixed(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">lon</span>: lon, <span class="attr">lat</span>: lat &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样平面地图上的某点就可以和三维坐标关联起来了，当然，这还需要一定的转换，有兴趣可以去源码研究下<code>geoPosition2World</code>和<code>worldPostion2Screen</code>两个函数。</p>
+<h2 id="五、插件封装"><a href="#五、插件封装" class="headerlink" title="五、插件封装"></a>五、插件封装</h2><p>上面的代码中，我们实现了全景预览和全景标记的功能，下面，我们要把这些功能封装成插件。</p>
+<p>所谓插件，即可以直接引用你写的代码，并添加少量的配置就可以实现想要的功能。</p>
+<h3 id="5-1-全景预览封装"><a href="#5-1-全景预览封装" class="headerlink" title="5.1 全景预览封装"></a>5.1 全景预览封装</h3><p>我们来看看，究竟哪些配置是可以抽取出来的：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> options = &#123;</span><br><span class="line">  container: <span class="string">'panoramaConianer'</span>,</span><br><span class="line">  url: <span class="string">'resources/img/panorama/pano-7.jpg'</span>,</span><br><span class="line">  lables: [],</span><br><span class="line">  widthSegments: <span class="number">60</span>,</span><br><span class="line">  heightSegments: <span class="number">40</span>,</span><br><span class="line">  pRadius: <span class="number">1000</span>,</span><br><span class="line">  minFocalLength: <span class="number">1</span>,</span><br><span class="line">  maxFocalLength: <span class="number">100</span>,</span><br><span class="line">  sprite: <span class="string">'label'</span>,</span><br><span class="line">  onClick: <span class="function"><span class="params">()</span> =&gt;</span> &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>container</code>:<code>dom</code>容器的<code>id</code></li>
+<li><code>url</code>:图片路径</li>
+<li><code>lables</code>:全景中的标记数组，格式为<code>{position:{lon:114,lat:38},logoUrl:&#39;lableLogo.png&#39;,text:&#39;name&#39;}</code></li>
+<li><code>widthSegments</code>:水平切段数</li>
+<li><code>heightSegments</code>:垂直切段数（值小粗糙速度快，值大精细速度慢）</li>
+<li><code>pRadius</code>:全景球的半径，推荐使用默认值</li>
+<li><code>minFocalLength</code>:镜头最小拉近距离</li>
+<li><code>maxFocalLength</code>:镜头最大拉近距离</li>
+<li><code>sprite</code>:展示的标记类型<code>label,icon</code></li>
+<li><code>onClick</code>:标记的点击事件</li>
+</ul>
+<p>上面的配置是可以用户配置的，那么用户该如何传入插件呢？</p>
+<p>我们可以在插件中声明一些默认配置<code>options</code>，用户使用构造函数传入参数，然后使用<code>Object.assign</code>将传入配置覆盖到默认配置。</p>
+<p>接下来，你就可以使用<code>this.def</code>来访问这些变量了，然后只需要把写死的代码改成这些配置即可。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">options = &#123;</span><br><span class="line">    <span class="comment">// 默认配置...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tpanorama</span>(<span class="params">opt</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.render(opt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tpanorama.prototype = &#123;</span><br><span class="line">  <span class="keyword">constructor</span>: this,</span><br><span class="line">  def: &#123;&#125;,</span><br><span class="line">  render: <span class="function"><span class="keyword">function</span> (<span class="params">opt</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.def = <span class="built_in">Object</span>.assign(options, opt);</span><br><span class="line">    <span class="comment">// 初始化操作...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-2-全景标记封装"><a href="#5-2-全景标记封装" class="headerlink" title="5.2 全景标记封装"></a>5.2 全景标记封装</h3><p>基本逻辑和上面的类似，下面是提取出来的一些参数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> setOpt = &#123;</span><br><span class="line">  container: <span class="string">'myDiv'</span>,<span class="comment">//setting容器</span></span><br><span class="line">  imgUrl: <span class="string">'resources/img/panorama/3.jpg'</span>,</span><br><span class="line">  width: <span class="string">''</span>,<span class="comment">//指定宽度，高度自适应</span></span><br><span class="line">  showGrid: <span class="literal">true</span>,<span class="comment">//是否显示格网</span></span><br><span class="line">  showPosition: <span class="literal">true</span>,<span class="comment">//是否显示经纬度提示</span></span><br><span class="line">  lableColor: <span class="string">'#9400D3'</span>,<span class="comment">//标记颜色</span></span><br><span class="line">  gridColor: <span class="string">'#48D1CC'</span>,<span class="comment">//格网颜色</span></span><br><span class="line">  lables: [],<span class="comment">//标记   &#123;lon:114,lat:38,text:'标记一'&#125;</span></span><br><span class="line">  addLable: <span class="literal">true</span>,<span class="comment">//开启后双击添加标记  (必须开启经纬度提示)</span></span><br><span class="line">  getLable: <span class="literal">true</span>,<span class="comment">//开启后右键查询标记  (必须开启经纬度提示)</span></span><br><span class="line">  deleteLbale: <span class="literal">true</span>,<span class="comment">//开启默认中键删除 （必须开启经纬度提示）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="六、发布"><a href="#六、发布" class="headerlink" title="六、发布"></a>六、发布</h2><p>接下来，我们就好考虑如何将写好的插件让用户使用了。</p>
+<p>我们主要考虑两种场景，直接引用和<code>npm install</code></p>
+<h3 id="6-1-直接引用JS"><a href="#6-1-直接引用JS" class="headerlink" title="6.1 直接引用JS"></a>6.1 直接引用<code>JS</code></h3><p>为了不污染全局变量，我们使用一个自执行函数<code>(function(){}())</code>将代码包起来，然后将我们写好的插件暴露给全局变量<code>window</code>。</p>
+<p>我把它放在<code>originSrc</code>目录下。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">global, undefined</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">tpanorama</span>(<span class="params">opt</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    tpanorama.prototype = &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">tpanoramaSetting</span>(<span class="params">opt</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    tpanoramaSetting.prototype = &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    global.tpanorama = tpanorama;</span><br><span class="line">    global.tpanoramaSetting = panoramaSetting;</span><br><span class="line">&#125;(<span class="built_in">window</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="6-2-使用npm-install"><a href="#6-2-使用npm-install" class="headerlink" title="6.2 使用npm install"></a>6.2 使用<code>npm install</code></h3><p>直接将写好的插件导出：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = tpanorama;</span><br><span class="line"><span class="built_in">module</span>.exports = panoramaSetting;</span><br></pre></td></tr></table></figure>
+<p>我把它放在<code>src</code>目录下。</p>
+<p>同时，我们要把<code>package.json</code>中的<code>main</code>属性指向我们要导出的文件：<code>&quot;main&quot;: &quot;lib/index.js&quot;</code>，然后将<code>name</code>、<code>description</code>、<code>version</code>等信息补充完整。</p>
+<p>下面，我们就可以开始发布了，首先你要有一个<code>npm</code>账号，并且登陆，如果你没有账号，使用下面的命令创建一个账号。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm adduser --registry http:<span class="comment">//registry.npmjs.org</span></span><br></pre></td></tr></table></figure>
+<p>如果你已经有账号了，那么可以直接使用下面的命令进行登陆。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm login --registry http:<span class="comment">//registry.npmjs.org</span></span><br></pre></td></tr></table></figure>
+<p>登陆成功之后，就可以发布了：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm publish --registry http:<span class="comment">//registry.npmjs.org</span></span><br></pre></td></tr></table></figure>
+<p>注意，上面每个命令我都手动指定了<code>registry</code>，这是因为当前你使用的<code>npm</code>源可能已经被更换了，可能使用的是淘宝源或者公司源，这时不手动指定会导致发布失败。</p>
+<p>发布成功后直接在<a href="https://www.npmjs.com/package/tpanorama" target="_blank" rel="noopener"><code>npm官网</code></a>上看到你的包了。</p>
+<p>然后，你可以直接使用<code>npm install tpanorama</code>进行安装，然后进行使用：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> &#123; tpanorama,tpanoramaSetting &#125; = <span class="built_in">require</span>(<span class="string">'tpanorama'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="6-3-babel编译"><a href="#6-3-babel编译" class="headerlink" title="6.3 babel编译"></a>6.3 babel编译</h3><p>最后不要忘了，无论使用以上哪种方式，我们都要使用<code>babel</code>编译后才能暴露给用户。</p>
+<p>在<code>scripts</code>中创建一个<code>build</code>命令，将源文件进行编译，最终暴露给用户使用的将是<code>lib</code>和<code>origin</code>。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="string">"build"</span>: <span class="string">"babel src --out-dir lib &amp;&amp; babel originSrc --out-dir origin"</span>,</span><br></pre></td></tr></table></figure>
+<p>你还可以指定一些其他的命令来供用户测试，如我将写好的例子全部放在<code>examples</code>中，然后在<code>scripts</code>定义了<code>expamle</code>命令：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="string">"example"</span>: <span class="string">"npm run webpack &amp;&amp; node ./server/www"</span></span><br></pre></td></tr></table></figure>
+<p>这样，用户将代码克隆后直接在本地运行<code>npm run example</code>就可以进行调试了。</p>
+<h2 id="七、小结"><a href="#七、小结" class="headerlink" title="七、小结"></a>七、小结</h2><p>本项目的<code>github</code>地址：<a href="https://github.com/ConardLi/tpanorama" target="_blank" rel="noopener">https://github.com/ConardLi/tpanorama</a></p>
+<p>文中如有错误，欢迎在评论区指正，如果这篇文章帮助到了你，欢迎点赞和关注。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="www.conardli.top/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" data-id="cjy83pdar000tph0ddqq8ia0w" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+
+
+<div id="roott"></div>
+
+<button id="tocbtn">打开目录</button>
+
+
+<script>
+    var showToc = false;
+    document.getElementById('tocbtn').onclick = function () {
+        if (showToc) {
+            document.getElementById('roott').innerHTML = ''
+            document.getElementById('tocbtn').innerHTML = '打开目录'
+        } else {
+            document.getElementById('roott').innerHTML = `<aside id="article-toc" role="navigation" class="fixed">
+  <div id="article-toc-inner">
+    <strong class="sidebar-title">
+      目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#导读"><span class="toc-text">导读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、理清关系"><span class="toc-text">一、理清关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-OpenGL"><span class="toc-text">1.1 OpenGL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-WebGL"><span class="toc-text">1.2 WebGL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Canvas"><span class="toc-text">1.3 Canvas</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-Three-js"><span class="toc-text">1.4 Three.js</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、Three-js基础知识"><span class="toc-text">二、Three.js基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-场景"><span class="toc-text">2.1 场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-元素"><span class="toc-text">2.2 元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-坐标系"><span class="toc-text">2.3 坐标系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-相机"><span class="toc-text">2.4 相机</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-1-两种相机的区别"><span class="toc-text">2.4.1 两种相机的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-构造参数"><span class="toc-text">2.4.2 构造参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-position、lookAt"><span class="toc-text">2.4.3 position、lookAt</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-4-两种相机对比"><span class="toc-text">2.4.4 两种相机对比</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-渲染器"><span class="toc-text">2.5 渲染器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-requestAnimationFrame"><span class="toc-text">2.6 requestAnimationFrame</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-总结"><span class="toc-text">2.7 总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、全景预览"><span class="toc-text">三、全景预览</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-基本逻辑"><span class="toc-text">3.1 基本逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-初始化"><span class="toc-text">3.2 初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-事件处理"><span class="toc-text">3.3 事件处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-增加标记"><span class="toc-text">3.4 增加标记</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、全景标记"><span class="toc-text">四、全景标记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-要求"><span class="toc-text">4.1 要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-坐标"><span class="toc-text">4.2 坐标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-经纬度"><span class="toc-text">4.3 经纬度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-坐标转换"><span class="toc-text">4.4 坐标转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、插件封装"><span class="toc-text">五、插件封装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-全景预览封装"><span class="toc-text">5.1 全景预览封装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-全景标记封装"><span class="toc-text">5.2 全景标记封装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、发布"><span class="toc-text">六、发布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-直接引用JS"><span class="toc-text">6.1 直接引用JS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-使用npm-install"><span class="toc-text">6.2 使用npm install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-babel编译"><span class="toc-text">6.3 babel编译</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、小结"><span class="toc-text">七、小结</span></a></li></ol>
+  </div>
+</aside>`
+            document.getElementById('tocbtn').innerHTML = '关闭目录'
+        }
+        showToc = !showToc;
+    }
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments" style="padding: 30px;"></div>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 's1xL54gwvPRsIy3ciItiPhyD-gzGzoHsz',
+        appKey: 'CmP8stKpHUHtp5abbTxpqc4H'
+    })
+</script>
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>
+            关注我 :</p>
+        <ul class="social-links">
+            
+            
+            <li>
+                <a class="social-tooltip" title="github" href="https://github.com/ConardLi"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-github"></i>
+                </a>
+            </li>
+            
+            
+        </ul>
+    </div>
+    
+    
+<nav id="article-nav">
+    
+        <a href="/2019/05/17/【多端开发】移动端适配总结/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            【多端开发】移动端适配总结
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/04/26/【自检】前端知识清单/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">【自检】前端知识清单</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container" style="background-color: #fff; border-right: 1px solid #e2e2e2;">
+        
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">
+        微信公众号
+    </h3>
+    <div class="widget">
+        <img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/gzh/qrcode.jpg" alt="">
+    </div>
+</div>
+
+        
+        
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://www.conardli.top/img/electron/el_1_app.jpg)" alt="【多端开发】用JS开发跨平台桌面应用，从原理到实践" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/" class="title">【多端开发】用JS开发跨平台桌面应用，从原理到实践</a></p>
+                            <p class="item-date"><time datetime="2019-06-10T12:45:35.000Z" itemprop="datePublished">2019-06-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://www.conardli.top/img/bl/bl_1_stack.png)" alt="【JS进阶】你真的掌握变量和类型了吗" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="title">【JS进阶】你真的掌握变量和类型了吗</a></p>
+                            <p class="item-date"><time datetime="2019-05-28T03:06:11.000Z" itemprop="datePublished">2019-05-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/17/【多端开发】移动端适配总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.loli.net/2019/05/17/5cddefa632f3247082.png)" alt="【多端开发】移动端适配总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/17/【多端开发】移动端适配总结/" class="title">【多端开发】移动端适配总结</a></p>
+                            <p class="item-date"><time datetime="2019-05-17T02:39:42.000Z" itemprop="datePublished">2019-05-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://conardli.top/img/qj/qj_15_qj.gif)" alt="【特效】看完这篇，你也可以实现一个360度全景插件" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" class="title">【特效】看完这篇，你也可以实现一个360度全景插件</a></p>
+                            <p class="item-date"><time datetime="2019-05-05T01:17:16.000Z" itemprop="datePublished">2019-05-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/26/【自检】前端知识清单/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://lsqimg-1257917459.cos.ap-beijing.myqcloud.com/blog/知识体系.png)" alt="【自检】前端知识清单" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/26/【自检】前端知识清单/" class="title">【自检】前端知识清单</a></p>
+                            <p class="item-date"><time datetime="2019-04-26T01:11:22.000Z" itemprop="datePublished">2019-04-26</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <div class="">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget widget-wrap-inn">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/electron/">electron</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多端开发/">多端开发</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习提升/">学习提升</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器和网络/">浏览器和网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特效/">特效</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .widget-wrap-inn {
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+</style>
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget  widget-wrap-inn">
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+</div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget  widget-wrap-inn">
+        <ul>
+            
+            <li>
+                <a href="https://juejin.im/user/5bea27965188250edf4ad8b7">掘金</a>
+            </li>
+            
+            <li>
+                <a href="https://segmentfault.com/u/conardli">segmentfault</a>
+            </li>
+            
+            <li>
+                <a href="https://github.com/ConardLi">github</a>
+            </li>
+            
+            <li>
+                <a href="https://github.com/ConardLi/tpanorama">tpanorama</a>
+            </li>
+            
+            <li>
+                <a href="http://chuangzaoshi.com/">创造狮导航</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <!-- <h3 class="widget-title">
+        腾讯云专属福利
+    </h3> -->
+    <div class="widget">
+        <a target="_blank"
+            href="https://cloud.tencent.com/redirect.php?redirect=1025&cps_key=1a3e7b07487819e129852ba7a4543262&from=console">
+            <img src="/img/txy.jpg" id="txy" alt="">
+        </a>
+    </div>
+</div>
+
+
+
+<style>
+    #txy {
+        width: 280px;
+        border: 5px;
+    }
+</style>
+        
+        
+<div class="widget-wrap widget-list">
+    <div class="widget">
+        <a target="_blank" href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=y3kv7eoj">
+            <img src="/img/aly.png" id="txy" alt="">
+        </a>
+    </div>
+</div>
+
+
+
+<style>
+    #txy {
+        width: 280px;
+        border: 5px;
+    }
+</style>
+        
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy;
+                    2019
+                    ConardLi
+                </p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice"
+                        target="_blank">ConardLi</a></p>
+                <script type="text/javascript">
+                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1275088352'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1275088352%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+                <span id="busuanzi_container_site_pv" style="margin-left:50px;">
+                    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+                </span>
+                <span id="busuanzi_container_site_uv" style="margin-left:50px;">
+                    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+                </span>
+            </div>
+            <div class="footer-plugins">
+                
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'www.conardli.top/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+
+</html>

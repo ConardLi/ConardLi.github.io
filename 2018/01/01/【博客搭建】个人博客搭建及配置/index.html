@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>个人博客搭建及配置 | 李世奇的技术专栏</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="博客搭建" />
+    
+    <meta name="description" content="一、基础配置 1.1.本地安装hexo首先保证你电脑上有node环境，这个不懂的可以自定百度。 控制台输入node -v出现版本号说明安装成功。 有了node就可以安装hexo了，控制台输入如下命令 npm i -g hexo 同样控制台输入hexo -v出现版本号说明安装成功。 然后开始初始化项目，控制台输入： hexo init 得到如下项目目录：  node_modules：是依赖包publ">
+<meta name="keywords" content="博客搭建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="个人博客搭建及配置">
+<meta property="og:url" content="www.conardli.top/2018/01/01/【博客搭建】个人博客搭建及配置/index.html">
+<meta property="og:site_name" content="李世奇的技术专栏">
+<meta property="og:description" content="一、基础配置 1.1.本地安装hexo首先保证你电脑上有node环境，这个不懂的可以自定百度。 控制台输入node -v出现版本号说明安装成功。 有了node就可以安装hexo了，控制台输入如下命令 npm i -g hexo 同样控制台输入hexo -v出现版本号说明安装成功。 然后开始初始化项目，控制台输入： hexo init 得到如下项目目录：  node_modules：是依赖包publ">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/blog1.png">
+<meta property="og:updated_time" content="2019-04-18T14:30:44.226Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="个人博客搭建及配置">
+<meta name="twitter:description" content="一、基础配置 1.1.本地安装hexo首先保证你电脑上有node环境，这个不懂的可以自定百度。 控制台输入node -v出现版本号说明安装成功。 有了node就可以安装hexo了，控制台输入如下命令 npm i -g hexo 同样控制台输入hexo -v出现版本号说明安装成功。 然后开始初始化项目，控制台输入： hexo init 得到如下项目目录：  node_modules：是依赖包publ">
+<meta name="twitter:image" content="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/blog1.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://mp.weixin.qq.com/s/dYZEHTgqvxGV7mL99JuxRQ">关于</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://github.com/ConardLi/ConardLi.github.io">更新日志</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <style>
+    #article-toc.fixed {
+        position: fixed;
+        top: 30px;
+        bottom: 30px;
+        left: 32px;
+        padding-top: 15px;
+        z-index: 9999;
+        background-color: antiquewhite;
+        width: 200px;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid rgb(122, 122, 122);
+        opacity: 0.8;
+    }
+
+    #article-toc-inner {
+        padding: 10px;
+        width: 200px;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .toc-level-3 {
+        margin-left: 20px;
+    }
+
+    #article-toc a {
+        text-decoration: none;
+        color: #333;
+        padding: 3px 0;
+        color: #000;
+        font-weight: normal;
+    }
+
+    .toc-item {
+        line-height: 30px;
+        list-style-type: initial;
+    }
+
+    #tocbtn {
+        position: fixed;
+        top: 30%;
+        left: 0px;
+        padding: 5px 2px;
+        width: 18px;
+        word-wrap: break-word;
+        background-color: rgb(242, 245, 247);
+        box-shadow: rgba(118, 118, 118, 0.11) 2px 0px 5px 0px;
+        opacity: 1;
+        height: 94px;
+        line-height: 16px;
+        text-align: center;
+        top: 33%;
+        width: 30px;
+        z-index: 1000000001;
+        cursor: pointer;
+        border-radius: 0px 4px 4px 0px;
+        border-width: 1px 1px 1px;
+        border-style: solid solid solid none;
+        border-color: rgb(224, 228, 231) rgb(224, 228, 231) rgb(224, 228, 231);
+        border-image: initial;
+        border-left: none;
+        padding: 6px;
+        transition: right 0.4s ease-in 0.3s, opacity 0.5s ease-in 0.3s;
+    }
+</style>
+
+<article id="post-【博客搭建】个人博客搭建及配置"
+    class="article article-single article-type-post"
+    itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        <header class="article-header">
+            
+    
+        <h1 class="article-title" itemprop="name">
+        个人博客搭建及配置
+        </h1>
+    
+
+        </header>
+        
+        
+        <div class="article-meta">
+            
+    <div class="article-date">
+        <a href="/2018/01/01/【博客搭建】个人博客搭建及配置/" class="article-date">
+            <time datetime="2018-01-01T12:13:20.000Z" itemprop="datePublished">2018-01-01</time>
+        </a>
+    </div>
+
+            
+
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/博客搭建/">博客搭建</a>
+    </div>
+
+            <span id="busuanzi_container_page_pv" style="position: relative;float: right;">
+                本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+            </span>
+        </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="一、基础配置"><a href="#一、基础配置" class="headerlink" title="一、基础配置"></a>一、基础配置</h1><p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/blog1.png" alt="image"></p>
+<h2 id="1-1-本地安装hexo"><a href="#1-1-本地安装hexo" class="headerlink" title="1.1.本地安装hexo"></a>1.1.本地安装hexo</h2><p>首先保证你电脑上有node环境，这个不懂的可以自定百度。</p>
+<p>控制台输入node -v出现版本号说明安装成功。</p>
+<p>有了node就可以安装hexo了，控制台输入如下命令</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm i -g hexo</span><br></pre></td></tr></table></figure>
+<p>同样控制台输入hexo -v出现版本号说明安装成功。</p>
+<p>然后开始初始化项目，控制台输入：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<p>得到如下项目目录：</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/blog3.png" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">node_modules：是依赖包</span><br><span class="line">public：存放的是生成的页面</span><br><span class="line">scaffolds：命令生成文章等的模板</span><br><span class="line">source：用命令创建的各种文章</span><br><span class="line">themes：主题</span><br><span class="line">_config.yml：整个博客的配置</span><br><span class="line">db.json：source解析所得到的</span><br><span class="line">package.json：项目所需模块项目的配置信息</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-本地运行"><a href="#1-2-本地运行" class="headerlink" title="1.2.本地运行"></a>1.2.本地运行</h2><p>首先在本地跑起来你的代码</p>
+<p>控制台安装hexo-server</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm i hexo-server</span><br></pre></td></tr></table></figure>
+<p>然后运行 hexo-server</p>
+<p>在浏览器中访问：<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a><br>就可以看到你本定运行的页面了</p>
+<p>这时你可以在本地调试一下你的blog。</p>
+<h2 id="1-3-github配置"><a href="#1-3-github配置" class="headerlink" title="1.3.github配置"></a>1.3.github配置</h2><p>首先要创建一个github账号</p>
+<p>并配置好ssh</p>
+<p>这些不懂的可以自行百度。</p>
+<p>创建一个repo，名称为yourname.github.io, 其中yourname是你的github名称，按照这个规则创建github page才会生效。</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/blog2.png" alt="image"></p>
+<p>修改_config.yml中的git配置</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo:  https:<span class="comment">//github.com/xxxx.git</span></span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<h2 id="1-4-部署上传"><a href="#1-4-部署上传" class="headerlink" title="1.4.部署上传"></a>1.4.部署上传</h2><p>在本地安装上传工具</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>依次执行如下命令</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean     //删除上次打包</span><br><span class="line">hexo generate   //打包</span><br><span class="line">hexo deploy    /上传</span><br></pre></td></tr></table></figure>
+<p>这里我单独写了sh执行这三段脚本，这样每次只需要执行这个sh即可。</p>
+<p>在浏览器中输入<a href="http://yourgithubname.github.io就可以看到你的个人博客了！" target="_blank" rel="noopener">http://yourgithubname.github.io就可以看到你的个人博客了！</a></p>
+<h2 id="1-5一些其他配置"><a href="#1-5一些其他配置" class="headerlink" title="1.5一些其他配置"></a>1.5一些其他配置</h2><h3 id="搜索功能"><a href="#搜索功能" class="headerlink" title="搜索功能"></a>搜索功能</h3><p>使用搜索功能首先需要：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -S hexo-generator-json-content</span><br></pre></td></tr></table></figure>
+<p>然后：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">    insight: true</span><br></pre></td></tr></table></figure>
+<h3 id="readme"><a href="#readme" class="headerlink" title="readme"></a>readme</h3><p>1.首先在source文件夹下建立一个README.md</p>
+<p>2.修改_config.yml</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: README.md</span><br></pre></td></tr></table></figure>
+<h1 id="二、绑定二人域名"><a href="#二、绑定二人域名" class="headerlink" title="二、绑定二人域名"></a>二、绑定二人域名</h1><h2 id="2-1购买一个域名"><a href="#2-1购买一个域名" class="headerlink" title="2.1购买一个域名"></a>2.1购买一个域名</h2><p>这里我选择的是阿里云，挑选一个自己喜欢的域名购买。</p>
+<h2 id="2-2域名解析"><a href="#2-2域名解析" class="headerlink" title="2.2域名解析"></a>2.2域名解析</h2><p>进入控制台添加域名解析。</p>
+<p>按照如下规则添加两条记录。</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png" alt="image"></p>
+<p>这时去访问解析好的域名会出现如下页面。</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/github404.png" alt="image"></p>
+<p>这说明域名解析没有问题，接下来进入github进行配置</p>
+<h2 id="2-3-hexo配置"><a href="#2-3-hexo配置" class="headerlink" title="2.3 hexo配置"></a>2.3 hexo配置</h2><p>在本地的博客目录中找到source文件夹。</p>
+<p>新建一个没有后缀名的文件GNAME</p>
+<p>在文件中添加你的域名，如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lisq.xyz</span><br></pre></td></tr></table></figure>
+<p>保存后重新生成，并提交你的博客。</p>
+<h2 id="2-4-github配置"><a href="#2-4-github配置" class="headerlink" title="2.4 github配置"></a>2.4 github配置</h2><p>在github中找到你的博客仓库。</p>
+<p>点击<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">找到```Custom domain</span><br></pre></td></tr></table></figure></p>
+<p>输入你的域名点击save</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/githubdomain.png" alt="image"></p>
+<p>然后你就可以在浏览器用你的域名愉快的访问啦！</p>
+<h1 id="三、同时托管到github和coding上"><a href="#三、同时托管到github和coding上" class="headerlink" title="三、同时托管到github和coding上"></a>三、同时托管到github和coding上</h1><p>github page毕竟是国外站点，访问速度相对来说比较慢，但是同时你又想在gihub上保存一下代码，可以尝试同时托管两个仓库。</p>
+<p>做解析的时候海外的ip 指向到github，国内的或者说百度的直接指向coding。</p>
+<h2 id="3-1-在coding上提交代码"><a href="#3-1-在coding上提交代码" class="headerlink" title="3.1.在coding上提交代码"></a>3.1.在coding上提交代码</h2><p>首先做的操作和github是一样的，就是创建一个ssh。</p>
+<p>这里要注意的是，你的电脑上已经有了gihub的ssh，如果还像github一样一路回车会把gihub的ssh给覆盖掉。</p>
+<p>所以这里在执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</span><br></pre></td></tr></table></figure>
+<p>时要注意，给生成的文件配置一个新路径：</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/coding1.png" alt="image"></p>
+<p>然后配置生成的ssh</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/coding2.png" alt="image"></p>
+<p>在coding中创建一个仓库，这里注意仓库的名字可以随意取，不像gihub一样可以随意给定。</p>
+<p>将创建仓库的git地址添加到_config.yml中：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:js</span><br><span class="line">  type: git</span><br><span class="line">  repo: </span><br><span class="line">    github: https://github.com/ConardLi/ConardLi.github.io.git</span><br><span class="line">    coding: https://git.dev.tencent.com/ConardLi/lisqBlog.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<p>然后重新部署并上传博客，去仓库查看代码证明上传成功：</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/coding3.png" alt="image"></p>
+<h2 id="3-2-开启coding-page"><a href="#3-2-开启coding-page" class="headerlink" title="3.2.开启coding page"></a>3.2.开启coding page</h2><p>点击coding的pages服务，直接点击一键开启即可。</p>
+<p>开启后即可通过给定域名直接访问了：</p>
+<p><a href="http://conardli.coding.me/" target="_blank" rel="noopener">http://conardli.coding.me/</a></p>
+<h2 id="3-3-域名解析"><a href="#3-3-域名解析" class="headerlink" title="3.3.域名解析"></a>3.3.域名解析</h2><p>将新生成的coding域名进行解析，这样国内就默认访问coding的页面，比github要快不少。</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/coding.png" alt="image"></p>
+<p>另外还可以将github的ip进行国外站点配置。</p>
+<p>在coding page中将自己的域名进行绑定。</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/coding4.png" alt="image"></p>
+<p>配置完成后发现速度快了不少，有木有…</p>
+<h1 id="四、站长统计"><a href="#四、站长统计" class="headerlink" title="四、站长统计"></a>四、站长统计</h1><p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/zztj.png" alt="image"></p>
+<p>使用一个站长统计工具，可以为博客添加一个如上面似的详细的访问报表。</p>
+<p>站长统计工具有很多，每个工具大同小异，这里我选择了<a href="https://web.umeng.com/" target="_blank" rel="noopener">CNZZ</a>。</p>
+<h2 id="4-1-CNZZ配置"><a href="#4-1-CNZZ配置" class="headerlink" title="4.1.CNZZ配置"></a>4.1.CNZZ配置</h2><p>1.注册一个账号。</p>
+<p>2.添加网站。</p>
+<p>按照如下要求添加网站</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/cnzz.png" alt="image"></p>
+<p>3.选择统计代码</p>
+<p>添加完网站后就可以选择一段代码插入你的博客里了，<br>CNZZ提供了几种样式，你可以选择展示真实的统计数量，一个cnzz图标或者什么都不显示。</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/cnzz2.png" alt="image"></p>
+<h2 id="4-2-代码配置"><a href="#4-2-代码配置" class="headerlink" title="4.2.代码配置"></a>4.2.代码配置</h2><p>将上面复制的代码插入到你主题代码的公共区域中。</p>
+<p>每个主题的代码都不一样，但是大体结构是相同的，都会将通用的组件抽取出来。</p>
+<p>这里我找到了每个页面都使用的footer组件，我使用的是hueman主题，代码在themes/hueman/common/footer.ejs</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/cnzz3.png" alt="image"></p>
+<p>在此文件中找到合适的位置插入你的统计代码。</p>
+<p>比如我的（script内的部分）：</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/cnzz4.png" alt="image"></p>
+<h1 id="五、阅读统计"><a href="#五、阅读统计" class="headerlink" title="五、阅读统计"></a>五、阅读统计</h1><p>这里的统计是用来展示在页面上的，可以标示文章以及博客的热度。</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/fwltongji.png" alt="image"></p>
+<p>使用不蒜子来展示文章访问统计和页面访问统计。</p>
+<h2 id="5-1-引入不蒜子"><a href="#5-1-引入不蒜子" class="headerlink" title="5.1.引入不蒜子"></a>5.1.引入不蒜子</h2><p>将不蒜子js文件引入博客主题公共组件中。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">"//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这里我同站长统计一样放在themes/hueman/common/footer.ejs</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/cnzz3.png" alt="image"></p>
+<h2 id="5-2-文章访问统计"><a href="#5-2-文章访问统计" class="headerlink" title="5.2.文章访问统计"></a>5.2.文章访问统计</h2><p>要显示每篇文章的访问量，复制以下代码添加到你需要显示的位置。</p>
+<p>可以在标签上自定义一些样式。</p>
+<p>算法：pv的方式，单个用户点击1篇文章，本篇文章记录1次阅读量。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_page_pv"</span>&gt;</span></span><br><span class="line">  本文总阅读量<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_page_pv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>次</span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="5-3-整站访问统计"><a href="#5-3-整站访问统计" class="headerlink" title="5.3.整站访问统计"></a>5.3.整站访问统计</h2><p>算法a：pv的方式，单个用户连续点击n篇文章，记录n次访问量。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_site_pv"</span>&gt;</span></span><br><span class="line">    本站总访问量<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_site_pv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>次</span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>算法b：uv的方式，单个用户连续点击n篇文章，只记录1次访客数。<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_site_uv"</span>&gt;</span></span><br><span class="line">  本站访客数<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_site_uv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>人次</span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="六、评论系统"><a href="#六、评论系统" class="headerlink" title="六、评论系统"></a>六、评论系统</h1><p>博客使用valine作为评论工具，原因是他使用简介，体积轻量，灵活配置，速度很快！</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/pinglunceshi.png" alt="image"></p>
+<h2 id="6-1-注册LeanCloud"><a href="#6-1-注册LeanCloud" class="headerlink" title="6.1 注册LeanCloud"></a>6.1 注册LeanCloud</h2><p>valine接住了LeanCloud的力量，所以需要LeanCloud的APP ID 和 APP Key</p>
+<p>首先注册和登录LeanCloud</p>
+<p>创建一个应用：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006qRazegy1fkwo2fpoetj30h40coaak.jpg" alt="创建应用"></p>
+<p>应用创建好以后，进入刚刚创建的应用，选择左下角的设置&gt;应用Key，然后就能看到你的APP ID和APP Key了：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006qRazegy1fkwo6w2b6uj30xe0etjt4.jpg" alt="image"></p>
+<h2 id="6-2-代码"><a href="#6-2-代码" class="headerlink" title="6.2 代码"></a>6.2 代码</h2><p>将如下代码插入你的文章模板中</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn1.lncld.net/static/js/3.0.4/av-min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">'//unpkg.com/valine/dist/Valine.min.js'</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"vcomments"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="keyword">new</span> Valine(&#123;</span></span><br><span class="line"><span class="javascript">            el: <span class="string">'#vcomments'</span>,</span></span><br><span class="line"><span class="javascript">            appId: <span class="string">'&lt;API_ID&gt;'</span>,</span></span><br><span class="line"><span class="javascript">            appKey: <span class="string">'&lt;API_Key&gt;'</span></span></span><br><span class="line"><span class="undefined">        &#125;)</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>配置好这些，等待两分钟，就可以在文章里使用你的评论啦。</p>
+<h2 id="6-3-数据管理"><a href="#6-3-数据管理" class="headerlink" title="6.3 数据管理"></a>6.3 数据管理</h2><p>由于Valine 是无后端评论系统，所以也就没有开发评论数据管理功能。</p>
+<p>可以在leanCloud中管理评论</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">登录&gt;选择你创建的应用&gt;存储&gt;选择Class Comment</span><br></pre></td></tr></table></figure>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/pinglunguanli.png" alt="image"></p>
+<h2 id="6-4-安全域名"><a href="#6-4-安全域名" class="headerlink" title="6.4 安全域名"></a>6.4 安全域名</h2><p>为了数据安全，在leanCloud中配置你的安全域名</p>
+<p><img src="https://ws1.sinaimg.cn/large/006qRazegy1fkxqmddfh1j30qd0go40h.jpg" alt="image"></p>
+<h2 id="6-5-配置项"><a href="#6-5-配置项" class="headerlink" title="6.5 配置项"></a>6.5 配置项</h2><p>Valine还有一些其他的配置项</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> Valine(&#123;</span><br><span class="line">    el: <span class="string">'#vcomments'</span> ,</span><br><span class="line">    appId: <span class="string">'&lt;APP_ID&gt;'</span>,</span><br><span class="line">    appKey: <span class="string">'&lt;APP_KEY&gt;'</span>,</span><br><span class="line">    notify:<span class="literal">false</span>, </span><br><span class="line">    verify:<span class="literal">false</span>, </span><br><span class="line">    avatar:<span class="string">'mm'</span>, </span><br><span class="line">    placeholder: <span class="string">'just go go'</span> </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">placeholder</span><br><span class="line">类型:<span class="built_in">String</span></span><br><span class="line">默认值:Just go go</span><br><span class="line">必要性:<span class="literal">false</span></span><br><span class="line">评论框占位提示符。</span><br><span class="line"></span><br><span class="line">notify</span><br><span class="line">类型:<span class="built_in">Boolean</span></span><br><span class="line">默认值:<span class="literal">false</span></span><br><span class="line">必要性:<span class="literal">false</span></span><br><span class="line">评论回复邮件提醒，请参考配置。</span><br><span class="line"></span><br><span class="line">verify</span><br><span class="line">类型:<span class="built_in">Boolean</span></span><br><span class="line">默认值:<span class="literal">false</span></span><br><span class="line">必要性:<span class="literal">false</span></span><br><span class="line">验证码服务。</span><br><span class="line"></span><br><span class="line">path</span><br><span class="line">类型:<span class="built_in">String</span></span><br><span class="line">默认值:<span class="built_in">window</span>.location.pathname</span><br><span class="line">必要性:<span class="literal">false</span></span><br><span class="line">当前文章页路径，用于区分不同的文章页，以保证正确读取该文章页下的评论列表。</span><br><span class="line">可选值：</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.location.pathname (默认值，推荐)</span><br><span class="line"><span class="built_in">window</span>.location.href</span><br><span class="line">自定义</span><br><span class="line">I. 请保证每个文章页路径的唯一性，否则可能会出现不同文章页下加载相同评论列表的情况。</span><br><span class="line">II. 如果值为<span class="built_in">window</span>.location.href，可能会出现随便加不同参数进入该页面，而被判断成新页面的情况。</span><br><span class="line">avatar</span><br><span class="line">类型:<span class="built_in">String</span></span><br><span class="line">默认值:mm</span><br><span class="line">必要性:<span class="literal">false</span></span><br><span class="line">Gravatar 头像展示方式。</span><br><span class="line"></span><br><span class="line">可选值：</span><br><span class="line"></span><br><span class="line"><span class="string">''</span>(空字符串)</span><br><span class="line">mp</span><br><span class="line">identicon</span><br><span class="line">monsterid</span><br><span class="line">wavatar</span><br><span class="line">retro</span><br><span class="line">robohash</span><br><span class="line">hide</span><br><span class="line">更多信息，请查看头像配置。</span><br><span class="line"></span><br><span class="line">meta</span><br><span class="line">类型:<span class="built_in">Array</span></span><br><span class="line">默认值:[<span class="string">'nick'</span>,<span class="string">'mail'</span>,<span class="string">'link'</span>]</span><br><span class="line">必要性:<span class="literal">false</span></span><br><span class="line">评论者相关属性。</span><br><span class="line"></span><br><span class="line">pageSize</span><br><span class="line">类型:<span class="built_in">Number</span></span><br><span class="line">默认值:<span class="number">10</span></span><br><span class="line">必要性:<span class="literal">false</span></span><br><span class="line">评论列表分页，每页条数。</span><br><span class="line"></span><br><span class="line">lang</span><br><span class="line">类型:<span class="built_in">String</span></span><br><span class="line">默认值:zh-cn</span><br><span class="line">必要性:<span class="literal">false</span></span><br><span class="line">多语言支持。</span><br><span class="line"></span><br><span class="line">可选值：</span><br><span class="line"></span><br><span class="line">zh-cn</span><br><span class="line">en</span><br><span class="line">如需自定义语言，请参考i18n。</span><br><span class="line"></span><br><span class="line">visitor</span><br><span class="line">类型:<span class="built_in">Boolean</span></span><br><span class="line">默认值:<span class="literal">false</span></span><br><span class="line">必要性:<span class="literal">false</span></span><br><span class="line">文章访问量统计。</span><br><span class="line"></span><br><span class="line">highlight</span><br><span class="line">类型：<span class="built_in">Boolean</span></span><br><span class="line">默认值: <span class="literal">true</span></span><br><span class="line">必要性: <span class="literal">false</span></span><br><span class="line">代码高亮，默认开启，若不需要，请手动关闭</span><br><span class="line"></span><br><span class="line">avatarForce</span><br><span class="line">类型: <span class="built_in">Boolean</span></span><br><span class="line">默认值: <span class="literal">false</span></span><br><span class="line">必要性: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h1 id="七、SEO优化"><a href="#七、SEO优化" class="headerlink" title="七、SEO优化"></a>七、SEO优化</h1><p>SEO是由英文Search Engine Optimization缩写而来， 中文意译为“搜索引擎优化”。SEO是指通过站内优化比如网站结构调整、网站内容建设、网站代码优化等以及站外优化。</p>
+<p>简而言之，就是让人们更容易搜索到你的站点。</p>
+<p>首先要做的就是让搜索引擎收录我们的站点。</p>
+<h2 id="7-1-百度"><a href="#7-1-百度" class="headerlink" title="7.1.百度"></a>7.1.百度</h2><h3 id="7-1-1-提交网址"><a href="#7-1-1-提交网址" class="headerlink" title="7.1.1 提交网址"></a>7.1.1 提交网址</h3><p>在搜索引擎中输入site:&lt;域名&gt;,如果如下图所示就是说明我们的网站并没有被百度收录。我们可以直接点击下面的“网址提交”来提交我们的网站 </p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/seo1.png" alt="image"></p>
+<p>然后点击途中的提交网址</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/seo2.png" alt="image"></p>
+<p>选择站点的相关属性：</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/seo3.png" alt="image"></p>
+<p>接下来进行网站验证，推荐使用第三种GNAME验证，简单快捷，只需要给你的链接增加一条解析即可:</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/seo4.png" alt="image"></p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/seo5.png" alt="image"></p>
+<h3 id="7-1-2-生成网站地图"><a href="#7-1-2-生成网站地图" class="headerlink" title="7.1.2 生成网站地图"></a>7.1.2 生成网站地图</h3><p>接下来要让你的网站生成网站地图，及生产sitemap，将sitemap提交到百度，先安装地图生成插件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure>
+<p>注意根目录的_config.yml将url配置成你的站点<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># URL</span><br><span class="line">## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;</span><br><span class="line">url: https://lisq.xyz/</span><br><span class="line">root: /</span><br></pre></td></tr></table></figure></p>
+<p>重新部署博客后就会生成两个新文件sitemap.xml和baidusitemap.xml</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/seo6.png" alt="image"></p>
+<h3 id="7-1-3-将sitemap提交给百度"><a href="#7-1-3-将sitemap提交给百度" class="headerlink" title="7.1.3 将sitemap提交给百度"></a>7.1.3 将sitemap提交给百度</h3><p>点击链接提交</p>
+<p>使用主动推送</p>
+<p>主动推送<br>安装插件npm install hexo-baidu-url-submit –save<br>然后再根目录的配置文件中新增字段<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">baidu_url_submit:</span><br><span class="line">  count: 100 </span><br><span class="line">  host: https://lisq.xyz/</span><br><span class="line">  token: 8OGYpxowYnhgVsUM </span><br><span class="line">  path: baidu_urls.txt # 文本文档的地址</span><br></pre></td></tr></table></figure></p>
+<p>在加入新的deploye<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line"> - type:baidu_url_submitter</span><br></pre></td></tr></table></figure></p>
+<p>百度收录的时间非常长，耐心等待吧。</p>
+<h2 id="7-2-谷歌"><a href="#7-2-谷歌" class="headerlink" title="7.2.谷歌"></a>7.2.谷歌</h2><p><a href="https://www.google.com/webmasters/verification/home?hl=zh-CN&amp;theme=wmt&amp;continue=https://www.google.com/webmasters/tools/change-address?hl%3Dzh-CN%26siteUrl%3Dhttp://visugar.com/%26sig%3DALjLGbO6-M1mTuGz1Y5Up7WSkGHtUoE4MQ%26sig%3DALjLGbPf2LcvrtswfByhZmozORjZiSc52A" target="_blank" rel="noopener">点击这里</a><br>添加你的网址</p>
+<p>点击添加属性后即可添加你的博客地址。</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/seo8.png" alt="image"></p>
+<p>进行验证：</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/seo9.png" alt="image"></p>
+<p>谷歌收录的速度还是相当快的，而且操作比较简单。</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/seo7.png" alt="image"></p>
+<h1 id="八、文章目录"><a href="#八、文章目录" class="headerlink" title="八、文章目录"></a>八、文章目录</h1><p><code>hueman</code>模版是不带文章目录的，所以需要手动给给文章增加导航功能。</p>
+<p><code>hexo</code>为我们提供了<code>toc</code>插件</p>
+<p><code>toc</code>：解析内容中的标题标签<code>(h1~h6)</code>并插入目录。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;%- toc(str, [options]) %&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">参数	        描述    	        默认值</span><br><span class="line"><span class="class"><span class="keyword">class</span>	        <span class="title">Class</span> 名称   	<span class="title">toc</span></span></span><br><span class="line"><span class="class"><span class="title">list_number</span>	显示编号   	<span class="title">true</span></span></span><br></pre></td></tr></table></figure>
+<p>在<code>layoit</code>目录下新建文件<code>toc.ejs</code></p>
+<p>这里，我们可以为目录自定义一些样式：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;aside id=<span class="string">"article-toc"</span> role=<span class="string">"navigation"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"fixed"</span>&gt;</span><br><span class="line">  &lt;div id=<span class="string">"article-toc-inner"</span>&gt;</span><br><span class="line">    &lt;strong <span class="class"><span class="keyword">class</span></span>=<span class="string">"sidebar-title"</span>&gt;</span><br><span class="line">      目录&lt;<span class="regexp">/strong&gt;</span></span><br><span class="line"><span class="regexp">    &lt;%- toc(post.content, &#123;list_number: false&#125;) %&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/aside&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在<code>common/article.ejs</code>下将其插入：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;%- partial(<span class="string">'toc'</span>) %&gt;</span><br></pre></td></tr></table></figure>
+<p>这里感觉整体的布局没地方放个目录了，所以就弄了个打开目录的按钮放在侧边栏。</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/blog目录.png" alt="image"></p>
+<h1 id="九、部署到虚拟主机"><a href="#九、部署到虚拟主机" class="headerlink" title="九、部署到虚拟主机"></a>九、部署到虚拟主机</h1><p><code>github page</code>的速度实在欠佳，<code>coding</code>的<code>page</code>服务还不太稳定，所以我决定将博客迁移到虚拟主机上。</p>
+<p>个人博客一般没什么太大的流量，作为新手入门来讲，去阿里云上选一个最便宜的即可。</p>
+<p>由于<code>hexo</code>最终生成的文件完全是静态页面，我们不需要数据库，这时候我们要做的只是把文件通过<code>ftp</code>扔到虚拟主机上即可。</p>
+<p>购买完虚拟主机后，会为我们提供<code>FTP登录主机地址</code>、<code>FTP登录用户名</code>、<code>FTP登录密码</code>，你可以手动下载一个<code>ftp</code>上传工具比如<code>FileZilla</code>手动完成文件上传，当然<code>hexo</code>为我们提供了更方便的方式，我们需要安装一个插件：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-ftpsync --save</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: ftpsync</span><br><span class="line">  host: xxx          //FTP登录主机地址</span><br><span class="line">  user: xxx          //FTP登录用户名</span><br><span class="line">  pass: xxx          //FTP登录密码</span><br><span class="line">  remote: /htdocs    //指定文件放置的目录（一般虚拟主机默认就是这个）</span><br><span class="line">  port: </span><br><span class="line">  ignore: .DS_Store</span><br><span class="line">  connections: </span><br><span class="line">  verbose: true</span><br></pre></td></tr></table></figure>
+<p>配置完成后重新进行构建：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean     //删除上次打包</span><br><span class="line">hexo generate   //打包</span><br><span class="line">hexo deploy    /上传</span><br></pre></td></tr></table></figure>
+<p>最后，将虚拟主机的默认访问页指向我们博客的默认页面<code>index.html</code>，就可以愉快的访问了～</p>
+<blockquote>
+<p>注意，将我们的个人域名解析到虚拟主机上是需要进行备案的。</p>
+</blockquote>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="www.conardli.top/2018/01/01/【博客搭建】个人博客搭建及配置/" data-id="cjy83pdac000hph0d9b5tfw56" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+
+
+<div id="roott"></div>
+
+<button id="tocbtn">打开目录</button>
+
+
+<script>
+    var showToc = false;
+    document.getElementById('tocbtn').onclick = function () {
+        if (showToc) {
+            document.getElementById('roott').innerHTML = ''
+            document.getElementById('tocbtn').innerHTML = '打开目录'
+        } else {
+            document.getElementById('roott').innerHTML = `<aside id="article-toc" role="navigation" class="fixed">
+  <div id="article-toc-inner">
+    <strong class="sidebar-title">
+      目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、基础配置"><span class="toc-text">一、基础配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-本地安装hexo"><span class="toc-text">1.1.本地安装hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-本地运行"><span class="toc-text">1.2.本地运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-github配置"><span class="toc-text">1.3.github配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-部署上传"><span class="toc-text">1.4.部署上传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5一些其他配置"><span class="toc-text">1.5一些其他配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#搜索功能"><span class="toc-text">搜索功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#readme"><span class="toc-text">readme</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、绑定二人域名"><span class="toc-text">二、绑定二人域名</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1购买一个域名"><span class="toc-text">2.1购买一个域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2域名解析"><span class="toc-text">2.2域名解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-hexo配置"><span class="toc-text">2.3 hexo配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-github配置"><span class="toc-text">2.4 github配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、同时托管到github和coding上"><span class="toc-text">三、同时托管到github和coding上</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-在coding上提交代码"><span class="toc-text">3.1.在coding上提交代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-开启coding-page"><span class="toc-text">3.2.开启coding page</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-域名解析"><span class="toc-text">3.3.域名解析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、站长统计"><span class="toc-text">四、站长统计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-CNZZ配置"><span class="toc-text">4.1.CNZZ配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-代码配置"><span class="toc-text">4.2.代码配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五、阅读统计"><span class="toc-text">五、阅读统计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-引入不蒜子"><span class="toc-text">5.1.引入不蒜子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-文章访问统计"><span class="toc-text">5.2.文章访问统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-整站访问统计"><span class="toc-text">5.3.整站访问统计</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#六、评论系统"><span class="toc-text">六、评论系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-注册LeanCloud"><span class="toc-text">6.1 注册LeanCloud</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-代码"><span class="toc-text">6.2 代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-数据管理"><span class="toc-text">6.3 数据管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4-安全域名"><span class="toc-text">6.4 安全域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-5-配置项"><span class="toc-text">6.5 配置项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#七、SEO优化"><span class="toc-text">七、SEO优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-百度"><span class="toc-text">7.1.百度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-1-提交网址"><span class="toc-text">7.1.1 提交网址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-2-生成网站地图"><span class="toc-text">7.1.2 生成网站地图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-3-将sitemap提交给百度"><span class="toc-text">7.1.3 将sitemap提交给百度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-谷歌"><span class="toc-text">7.2.谷歌</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#八、文章目录"><span class="toc-text">八、文章目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#九、部署到虚拟主机"><span class="toc-text">九、部署到虚拟主机</span></a></li></ol>
+  </div>
+</aside>`
+            document.getElementById('tocbtn').innerHTML = '关闭目录'
+        }
+        showToc = !showToc;
+    }
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments" style="padding: 30px;"></div>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 's1xL54gwvPRsIy3ciItiPhyD-gzGzoHsz',
+        appKey: 'CmP8stKpHUHtp5abbTxpqc4H'
+    })
+</script>
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>
+            关注我 :</p>
+        <ul class="social-links">
+            
+            
+            <li>
+                <a class="social-tooltip" title="github" href="https://github.com/ConardLi"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-github"></i>
+                </a>
+            </li>
+            
+            
+        </ul>
+    </div>
+    
+    
+<nav id="article-nav">
+    
+        <a href="/2018/11/01/【多端开发】使用electron静默打印/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            使用electron静默打印
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+</nav>
+
+    
+    <div class="widgets-container" style="background-color: #fff; border-right: 1px solid #e2e2e2;">
+        
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">
+        微信公众号
+    </h3>
+    <div class="widget">
+        <img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/gzh/qrcode.jpg" alt="">
+    </div>
+</div>
+
+        
+        
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://www.conardli.top/img/electron/el_1_app.jpg)" alt="【多端开发】用JS开发跨平台桌面应用，从原理到实践" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/" class="title">【多端开发】用JS开发跨平台桌面应用，从原理到实践</a></p>
+                            <p class="item-date"><time datetime="2019-06-10T12:45:35.000Z" itemprop="datePublished">2019-06-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://www.conardli.top/img/bl/bl_1_stack.png)" alt="【JS进阶】你真的掌握变量和类型了吗" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="title">【JS进阶】你真的掌握变量和类型了吗</a></p>
+                            <p class="item-date"><time datetime="2019-05-28T03:06:11.000Z" itemprop="datePublished">2019-05-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/17/【多端开发】移动端适配总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.loli.net/2019/05/17/5cddefa632f3247082.png)" alt="【多端开发】移动端适配总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/17/【多端开发】移动端适配总结/" class="title">【多端开发】移动端适配总结</a></p>
+                            <p class="item-date"><time datetime="2019-05-17T02:39:42.000Z" itemprop="datePublished">2019-05-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://conardli.top/img/qj/qj_15_qj.gif)" alt="【特效】看完这篇，你也可以实现一个360度全景插件" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" class="title">【特效】看完这篇，你也可以实现一个360度全景插件</a></p>
+                            <p class="item-date"><time datetime="2019-05-05T01:17:16.000Z" itemprop="datePublished">2019-05-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/26/【自检】前端知识清单/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://lsqimg-1257917459.cos.ap-beijing.myqcloud.com/blog/知识体系.png)" alt="【自检】前端知识清单" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/26/【自检】前端知识清单/" class="title">【自检】前端知识清单</a></p>
+                            <p class="item-date"><time datetime="2019-04-26T01:11:22.000Z" itemprop="datePublished">2019-04-26</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <div class="">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget widget-wrap-inn">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/electron/">electron</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多端开发/">多端开发</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习提升/">学习提升</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器和网络/">浏览器和网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特效/">特效</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .widget-wrap-inn {
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+</style>
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget  widget-wrap-inn">
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+</div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget  widget-wrap-inn">
+        <ul>
+            
+            <li>
+                <a href="https://juejin.im/user/5bea27965188250edf4ad8b7">掘金</a>
+            </li>
+            
+            <li>
+                <a href="https://segmentfault.com/u/conardli">segmentfault</a>
+            </li>
+            
+            <li>
+                <a href="https://github.com/ConardLi">github</a>
+            </li>
+            
+            <li>
+                <a href="https://github.com/ConardLi/tpanorama">tpanorama</a>
+            </li>
+            
+            <li>
+                <a href="http://chuangzaoshi.com/">创造狮导航</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <!-- <h3 class="widget-title">
+        腾讯云专属福利
+    </h3> -->
+    <div class="widget">
+        <a target="_blank"
+            href="https://cloud.tencent.com/redirect.php?redirect=1025&cps_key=1a3e7b07487819e129852ba7a4543262&from=console">
+            <img src="/img/txy.jpg" id="txy" alt="">
+        </a>
+    </div>
+</div>
+
+
+
+<style>
+    #txy {
+        width: 280px;
+        border: 5px;
+    }
+</style>
+        
+        
+<div class="widget-wrap widget-list">
+    <div class="widget">
+        <a target="_blank" href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=y3kv7eoj">
+            <img src="/img/aly.png" id="txy" alt="">
+        </a>
+    </div>
+</div>
+
+
+
+<style>
+    #txy {
+        width: 280px;
+        border: 5px;
+    }
+</style>
+        
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy;
+                    2019
+                    ConardLi
+                </p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice"
+                        target="_blank">ConardLi</a></p>
+                <script type="text/javascript">
+                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1275088352'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1275088352%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+                <span id="busuanzi_container_site_pv" style="margin-left:50px;">
+                    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+                </span>
+                <span id="busuanzi_container_site_uv" style="margin-left:50px;">
+                    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+                </span>
+            </div>
+            <div class="footer-plugins">
+                
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'www.conardli.top/2018/01/01/【博客搭建】个人博客搭建及配置/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+
+</html>

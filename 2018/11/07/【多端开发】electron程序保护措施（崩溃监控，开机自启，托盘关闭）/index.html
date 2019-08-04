@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>electron程序保护措施（崩溃监控，开机自启，托盘关闭） | 李世奇的技术专栏</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="electron,多端开发" />
+    
+    <meta name="description" content="在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。 以下几种方式可以帮助我们做到这一点： 1.崩溃监控electron为我们提供了监听程序崩溃的事件： Event: &apos;crashed&apos;返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发 此事件是用来监听渲染进程崩溃的，但是当主进程意外崩溃时也会触发该事件。 在监测到程序崩溃">
+<meta name="keywords" content="electron,多端开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="electron程序保护措施（崩溃监控，开机自启，托盘关闭）">
+<meta property="og:url" content="www.conardli.top/2018/11/07/【多端开发】electron程序保护措施（崩溃监控，开机自启，托盘关闭）/index.html">
+<meta property="og:site_name" content="李世奇的技术专栏">
+<meta property="og:description" content="在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。 以下几种方式可以帮助我们做到这一点： 1.崩溃监控electron为我们提供了监听程序崩溃的事件： Event: &apos;crashed&apos;返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发 此事件是用来监听渲染进程崩溃的，但是当主进程意外崩溃时也会触发该事件。 在监测到程序崩溃">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="/img/1.jpg">
+<meta property="og:updated_time" content="2019-05-30T06:43:37.277Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="electron程序保护措施（崩溃监控，开机自启，托盘关闭）">
+<meta name="twitter:description" content="在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。 以下几种方式可以帮助我们做到这一点： 1.崩溃监控electron为我们提供了监听程序崩溃的事件： Event: &apos;crashed&apos;返回:event Eventkilled Boolean当渲染进程崩溃或被结束时触发 此事件是用来监听渲染进程崩溃的，但是当主进程意外崩溃时也会触发该事件。 在监测到程序崩溃">
+<meta name="twitter:image" content="/img/1.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://mp.weixin.qq.com/s/dYZEHTgqvxGV7mL99JuxRQ">关于</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://github.com/ConardLi/ConardLi.github.io">更新日志</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <style>
+    #article-toc.fixed {
+        position: fixed;
+        top: 30px;
+        bottom: 30px;
+        left: 32px;
+        padding-top: 15px;
+        z-index: 9999;
+        background-color: antiquewhite;
+        width: 200px;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid rgb(122, 122, 122);
+        opacity: 0.8;
+    }
+
+    #article-toc-inner {
+        padding: 10px;
+        width: 200px;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .toc-level-3 {
+        margin-left: 20px;
+    }
+
+    #article-toc a {
+        text-decoration: none;
+        color: #333;
+        padding: 3px 0;
+        color: #000;
+        font-weight: normal;
+    }
+
+    .toc-item {
+        line-height: 30px;
+        list-style-type: initial;
+    }
+
+    #tocbtn {
+        position: fixed;
+        top: 30%;
+        left: 0px;
+        padding: 5px 2px;
+        width: 18px;
+        word-wrap: break-word;
+        background-color: rgb(242, 245, 247);
+        box-shadow: rgba(118, 118, 118, 0.11) 2px 0px 5px 0px;
+        opacity: 1;
+        height: 94px;
+        line-height: 16px;
+        text-align: center;
+        top: 33%;
+        width: 30px;
+        z-index: 1000000001;
+        cursor: pointer;
+        border-radius: 0px 4px 4px 0px;
+        border-width: 1px 1px 1px;
+        border-style: solid solid solid none;
+        border-color: rgb(224, 228, 231) rgb(224, 228, 231) rgb(224, 228, 231);
+        border-image: initial;
+        border-left: none;
+        padding: 6px;
+        transition: right 0.4s ease-in 0.3s, opacity 0.5s ease-in 0.3s;
+    }
+</style>
+
+<article id="post-【多端开发】electron程序保护措施（崩溃监控，开机自启，托盘关闭）"
+    class="article article-single article-type-post"
+    itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        <header class="article-header">
+            
+    
+        <h1 class="article-title" itemprop="name">
+        electron程序保护措施（崩溃监控，开机自启，托盘关闭）
+        </h1>
+    
+
+        </header>
+        
+        
+        <div class="article-meta">
+            
+    <div class="article-date">
+        <a href="/2018/11/07/【多端开发】electron程序保护措施（崩溃监控，开机自启，托盘关闭）/" class="article-date">
+            <time datetime="2018-11-07T12:11:41.000Z" itemprop="datePublished">2018-11-07</time>
+        </a>
+    </div>
+
+            
+
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/electron/">electron</a>, <a class="tag-link" href="/tags/多端开发/">多端开发</a>
+    </div>
+
+            <span id="busuanzi_container_page_pv" style="position: relative;float: right;">
+                本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+            </span>
+        </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/img/1.jpg" alt="image"></p>
+<p>在某种情况下，我们可能希望我们的客户端程序尽可能连续不断的运行在我们的系统中，并保持稳定。</p>
+<p>以下几种方式可以帮助我们做到这一点：</p>
+<h1 id="1-崩溃监控"><a href="#1-崩溃监控" class="headerlink" title="1.崩溃监控"></a>1.崩溃监控</h1><p>electron为我们提供了监听程序崩溃的事件：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Event: <span class="string">'crashed'</span></span><br><span class="line">返回:</span><br><span class="line"></span><br><span class="line">event Event</span><br><span class="line">killed <span class="built_in">Boolean</span></span><br><span class="line">当渲染进程崩溃或被结束时触发</span><br></pre></td></tr></table></figure>
+<p>此事件是用来监听渲染进程崩溃的，但是当主进程意外崩溃时也会触发该事件。</p>
+<p>在监测到程序崩溃后，我们要让程序重新启动，此时我们要首先判断window对象是否被销毁，也就是主进程是否被杀死，还是渲染进程崩溃，同时作出不同的处理。</p>
+<p>当mainWin被销毁时我们直接重启整个应用，使用如下api：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.relaunch([options])</span><br><span class="line">options <span class="built_in">Object</span> (可选)</span><br><span class="line"></span><br><span class="line">args <span class="built_in">String</span></span><br><span class="line">execPath <span class="built_in">String</span> (可选)</span><br><span class="line">从当前实例退出，重启应用。</span><br><span class="line"></span><br><span class="line">默认情况下，新的实例会和当前实例使用相同的工作目录以及命令行参数。 当设置了 args 参数时， args 将作为命令行参数传递。 当设置了 execPath ，execPath 将被执行以重新启动，而不是当前的应用程序。</span><br><span class="line"></span><br><span class="line">请注意, 此方法在执行时不会退出当前的应用程序, 你需要在调用 app.relaunch 方法后再执行 app. quit 或者 app.exit 来让应用重启。</span><br></pre></td></tr></table></figure>
+<p>只是渲染进程崩溃，我们只需将其他窗体销毁，然后重新load我们的主窗口。</p>
+<p>崩溃重启逻辑：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (mainWin.isDestroyed()) &#123;</span><br><span class="line">  app.relaunch();</span><br><span class="line">  app.exit(<span class="number">0</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  BrowserWindow.getAllWindows().forEach(<span class="function">(<span class="params">w</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (w.id !== mainWin.id) w.destroy();</span><br><span class="line">  &#125;);</span><br><span class="line">  mainWin.reload();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然，我们还要记录一下程序的崩溃日志，我们要确保日志接口发出成功后再重启我们的程序：</p>
+<p>下面是程序崩溃后的完整逻辑：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; BrowserWindow, app, dialog&#125; <span class="keyword">from</span> <span class="string">'electron'</span>;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"><span class="keyword">const</span> mainWindow = BrowserWindow.fromId(global.mainId);</span><br><span class="line">mainWindow.webContents.on(<span class="string">'crashed'</span>, () =&gt; &#123;</span><br><span class="line">   <span class="keyword">const</span> options = &#123;</span><br><span class="line">      type: <span class="string">'error'</span>,</span><br><span class="line">      title: <span class="string">'进程崩溃了'</span>,</span><br><span class="line">      message: <span class="string">'这个进程已经崩溃.'</span>,</span><br><span class="line">      buttons: [<span class="string">'重载'</span>, <span class="string">'退出'</span>],</span><br><span class="line">    &#125;;    </span><br><span class="line">   recordCrash().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      dialog.showMessageBox(options, (index) =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (index === <span class="number">0</span>) reloadWindow(mainWindow);</span><br><span class="line">        <span class="keyword">else</span> app.quit();</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;).catch(<span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'err'</span>, e);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">recordCrash</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123; </span><br><span class="line">       <span class="comment">// 崩溃日志请求成功.... </span></span><br><span class="line">      resolve();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reloadWindow</span>(<span class="params">mainWin</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (mainWin.isDestroyed()) &#123;</span><br><span class="line">    app.relaunch();</span><br><span class="line">    app.exit(<span class="number">0</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    BrowserWindow.getAllWindows().forEach(<span class="function">(<span class="params">w</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (w.id !== mainWin.id) w.destroy();</span><br><span class="line">    &#125;);</span><br><span class="line">    mainWin.reload();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>写好代码之后，我们可以直接在控制台输入 <code>process.crash()</code>来进行测试，或者直接在任务管理器杀掉我们的进程进行测试。</p>
+<h1 id="2-开机自启"><a href="#2-开机自启" class="headerlink" title="2.开机自启"></a>2.开机自启</h1><p>开机自启是保证我们的程序能长时间在机器上运行很重要的一点。</p>
+<p>电脑上有很多程序都设置了开机自启动，比如qq，微信，迅雷等，他们都是通过修改注册表来实现的，我们可以看一下注册表<code>\\Software\\Microsoft\\Windows\\CurrentVersion\\Run</code>:</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/zhucebiao1.bmp" alt="image"></p>
+<p>所以我们也要将我们程序的路径写到这里。</p>
+<p>发现了一个非常好的写注册表的模块，winreg<br>注意mac不能使用这个模块，所以首先要判断是否为window再引用这个模块。</p>
+<p>借助这个模块我们可以非常简单的修改注册表：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> WinReg = <span class="built_in">require</span>(<span class="string">'winreg'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> startOnBoot = &#123;</span><br><span class="line">  enableAutoStart: <span class="function"><span class="keyword">function</span> (<span class="params">name, file, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> key = getKey();</span><br><span class="line">    key.set(name, WinReg.REG_SZ, file, callback || noop);</span><br><span class="line">  &#125;,</span><br><span class="line">  disableAutoStart: <span class="function"><span class="keyword">function</span> (<span class="params">name, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> key = getKey();</span><br><span class="line">    key.remove(name, callback || noop);</span><br><span class="line">  &#125;,</span><br><span class="line">  getAutoStartValue: <span class="function"><span class="keyword">function</span> (<span class="params">name, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> key = getKey();</span><br><span class="line">    key.get(name, <span class="function"><span class="keyword">function</span> (<span class="params">error, result</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (result) &#123;</span><br><span class="line">        callback(result.value);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> &#123;</span><br><span class="line">        callback(<span class="literal">null</span>, error);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">noop</span>(<span class="params"></span>) </span>&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> RUN_LOCATION = <span class="string">'\\Software\\Microsoft\\Windows\\CurrentVersion\\Run'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getKey</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> WinReg(&#123;</span><br><span class="line">    hive: WinReg.HKCU, <span class="comment">//CurrentUser,</span></span><br><span class="line">    key: RUN_LOCATION</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">autoStart</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  startOnBoot.getAutoStartValue(<span class="string">'MY_CLIENT_AUTOSTART'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!value) &#123;</span><br><span class="line">      startOnBoot.enableAutoStart(<span class="string">'MY_CLIENT_AUTOSTART'</span>, process.execPath, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'开机自动启设置'</span>); &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行完程序之后，再看注册表，发现我们程序的路径已经写进去了：</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/zhucebiao2.bmp" alt="image"></p>
+<p>然后电脑重启后你的程序就自动启动了。</p>
+<h1 id="3-托盘关闭"><a href="#3-托盘关闭" class="headerlink" title="3.托盘关闭"></a>3.托盘关闭</h1><p>向qq和微信一样，有的时候我们并不想让用户通过点关闭按钮的时候就关闭程序，而是把程序最小化到托盘，在托盘上做真正的退出操作。</p>
+<p>首先要监听窗口的关闭事件，阻止用户关闭操作的默认行为。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">mainWindow.on(<span class="string">'close'</span>, (event) =&gt; &#123;</span><br><span class="line">  mainWindow.hide();</span><br><span class="line">  event.preventDefault();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>然而这时你发现，这只是最小化了程序，任务栏里程序依然存在，我们需要让程序在任务栏里也消失：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">mainWindow.on(<span class="string">'close'</span>, (event) =&gt; &#123;</span><br><span class="line">  mainWindow.hide();</span><br><span class="line">  mainWindow.setSkipTaskbar(<span class="literal">true</span>);</span><br><span class="line">  event.preventDefault();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这时程序就再也找不到了，任务托盘中也没有我们的程序，所以我们要先创建好任务托盘，并做好事件监听</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createTray</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> mainWindow = BrowserWindow.fromId(global.mainId);</span><br><span class="line">    tray = <span class="keyword">new</span> Tray(path.join(global.__dirname, <span class="string">'icon.ico'</span>));</span><br><span class="line">    <span class="keyword">const</span> contextMenu = Menu.buildFromTemplate([</span><br><span class="line">      &#123; <span class="attr">label</span>: <span class="string">'退出'</span>, <span class="attr">click</span>: <span class="function"><span class="params">()</span> =&gt;</span> &#123; mainWindow.destroy(); app.quit(); &#125; &#125;,</span><br><span class="line">    ])</span><br><span class="line">    tray.setToolTip(<span class="string">'我的客户端'</span>)</span><br><span class="line">    tray.setContextMenu(contextMenu)</span><br><span class="line">    tray.on(<span class="string">'click'</span>, () =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (mainWindow.isVisible()) &#123;</span><br><span class="line">        mainWindow.hide();</span><br><span class="line">        mainWindow.setSkipTaskbar(<span class="literal">false</span>);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        mainWindow.show();</span><br><span class="line">        mainWindow.setSkipTaskbar(<span class="literal">true</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>以上这些操作为我们的程序又增加了好几层的防护措施，我们的程序就不会那么轻而易举的挂掉啦！</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="www.conardli.top/2018/11/07/【多端开发】electron程序保护措施（崩溃监控，开机自启，托盘关闭）/" data-id="cjy83pda5000fph0d3t2scd6f" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+
+
+<div id="roott"></div>
+
+<button id="tocbtn">打开目录</button>
+
+
+<script>
+    var showToc = false;
+    document.getElementById('tocbtn').onclick = function () {
+        if (showToc) {
+            document.getElementById('roott').innerHTML = ''
+            document.getElementById('tocbtn').innerHTML = '打开目录'
+        } else {
+            document.getElementById('roott').innerHTML = `<aside id="article-toc" role="navigation" class="fixed">
+  <div id="article-toc-inner">
+    <strong class="sidebar-title">
+      目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-崩溃监控"><span class="toc-text">1.崩溃监控</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-开机自启"><span class="toc-text">2.开机自启</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-托盘关闭"><span class="toc-text">3.托盘关闭</span></a></li></ol>
+  </div>
+</aside>`
+            document.getElementById('tocbtn').innerHTML = '关闭目录'
+        }
+        showToc = !showToc;
+    }
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments" style="padding: 30px;"></div>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 's1xL54gwvPRsIy3ciItiPhyD-gzGzoHsz',
+        appKey: 'CmP8stKpHUHtp5abbTxpqc4H'
+    })
+</script>
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>
+            关注我 :</p>
+        <ul class="social-links">
+            
+            
+            <li>
+                <a class="social-tooltip" title="github" href="https://github.com/ConardLi"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-github"></i>
+                </a>
+            </li>
+            
+            
+        </ul>
+    </div>
+    
+    
+<nav id="article-nav">
+    
+        <a href="/2018/11/27/【React深入】react中key的正确使用方式/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            react中key的正确使用方式
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/11/01/【多端开发】使用electron静默打印/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">使用electron静默打印</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container" style="background-color: #fff; border-right: 1px solid #e2e2e2;">
+        
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">
+        微信公众号
+    </h3>
+    <div class="widget">
+        <img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/gzh/qrcode.jpg" alt="">
+    </div>
+</div>
+
+        
+        
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://www.conardli.top/img/electron/el_1_app.jpg)" alt="【多端开发】用JS开发跨平台桌面应用，从原理到实践" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/" class="title">【多端开发】用JS开发跨平台桌面应用，从原理到实践</a></p>
+                            <p class="item-date"><time datetime="2019-06-10T12:45:35.000Z" itemprop="datePublished">2019-06-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://www.conardli.top/img/bl/bl_1_stack.png)" alt="【JS进阶】你真的掌握变量和类型了吗" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="title">【JS进阶】你真的掌握变量和类型了吗</a></p>
+                            <p class="item-date"><time datetime="2019-05-28T03:06:11.000Z" itemprop="datePublished">2019-05-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/17/【多端开发】移动端适配总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.loli.net/2019/05/17/5cddefa632f3247082.png)" alt="【多端开发】移动端适配总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/17/【多端开发】移动端适配总结/" class="title">【多端开发】移动端适配总结</a></p>
+                            <p class="item-date"><time datetime="2019-05-17T02:39:42.000Z" itemprop="datePublished">2019-05-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://conardli.top/img/qj/qj_15_qj.gif)" alt="【特效】看完这篇，你也可以实现一个360度全景插件" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" class="title">【特效】看完这篇，你也可以实现一个360度全景插件</a></p>
+                            <p class="item-date"><time datetime="2019-05-05T01:17:16.000Z" itemprop="datePublished">2019-05-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/26/【自检】前端知识清单/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://lsqimg-1257917459.cos.ap-beijing.myqcloud.com/blog/知识体系.png)" alt="【自检】前端知识清单" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/26/【自检】前端知识清单/" class="title">【自检】前端知识清单</a></p>
+                            <p class="item-date"><time datetime="2019-04-26T01:11:22.000Z" itemprop="datePublished">2019-04-26</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <div class="">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget widget-wrap-inn">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/electron/">electron</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多端开发/">多端开发</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习提升/">学习提升</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器和网络/">浏览器和网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特效/">特效</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .widget-wrap-inn {
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+</style>
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget  widget-wrap-inn">
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+</div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget  widget-wrap-inn">
+        <ul>
+            
+            <li>
+                <a href="https://juejin.im/user/5bea27965188250edf4ad8b7">掘金</a>
+            </li>
+            
+            <li>
+                <a href="https://segmentfault.com/u/conardli">segmentfault</a>
+            </li>
+            
+            <li>
+                <a href="https://github.com/ConardLi">github</a>
+            </li>
+            
+            <li>
+                <a href="https://github.com/ConardLi/tpanorama">tpanorama</a>
+            </li>
+            
+            <li>
+                <a href="http://chuangzaoshi.com/">创造狮导航</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <!-- <h3 class="widget-title">
+        腾讯云专属福利
+    </h3> -->
+    <div class="widget">
+        <a target="_blank"
+            href="https://cloud.tencent.com/redirect.php?redirect=1025&cps_key=1a3e7b07487819e129852ba7a4543262&from=console">
+            <img src="/img/txy.jpg" id="txy" alt="">
+        </a>
+    </div>
+</div>
+
+
+
+<style>
+    #txy {
+        width: 280px;
+        border: 5px;
+    }
+</style>
+        
+        
+<div class="widget-wrap widget-list">
+    <div class="widget">
+        <a target="_blank" href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=y3kv7eoj">
+            <img src="/img/aly.png" id="txy" alt="">
+        </a>
+    </div>
+</div>
+
+
+
+<style>
+    #txy {
+        width: 280px;
+        border: 5px;
+    }
+</style>
+        
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy;
+                    2019
+                    ConardLi
+                </p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice"
+                        target="_blank">ConardLi</a></p>
+                <script type="text/javascript">
+                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1275088352'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1275088352%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+                <span id="busuanzi_container_site_pv" style="margin-left:50px;">
+                    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+                </span>
+                <span id="busuanzi_container_site_uv" style="margin-left:50px;">
+                    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+                </span>
+            </div>
+            <div class="footer-plugins">
+                
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'www.conardli.top/2018/11/07/【多端开发】electron程序保护措施（崩溃监控，开机自启，托盘关闭）/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+
+</html>

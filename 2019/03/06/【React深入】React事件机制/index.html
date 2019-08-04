@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>【React深入】React事件机制 | 李世奇的技术专栏</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="React" />
+    
+    <meta name="description" content="关于React事件的疑问 1.为什么要手动绑定this  2.React事件和原生事件有什么区别  3.React事件和原生事件的执行顺序，可以混用吗  4.React事件如何解决跨浏览器兼容  5.什么是合成事件   下面是我阅读过源码后，将所有的执行流程总结出来的流程图，不会贴代码，如果你想阅读代码看看具体是如何实现的，可以根据流程图去源码里寻找。 事件注册  组件装载 / 更新。 通过la">
+<meta name="keywords" content="React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【React深入】React事件机制">
+<meta property="og:url" content="www.conardli.top/2019/03/06/【React深入】React事件机制/index.html">
+<meta property="og:site_name" content="李世奇的技术专栏">
+<meta property="og:description" content="关于React事件的疑问 1.为什么要手动绑定this  2.React事件和原生事件有什么区别  3.React事件和原生事件的执行顺序，可以混用吗  4.React事件如何解决跨浏览器兼容  5.什么是合成事件   下面是我阅读过源码后，将所有的执行流程总结出来的流程图，不会贴代码，如果你想阅读代码看看具体是如何实现的，可以根据流程图去源码里寻找。 事件注册  组件装载 / 更新。 通过la">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="/img/reactevent.jpg">
+<meta property="og:updated_time" content="2019-04-16T11:42:58.977Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【React深入】React事件机制">
+<meta name="twitter:description" content="关于React事件的疑问 1.为什么要手动绑定this  2.React事件和原生事件有什么区别  3.React事件和原生事件的执行顺序，可以混用吗  4.React事件如何解决跨浏览器兼容  5.什么是合成事件   下面是我阅读过源码后，将所有的执行流程总结出来的流程图，不会贴代码，如果你想阅读代码看看具体是如何实现的，可以根据流程图去源码里寻找。 事件注册  组件装载 / 更新。 通过la">
+<meta name="twitter:image" content="/img/reactevent.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://mp.weixin.qq.com/s/dYZEHTgqvxGV7mL99JuxRQ">关于</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://github.com/ConardLi/ConardLi.github.io">更新日志</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <style>
+    #article-toc.fixed {
+        position: fixed;
+        top: 30px;
+        bottom: 30px;
+        left: 32px;
+        padding-top: 15px;
+        z-index: 9999;
+        background-color: antiquewhite;
+        width: 200px;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid rgb(122, 122, 122);
+        opacity: 0.8;
+    }
+
+    #article-toc-inner {
+        padding: 10px;
+        width: 200px;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .toc-level-3 {
+        margin-left: 20px;
+    }
+
+    #article-toc a {
+        text-decoration: none;
+        color: #333;
+        padding: 3px 0;
+        color: #000;
+        font-weight: normal;
+    }
+
+    .toc-item {
+        line-height: 30px;
+        list-style-type: initial;
+    }
+
+    #tocbtn {
+        position: fixed;
+        top: 30%;
+        left: 0px;
+        padding: 5px 2px;
+        width: 18px;
+        word-wrap: break-word;
+        background-color: rgb(242, 245, 247);
+        box-shadow: rgba(118, 118, 118, 0.11) 2px 0px 5px 0px;
+        opacity: 1;
+        height: 94px;
+        line-height: 16px;
+        text-align: center;
+        top: 33%;
+        width: 30px;
+        z-index: 1000000001;
+        cursor: pointer;
+        border-radius: 0px 4px 4px 0px;
+        border-width: 1px 1px 1px;
+        border-style: solid solid solid none;
+        border-color: rgb(224, 228, 231) rgb(224, 228, 231) rgb(224, 228, 231);
+        border-image: initial;
+        border-left: none;
+        padding: 6px;
+        transition: right 0.4s ease-in 0.3s, opacity 0.5s ease-in 0.3s;
+    }
+</style>
+
+<article id="post-【React深入】React事件机制"
+    class="article article-single article-type-post"
+    itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        <header class="article-header">
+            
+    
+        <h1 class="article-title" itemprop="name">
+        【React深入】React事件机制
+        </h1>
+    
+
+        </header>
+        
+        
+        <div class="article-meta">
+            
+    <div class="article-date">
+        <a href="/2019/03/06/【React深入】React事件机制/" class="article-date">
+            <time datetime="2019-03-06T08:19:35.000Z" itemprop="datePublished">2019-03-06</time>
+        </a>
+    </div>
+
+            
+
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/React/">React</a>
+    </div>
+
+            <span id="busuanzi_container_page_pv" style="position: relative;float: right;">
+                本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+            </span>
+        </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/img/reactevent.jpg" alt="image"></p>
+<h2 id="关于React事件的疑问"><a href="#关于React事件的疑问" class="headerlink" title="关于React事件的疑问"></a>关于React事件的疑问</h2><ul>
+<li><p>1.为什么要手动绑定<code>this</code></p>
+</li>
+<li><p>2.<code>React</code>事件和原生事件有什么区别</p>
+</li>
+<li><p>3.<code>React</code>事件和原生事件的执行顺序，可以混用吗</p>
+</li>
+<li><p>4.<code>React</code>事件如何解决跨浏览器兼容</p>
+</li>
+<li><p>5.什么是合成事件</p>
+</li>
+</ul>
+<p>下面是我阅读过源码后，将所有的执行流程总结出来的流程图，不会贴代码，如果你想阅读代码看看具体是如何实现的，可以根据流程图去源码里寻找。</p>
+<h2 id="事件注册"><a href="#事件注册" class="headerlink" title="事件注册"></a>事件注册</h2><p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/事件注册.png" alt="image"></p>
+<ul>
+<li>组件装载 / 更新。</li>
+<li>通过<code>lastProps</code>、<code>nextProps</code>判断是否新增、删除事件分别调用事件注册、卸载方法。</li>
+<li>调用<code>EventPluginHub</code>的<code>enqueuePutListener</code>进行事件存储</li>
+<li>获取<code>document</code>对象。</li>
+<li>根据事件名称（如<code>onClick</code>、<code>onCaptureClick</code>）判断是进行冒泡还是捕获。</li>
+<li>判断是否存在<code>addEventListener</code>方法，否则使用<code>attachEvent</code>（兼容IE）。</li>
+<li>给<code>document</code>注册原生事件回调为<code>dispatchEvent</code>（统一的事件分发机制）。</li>
+</ul>
+<h2 id="事件存储"><a href="#事件存储" class="headerlink" title="事件存储"></a>事件存储</h2><p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/事件存储.png" alt="image"></p>
+<ul>
+<li><code>EventPluginHub</code>负责管理React合成事件的<code>callback</code>，它将<code>callback</code>存储在<code>listenerBank</code>中，另外还存储了负责合成事件的<code>Plugin</code>。</li>
+<li><code>EventPluginHub</code>的<code>putListener</code>方法是向存储容器中增加一个listener。</li>
+<li>获取绑定事件的元素的唯一标识<code>key</code>。</li>
+<li>将<code>callback</code>根据事件类型，元素的唯一标识<code>key</code>存储在<code>listenerBank</code>中。</li>
+<li><code>listenerBank</code>的结构是：<code>listenerBank[registrationName][key]</code>。</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    onClick:&#123;</span><br><span class="line">        nodeid1:()=&gt;&#123;...&#125;</span><br><span class="line">        nodeid2:()=&gt;&#123;...&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    onChange:&#123;</span><br><span class="line">        nodeid3:()=&gt;&#123;...&#125;</span><br><span class="line">        nodeid4:()=&gt;&#123;...&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="事件触发-执行"><a href="#事件触发-执行" class="headerlink" title="事件触发 / 执行"></a>事件触发 / 执行</h2><p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/事件触发.png" alt="image"></p>
+<p>这里的事件执行利用了<code>React</code>的批处理机制，在前一篇的【React深入】setState执行机制中已经分析过，这里不再多加分析。</p>
+<ul>
+<li>触发<code>document</code>注册原生事件的回调<code>dispatchEvent</code></li>
+<li>获取到触发这个事件最深一级的元素</li>
+</ul>
+<p>例如下面的代码：首先会获取到<code>this.child</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div onClick=&#123;<span class="keyword">this</span>.parentClick&#125; ref=&#123;ref =&gt; <span class="keyword">this</span>.parent = ref&#125;&gt;</span><br><span class="line">  &lt;div onClick=&#123;<span class="keyword">this</span>.childClick&#125; ref=&#123;ref =&gt; <span class="keyword">this</span>.child = ref&#125;&gt;</span><br><span class="line">    test</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>遍历这个元素的所有父元素，依次对每一级元素进行处理。</li>
+<li>构造合成事件。</li>
+<li>将每一级的合成事件存储在<code>eventQueue</code>事件队列中。</li>
+<li>遍历<code>eventQueue</code>。</li>
+<li>通过<code>isPropagationStopped</code>判断当前事件是否执行了阻止冒泡方法。</li>
+<li>如果阻止了冒泡，停止遍历，否则通过<code>executeDispatch</code>执行合成事件。</li>
+<li>释放处理完成的事件。</li>
+</ul>
+<p><code>react</code>在自己的合成事件中重写了<code>stopPropagation</code>方法，将<code>isPropagationStopped</code>设置为<code>true</code>，然后在遍历每一级事件的过程中根据此遍历判断是否继续执行。这就是<code>react</code>自己实现的冒泡机制。</p>
+<h2 id="合成事件"><a href="#合成事件" class="headerlink" title="合成事件"></a>合成事件</h2><p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/合成事件.png" alt="image"></p>
+<ul>
+<li>调用<code>EventPluginHub</code>的<code>extractEvents</code>方法。</li>
+<li>循环所有类型的<code>EventPlugin</code>（用来处理不同事件的工具方法）。</li>
+<li>在每个<code>EventPlugin</code>中根据不同的事件类型，返回不同的事件池。</li>
+<li>在事件池中取出合成事件，如果事件池是空的，那么创建一个新的。</li>
+<li>根据元素<code>nodeid</code>(唯一标识<code>key</code>)和事件类型从<code>listenerBink</code>中取出回调函数</li>
+<li>返回带有合成事件参数的回调函数</li>
+</ul>
+<h3 id="总流程"><a href="#总流程" class="headerlink" title="总流程"></a>总流程</h3><p>将上面的四个流程串联起来。</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/react事件机制.png" alt="image"></p>
+<h2 id="为什么要手动绑定this"><a href="#为什么要手动绑定this" class="headerlink" title="为什么要手动绑定this"></a>为什么要手动绑定this</h2><p>通过事件触发过程的分析，<code>dispatchEvent</code>调用了<code>invokeGuardedCallback</code>方法。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">invokeGuardedCallback</span>(<span class="params">name, func, a</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    func(a);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (x) &#123;</span><br><span class="line">    <span class="keyword">if</span> (caughtError === <span class="literal">null</span>) &#123;</span><br><span class="line">      caughtError = x;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可见，回调函数是直接调用调用的，并没有指定调用的组件，所以不进行手动绑定的情况下直接获取到的<code>this</code>是<code>undefined</code>。</p>
+<p>这里可以使用实验性的<a href="https://babeljs.io/docs/en/babel-plugin-proposal-class-properties" target="_blank" rel="noopener">属性初始化语法</a> ，也就是直接在组件声明箭头函数。箭头函数不会创建自己的<code>this</code>，它只会从自己的作用域链的上一层继承<code>this</code>。因此这样我们在<code>React</code>事件中获取到的就是组件本身了。</p>
+<h2 id="和原生事件有什么区别"><a href="#和原生事件有什么区别" class="headerlink" title="和原生事件有什么区别"></a>和原生事件有什么区别</h2><ul>
+<li><p><code>React</code> 事件使用驼峰命名，而不是全部小写。</p>
+</li>
+<li><p>通过 <code>JSX</code> , 你传递一个函数作为事件处理程序，而不是一个字符串。</p>
+</li>
+</ul>
+<p>例如，<code>HTML</code>：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;button onclick=<span class="string">"activateLasers()"</span>&gt;</span><br><span class="line">  Activate Lasers</span><br><span class="line">&lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>在 <code>React</code> 中略有不同：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;button onClick=&#123;activateLasers&#125;&gt;</span><br><span class="line">  Activate Lasers</span><br><span class="line">&lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>另一个区别是，在 React 中你不能通过返回<code>false</code> 来阻止默认行为。必须明确调用 <code>preventDefault</code>。</p>
+<p>由上面执行机制我们可以得出：<code>React</code>自己实现了一套事件机制，自己模拟了事件冒泡和捕获的过程，采用了事件代理，批量更新等方法，并且抹平了各个浏览器的兼容性问题。</p>
+<h2 id="React事件和原生事件的执行顺序"><a href="#React事件和原生事件的执行顺序" class="headerlink" title="React事件和原生事件的执行顺序"></a><code>React</code>事件和原生事件的执行顺序</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">componentDidMount() &#123;</span><br><span class="line">  <span class="keyword">this</span>.parent.addEventListener(<span class="string">'click'</span>, (e) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'dom parent'</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">this</span>.child.addEventListener(<span class="string">'click'</span>, (e) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'dom child'</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="built_in">document</span>.addEventListener(<span class="string">'click'</span>, (e) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'document'</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">childClick = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'react child'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">parentClick = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'react parent'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">render() &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div onClick=&#123;<span class="keyword">this</span>.parentClick&#125; ref=&#123;ref =&gt; <span class="keyword">this</span>.parent = ref&#125;&gt;</span><br><span class="line">      &lt;div onClick=&#123;<span class="keyword">this</span>.childClick&#125; ref=&#123;ref =&gt; <span class="keyword">this</span>.child = ref&#125;&gt;</span><br><span class="line">        test</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<p><img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/reactEvent1.png" alt="image"></p>
+<p>由上面的流程我们可以理解：</p>
+<ul>
+<li><code>react</code>的所有事件都挂载在<code>document</code>中</li>
+<li>当真实dom触发后冒泡到<code>document</code>后才会对<code>react</code>事件进行处理</li>
+<li>所以原生的事件会先执行</li>
+<li>然后执行<code>react</code>合成事件</li>
+<li>最后执行真正在<code>document</code>上挂载的事件</li>
+</ul>
+<h1 id="react事件和原生事件可以混用吗？"><a href="#react事件和原生事件可以混用吗？" class="headerlink" title="react事件和原生事件可以混用吗？"></a>react事件和原生事件可以混用吗？</h1><p><code>react</code>事件和原生事件最好不要混用。</p>
+<p>原生事件中如果执行了<code>stopPropagation</code>方法，则会导致其他<code>react</code>事件失效。因为所有元素的事件将无法冒泡到<code>document</code>上。</p>
+<p>由上面的执行机制不难得出，所有的react事件都将无法被注册。</p>
+<h2 id="合成事件、浏览器兼容"><a href="#合成事件、浏览器兼容" class="headerlink" title="合成事件、浏览器兼容"></a>合成事件、浏览器兼容</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function handleClick(e) &#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  console.log(&apos;The link was clicked.&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里， <code>e</code> 是一个合成的事件。 <code>React</code> 根据<a href="https://www.w3.org/TR/DOM-Level-3-Events/" target="_blank" rel="noopener"> W3C </a>规范 定义了这个合成事件，所以你不需要担心跨浏览器的兼容性问题。</p>
+</blockquote>
+<p>事件处理程序将传递 <code>SyntheticEvent</code> 的实例，这是一个跨浏览器原生事件包装器。 它具有与浏览器原生事件相同的接口，包括<code>stopPropagation()</code> 和 <code>preventDefault()</code> ，在所有浏览器中他们工作方式都相同。</p>
+<p> 每个<code>SyntheticEvent</code>对象都具有以下属性：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">boolean bubbles</span><br><span class="line">boolean cancelable</span><br><span class="line">DOMEventTarget currentTarget</span><br><span class="line">boolean defaultPrevented</span><br><span class="line">number eventPhase</span><br><span class="line">boolean isTrusted</span><br><span class="line">DOMEvent nativeEvent</span><br><span class="line"><span class="keyword">void</span> preventDefault()</span><br><span class="line">boolean isDefaultPrevented()</span><br><span class="line"><span class="keyword">void</span> stopPropagation()</span><br><span class="line">boolean isPropagationStopped()</span><br><span class="line">DOMEventTarget target</span><br><span class="line">number timeStamp</span><br><span class="line">string type</span><br></pre></td></tr></table></figure>
+<p><code>React</code>合成的<code>SyntheticEvent</code>采用了事件池，这样做可以大大节省内存，而不会频繁的创建和销毁事件对象。</p>
+<p>另外，不管在什么浏览器环境下，浏览器会将该事件类型统一创建为合成事件，从而达到了浏览器兼容的目的。</p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p>【React深入】setState的执行机制</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="www.conardli.top/2019/03/06/【React深入】React事件机制/" data-id="cjy83pd9c0002ph0db5s5jeor" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+
+
+<div id="roott"></div>
+
+<button id="tocbtn">打开目录</button>
+
+
+<script>
+    var showToc = false;
+    document.getElementById('tocbtn').onclick = function () {
+        if (showToc) {
+            document.getElementById('roott').innerHTML = ''
+            document.getElementById('tocbtn').innerHTML = '打开目录'
+        } else {
+            document.getElementById('roott').innerHTML = `<aside id="article-toc" role="navigation" class="fixed">
+  <div id="article-toc-inner">
+    <strong class="sidebar-title">
+      目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于React事件的疑问"><span class="toc-text">关于React事件的疑问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件注册"><span class="toc-text">事件注册</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件存储"><span class="toc-text">事件存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件触发-执行"><span class="toc-text">事件触发 / 执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#合成事件"><span class="toc-text">合成事件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总流程"><span class="toc-text">总流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要手动绑定this"><span class="toc-text">为什么要手动绑定this</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#和原生事件有什么区别"><span class="toc-text">和原生事件有什么区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React事件和原生事件的执行顺序"><span class="toc-text">React事件和原生事件的执行顺序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#react事件和原生事件可以混用吗？"><span class="toc-text">react事件和原生事件可以混用吗？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#合成事件、浏览器兼容"><span class="toc-text">合成事件、浏览器兼容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#推荐阅读"><span class="toc-text">推荐阅读</span></a></li></ol>
+  </div>
+</aside>`
+            document.getElementById('tocbtn').innerHTML = '关闭目录'
+        }
+        showToc = !showToc;
+    }
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments" style="padding: 30px;"></div>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 's1xL54gwvPRsIy3ciItiPhyD-gzGzoHsz',
+        appKey: 'CmP8stKpHUHtp5abbTxpqc4H'
+    })
+</script>
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>
+            关注我 :</p>
+        <ul class="social-links">
+            
+            
+            <li>
+                <a class="social-tooltip" title="github" href="https://github.com/ConardLi"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-github"></i>
+                </a>
+            </li>
+            
+            
+        </ul>
+    </div>
+    
+    
+<nav id="article-nav">
+    
+        <a href="/2019/03/12/【前端工程】前端开发者必备的nginx知识/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            前端开发者必备的nginx知识
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/03/06/【React深入】setState的执行机制/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">【React深入】setState的执行机制</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container" style="background-color: #fff; border-right: 1px solid #e2e2e2;">
+        
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">
+        微信公众号
+    </h3>
+    <div class="widget">
+        <img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/gzh/qrcode.jpg" alt="">
+    </div>
+</div>
+
+        
+        
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://www.conardli.top/img/electron/el_1_app.jpg)" alt="【多端开发】用JS开发跨平台桌面应用，从原理到实践" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/" class="title">【多端开发】用JS开发跨平台桌面应用，从原理到实践</a></p>
+                            <p class="item-date"><time datetime="2019-06-10T12:45:35.000Z" itemprop="datePublished">2019-06-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://www.conardli.top/img/bl/bl_1_stack.png)" alt="【JS进阶】你真的掌握变量和类型了吗" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="title">【JS进阶】你真的掌握变量和类型了吗</a></p>
+                            <p class="item-date"><time datetime="2019-05-28T03:06:11.000Z" itemprop="datePublished">2019-05-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/17/【多端开发】移动端适配总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.loli.net/2019/05/17/5cddefa632f3247082.png)" alt="【多端开发】移动端适配总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/17/【多端开发】移动端适配总结/" class="title">【多端开发】移动端适配总结</a></p>
+                            <p class="item-date"><time datetime="2019-05-17T02:39:42.000Z" itemprop="datePublished">2019-05-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://conardli.top/img/qj/qj_15_qj.gif)" alt="【特效】看完这篇，你也可以实现一个360度全景插件" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" class="title">【特效】看完这篇，你也可以实现一个360度全景插件</a></p>
+                            <p class="item-date"><time datetime="2019-05-05T01:17:16.000Z" itemprop="datePublished">2019-05-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/26/【自检】前端知识清单/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://lsqimg-1257917459.cos.ap-beijing.myqcloud.com/blog/知识体系.png)" alt="【自检】前端知识清单" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/26/【自检】前端知识清单/" class="title">【自检】前端知识清单</a></p>
+                            <p class="item-date"><time datetime="2019-04-26T01:11:22.000Z" itemprop="datePublished">2019-04-26</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <div class="">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget widget-wrap-inn">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/electron/">electron</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多端开发/">多端开发</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习提升/">学习提升</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器和网络/">浏览器和网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特效/">特效</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .widget-wrap-inn {
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+</style>
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget  widget-wrap-inn">
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+</div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget  widget-wrap-inn">
+        <ul>
+            
+            <li>
+                <a href="https://juejin.im/user/5bea27965188250edf4ad8b7">掘金</a>
+            </li>
+            
+            <li>
+                <a href="https://segmentfault.com/u/conardli">segmentfault</a>
+            </li>
+            
+            <li>
+                <a href="https://github.com/ConardLi">github</a>
+            </li>
+            
+            <li>
+                <a href="https://github.com/ConardLi/tpanorama">tpanorama</a>
+            </li>
+            
+            <li>
+                <a href="http://chuangzaoshi.com/">创造狮导航</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <!-- <h3 class="widget-title">
+        腾讯云专属福利
+    </h3> -->
+    <div class="widget">
+        <a target="_blank"
+            href="https://cloud.tencent.com/redirect.php?redirect=1025&cps_key=1a3e7b07487819e129852ba7a4543262&from=console">
+            <img src="/img/txy.jpg" id="txy" alt="">
+        </a>
+    </div>
+</div>
+
+
+
+<style>
+    #txy {
+        width: 280px;
+        border: 5px;
+    }
+</style>
+        
+        
+<div class="widget-wrap widget-list">
+    <div class="widget">
+        <a target="_blank" href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=y3kv7eoj">
+            <img src="/img/aly.png" id="txy" alt="">
+        </a>
+    </div>
+</div>
+
+
+
+<style>
+    #txy {
+        width: 280px;
+        border: 5px;
+    }
+</style>
+        
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy;
+                    2019
+                    ConardLi
+                </p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice"
+                        target="_blank">ConardLi</a></p>
+                <script type="text/javascript">
+                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1275088352'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1275088352%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+                <span id="busuanzi_container_site_pv" style="margin-left:50px;">
+                    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+                </span>
+                <span id="busuanzi_container_site_uv" style="margin-left:50px;">
+                    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+                </span>
+            </div>
+            <div class="footer-plugins">
+                
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'www.conardli.top/2019/03/06/【React深入】React事件机制/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>使用electron静默打印 | 李世奇的技术专栏</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="electron,多端开发" />
+    
+    <meta name="description" content="1.使用electron打印的理由很多情况下程序中使用的打印都是用户无感知的。并且想要灵活的控制打印内容，往往需要借助打印机给我们提供的api再进行开发，这种开发方式非常繁琐，并且开发难度较大。 electron提供的打印api可以非常灵活的控制打印设置的显示，并且可以通过html来书写打印内容。 2.apielectron提供了两种方式进行打印，一种是直接调用打印机打印，一种是打印到pdf。">
+<meta name="keywords" content="electron,多端开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用electron静默打印">
+<meta property="og:url" content="www.conardli.top/2018/11/01/【多端开发】使用electron静默打印/index.html">
+<meta property="og:site_name" content="李世奇的技术专栏">
+<meta property="og:description" content="1.使用electron打印的理由很多情况下程序中使用的打印都是用户无感知的。并且想要灵活的控制打印内容，往往需要借助打印机给我们提供的api再进行开发，这种开发方式非常繁琐，并且开发难度较大。 electron提供的打印api可以非常灵活的控制打印设置的显示，并且可以通过html来书写打印内容。 2.apielectron提供了两种方式进行打印，一种是直接调用打印机打印，一种是打印到pdf。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="/img/2.jpg">
+<meta property="og:updated_time" content="2019-06-10T12:46:20.434Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用electron静默打印">
+<meta name="twitter:description" content="1.使用electron打印的理由很多情况下程序中使用的打印都是用户无感知的。并且想要灵活的控制打印内容，往往需要借助打印机给我们提供的api再进行开发，这种开发方式非常繁琐，并且开发难度较大。 electron提供的打印api可以非常灵活的控制打印设置的显示，并且可以通过html来书写打印内容。 2.apielectron提供了两种方式进行打印，一种是直接调用打印机打印，一种是打印到pdf。">
+<meta name="twitter:image" content="/img/2.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://mp.weixin.qq.com/s/dYZEHTgqvxGV7mL99JuxRQ">关于</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://github.com/ConardLi/ConardLi.github.io">更新日志</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <style>
+    #article-toc.fixed {
+        position: fixed;
+        top: 30px;
+        bottom: 30px;
+        left: 32px;
+        padding-top: 15px;
+        z-index: 9999;
+        background-color: antiquewhite;
+        width: 200px;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        border-radius: 10px;
+        border: 1px solid rgb(122, 122, 122);
+        opacity: 0.8;
+    }
+
+    #article-toc-inner {
+        padding: 10px;
+        width: 200px;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .toc-level-3 {
+        margin-left: 20px;
+    }
+
+    #article-toc a {
+        text-decoration: none;
+        color: #333;
+        padding: 3px 0;
+        color: #000;
+        font-weight: normal;
+    }
+
+    .toc-item {
+        line-height: 30px;
+        list-style-type: initial;
+    }
+
+    #tocbtn {
+        position: fixed;
+        top: 30%;
+        left: 0px;
+        padding: 5px 2px;
+        width: 18px;
+        word-wrap: break-word;
+        background-color: rgb(242, 245, 247);
+        box-shadow: rgba(118, 118, 118, 0.11) 2px 0px 5px 0px;
+        opacity: 1;
+        height: 94px;
+        line-height: 16px;
+        text-align: center;
+        top: 33%;
+        width: 30px;
+        z-index: 1000000001;
+        cursor: pointer;
+        border-radius: 0px 4px 4px 0px;
+        border-width: 1px 1px 1px;
+        border-style: solid solid solid none;
+        border-color: rgb(224, 228, 231) rgb(224, 228, 231) rgb(224, 228, 231);
+        border-image: initial;
+        border-left: none;
+        padding: 6px;
+        transition: right 0.4s ease-in 0.3s, opacity 0.5s ease-in 0.3s;
+    }
+</style>
+
+<article id="post-【多端开发】使用electron静默打印"
+    class="article article-single article-type-post"
+    itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        <header class="article-header">
+            
+    
+        <h1 class="article-title" itemprop="name">
+        使用electron静默打印
+        </h1>
+    
+
+        </header>
+        
+        
+        <div class="article-meta">
+            
+    <div class="article-date">
+        <a href="/2018/11/01/【多端开发】使用electron静默打印/" class="article-date">
+            <time datetime="2018-11-01T10:30:14.000Z" itemprop="datePublished">2018-11-01</time>
+        </a>
+    </div>
+
+            
+
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/electron/">electron</a>, <a class="tag-link" href="/tags/多端开发/">多端开发</a>
+    </div>
+
+            <span id="busuanzi_container_page_pv" style="position: relative;float: right;">
+                本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+            </span>
+        </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/img/2.jpg" alt="image"></p>
+<h1 id="1-使用electron打印的理由"><a href="#1-使用electron打印的理由" class="headerlink" title="1.使用electron打印的理由"></a>1.使用electron打印的理由</h1><p>很多情况下程序中使用的打印都是用户无感知的。并且想要灵活的控制打印内容，往往需要借助打印机给我们提供的api再进行开发，这种开发方式非常繁琐，并且开发难度较大。</p>
+<p>electron提供的打印api可以非常灵活的控制打印设置的显示，并且可以通过html来书写打印内容。</p>
+<h1 id="2-api"><a href="#2-api" class="headerlink" title="2.api"></a>2.api</h1><p>electron提供了两种方式进行打印，一种是直接调用打印机打印，一种是打印到pdf。</p>
+<p>并且有两种对象可以调用打印：</p>
+<p>第一是通过window的webcontent对象，使用此种方式需要单独开出一个打印的窗口，可以将该窗口隐藏，但是通信调用相对复杂。</p>
+<p>另一种是使用页面的webview元素调用打印，可以将webview隐藏在调用的页面中，通信方式比较简单。</p>
+<p>两个对象调用打印方法的使用方式都一样。</p>
+<h2 id="2-1-print"><a href="#2-1-print" class="headerlink" title="2.1 print"></a>2.1 print</h2><p>官网api如下</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">contents.print([options], [callback])</span><br><span class="line">选项 <span class="built_in">Object</span> (可选)</span><br><span class="line"></span><br><span class="line">silent <span class="built_in">Boolean</span> (可选) - 不询问用户打印信息，默认为 <span class="literal">false</span>。</span><br><span class="line">printBackground <span class="built_in">Boolean</span> (optional) - Also prints the background color and image <span class="keyword">of</span> the web page. Default is <span class="literal">false</span>.</span><br><span class="line">deviceName <span class="built_in">String</span> (optional) - <span class="built_in">Set</span> the printer device name to use. Default is <span class="string">''</span>.</span><br><span class="line">callback <span class="built_in">Function</span> (可选)</span><br><span class="line"></span><br><span class="line">success <span class="built_in">Boolean</span> - Indicates success <span class="keyword">of</span> the print call.</span><br></pre></td></tr></table></figure>
+<p>打印配置(options)中只有简单的三个配置：</p>
+<p>silent：打印时是否不展示打印配置（是否静默打印）</p>
+<p>printBackground：是否打印背景</p>
+<p>deviceName：打印机设备名称</p>
+<p>首先要将我们使用的打印机名称配置好，并且要在调用打印前首先要判断打印机是否可用。</p>
+<p>使用getPrinters方法可获取当前设备已经配置的打印机列表，注意配置过不是可用，只是在此设备上安装过驱动。</p>
+<p>通过getprinter获取到的打印机对象：<a href="https://electronjs.org/docs/api/structures/printer-info" target="_blank" rel="noopener">https://electronjs.org/docs/api/structures/printer-info</a></p>
+<p>我们这里只管关心两个，name和status，status为0时表示打印机可用。</p>
+<p>这里的status必须经历一次打印失败才能返回非0值，也就是说第一次获取打印机状态一定是0。但是这一次的打印虽然不能判断出错误，打印的任务已经预存在队列中了，当下一次打印机状态变为可用时，将会打印暂存的任务。</p>
+<p>当打印机纸张用完时也是这种情况，剩余任务会暂存起来，下次打印机可用时即可以打印了。</p>
+<p>print的第二个参数callback是用于判断打印任务是否发出的回调，而不是打印任务完成后的回调。所以一般打印任务发出，回调函数即会调用并返回参数true。这个回调并不能判断打印是否真的成功了。</p>
+<h2 id="2-2-printToPdf"><a href="#2-2-printToPdf" class="headerlink" title="2.2 printToPdf"></a>2.2 printToPdf</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">contents.printToPDF(options, callback)</span><br><span class="line">选项 <span class="built_in">Object</span></span><br><span class="line"></span><br><span class="line">marginsType Integer (optional) - Specifies the type <span class="keyword">of</span> margins to use. Uses <span class="number">0</span> <span class="keyword">for</span> <span class="keyword">default</span> margin, <span class="number">1</span> <span class="keyword">for</span> no margin, and <span class="number">2</span> <span class="keyword">for</span> minimum margin.</span><br><span class="line">pageSize <span class="built_in">String</span> (optional) - Specify page size <span class="keyword">of</span> the generated PDF. Can be A3, A4, A5, Legal, Letter, Tabloid or an <span class="built_in">Object</span> containing height and width <span class="keyword">in</span> microns.</span><br><span class="line">printBackground <span class="built_in">Boolean</span> (optional) - Whether to print CSS backgrounds.</span><br><span class="line">printSelectionOnly <span class="built_in">Boolean</span> (optional) - Whether to print selection only.</span><br><span class="line">landscape <span class="built_in">Boolean</span> (optional) - <span class="literal">true</span> <span class="keyword">for</span> landscape, <span class="literal">false</span> <span class="keyword">for</span> portrait.</span><br><span class="line">callback <span class="built_in">Function</span> - 回调函数</span><br><span class="line"></span><br><span class="line">error <span class="built_in">Error</span></span><br><span class="line">data Buffer</span><br></pre></td></tr></table></figure>
+<p>printToPdf的用法基本和print相同，但是由于print是native code提供的方法，配置项非常少，而printToPdf则扩展了很多属性。</p>
+<p>包括可以对打印的margin，打印页眉页脚等进行配置。</p>
+<p>配置项很多，翻了一下源码发现还有很多没有被贴进api的：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> defaultPrintingSetting = &#123;</span><br><span class="line">  pageRage: [],</span><br><span class="line">  mediaSize: &#123;&#125;,</span><br><span class="line">  landscape: <span class="literal">false</span>,</span><br><span class="line">  color: <span class="number">2</span>,</span><br><span class="line">  headerFooterEnabled: <span class="literal">false</span>,</span><br><span class="line">  marginsType: <span class="number">0</span>,</span><br><span class="line">  isFirstRequest: <span class="literal">false</span>,</span><br><span class="line">  requestID: getNextId(),</span><br><span class="line">  previewModifiable: <span class="literal">true</span>,</span><br><span class="line">  printToPDF: <span class="literal">true</span>,</span><br><span class="line">  printWithCloudPrint: <span class="literal">false</span>,</span><br><span class="line">  printWithPrivet: <span class="literal">false</span>,</span><br><span class="line">  printWithExtension: <span class="literal">false</span>,</span><br><span class="line">  deviceName: <span class="string">'Save as PDF'</span>,</span><br><span class="line">  generateDraftData: <span class="literal">true</span>,</span><br><span class="line">  fitToPageEnabled: <span class="literal">false</span>,</span><br><span class="line">  scaleFactor: <span class="number">1</span>,</span><br><span class="line">  dpiHorizontal: <span class="number">72</span>,</span><br><span class="line">  dpiVertical: <span class="number">72</span>,</span><br><span class="line">  rasterizePDF: <span class="literal">false</span>,</span><br><span class="line">  duplex: <span class="number">0</span>,</span><br><span class="line">  copies: <span class="number">1</span>,</span><br><span class="line">  collate: <span class="literal">true</span>,</span><br><span class="line">  shouldPrintBackgrounds: <span class="literal">false</span>,</span><br><span class="line">  shouldPrintSelectionOnly: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3-打印边距问题"><a href="#3-打印边距问题" class="headerlink" title="3.打印边距问题"></a>3.打印边距问题</h1><p>打印的时候打印机会给纸张留一个默认边距，如果是A4这样的纸张几乎可以忽略不计了，但是打印小规格纸张如50mm*50mm，这个边距就十分明显了，严重影响了整体布局。</p>
+<p>printToPdf方法提供了非常多的配置项，其中包括了配置打印边距的参数，但是print方法却没有该配置项。</p>
+<p>我们可以通过一项css配置来解决这个问题,即<code>@page</code>:</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">@<span class="keyword">page</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过此配置可灵活配置打印边距。</p>
+<p>还有一个css属性<code>@media print {}</code>  此配置是只有在打印时才生效的css，控制的是打印边距以内的css，并不能控制打印边距。</p>
+<h1 id="4-打印方案"><a href="#4-打印方案" class="headerlink" title="4.打印方案"></a>4.打印方案</h1><p>使用webcontent打印，首先要有一个打印窗口，这个窗口不能随时打印随时创建，比较耗费性能。可以将它在程序运行时启动好，并做好事件监听。</p>
+<p>此过程需和调用打印的进行做好通信：大致过程如下：</p>
+<p><img src="http://on-img.com/chart_image/5badf135e4b0fe81b64ad7b9.png" alt="image"></p>
+<p>可见通信非常繁琐</p>
+<p>使用webview进行打印可实现同样的效果但是通信方式会变得简单，因为渲染进程和webview通信不需要经过主进程，通过如下方式即可：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// In embedder page.</span></span><br><span class="line">  <span class="keyword">const</span> webview = <span class="built_in">document</span>.querySelector(<span class="string">'webview'</span>)</span><br><span class="line">  webview.addEventListener(<span class="string">'ipc-message'</span>, (event) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(event.channel)</span><br><span class="line">    <span class="comment">// Prints "pong"</span></span><br><span class="line">  &#125;)</span><br><span class="line">  webview.send(<span class="string">'ping'</span>)</span><br><span class="line">Copy</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 在访客页。</span></span><br><span class="line">  <span class="keyword">const</span> &#123;ipcRenderer&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br><span class="line">  ipcRenderer.on(<span class="string">'ping'</span>, () =&gt; &#123;</span><br><span class="line">    ipcRenderer.sendToHost(<span class="string">'pong'</span>)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="5-示例程序"><a href="#5-示例程序" class="headerlink" title="5.示例程序"></a>5.示例程序</h1><p>示例demo：<a href="https://github.com/ConardLi/electron-print-demo" target="_blank" rel="noopener">https://github.com/ConardLi/electron-print-demo</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="www.conardli.top/2018/11/01/【多端开发】使用electron静默打印/" data-id="cjy83pd9w000aph0dtt0is4yj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+
+
+<div id="roott"></div>
+
+<button id="tocbtn">打开目录</button>
+
+
+<script>
+    var showToc = false;
+    document.getElementById('tocbtn').onclick = function () {
+        if (showToc) {
+            document.getElementById('roott').innerHTML = ''
+            document.getElementById('tocbtn').innerHTML = '打开目录'
+        } else {
+            document.getElementById('roott').innerHTML = `<aside id="article-toc" role="navigation" class="fixed">
+  <div id="article-toc-inner">
+    <strong class="sidebar-title">
+      目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-使用electron打印的理由"><span class="toc-text">1.使用electron打印的理由</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-api"><span class="toc-text">2.api</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-print"><span class="toc-text">2.1 print</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-printToPdf"><span class="toc-text">2.2 printToPdf</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-打印边距问题"><span class="toc-text">3.打印边距问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-打印方案"><span class="toc-text">4.打印方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-示例程序"><span class="toc-text">5.示例程序</span></a></li></ol>
+  </div>
+</aside>`
+            document.getElementById('tocbtn').innerHTML = '关闭目录'
+        }
+        showToc = !showToc;
+    }
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments" style="padding: 30px;"></div>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 's1xL54gwvPRsIy3ciItiPhyD-gzGzoHsz',
+        appKey: 'CmP8stKpHUHtp5abbTxpqc4H'
+    })
+</script>
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>
+            关注我 :</p>
+        <ul class="social-links">
+            
+            
+            <li>
+                <a class="social-tooltip" title="github" href="https://github.com/ConardLi"
+                    target="_blank" rel="noopener">
+                    <i class="icon fa fa-github"></i>
+                </a>
+            </li>
+            
+            
+        </ul>
+    </div>
+    
+    
+<nav id="article-nav">
+    
+        <a href="/2018/11/07/【多端开发】electron程序保护措施（崩溃监控，开机自启，托盘关闭）/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            electron程序保护措施（崩溃监控，开机自启，托盘关闭）
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/01/01/【博客搭建】个人博客搭建及配置/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">个人博客搭建及配置</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container" style="background-color: #fff; border-right: 1px solid #e2e2e2;">
+        
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">
+        微信公众号
+    </h3>
+    <div class="widget">
+        <img src="https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/gzh/qrcode.jpg" alt="">
+    </div>
+</div>
+
+        
+        
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://www.conardli.top/img/electron/el_1_app.jpg)" alt="【多端开发】用JS开发跨平台桌面应用，从原理到实践" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/06/10/【多端开发】用JS开发跨平台桌面应用，从原理到实践/" class="title">【多端开发】用JS开发跨平台桌面应用，从原理到实践</a></p>
+                            <p class="item-date"><time datetime="2019-06-10T12:45:35.000Z" itemprop="datePublished">2019-06-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://www.conardli.top/img/bl/bl_1_stack.png)" alt="【JS进阶】你真的掌握变量和类型了吗" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/28/【JS进阶】你真的掌握变量和类型了吗/" class="title">【JS进阶】你真的掌握变量和类型了吗</a></p>
+                            <p class="item-date"><time datetime="2019-05-28T03:06:11.000Z" itemprop="datePublished">2019-05-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/17/【多端开发】移动端适配总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.loli.net/2019/05/17/5cddefa632f3247082.png)" alt="【多端开发】移动端适配总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/17/【多端开发】移动端适配总结/" class="title">【多端开发】移动端适配总结</a></p>
+                            <p class="item-date"><time datetime="2019-05-17T02:39:42.000Z" itemprop="datePublished">2019-05-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://conardli.top/img/qj/qj_15_qj.gif)" alt="【特效】看完这篇，你也可以实现一个360度全景插件" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/05/【特效】看完这篇，你也可以实现一个360度全景插件/" class="title">【特效】看完这篇，你也可以实现一个360度全景插件</a></p>
+                            <p class="item-date"><time datetime="2019-05-05T01:17:16.000Z" itemprop="datePublished">2019-05-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/26/【自检】前端知识清单/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://lsqimg-1257917459.cos.ap-beijing.myqcloud.com/blog/知识体系.png)" alt="【自检】前端知识清单" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/26/【自检】前端知识清单/" class="title">【自检】前端知识清单</a></p>
+                            <p class="item-date"><time datetime="2019-04-26T01:11:22.000Z" itemprop="datePublished">2019-04-26</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <div class="">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget widget-wrap-inn">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/electron/">electron</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多端开发/">多端开发</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习提升/">学习提升</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器和网络/">浏览器和网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/特效/">特效</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .widget-wrap-inn {
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+</style>
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget  widget-wrap-inn">
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+</div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget  widget-wrap-inn">
+        <ul>
+            
+            <li>
+                <a href="https://juejin.im/user/5bea27965188250edf4ad8b7">掘金</a>
+            </li>
+            
+            <li>
+                <a href="https://segmentfault.com/u/conardli">segmentfault</a>
+            </li>
+            
+            <li>
+                <a href="https://github.com/ConardLi">github</a>
+            </li>
+            
+            <li>
+                <a href="https://github.com/ConardLi/tpanorama">tpanorama</a>
+            </li>
+            
+            <li>
+                <a href="http://chuangzaoshi.com/">创造狮导航</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+        
+        
+<div class="widget-wrap widget-list">
+    <!-- <h3 class="widget-title">
+        腾讯云专属福利
+    </h3> -->
+    <div class="widget">
+        <a target="_blank"
+            href="https://cloud.tencent.com/redirect.php?redirect=1025&cps_key=1a3e7b07487819e129852ba7a4543262&from=console">
+            <img src="/img/txy.jpg" id="txy" alt="">
+        </a>
+    </div>
+</div>
+
+
+
+<style>
+    #txy {
+        width: 280px;
+        border: 5px;
+    }
+</style>
+        
+        
+<div class="widget-wrap widget-list">
+    <div class="widget">
+        <a target="_blank" href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=y3kv7eoj">
+            <img src="/img/aly.png" id="txy" alt="">
+        </a>
+    </div>
+</div>
+
+
+
+<style>
+    #txy {
+        width: 280px;
+        border: 5px;
+    }
+</style>
+        
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy;
+                    2019
+                    ConardLi
+                </p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice"
+                        target="_blank">ConardLi</a></p>
+                <script type="text/javascript">
+                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1275088352'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1275088352%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+                <span id="busuanzi_container_site_pv" style="margin-left:50px;">
+                    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+                </span>
+                <span id="busuanzi_container_site_uv" style="margin-left:50px;">
+                    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+                </span>
+            </div>
+            <div class="footer-plugins">
+                
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'www.conardli.top/2018/11/01/【多端开发】使用electron静默打印/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+
+</html>

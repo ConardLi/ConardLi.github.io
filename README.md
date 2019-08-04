@@ -1,7 +1,7 @@
 
 ## 关于博客
 
-系统性学习，打造完善的知识体系： [【自检】前端知识清单](http://www.conardli.top/blog/article/%E7%BB%BC%E5%90%88/%E3%80%90%E8%87%AA%E6%A3%80%E3%80%91%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%B8%85%E5%8D%95.html)
+系统性学习，打造完善的知识体系： [【自检】前端知识清单](http://www.conardli.top/blog/article/综合/【自检】前端知识清单.html)
 
 
 ![](https://lsqimg-1257917459.cos.ap-beijing.myqcloud.com/blog/%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.png)
@@ -101,15 +101,15 @@
 您还可以在下面的地方关注我。
 
 <a href="https://juejin.im/user/5bea27965188250edf4ad8b7" >
-  <img src="http://www.conardli.top/img/juejin.png"  width="220px" height="110px" /> 
+  <img src="./img/juejin.png"  width="220px" height="110px" /> 
 </a>
 
 <a href="https://segmentfault.com/u/conardli" class="item" >
-  <img src="http://www.conardli.top/img/segmentfault.jpg" width="150px" height="150px" />
+  <img src="./img/segmentfault.jpg" width="150px" height="150px" />
 </a>
 
 <a href="https://mp.weixin.qq.com/s/dYZEHTgqvxGV7mL99JuxRQ" class="item" >
-  <img src="http://www.conardli.top/img/gongzhonghao.png" width="150"  height="150" />
+  <img src="./img/gongzhonghao.png" width="150"  height="150" />
 </a>
 
 
@@ -117,7 +117,7 @@
 
 专注推送精品文章，免费领取大量资料教程。
 
-![](http://www.conardli.top/img/gzh.png)
+![](./img/gzh.png)
 
 
 ## 版权声明

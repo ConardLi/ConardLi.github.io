@@ -7,5 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "conardLi",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "acorn": "^7.0.0",
+    "escodegen": "^1.12.0"
+  }
 }

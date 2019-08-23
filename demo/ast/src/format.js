@@ -15,14 +15,7 @@ module.exports = function (code) {
     escodegen.attachComments(ast, comments, tokens);
     return escodegen.generate(ast, {
         format: {
-            indent: {
-                style: '    ',
-                base: 0,
-                adjustMultilineComment: false
-            },
-            newline: '\n',
             space: ' ',
-            json: false,
             renumber: false,
             hexadecimal: false,
             quotes: 'single',
@@ -30,7 +23,7 @@ module.exports = function (code) {
             compact: false,
             parentheses: true,
             semicolons: true,
-            safeConcatenation: false
+            newline: '\n',
         },
         comment: true
     });

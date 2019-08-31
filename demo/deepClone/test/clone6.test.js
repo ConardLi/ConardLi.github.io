@@ -25,6 +25,12 @@ const target = {
     date: new Date(),
     reg: /\d+/,
     error: new Error(),
+    func1: () => {
+        console.log('code秘密花园');
+    },
+    func2: function (a, b) {
+        return a + b;
+    }
 };
 
 

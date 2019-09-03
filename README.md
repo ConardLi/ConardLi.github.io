@@ -12,6 +12,8 @@
 
 - [你真的掌握变量和类型了吗（一）数据类型](http://www.conardli.top/blog/article/JS进阶/你真的掌握变量和类型了吗（一）数据类型.html)
 - [你真的掌握变量和类型了吗（二）类型转换](http://www.conardli.top/blog/article/JS进阶/你真的掌握变量和类型了吗（二）类型转换.html)
+- [如何写出一个惊艳面试官的深拷贝](http://www.conardli.top/blog/article/JS进阶/如何写出一个惊艳面试官的深拷贝.html)
+
 
 ### React深入系列
 

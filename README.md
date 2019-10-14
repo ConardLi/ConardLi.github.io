@@ -47,6 +47,8 @@
 ### 前端工程化
 
 - [前端开发者必备的nginx知识](http://www.conardli.top/blog/article/前端工程化/前端开发者必备的nginx知识.html)
+- [前端代码质量-圈复杂度原理和实践](http://www.conardli.top/blog/article/前端工程化/前端代码质量-圈复杂度原理和实践.html)
+
 
 ### 效果
 

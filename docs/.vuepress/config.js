@@ -59,6 +59,7 @@ module.exports = {
                     children: [
                         '/article/前端工程化/前端开发者必备的nginx知识',
                         '/article/前端工程化/前端代码质量-圈复杂度原理和实践',
+                        '/article/前端工程化/前端工程化（一）npm包如何进行版本管理？',
                     ]
                 },
                 {

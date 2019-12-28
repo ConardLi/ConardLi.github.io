@@ -21,6 +21,9 @@
 - [前端代码质量-圈复杂度原理和实践](http://www.conardli.top/blog/article/前端工程化/前端代码质量-圈复杂度原理和实践.html)
 - [npm包如何进行版本管理？](http://www.conardli.top/blog/article/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%EF%BC%88%E4%B8%80%EF%BC%89npm%E5%8C%85%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%EF%BC%9F.html)
 - [package.json知多少？](http://www.conardli.top/blog/article/前端工程化/前端工程化（二）package.json知多少？.html)
+- [前端工程化（三）npm install 原理分析](http://www.conardli.top/blog/article/前端工程化/前端工程化（三）npminstall原理分析.html)
+- [前端工程化 - 剖析npm的包管理机制（完整版）](http://www.conardli.top/blog/article/前端工程化/前端工程化-剖析npm的包管理机制（完整版）.html)
+
 
 
 ### React深入系列
@@ -51,13 +54,17 @@
 - [全面分析前端的网络请求方式（三）跨域](http://www.conardli.top/blog/article/浏览器和网络/全面分析前端的网络请求方式（三）跨域.html)
 
 
-
-
 ### 效果
 
 - [看完这篇，你也可以实现一个360度全景插件（一）原理篇](http://www.conardli.top/blog/article/效果/看完这篇，你也可以实现一个360度全景插件（一）原理篇.html)
 - [看完这篇，你也可以实现一个360度全景插件（二）全景预览](http://www.conardli.top/blog/article/效果/看完这篇，你也可以实现一个360度全景插件（二）全景预览.html)
 - [看完这篇，你也可以实现一个360度全景插件（三）全景标记](http://www.conardli.top/blog/article/效果/看完这篇，你也可以实现一个360度全景插件（三）全景标记.html)
+
+### 技术圈
+
+- [【技术圈】Node.js 宣布对 ECMAScript 的正式支持、WebAssembly 正式成为 W3C 标准](http://www.conardli.top/blog/article/技术圈/【技术圈】第1期.html)
+- [【技术圈】谷歌新提案：Web Bundles API 可在脱机状态实现内容分发、大四学生开源文言文编程语言，star破5K](http://www.conardli.top/blog/article/技术圈/【技术圈】第2期.html)
+
 
 ### 博客搭建
 

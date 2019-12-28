@@ -61,6 +61,8 @@ module.exports = {
                         '/article/前端工程化/前端代码质量-圈复杂度原理和实践',
                         '/article/前端工程化/前端工程化（一）npm包如何进行版本管理？',
                         '/article/前端工程化/前端工程化（二）package.json知多少？',
+                        '/article/前端工程化/前端工程化（三）npminstall原理分析',
+                        '/article/前端工程化/前端工程化-剖析npm的包管理机制（完整版）',
                     ]
                 },
                 {
@@ -81,6 +83,13 @@ module.exports = {
                     title: '综合',
                     children: [
                         '/article/综合/【自检】前端知识清单',
+                    ]
+                },
+                {
+                    title: '技术圈',
+                    children: [
+                        '/article/技术圈/【技术圈】第1期',
+                        '/article/技术圈/【技术圈】第2期',
                     ]
                 }
             ]

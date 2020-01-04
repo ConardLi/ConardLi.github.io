@@ -65,6 +65,7 @@
 
 - [【技术圈】Node.js 宣布对 ECMAScript 的正式支持、WebAssembly 正式成为 W3C 标准](./技术圈/【技术圈】第1期.html)
 - [【技术圈】谷歌新提案：Web Bundles API 可在脱机状态实现内容分发、大四学生开源文言文编程语言，star破5K](./技术圈/【技术圈】第2期.html)
+- [【技术圈】Flutter 1.12、Firefox 71、V8 8.0 一大把新特性来袭](./技术圈/【技术圈】第3期.html)
 
 ### 博客搭建
 

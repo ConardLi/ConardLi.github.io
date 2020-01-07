@@ -69,8 +69,8 @@ const VitrualDom = {
     {
       type: 'ul',
       children: [
-        { type: 'ul', children: '苹果' },
-        { type: 'ul', children: '橘子' }
+        { type: 'li', children: '苹果' },
+        { type: 'li', children: '橘子' }
       ]
     }
   ]

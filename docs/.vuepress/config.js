@@ -90,7 +90,8 @@ module.exports = {
                     children: [
                         '/article/技术圈/【技术圈】第1期',
                         '/article/技术圈/【技术圈】第2期',
-                        '/article/技术圈/【技术圈】第3期'
+                        '/article/技术圈/【技术圈】第3期',
+                        '/article/技术圈/【技术圈】第4期'
                     ]
                 }
             ]

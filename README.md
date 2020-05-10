@@ -54,6 +54,7 @@
 
 ### 浏览器策略
 
+- [当浏览器全面禁用三方 Cookie](./浏览器策略/当浏览器全面禁用三方Cookie.html)
 - [Chrome 81 正式发布 ！消灭混合内容最后一步~](http://www.conardli.top/blog/article/浏览器策略/chrome81.html)
 - [两个你必须要知道的 Chrome 80 策略更新](http://www.conardli.top/blog/article/浏览器策略/两个你必须要知道的Chrome80策略更新.html)
 

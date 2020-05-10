@@ -57,6 +57,7 @@ module.exports = {
                 {
                     title: '浏览器策略',
                     children: [
+                        '/article/浏览器策略/chrome81',
                         '/article/浏览器策略/两个你必须要知道的Chrome80策略更新'
                     ]
                 },

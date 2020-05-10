@@ -47,11 +47,17 @@
 - [用JS开发桌面应用（四）程序保护](http://www.conardli.top/blog/article/多端开发/用JS开发桌面应用（四）程序保护.html)
 - [用JS开发桌面应用（五）终篇](http://www.conardli.top/blog/article/多端开发/用JS开发桌面应用（五）终篇.html)
 
+### 浏览器策略
+
+- [两个你必须要知道的 Chrome 80 策略更新](http://www.conardli.top/blog/article/浏览器策略/两个你必须要知道的Chrome80策略更新.html)
+
+
 ### 浏览器和网络
 
 - [全面分析前端的网络请求方式（一）ajax](http://www.conardli.top/blog/article/浏览器和网络/全面分析前端的网络请求方式（一）ajax.html)
 - [全面分析前端的网络请求方式（二）fetch](http://www.conardli.top/blog/article/浏览器和网络/全面分析前端的网络请求方式（二）fetch.html)
 - [全面分析前端的网络请求方式（三）跨域](http://www.conardli.top/blog/article/浏览器和网络/全面分析前端的网络请求方式（三）跨域.html)
+
 
 
 ### 效果

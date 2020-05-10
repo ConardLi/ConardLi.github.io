@@ -55,6 +55,12 @@ module.exports = {
                     ]
                 },
                 {
+                    title: '浏览器策略',
+                    children: [
+                        '/article/浏览器策略/两个你必须要知道的Chrome80策略更新'
+                    ]
+                },
+                {
                     title: '前端工程化',
                     children: [
                         '/article/前端工程化/前端开发者必备的nginx知识',

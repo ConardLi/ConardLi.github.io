@@ -61,6 +61,13 @@ module.exports = {
                     ]
                 },
                 {
+                    title: '前端安全',
+                    children: [
+                        '/article/前端安全/从网络协议的角度聊一聊最近Github被大规模攻击事件',
+                        '/article/前端安全/依赖安全漏洞'
+                    ]
+                },
+                {
                     title: '前端工程化',
                     children: [
                         '/article/前端工程化/前端开发者必备的nginx知识',
@@ -97,7 +104,8 @@ module.exports = {
                         '/article/技术圈/【技术圈】第1期',
                         '/article/技术圈/【技术圈】第2期',
                         '/article/技术圈/【技术圈】第3期',
-                        '/article/技术圈/【技术圈】第4期'
+                        '/article/技术圈/【技术圈】第4期',
+                        '/article/技术圈/【技术圈】第5期'
                     ]
                 }
             ]

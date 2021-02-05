@@ -50,26 +50,30 @@ function cloneReg(targe) {
     return result;
 }
 
-function cloneFunction(func) {
-    const bodyReg = /(?<={)(.|\n)+(?=})/m;
-    const paramReg = /(?<=\().+(?=\)\s+{)/;
-    const funcString = func.toString();
-    if (func.prototype) {
-        const param = paramReg.exec(funcString);
-        const body = bodyReg.exec(funcString);
-        if (body) {
-            if (param) {
-                const paramArr = param[0].split(',');
-                return new Function(...paramArr, body[0]);
-            } else {
-                return new Function(body[0]);
-            }
-        } else {
-            return null;
-        }
+function cloneFunction (func) {
+  const bodyReg = /(?<={)(.|\n)+(?=})/m
+  const paramReg = /(?<=\().+(?=\)\s+{)/
+  const funcString = func.toString()
+  if (func.prototype) {
+    const param = paramReg.exec(funcString)
+    const body = bodyReg.exec(funcString)
+    if (body) {
+      if (param) {
+        const paramArr = param[0].split(',')
+        return new Function(...paramArr, body[0])
+      } else {
+        return new Function(body[0])
+      }
     } else {
-        return eval(funcString);
+      return new Function()
     }
+  } else {
+    if (funcString.includes('{ [native code] }')) {
+      return func
+    } else {
+      return eval(funcString)
+    }
+  }
 }
 
 function cloneOtherType(targe, type) {

@@ -1,3 +1,8 @@
+## Hello Conrad!
+## I'm not able to find your contact information anywhere and I'd like to invite to partner up with MDBootstrap.com
+## If you're interested please send me an email on f.kapusta@mdbootstrap.com
+## Congratulations for your work! Keep it up ;)
+
 
 ## 关于博客
 

@@ -2,7 +2,7 @@
 title: JavaScript 中的管道运算符
 category: JavaScript
 tag: 最新提案、JavaScript
-date: 2021-04-01
+date: 2023-04-01
 ---
 
  大家好，我是 [ConardLi](https://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&mid=2247493407&idx=1&sn=41b8782a3bdc75b211206b06e1929a58&chksm=c2e11234f5969b22a0d7fd50ec32be9df13e2caeef186b30b5d653836b0725def8ccd58a56cf#rd)。

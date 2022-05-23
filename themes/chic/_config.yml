@@ -1,5 +1,5 @@
 # Header
-navname: Bentham's Blog
+navname: code秘密花园
 
 # navigatior items
 nav:
@@ -12,11 +12,11 @@ nav:
 favicon: /favicon.ico
 
 # Profile
-nickname: Jeremy Bentham
+nickname: 十七
 
 ### this variable is MarkDown form.
-description: Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** <br>Fusce eget urna vitae velit *eleifend interdum at ac* nisi.
-avatar: /image/avatar.jpeg
+description: 你好，我是 **ConardLi**，也可以叫我**十七**，欢迎来到 **code秘密花园**。<br>这里有最前沿的前端技术、最新的前端消息、最精品的技术文章、最好用的工具推荐、还有一个有趣的作者。
+avatar: /image/avatar.jpg
 
 # main menu navigation
 ## links key words should not be changed.
@@ -24,8 +24,8 @@ avatar: /image/avatar.jpeg
 ## Unused key can be commented out.
 links:
   Blog: /archives
-  # Category:
-  # Tags: 
+  Category: /category
+  Tags: /tag
   # Link:
   # Resume:
   # Publish:
@@ -33,7 +33,7 @@ links:
   # Gallery:
   # RSS:
   # AliPay:
-  ZhiHu: https://www.zhihu.com/people/sirice
+  ZhiHu: https://www.zhihu.com/people/wen-ti-chao-ji-duo-de-xiao-qi
   # LinkedIn:
   # FaceBook:
   # Twitter:
@@ -43,13 +43,13 @@ links:
   # Sketch:
   # Gitlab:
   # Dribbble:
-  Instagram:
-  Reddit:
+  # Instagram:
+  # Reddit:
   # YouTube:
   # QQ:
   # Weibo:
-  # WeChat:
-  Github: https://github.com/Siricee
+  WeChat: https://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&mid=2247493407&idx=1&sn=41b8782a3bdc75b211206b06e1929a58&chksm=c2e11234f5969b22a0d7fd50ec32be9df13e2caeef186b30b5d653836b0725def8ccd58a56cf#rd
+  Github: https://github.com/ConardLi
 
 # how links show: you have 2 choice--text or icon.
 links_text_enable: false
@@ -68,7 +68,7 @@ post_copyright_enable: true
 post_copyright_author_enable: true
 post_copyright_permalink_enable: true
 post_copyright_license_enable: true
-post_copyright_license_text: Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE
+post_copyright_license_text: Copyright (c) 2022 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE
 post_copyright_slogan_enable: true
 post_copyright_slogan_text: Do you believe in <strong>DESTINY</strong>?
 ## toc
@@ -81,8 +81,8 @@ page_title_enable: true
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
 ## http://momentjs.com/docs/#/displaying/format/
-date_format: MMMM D, YYYY
-time_format: H:mm:ss
+date_format: YYYY-MM-DD
+time_format: .
 
 # stylesheets loaded in the <head>
 stylesheets:

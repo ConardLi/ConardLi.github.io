@@ -143,7 +143,7 @@ page_title_enable: true
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
 ## http://momentjs.com/docs/#/displaying/format/
-date_format: MMMM D, YYYY
+date_format: YYYY-MM-DD
 time_format: H:mm:ss
 
 # stylesheets loaded in the <head>

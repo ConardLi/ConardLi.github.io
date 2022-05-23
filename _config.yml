@@ -7,7 +7,7 @@ title: Hexo
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
+author: 十七
 language: en
 timezone: ''
 
@@ -79,7 +79,8 @@ meta_generator: true
 ## You can customize the date format as defined in
 ## http://momentjs.com/docs/#/displaying/format/
 date_format: YYYY-MM-DD
-time_format: HH:mm:ss
+time_format: .
+
 ## updated_option supports 'mtime', 'date', 'empty'
 updated_option: 'mtime'
 

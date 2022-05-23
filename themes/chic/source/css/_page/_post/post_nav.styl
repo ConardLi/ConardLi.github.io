@@ -1,0 +1,48 @@
+.post-nav 
+
+  &:before,
+  &:after 
+    content: " "
+    display: table
+  
+
+  & a.prev,
+  & a.next 
+    font-weight: 600
+    font-size: 16px
+
+    transition-property: transform
+    transition-timing-function: ease-out
+    transition-duration: 0.3s
+  
+
+  & a.prev 
+    float: left
+  
+  & a.prev::before 
+    content "<"
+    margin-right .5em
+  
+
+  & a.prev:hover 
+    transform: translateX(-4px)
+  
+
+  & a.next 
+    float: right
+  
+  & a.next::after 
+    content ">"
+    margin-left .5em
+  
+  & a.next:hover 
+    transform: translateX(4px)
+  
+  & a.prev::before,
+  & a.next::after
+    font-weight bold
+
+
+
+.tag:not(:last-child) a::after 
+  content: " / "

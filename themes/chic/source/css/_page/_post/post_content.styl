@@ -1,0 +1,165 @@
+.post-content
+  padding-top 2rem
+  text-align justify
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6
+    padding-top .8em
+    padding-bottom .3em
+  h1::before
+       content "#"
+       margin-right 5px
+       color $light-post-link-color
+       .dark-theme &
+         color $dark-post-link-color
+  h2::before
+       content "#"
+       margin-right 5px
+       color $light-post-link-color
+       .dark-theme &
+         color $dark-post-link-color
+
+  h3::before
+       content "|"
+       margin-right 5px
+       color $light-post-link-color
+       .dark-theme &
+         color $dark-post-link-color
+  h4::before
+       content "*"
+       margin-right 5px
+       color $light-post-link-color
+       .dark-theme &
+         color $dark-post-link-color
+
+  a
+    color $light-post-link-color
+    .dark-theme &
+      color $dark-post-link-color
+
+  a:hover
+    color $light-post-link-hover-color
+    .dark-theme &:hover
+      color $dark-post-link-hover-color
+      text-decoration underline
+
+  code, pre
+    padding 7px
+    font-size 13px
+    font-family Consolas, Monaco, Menlo, Consolas, monospace
+  code
+    padding 3px 5px
+    border-radius 4px
+
+  figure.highlight
+    margin 1em 0
+    overflow-x auto
+    position relative
+    &::-webkit-scrollbar
+      width 6px
+      height 6px
+    &::-webkit-scrollbar-thumb
+      width 6px
+      background-color #eee
+      border-radius 2px
+    table
+      position relative
+    table, tr, td
+      margin 0
+      padding 0
+      border 0
+      width 100%
+      border-collapse collapse
+    .code
+      pre
+        margin 0 10px
+
+    // line number
+    .gutter
+      width 10px
+      color #d0d0d0
+      pre
+        margin 0
+
+
+  ul
+    padding-left 2em
+
+  table
+    max-width 100%
+    margin 10px 0
+    border-spacing 0
+    thead
+      background $light-post-table-background-color
+      .dark-theme &
+        background $dark-post-table-background-color
+    th, td
+      padding 5px 15px
+      border .5px solid $light-border-color
+
+
+  .image-caption:not(:empty)
+    min-width 20%
+    max-width 80%
+    display inline-block
+    padding 10px
+    margin 0 auto
+    border-bottom 1px solid #d9d9d9
+    font-size 14px
+    color #969696
+    line-height 1.7
+
+  img
+    display block
+    max-width 100%
+    height auto
+    margin 0 auto
+    overflow hidden
+
+  img[data-action="zoom"]
+    cursor zoom-in
+  // this element is rendered by hexo.extend.tag.register()
+  // location: scripts/image.js
+  .image-box
+    .image-box-title
+      text-align center
+      font-size .7em
+      margin-top .5em
+      margin-bottom 1em
+      color $light-font-secondary-color
+      .dark-theme &
+        color $dark-font-secondary-color
+  // end element
+
+  blockquote
+    font-size 1rem
+    display block
+    margin 1em 0
+    padding 1em 1.2em 1em 1.2em
+    position relative
+    color rgba(#34495e, 0.8)
+    background-color $light-post-blockquote-background-color
+    border-left 2px solid $light-post-blockquote-border-color
+    //box-shadow 1px 1px 2px rgba(0,0,0,0.125)
+    p
+      margin 0
+    footer
+      strong
+        margin-right 0.5em
+    .dark-theme &
+      color $dark-font-color
+      background-color $dark-post-blockquote-background-color
+      border-left 2px solid $dark-post-blockquote-border-color
+    &.pullquote
+      background-color transparent
+      max-width 45%
+      border 0
+      &.left
+        float left
+        text-align left
+      &.right
+        float right
+        text-align right 

@@ -1,0 +1,60 @@
+<%#
+
+this page will judge whether current page is 'category.'
+url:'http://localhost:4000/category/' return false.
+url:'http://localhost:4000/categories/test/' return true.
+
+if you enter 'category' page by click link will show all categories.
+otherwise if you enter 'categories' by click post header link will show the single category of this post.
+
+how to add a category page:
+
+    1. hexo new page "category"
+    2. cd source/category/index.md
+    3. add layout pattern like this:
+    ---
+    title: '''category'''
+    date: 2019-06-09 09:56:49
+    layout: category
+    ---
+
+ %>
+
+<% if(is_category()){ %>
+    <%- partial('_page/category', {pagination: config.category, index: true}) %>
+<% }else{ %>
+
+    <div class="container">
+        <div class="post-wrap categories">
+            <h2 class="post-title">-&nbsp;Categories&nbsp;-</h2>
+            <div class="categories-card">
+                <% site.categories.forEach(category_item=>{ %>
+                    <%# console.log("hehe") %>
+                    <div class="card-item">
+                        <div class="categories">
+                            <a href="<%- url_for(category_item.path) %>">
+                                <h3>
+                                    <i class="iconfont icon-category" style="padding-right:3px"></i>
+                                    <%- category_item.name %>
+                                </h3>
+                            </a>
+                            <% category_item.posts.forEach((post_item, index = 0)=>{ %>
+                                <%# console.log(index) %>
+                                <% if(++index <= 5){ %>
+                                    <article class="archive-item">
+                                        <a class="archive-item-link"
+                                           href="<%- url_for(post_item.path) %>"><%- post_item.title %></a>
+                                    </article>
+                                <% } %>
+                            <% }) %>
+                            <% if(category_item.posts.length > 5){ %>
+                                <a class="more-post-link" href="<%- url_for(category_item.path) %>">More >></a>
+                            <% } %>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+
+        </div>
+    </div>
+<% } %>

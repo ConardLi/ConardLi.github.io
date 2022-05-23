@@ -1,0 +1,90 @@
+@charset "utf-8";
+
+/*input css begin*/
+*{
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+/* input[type="checkbox"],input[type="radio"]{
+    display: none;
+    width: 0;
+    height: 0;
+    visibility: hidden;
+} */
+input[type="checkbox"]:checked + label:after{
+    transition: all 0.3s ease-in;
+}
+input[type="checkbox"]:not(:checked) + label:after {
+    transition: all 0.3s ease-out;
+}
+input[type="checkbox"]:checked + label,
+input[type="checkbox"]:not(:checked) + label{
+    transition: all 0.3s ease-in-out;
+}
+input[type="checkbox"]:checked + label:before,input[type="checkbox"]:checked + label i:before,input[type="checkbox"]:not(:checked) + label i:before,
+input[type="checkbox"]:checked + label i:after,input[type="checkbox"]:not(:checked) + label i:after,input[type="checkbox"]:not(:checked) + label:before{
+    transition: all 0.3s ease-in-out;
+}
+input[type="radio"]:checked + label:after,
+input[type="radio"]:not(:checked) + label:after {
+    transition: all 0.3s ease-in-out;
+}
+.switch_default[type="checkbox"]{
+    display: none;
+}
+.switch_default + label{
+     background-color: #e6e6e6;
+     border-radius:7px;
+     cursor: pointer;
+     display: inline-block;
+     height: 14px;
+     position: relative;
+     box-shadow: 0.2px 0.2px 1px 0.5px rgb(180,180,180);
+     width: 30px;
+ }
+.switch_default + label:after{
+    background-color: #fff;
+    border-radius: 50%;
+    content: "";
+    height: 12px;
+    left: 1px;
+    position: absolute;
+    top: .5px;
+    width: 12px;
+    box-shadow: 0.2px 0.2px 1px 0.5px rgb(180,180,180);
+}
+.switch_default:checked + label{
+    background-color: #1ABC9C;
+    box-shadow:none;
+}
+.switch_default:checked + label:after{
+    left: 17px;
+}
+
+/*.switch_default + label{*/
+/*    background-color: #e6e6e6;*/
+/*    border-radius:12px;*/
+/*    cursor: pointer;*/
+/*    display: inline-block;*/
+/*    height: 24px;*/
+/*    position: relative;*/
+/*    box-shadow: 0.2px 0.2px 1px 0.5px rgb(180,180,180);*/
+/*    width: 52px;*/
+/*}*/
+/*.switch_default + label:after{*/
+/*    background-color: #fff;*/
+/*    border-radius: 50%;*/
+/*    content: "";*/
+/*    height: 22px;*/
+/*    left: 1px;*/
+/*    position: absolute;*/
+/*    top: 1px;*/
+/*    width: 22px;*/
+/*    box-shadow: 0.2px 0.2px 1px 0.5px rgb(180,180,180);*/
+/*}*/
+/*.switch_default:checked + label{*/
+/*    background-color: #1ABC9C;*/
+/*    box-shadow:none;*/
+/*}*/
+/*.switch_default:checked + label:after{*/
+/*    left: 29px;*/
+/*}*/

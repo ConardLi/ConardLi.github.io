@@ -1,0 +1,7 @@
+<%# single category page%>
+<div class="container">
+    <div class="post-wrap categories">
+        <h2 class="post-title">-&nbsp;Categories&nbsp;·&nbsp;<%-page.category%>-</h2>
+    </div>
+    <%- partial('archive', {pagination: config.category, index: true}) %>
+</div>

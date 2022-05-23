@@ -1,0 +1,17 @@
+{
+  "name": "hexo-theme-chic",
+  "version": "1.0.0",
+  "description": "An elegant,powerful,easy-to-read Hexo theme.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "hexo",
+    "theme",
+    "chic",
+    "sirice",
+    "hexo-theme"
+  ],
+  "author": "Sirice"
+}

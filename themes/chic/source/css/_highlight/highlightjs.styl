@@ -1,0 +1,127 @@
+// Highlight Color
+$highlight-deletion     = #fdd
+$highlight-addition     = #dfd
+$highlight-background   = #f7f7f7
+$highlight-current-line = #efefef
+$highlight-selection    = #d6d6d6
+$highlight-foreground   = #4d4d4c
+$highlight-comment      = #8e908c
+$highlight-red          = #c82829
+$highlight-orange       = #f5871f
+$highlight-yellow       = #eab700
+$highlight-green        = #718c00
+$highlight-aqua         = #3e999f
+$highlight-blue         = #4271ae
+$highlight-purple       = #8959a8
+$highlight-gutter       = #869194
+
+.post-content {
+  figure.highlight {
+		margin: 2em 0;
+		background: $highlight-background;
+		color: $highlight-foreground;
+		font-size: 12px;
+		overflow: scroll;
+		overflow-y: hidden;
+		overflow-x: auto;
+
+		.gutter {
+			color: $hight-gutter;
+		}
+
+		pre {
+			background: $highlight-background;
+			margin: 0;
+		}
+	}
+
+	code {
+		padding: 2px 4px;
+		background: $highlight-background;
+		font-family: Menlo,Monaco,Consolas,Courier New,monospace;
+		font-size: 12px;
+	}
+
+	pre {
+		padding: 10px;
+		overflow: auto;
+		background: $highlight-background;
+		font-family: Menlo,Monaco,Consolas,Courier New,monospace;
+
+		code {
+			padding: 0;
+		}
+	}
+
+
+
+	pre .deletion { background: $highlight-deletion; }
+	pre .addition { background: $highlight-addition; }
+	pre .meta     { color: $highlight-purple; }
+
+	pre {
+
+		.comment { color: $highlight-comment; }
+
+		.variable
+		.attribute
+		.tag
+		.regexp
+		.ruby .constant
+		.xml .tag .title
+		.xml .pi
+		.xml .doctype
+		.html .doctype
+		.css .id
+		.css .class
+		.css .pseudo {
+			color: $highlight-red;
+		}
+
+		.number
+		.preprocessor
+		.built_in
+		.literal
+		.params
+		.constant
+		.command {
+			color: $highlight-orange;
+		}
+
+		.ruby .class .title
+		.css .rules .attribute
+		.string
+		.value
+		.inheritance
+		.header
+		.ruby .symbol
+		.xml .cdata
+		.special
+		.number
+		.formula {
+			color: $highlight-green;
+		}
+
+		.title
+		.css .hexcolor {
+			color: $highlight-aqua;
+		}
+
+		.function
+		.python .decorator
+		.python .title
+		.ruby .function .title
+		.ruby .title .keyword
+		.perl .sub
+		.javascript .title
+		.coffeescript .title {
+			color: $highlight-blue;
+		}
+
+		.keyword
+		.javascript .function {
+			color: $highlight-purple;
+		}
+
+	}
+}

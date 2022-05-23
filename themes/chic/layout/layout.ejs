@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="<%= config.language %>">
+
+<head>
+    <%- partial('_partial/head',{cache: true}) %>
+</head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <%- partial('_partial/header',{cache: true}) %>
+            <div class="main">
+                <%- body %>
+            </div>
+            <%- partial('_partial/footer',{cache: true}) %>
+    </div>
+</body>
+
+</html>

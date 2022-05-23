@@ -1,0 +1,16 @@
+<div class="post-wrap archive">
+    <% var last_year = ''; %>
+    <% page.posts.each(function (post) { %>
+        <% var cur_year = post.date.year(); %>
+
+        <% if(last_year !== cur_year){ %>
+            <h3><%- cur_year %></h3>
+        <% last_year = cur_year; } %>
+
+        <article class="archive-item">
+            <a class="archive-item-link" href="<%- url_for(post.path) %>"><%= post.title %></a>
+            <span class="archive-item-date"><%- date(post.date, theme.date_format) %></span>
+        </article>
+    <% }) %>
+    <%- partial('_partial/paginator') %>
+</div>

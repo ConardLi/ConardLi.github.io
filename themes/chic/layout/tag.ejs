@@ -1,0 +1,37 @@
+<%#
+
+this page will judge whether current page is 'tag.'
+url:'http://localhost:4000/tag/' return false.
+url:'http://localhost:4000/tags/test/' return true.
+
+if you enter 'tag' page by click link will show all tags.
+otherwise if you enter 'tags' by click post header link will show the single tag of this post.
+
+how to add a tag page:
+
+    1. hexo new page "tag"
+    2. cd source/tag/index.md
+    3. add layout pattern like this:
+    ---
+    title: '''tag'''
+    date: 2019-06-09 09:56:49
+    layout: tag
+    ---
+
+ %>
+<% if(is_tag()){ %>
+    <%- partial('_page/tag', {pagination: config.tag, index: true}) %>
+<% }else{ %>
+    <div class="container">
+        <div class="post-wrap tags">
+            <h2 class="post-title">-&nbsp;Tag Cloud&nbsp;-</h2>
+
+            <div class="tag-cloud-tags">
+                <%site.tags.forEach(item=>{%>
+                    <a href="<%-url_for(item.path)%>"><%- item.name%><small>(<%-item.length%>)</small></a>
+                <%})%>
+            </div>
+        </div>
+    </div>
+
+<% } %>

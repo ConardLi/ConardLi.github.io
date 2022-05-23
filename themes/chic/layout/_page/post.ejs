@@ -1,0 +1,95 @@
+<div class="container">
+    <%# toc %>
+    <%if(theme.post_toc_enable && toc(page.content).length!==0){%>
+        <%- partial('_partial/toc') %>
+    <%}%>
+
+    <%# article %>
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title"><%= page.title %></h1>
+            <% if(theme.post_meta_enable){ %>
+                <div class="post-meta">
+                    <% if(theme.post_author_enable && config.author){ %>
+                        Author: <a itemprop="author" rel="author" href="/"><%- config.author %></a>
+                    <% } %>
+
+                    <% if(page.date && theme.post_date_enable){ %>
+                        <span class="post-time">
+                        Date: <a href="#"><%- date(page.date, theme.date_format)  %>&nbsp;&nbsp;<%- time(page.date, theme.time_format)%></a>
+                        </span>
+                    <% } %>
+                    <% if(page.categories.length!==0 && theme.post_category_enable){ %>
+                        <span class="post-category">
+                    Category:
+                            <% page.categories.forEach(item=>{ %>
+                                <a href="<%- url_for(item.path) %>"><%- item.name %></a>
+                            <% }) %>
+                        </span>
+                    <% } %>
+                </div>
+            <% } %>
+        </header>
+
+        <div class="post-content">
+            <%- page.content %>
+        </div>
+
+        <% if(theme.post_copyright_enable){ %>
+            <section class="post-copyright">
+                <% if(theme.post_copyright_author_enable){ %>
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span><%- config.author %></span>
+                    </p>
+                <% } %>
+                <% if(theme.post_copyright_permalink_enable){ %>
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="<%- page.permalink %>"><%- page.permalink %></a></span>
+                    </p>
+                <% } %>
+                <% if(theme.post_copyright_license_enable){ %>
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span><%- theme.post_copyright_license_text %></span>
+                    </p>
+                <% } %>
+                <% if(theme.post_copyright_slogan_enable){ %>
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span><%- theme.post_copyright_slogan_text %></span>
+                     </p>
+                <% } %>
+
+            </section>
+        <% } %>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    <% if(page.tags.length!==0){%>
+                    <% page.tags.forEach(item=>{ %>
+                        <a href="<%- url_for(item.path) %>"># <%- item.name %></a>
+                    <% }) %>
+                        <% } %>
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="<%- config.root %>">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            <% if(post.prev){ %>
+                <a class="prev" rel="prev" href="<%- url_for(post.prev.path)%>"><%- post.prev.title%></a>
+            <% } %>
+            <% if(post.next){ %>
+            <a class="next" rel="next" href="<%- url_for(post.next.path)%>"><%- post.next.title%></a>
+            <% } %>
+        </section>
+
+
+    </article>
+</div>

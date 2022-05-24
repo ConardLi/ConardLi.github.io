@@ -1,11 +1,14 @@
 ---
-title: Google 最新的性能优化方案，LCP 提升30%！
+title: Google 最新的性能优化方案 — 私有预取代理
 category: Web
-tag: 最新提案、浏览器策略、性能优化
-date: 2021-04-01
+tag: 
+- 最新提案
+- 浏览器策略
+- 性能优化
+date: 2022-05-15
 ---
 
-大家好，我是 [ConardLi](https://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&mid=2247493407&idx=1&sn=41b8782a3bdc75b211206b06e1929a58&chksm=c2e11234f5969b22a0d7fd50ec32be9df13e2caeef186b30b5d653836b0725def8ccd58a56cf#rd)。
+大家好，我是 [ConardLi](https://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&mid=2247493407&idx=1&sn=41b8782a3bdc75b211206b06e1929a58&chksm=c2e11234f5969b22a0d7fd50ec32be9df13e2caeef186b30b5d653836b0725def8ccd58a56cf#rd)，也可以叫我十七。
 
 网页的性能，大部分情况下是影响用户使用体验的第一要素，特别是对于很多电商、金融网站，可能几秒的性能提升就意味着更大的转化率和收益。
 
@@ -36,7 +39,7 @@ date: 2021-04-01
 
 数据预取后，网页在可以正常显示之前只剩下了评估、布局和渲染工作了。
 
-![数据预取](h\ttps://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c4c582f793fe4801b7515c26835f397b~tplv-k3u1fbpfcp-zoom-1.image)
+![数据预取](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c4c582f793fe4801b7515c26835f397b~tplv-k3u1fbpfcp-zoom-1.image)
 
 实际上，我们一些常见的性能优化的手段：
 
@@ -150,13 +153,7 @@ date: 2021-04-01
 - https://developer.chrome.com/blog/private-prefetch-proxy/
 
 
-·
 
-> 如果你想加入高质量前端交流群，或者你有任何其他事情想和我交流也可以添加我的个人微信 [ConardLi](https://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&mid=2247493407&idx=1&sn=41b8782a3bdc75b211206b06e1929a58&chksm=c2e11234f5969b22a0d7fd50ec32be9df13e2caeef186b30b5d653836b0725def8ccd58a56cf#rd) 。
-
-如果你有任何想法，欢迎在留言区和我留言，如果这篇文章帮助到了你，欢迎点赞和关注。
-
-`点赞`和`在看`是最大的支持⬇️❤️⬇️
-
+如果你想加入高质量前端交流群，或者你有任何其他事情想和我交流也可以添加我的个人微信 [ConardLi](https://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&mid=2247493407&idx=1&sn=41b8782a3bdc75b211206b06e1929a58&chksm=c2e11234f5969b22a0d7fd50ec32be9df13e2caeef186b30b5d653836b0725def8ccd58a56cf#rd) 。
 
 

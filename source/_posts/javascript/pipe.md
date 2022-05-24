@@ -1,11 +1,13 @@
 ---
 title: JavaScript 中的管道运算符
 category: JavaScript
-tag: 最新提案、JavaScript
-date: 2021-04-01
+tag:
+- 最新提案
+- JavaScript
+date: 2022-05-17
 ---
 
- 大家好，我是 [ConardLi](https://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&mid=2247493407&idx=1&sn=41b8782a3bdc75b211206b06e1929a58&chksm=c2e11234f5969b22a0d7fd50ec32be9df13e2caeef186b30b5d653836b0725def8ccd58a56cf#rd)。
+ 大家好，我是 [ConardLi](https://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&mid=2247493407&idx=1&sn=41b8782a3bdc75b211206b06e1929a58&chksm=c2e11234f5969b22a0d7fd50ec32be9df13e2caeef186b30b5d653836b0725def8ccd58a56cf#rd)，也可以叫我十七。
  
 今天来给大家介绍 `JavaScript` 代码的一个新运算符：管道运算符 `|>`。
 
@@ -19,7 +21,7 @@ date: 2021-04-01
  
 在 `2020` 年 `JS` 状态调查中，“你认为 `JavaScript` 目前缺少什么？“ 问题中，`希望拥有管道操作符` 答案排行第四名。
  
-![](https://files.mdnice.com/user/6267/3d46cd2b-f54b-4d18-9c4b-49b20961b9d7.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0d69902f87eb48978d3249d67d5c14a8~tplv-k3u1fbpfcp-zoom-1.image)
 
 看来大家当前对 JS 中连续操作的写法还是不太满意啊。
 

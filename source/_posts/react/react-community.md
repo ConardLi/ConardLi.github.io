@@ -6,7 +6,7 @@ date: 2022-04-11
 ---
 
 
-大家好，我是 [ConardLi](https://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&mid=2247493407&idx=1&sn=41b8782a3bdc75b211206b06e1929a58&chksm=c2e11234f5969b22a0d7fd50ec32be9df13e2caeef186b30b5d653836b0725def8ccd58a56cf#rd)，也可以叫我十七。
+大家好，我是 [ConardLi](https://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&mid=2247493407&idx=1&sn=41b8782a3bdc75b211206b06e1929a58&chksm=c2e11234f5969b22a0d7fd50ec32be9df13e2caeef186b30b5d653836b0725def8ccd58a56cf#rd)，也可以叫我十七哥。
 
 今天我们来聊 `React`，`React` 已经风靡前端届很长一段时间了，在这段时间里它发展了一个非常全面而强大的生态系统。大厂喜欢在大型的前端项目中选择 `React`，它的生态功不可没。
 

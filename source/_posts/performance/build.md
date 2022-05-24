@@ -8,7 +8,7 @@ tag:
 date: 2020-12-27
 ---
 
- 大家好，我是 [ConardLi](https://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&mid=2247493407&idx=1&sn=41b8782a3bdc75b211206b06e1929a58&chksm=c2e11234f5969b22a0d7fd50ec32be9df13e2caeef186b30b5d653836b0725def8ccd58a56cf#rd)，也可以叫我十七。
+ 大家好，我是 [ConardLi](https://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&mid=2247493407&idx=1&sn=41b8782a3bdc75b211206b06e1929a58&chksm=c2e11234f5969b22a0d7fd50ec32be9df13e2caeef186b30b5d653836b0725def8ccd58a56cf#rd)，也可以叫我十七哥。
 
 最近对公司的一个 PC 站点做了一次整体的性能优化，由于这个系统业务复杂、依赖非常多，加载速度非常慢，优化后各个性能指标都有了显著提升，大约加载速度快了 5 倍左右。
 

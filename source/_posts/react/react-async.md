@@ -8,7 +8,7 @@ date: 2021-09-27
 ---
 
 
-大家好，我是 [ConardLi](https://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&mid=2247493407&idx=1&sn=41b8782a3bdc75b211206b06e1929a58&chksm=c2e11234f5969b22a0d7fd50ec32be9df13e2caeef186b30b5d653836b0725def8ccd58a56cf#rd)，也可以叫我十七。
+大家好，我是 [ConardLi](https://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&mid=2247493407&idx=1&sn=41b8782a3bdc75b211206b06e1929a58&chksm=c2e11234f5969b22a0d7fd50ec32be9df13e2caeef186b30b5d653836b0725def8ccd58a56cf#rd)，也可以叫我十七哥。
  
 
 上周刚在公司进行了一次 React 运行时优化方案的分享，以下是分享的文字版，文章比较长，干货也很多，相信你看完后会对 React 有不一样的理解。

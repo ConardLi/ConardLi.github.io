@@ -36,7 +36,7 @@ tags:
 
 深拷贝已经是一个老生常谈的话题了，也是现在前端面试的高频题目，但是令我吃惊的是有很多同学还没有搞懂深拷贝和浅拷贝的区别和定义。例如前几天给我提`issue`的同学：
 
-![](https://i.loli.net/2019/08/30/8U5e2I6lmzBHcW9.jpg)
+![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/9/1/16ce893a5333cacd~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 很明显这位同学把拷贝和赋值搞混了，如果你还对赋值、对象在内存中的存储、变量和类型等等有什么疑问，可以看看我这篇文章：https://juejin.im/post/5cec1bcff265da1b8f1aa08f 。
 
@@ -46,14 +46,14 @@ tags:
 
 浅拷贝：
 
-![](https://i.loli.net/2019/08/30/N3CB7obYhn5Lvxz.jpg)
+![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/9/1/16ce894a1f1b5c32~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 > 创建一个新对象，这个对象有着原始对象属性值的一份精确拷贝。如果属性是基本类型，拷贝的就是基本类型的值，如果属性是引用类型，拷贝的就是内存地址 ，所以如果其中一个对象改变了这个地址，就会影响到另一个对象。
 
 
 深拷贝：
 
-![](https://i.loli.net/2019/08/30/OFIGRqZeWkBn9cr.jpg)
+![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/9/1/16ce893a54f6c13d~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 
 > 将一个对象从内存中完整的拷贝一份出来,从堆内存中开辟一个新的区域存放新对象,且修改新对象不会影响原对象
@@ -129,7 +129,7 @@ const target = {
 
 执行结果：
 
-![](https://i.loli.net/2019/08/31/Nxr21XJnVgqOTs5.png)
+![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/9/1/16ce893a55e77ab7~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 这是一个最基础版本的深拷贝，这段代码可以让你向面试官展示你可以用递归解决问题，但是显然，他还有非常多的缺陷，比如，还没有考虑数组。
 
@@ -188,13 +188,13 @@ target.target = target;
 
 可以看到下面的结果：
 
-![](https://i.loli.net/2019/08/31/JMiLz6qt2BYdvjm.png)
+![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/9/1/16ce894778498ae4~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 很明显，因为递归进入死循环导致栈内存溢出了。
 
 原因就是上面的对象存在循环引用的情况，即对象的属性间接或直接的引用了自身的情况：
 
-![](https://i.loli.net/2019/09/01/uYyaqztP23xh5Vf.jpg)
+![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/9/1/16ce893aa4841300~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 解决循环引用问题，我们可以额外开辟一个存储空间，来存储当前对象和拷贝对象的对应关系，当需要拷贝当前对象时，先去存储空间中找，有没有拷贝过这个对象，如果有的话直接返回，如果没有的话继续拷贝，这样就巧妙化解的循环引用的问题。
 
@@ -237,7 +237,7 @@ function clone(target, map = new WeakMap()) {
 };
 ```
 
-![](https://i.loli.net/2019/09/01/AWrneLyJavhTfOG.jpg)
+![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/9/1/16ce893aa4841300~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 为什么要这样做呢？，先来看看`WeakMap`的作用：
 
@@ -285,7 +285,7 @@ obj = null;
 
 在上面的代码中，我们遍历数组和对象都使用了`for in`这种方式，实际上`for in`在遍历时效率是非常低的，我们来对比下常见的三种循环`for、while、for in`的执行效率：
 
-![](https://i.loli.net/2019/08/29/1ydBJ63LntlvZWO.jpg)
+![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/9/1/16ce893c9bb2be75~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 可以看到，`while`的效率是最好的，所以，我们可以想办法把`for in`遍历改变为`while`遍历。
 
@@ -357,7 +357,7 @@ console.timeEnd();
 
 执行结果：
 
-![](https://i.loli.net/2019/08/31/ZhMxNjFE9KYqH7l.jpg)
+![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/9/1/16ce893d6f09a960~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 很明显，我们的性能优化是有效的。
 
@@ -402,7 +402,7 @@ function getType(target) {
 }
 ```
 
-![](https://i.loli.net/2019/09/01/wvJgxWe17RdaEHY.jpg)
+![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/9/1/16ce893dc0828b6a~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 下面我们抽离出一些常用的数据类型以便后面使用：
 
@@ -514,7 +514,7 @@ const target = {
 
 执行结果：
 
-![](https://i.loli.net/2019/09/01/dQ7hGjYirkRlN3s.jpg)
+![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/9/1/16ce893dc284400f~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 没有问题，里大功告成又进一步，下面我们继续处理其他类型：
 
@@ -656,13 +656,13 @@ const target = {
 
 执行结果：
 
-![](https://i.loli.net/2019/09/01/3tsUZR561FYOuQc.jpg)
+![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/9/1/16ce893dcc0e5e03~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 ## 最后
 
 为了更好的阅读，我们用一张图来展示上面所有的代码：
 
-![](https://i.loli.net/2019/08/30/9lfDPCXBagE8rQY.jpg)
+![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/9/1/16ce893e6ec12377~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 完整代码：https://github.com/ConardLi/ConardLi.github.io/blob/master/demo/deepClone/src/clone_6.js
 

@@ -8,7 +8,7 @@ tag:
 date: 2022-01-09	
 ---
 
-大家好，我是 [ConardLi](https://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&mid=2247493407&idx=1&sn=41b8782a3bdc75b211206b06e1929a58&chksm=c2e11234f5969b22a0d7fd50ec32be9df13e2caeef186b30b5d653836b0725def8ccd58a56cf#rd)，也可以叫我十七哥。
+大家好，我是 [世奇](https://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&mid=2247493407&idx=1&sn=41b8782a3bdc75b211206b06e1929a58&chksm=c2e11234f5969b22a0d7fd50ec32be9df13e2caeef186b30b5d653836b0725def8ccd58a56cf#rd)，笔名 [ConardLi](https://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&mid=2247493407&idx=1&sn=41b8782a3bdc75b211206b06e1929a58&chksm=c2e11234f5969b22a0d7fd50ec32be9df13e2caeef186b30b5d653836b0725def8ccd58a56cf#rd)。
 
 
 `JavaScript` 的运行原理，是我面试的时候经常会问到的问题，但是根据过往的面试结果来看，这部分能理解的很清楚的不足 `20%`，大多数同学热衷于去学习一些 `Vue、React` 这样的框架，以及一些新的 `API`，却忽视了语言的根本，这是个非常不好的现象。今天我就带大家来一起回顾一下，`JavaScript` 的真正的工作原理，主要分为下面几个部分：

@@ -2,10 +2,20 @@
 <html lang="<%= config.language %>">
 
 <head>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?f6df0994142f0ddeec0f1dd0cb8092e6";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
     <%- partial('_partial/head',{cache: true}) %>
 </head>
 
 <body>
+
     <script>
         // this function is used to check current theme before page loaded.
         (() => {

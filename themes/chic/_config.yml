@@ -106,3 +106,5 @@ mathjax:
   ## demand: Recommend option,if your post need fomula, you can declare 'mathjax: true' in Front-matter
 
 
+busuanzi:
+ enable: true

@@ -1,5 +1,23 @@
 <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© <%= config.author %> | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© <%= config.author %> | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a
+                    href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+
+        <% if (theme.busuanzi && theme.busuanzi.enable){ %>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <!-- 不蒜子统计 -->
+            <span style="font-size: 12px;color: #555454;" id="busuanzi_container_site_pv">
+                PV：<span id="busuanzi_value_site_pv"></span>
+            </span>
+            <span style="font-size: 12px;color: #555454;" class="post-meta-divider">&nbsp;|&nbsp;</span>
+            <span style="font-size: 12px;color: #555454;" id="busuanzi_container_site_uv" style='display:none'>
+                UV：<span id="busuanzi_value_site_uv"></span>
+            </span>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <% } %>
+
+            
     </div>
+
 </footer>

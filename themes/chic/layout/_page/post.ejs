@@ -14,11 +14,22 @@
                         Author: <a itemprop="author" rel="author" href="/"><%- config.author %></a>
                     <% } %>
 
+                
+                    &nbsp;
                     <% if(page.date && theme.post_date_enable){ %>
                         <span class="post-time">
                         Date: <a href="#"><%- date(page.date, theme.date_format)  %>&nbsp;&nbsp;<%- time(page.date, theme.time_format)%></a>
                         </span>
                     <% } %>
+
+                    &nbsp;
+                    <% if (theme.busuanzi && theme.busuanzi.enable && !index){ %>
+                        <!-- 不蒜子统计 -->
+                        <span id="busuanzi_container_page_pv" >
+                              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    <% } %>
+
                     <% if(page.categories.length!==0 && theme.post_category_enable){ %>
                         <span class="post-category">
                     Category:

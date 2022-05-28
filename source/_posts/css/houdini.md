@@ -1,7 +1,8 @@
 ---
 title: 使用 Houdini 扩展 CSS 的跨浏览器绘制能力
-category: CSS
+category: 样式和效果
 tag: 
+- 样式和效果
 - CSS
 date: 2021-08-18
 ---

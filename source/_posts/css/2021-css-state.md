@@ -1,9 +1,10 @@
 ---
 title: 看完了 2021 CSS 年度报告，我学到了啥？
-category: CSS
+category: 样式和效果
 tag: 
 - CSS
 - 报告解读
+- 样式和效果
 date: 2021-12-20
 ---
 

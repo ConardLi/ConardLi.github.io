@@ -1,9 +1,10 @@
 ---
 title: 如何像导入 JS 模块一样导入 CSS？
-category: CSS
+category: 样式和效果
 tag: 
 - CSS
 - 最新提案
+- 样式和效果
 date: 2021-07-07
 ---
 

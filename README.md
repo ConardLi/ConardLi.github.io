@@ -28,8 +28,8 @@
 
 ## 其他专栏
 
-- 掘金：https://juejin.cn/user/3949101466785709
-- 知乎：https://www.zhihu.com/people/wen-ti-chao-ji-duo-de-xiao-qi
+- 掘金：[ConardLi](https://juejin.cn/user/3949101466785709)
+- 知乎：[ConardLi](https://www.zhihu.com/people/wen-ti-chao-ji-duo-de-xiao-qi)
 
 ## 联系方式
 

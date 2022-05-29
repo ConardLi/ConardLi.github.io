@@ -40,14 +40,14 @@ how to add a category page:
                             </a>
                             <% category_item.posts.forEach((post_item, index = 0)=>{ %>
                                 <%# console.log(index) %>
-                                <% if(++index <= 5){ %>
+                                <% if(++index <= 10){ %>
                                     <article class="archive-item">
                                         <a class="archive-item-link"
                                            href="<%- url_for(post_item.path) %>"><%- post_item.title %></a>
                                     </article>
                                 <% } %>
                             <% }) %>
-                            <% if(category_item.posts.length > 5){ %>
+                            <% if(category_item.posts.length > 10){ %>
                                 <a class="more-post-link" href="<%- url_for(category_item.path) %>">More >></a>
                             <% } %>
                         </div>

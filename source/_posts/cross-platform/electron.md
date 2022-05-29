@@ -1213,7 +1213,6 @@ export default function () {
 - 掌握`Electron`开发的核心基础知识
 - 了解`Electron`关于弹框、打印、保护、打包等功能的基本使用
 
-文中如有错误，欢迎在评论区指正，如果这篇文章帮助到了你，欢迎点赞和关注。
-
-
 如果你想加入高质量前端交流群，或者你有任何其他事情想和我交流也可以添加我的个人微信 [ConardLi](https://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&mid=2247493407&idx=1&sn=41b8782a3bdc75b211206b06e1929a58&chksm=c2e11234f5969b22a0d7fd50ec32be9df13e2caeef186b30b5d653836b0725def8ccd58a56cf#rd) 。
+
+

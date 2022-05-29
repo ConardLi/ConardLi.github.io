@@ -22,20 +22,22 @@
                         </span>
                     <% } %>
 
-                    &nbsp;
-                    <% if (theme.busuanzi && theme.busuanzi.enable && !index){ %>
-                        <!-- 不蒜子统计 -->
-                        <span id="busuanzi_container_page_pv" >
-                              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>
-                        </span>
-                    <% } %>
 
+                    &nbsp;
                     <% if(page.categories.length!==0 && theme.post_category_enable){ %>
                         <span class="post-category">
                     Category:
                             <% page.categories.forEach(item=>{ %>
                                 <a href="<%- url_for(item.path) %>"><%- item.name %></a>
                             <% }) %>
+                        </span>
+                    <% } %>
+
+                    &nbsp;
+                    <% if (theme.busuanzi && theme.busuanzi.enable && !index){ %>
+                        <!-- 不蒜子统计 -->
+                        <span id="busuanzi_container_page_pv" >
+                              <i class="icon-smile icon"></i> Read：<span id="busuanzi_value_page_pv"></span>
                         </span>
                     <% } %>
                 </div>

@@ -1,7 +1,7 @@
 ---
 title: Get 一种可以用来装逼的 JavaScript 编码风格
 category: JavaScript
-date: 2012-07-17
+date: 2022-07-17
 tags:
   - JavaScript
   - Web安全

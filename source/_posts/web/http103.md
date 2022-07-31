@@ -12,12 +12,14 @@ date: 2022-07-16
 
 
 
+
 说到 `HTTP` 的 `103` 状态码，你可能很早就听说过了，但是你不一定真的理解了它。
 
 这很正常，这个状态码早在 `2017` 年就被提出来了，但是支持它的服务器和浏览器真的很少。
 
 直到前几天，`Chrome` 宣布在 `Chrome 103` 版本对 `HTTP 103` 状态码提供了支持，不得不说老外还挺皮啊...
 
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f344836da1224a9780886d5470de6ac9~tplv-k3u1fbpfcp-zoom-1.image)
 
 今天我们就来看一下，`HTTP 103` 状态码究竟有什么用途。
 
@@ -25,11 +27,11 @@ date: 2022-07-16
 
 随着时间的推移，网站变得越来越复杂。一些大型网站的服务器可能需要执行很多重要的工作（例如，访问数据库或访问源服务器的 `CDN`）来为请求的页面生成 `HTML`。
 
-![](https://files.mdnice.com/user/6267/7cf2bfd9-cd8a-4bc9-bf1f-1ed1ea9abfd1.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f8147e638e284ce0ad0cd1f7cb5f6a57~tplv-k3u1fbpfcp-zoom-1.image)
 
 但是，这种 `服务器的思考时间` 会在浏览器开始渲染页面之前带来额外的延迟。因为浏览器需要先把 `HTML` 页面加载回来，才能知道下一步去加载哪些 `JavaScript、CSS` 或字体文件等。中间这段时间实际上就浪费掉了，对用户访问我们的页面来讲，这段等待时间就是白屏或是不可用的状态。
 
-![](https://files.mdnice.com/user/6267/dd7fdc22-8bd7-4434-bb99-ec23d6e36473.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/639c61005f374c63a91cb585570a73ff~tplv-k3u1fbpfcp-zoom-1.image)
 
 
 我们来看看抖音 `Web` 站的资源加载：浏览器先要等待前面两个 `HTML` 的大约 `800 ms` 的时间才能去加载后面的 `JS 、CSS` 等资源文件。
@@ -44,12 +46,12 @@ date: 2022-07-16
 
 浏览器可以使用这些提示来预热连接，并在等待主资源响应的同时请求子资源。换句话说，`Early Hints` 可以通过提前做一些工作来帮助浏览器利用这种 `服务器思考时间`，从而提升页面的渲染性能。
 
-![](https://files.mdnice.com/user/6267/a0ad8b68-4b81-4810-b21f-f6192450c64a.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/24fbfa17815b4b9080d942754c2053eb~tplv-k3u1fbpfcp-zoom-1.image)
 
 在某些情况下，这可以帮助 `LCP`（最大内容绘制）至少提升几百毫秒。例如在 `Shopify` 和 `Cloudflare` 所观察到的来看，`LCP` 大概提升了 1 秒。
 
 
-![启用 Early Hints 前后对比](https://files.mdnice.com/user/6267/4d1edd8d-53ff-4ac4-b592-0ba4dcf7e2c3.png)
+![启用 Early Hints 前后对比](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8f1deaf8da27448690df5a6ebd6cd658~tplv-k3u1fbpfcp-zoom-1.image)
 
 ## 什么样的网站适合 Early Hints
 
@@ -57,14 +59,14 @@ date: 2022-07-16
 
 如果你的网站的主页面响应非常快，可能没什么必要。比如对于大部分 `SPA`（单页应用），可能用处不是那么大。
 
-![](https://files.mdnice.com/user/6267/ec607ae2-5826-490d-9b3d-8efb4b0493f4.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a301c0332c59433f8acee541fb3902d5~tplv-k3u1fbpfcp-zoom-1.image)
 
 在 `SPA` 中，大部分的逻辑都在客户端，`HTML` 很小，下发 `HTML` 的服务器也基本就是没有什么逻辑的静态服务器。大部分情况下只会包括一个 `Root` 节点，以及一些资源的 `Link`，大部分逻辑和加载时间其实都在打包后的 `JavaScript` 中。这种情况我们只需要使用常规的 `rel=preload、rel=preconnect` 等手段就可以了。
 
 但是在`SSR` 项目中，加载 `HTML` 往往需要在服务端花费更多的时间，因为服务端可能和数据库交互以及将数据拼接成 `HTML` 元素。相比之下，加载其他的脚本和样式资源可能花费的时间要更短一点，这种站点启用 `Early Hints` 是比较合适的。
 
 
-![](https://files.mdnice.com/user/6267/089539ae-95f2-4866-a448-31efc4658811.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/31c2569187c64f09bfaa2c43a8d2c628~tplv-k3u1fbpfcp-zoom-1.image)
 
 
 
@@ -75,7 +77,7 @@ date: 2022-07-16
 启用 `Early Hints` 的第一步就是要确认我们站点的 `主页面`，也就是用户通常在访问我们的网站时开始的页面。如果我们有很多来自其他网站的用户，`主页面` 可能就是主页或热门的产品列表页面。
 
 
-![](https://files.mdnice.com/user/6267/4cb3cead-4245-444c-94fe-03ea260e4f4e.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5e4092254436429aaaa6e00d78cae7cb~tplv-k3u1fbpfcp-zoom-1.image)
 
 
 `Early Hints` 的用途会随着用户在我们的站内导航的次数而降低，因为浏览器可能已经在前几次导航中把所有需要的子资源请求回来了，给用户良好的第一印象是最重要的！
@@ -165,7 +167,7 @@ Link: </experimental.3eab3290.css>; rel=preload; as=style
 
 看到这里你可能发现了，这玩意和 `HTTP2` 的服务器推送 (`Server Push`)  很像啊。
 
-![](https://files.mdnice.com/user/6267/d00b6e48-fce2-4df6-8c70-96e905568614.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e84cc94eaad742c48e3b4737e9b149f8~tplv-k3u1fbpfcp-zoom-1.image)
 
 `Server Push` 即在浏览响应 `HTML` 文件的时候，服务器会同时将所需的资源文件主动推送给浏览器。
 
@@ -175,7 +177,7 @@ Link: </experimental.3eab3290.css>; rel=preload; as=style
 
 所以，`Chrome` 宣布移除了对 `HTTP/2 Server Push` 特性的支持：
 
-![](https://files.mdnice.com/user/6267/5a3e8562-4c60-457d-b2e1-ae36e55daef4.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3fe162a3d7f8452b9bf3ad1b5023e380~tplv-k3u1fbpfcp-zoom-1.image)
 
 
 相比之下，`Early Hints` 在实践中表现更好，因为它结合了发送初步响应的能力和提示，浏览器实际上只负责获取它实际需要的资源。虽然 `Early Hints` 还没有涵盖 `HTTP/2 Server Push` 理论上可以解决的所有用例，但是它解决了网络带宽浪费的问题，可以说是 `HTTP/2 Server Push` 的升级版。
@@ -186,7 +188,7 @@ Link: </experimental.3eab3290.css>; rel=preload; as=style
 浏览器支持情况：
 
 
-![](https://files.mdnice.com/user/6267/779e8a52-5bae-4000-9ae4-830866f6e167.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5ba5ff05072d4f80a725ed880ccfbfae~tplv-k3u1fbpfcp-zoom-1.image)
 
 服务器支持情况：
 

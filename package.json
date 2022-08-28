@@ -1,6 +1,8 @@
 {
-  "name": "hexo-site",
+  "name": "Conardli‘s Blog",
   "version": "0.0.0",
+  "author": "ConardLi",
+  "homepage": "https://blog.conardli.top/",
   "private": true,
   "scripts": {
     "build": "hexo generate",

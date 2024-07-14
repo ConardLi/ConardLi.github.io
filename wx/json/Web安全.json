@@ -1,0 +1,127 @@
+[
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247500260&amp;idx=1&amp;sn=79e6a09ee090d27625f708cdd3978851&amp;chksm=c2e134cff596bdd9b0ae854be02885b8b58b254a62f0e63575de84ebaca867809e786b72a5e0#rd",
+        "title": "W3C Web 安全研讨会 — 划重点",
+        "time": "2024-3-6"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247490474&amp;idx=1&amp;sn=4be6c15b9077fbcadefd2888ce8885fb&amp;chksm=c2e2ee81f59567972d4b80700fa3ff3f481f95524455e9ee5c6b86628be7d1fe29f4396455df#rd",
+        "title": "新的跨域策略：使用COOP、COEP为浏览器创建更安全的环境",
+        "time": "2020-7-30"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247490281&amp;idx=1&amp;sn=15eea30a5e526556886e6f363c15d393&amp;chksm=c2e2efc2f59566d4582a7817bfcf17671dcdfe2291f94ad28b47afdd14ffb95ab1ea1aa2d500#rd",
+        "title": "2019年 JavaScript 框架安全性报告",
+        "time": "2020-1-13"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247498210&amp;idx=1&amp;sn=756cede2b2acebbe06059ffa34acd050&amp;chksm=c2e10cc9f59685dfb19bbe083f4b18455363d26bec74623956084c56024d14847b85d4a23d2a#rd",
+        "title": "npm 生态系统存在巨大的安全隐患",
+        "time": "2023-7-10"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247497342&amp;idx=1&amp;sn=fb4be6be95b56961712888b08b050dbc&amp;chksm=c2e10355f5968a43f77d1e06546ac97de3672c48391b0a6ec2b216cbb8d87a4aae2fb8b0e680#rd",
+        "title": "你安装的 NPM 包，居然偷偷做这种事？",
+        "time": "2023-5-5"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247495335&amp;idx=1&amp;sn=02a21c39028a3657f2014d95b9205f3a&amp;chksm=c2e11b8cf596929afd9666550e01428ad6e991250d711ce0c3c49f458fa102c8aab1b072df64#rd",
+        "title": "React 的一些最佳安全实践",
+        "time": "2022-8-2"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247499492&amp;idx=1&amp;sn=2e84b744d0d10fb17427b9a7f055995e&amp;chksm=c2e10bcff59682d9fb5413b30abe8aacf3216db2ec3190f75ed70290cbdc7a4233194685dafa#rd",
+        "title": "JavaScript 供应链为什么如此脆弱...",
+        "time": "2023-11-27"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247499554&amp;idx=1&amp;sn=1aa02143214e4ecb3d003818d6b836f2&amp;chksm=c2e10a09f596831fa4bb329b142fa2893c46ceaf0cf13b1604ea805bf6d03c3cd4d0d53dfef9#rd",
+        "title": "悄无声息间，你的 DOM 被劫持了？",
+        "time": "2023-12-6"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247501039&amp;idx=1&amp;sn=e1796509b4a107178f06494663ccd7df&amp;chksm=c2e131c4f596b8d2a97737340536b6c3d24b9b8256e79dcae41c8db9bd08b3d580ffefaf2e0b#rd",
+        "title": "周百万下载量的 NPM 包可执行任意 JS 代码，数十万网站可能受影响！",
+        "time": "2024-7-1"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247496412&amp;idx=1&amp;sn=821ebfce6fbb917fb65828048f528536&amp;chksm=c2e107f7f5968ee19a51281793cb26d949fdce481c64fc46991ff32ff7b7f9aed0c2baad88e6#rd",
+        "title": "Node.js 安全最佳实践",
+        "time": "2022-11-14"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247495283&amp;idx=1&amp;sn=0bf654c71369d391698ffcf50a00f9c0&amp;chksm=c2e11b58f596924e5dcfb07ba7f8a269a942a93cd127a52d841af6e768b70b9b23e9d191bf62#rd",
+        "title": "如何让别人看不懂你的 JS 代码？",
+        "time": "2022-7-26"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247490283&amp;idx=1&amp;sn=29075f0815976caddede220799ce744c&amp;chksm=c2e2efc0f59566d6c4f9ce4304cf2089d86f38293d10183e1e1c70e0abf5a2bee7ea43ced272#rd",
+        "title": "前端安全—你必须要注意的依赖安全漏洞",
+        "time": "2020-1-15"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247490305&amp;idx=1&amp;sn=4ae9b96ea1e8954ba2b91d8e6d87aa73&amp;chksm=c2e2ee2af595673c36c88075bac4353e929f27c92f90e0564a397116af16544100739449ad6e#rd",
+        "title": "两个你必须要重视的 Chrome 80 策略更新！！！",
+        "time": "2020-2-21"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247490345&amp;idx=1&amp;sn=709d80c87efe5005f76787e617812494&amp;chksm=c2e2ee02f5956714252c81a918fb7a990645ac676acfa09024ac909994554c4a3573bced6468#rd",
+        "title": "从网络协议的角度聊一聊最近Github被大规模攻击事件",
+        "time": "2020-4-1"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247490368&amp;idx=1&amp;sn=751df0276545503c412c5063fed8086b&amp;chksm=c2e2ee6bf595677df01762a7b1fefb21282eff45b74d7b3c56bdd7de4b93cb56eec2da76f7f5#rd",
+        "title": "聊一下 Chrome 新增的可信类型（Trusted types）",
+        "time": "2020-4-22"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247490375&amp;idx=1&amp;sn=d46c55c5020b9cd56095f961a829cfc2&amp;chksm=c2e2ee6cf595677a55995b0c628da758ae748c15a5be24242f56d295e15f5203afe3f5d3c6d0#rd",
+        "title": "为什么你的网页需要 CSP?",
+        "time": "2020-4-27"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247490422&amp;idx=1&amp;sn=719870a9b65291ba8b2ddcb054f9ad93&amp;chksm=c2e2ee5df595674b9781c82cc7b88a9ba0b9ffeec007b1dd8a3e069be1f17b0b8ef807ca5092#rd",
+        "title": "面试官：HTTPS就安全了吗？会被抓包吗？我竟然回答不上来...",
+        "time": "2020-6-12"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247490426&amp;idx=1&amp;sn=dadef8e2ef4122b6a1c9ef6246b03a4d&amp;chksm=c2e2ee51f595674782112672f7d127dda43fe8de0a36097f5a825202d497ce6df82a7fc5fb21#rd",
+        "title": "HTTPS 证书被伪造了怎么办？",
+        "time": "2020-6-16"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247490553&amp;idx=1&amp;sn=2805240648279ad293a95885ea1b1a22&amp;chksm=c2e2eed2f59567c4d2e8c5c58a1e2678e6c3ac68156bfa2f456ff3005799aa5bad5c988ec7c6#rd",
+        "title": "新的浏览器缓存策略变更：舍弃性能、确保安全",
+        "time": "2020-10-21"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247490579&amp;idx=1&amp;sn=d12ef8df7c501967ab18d376be8f66ff&amp;chksm=c2e2e938f595602e476fee93570b1d599d321b2584c6466690b71a038cf109afa53468ce2b1b#rd",
+        "title": "Chrome 新的默认 Referrer-Policy : strict-origin-when-cross-origin",
+        "time": "2020-11-17"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247490585&amp;idx=1&amp;sn=50f95cbe025007a0a8d47b4a5afe9b98&amp;chksm=c2e2e932f5956024a2613ea9d21281539ea9a39b22ce2765e92c4c4cb359575bbc1cf3a3c6be#rd",
+        "title": "跨域，不止CORS",
+        "time": "2020-11-24"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247490586&amp;idx=1&amp;sn=0826d7a42d2e04e6fac707de63d8fc7f&amp;chksm=c2e2e931f59560277d9f3dab94f7f2bd994500cfe25fc4c4a5822e73db1b8d860198f738d88c#rd",
+        "title": "谷歌CSP工程化实践导读",
+        "time": "2020-11-25"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247490699&amp;idx=1&amp;sn=ddd363e820f4037c7c17142dbe538fde&amp;chksm=c2e2e9a0f59560b62dfc5aef251546d92b48f688975c08952cbc71f717b48053b9b32098df94#rd",
+        "title": "Chrome 安全策略 - 私有网络控制（CORS-RFC1918）",
+        "time": "2021-3-22"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247490902&amp;idx=1&amp;sn=a7a128c1543a90bf523c048c849bb1a4&amp;chksm=c2e2e87df595616ba89477432d6d1a9dccb04c1a022e2d9603bdc0b2a0d5e18d8e149efe075a#rd",
+        "title": "告别 XSS！新的 W3C 提案助你安全操作 DOM",
+        "time": "2021-10-13"
+    },
+    {
+        "link": "http://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&amp;mid=2247490934&amp;idx=1&amp;sn=4c5c086d3b736c6397212740005ee040&amp;chksm=c2e2e85df595614b90ae2c04198e19377fdf386b8569bdfbb70127cfec2d5be8c9726040ef98#rd",
+        "title": "三方 Cookie 替代品 — 隐私沙盒的最新进展",
+        "time": "2021-11-11"
+    }
+]

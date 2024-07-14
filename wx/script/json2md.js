@@ -34,7 +34,7 @@ function json2md(json) {
 
         for (let j = 0; j < data.length; j++) {
             const { link, title, time } = data[j];
-            text += `- [【${time}】${title}](${link}) \r\r`
+            text += `- [【${time}】${title}](${link}) \r`
         }
     }
     return text;
